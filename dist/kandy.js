@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.1.0-beta.54082
+ * Version: 3.2.0-beta.55685
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -51399,7 +51399,8 @@ function* subscribe(connection, credentials, extras = {}) {
       service: connection.service,
       localization: connection.localization || 'English_US',
       useTurn: connection.useTurn || true,
-      notificationType: connection.notificationType || 'WebSocket'
+      notificationType: connection.notificationType || 'WebSocket',
+      supported: ['RingingFeedback']
     }
   });
 
@@ -51725,7 +51726,7 @@ exports.default = [{ name: 'logs', fn: _logs2.default }, { name: 'config', fn: _
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ICE_MEDIA_STATES = exports.FCS_ICE_MEDIA_STATES = exports.WEBRTC_DEVICE_KINDS = exports.CALL_STATES = exports.CALL_STATES_FCS = exports.FCS_CALL_STATES = undefined;
+exports.ICE_MEDIA_STATES = exports.FCS_ICE_MEDIA_STATES = exports.WEBRTC_DEVICE_KINDS = exports.CALL_DIRECTION = exports.OPERATIONS = exports.CALL_MEDIA_STATES = exports.CALL_STATES = exports.CALL_STATES_FCS = exports.FCS_CALL_STATES = undefined;
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
@@ -51786,6 +51787,44 @@ const CALL_STATES = exports.CALL_STATES = {
   CONNECTED: 'Connected',
   ON_HOLD: 'On Hold',
   ENDED: 'Ended'
+
+  /**
+   * Possible states a call's media can be in.
+   * Describes whether media is flowing or if an endpoint is preventing media flow.
+   * @name CALL_MEDIA_STATES
+   * @type {Object}
+   * @property {string} CONNECTED Both call endpoints allow for media to flow.
+   * @property {string} LOCAL_HOLD Local endpoint disallows media from flowing.
+   * @property {string} REMOTE_HOLD Remote endpoint disallows media from flowing.
+   * @property {string} DUAL_HOLD Both endpoints disallow media from flowing.
+   */
+};const CALL_MEDIA_STATES = exports.CALL_MEDIA_STATES = {
+  CONNECTED: 'Connected',
+  LOCAL_HOLD: 'Local Hold',
+  REMOTE_HOLD: 'Remote Hold',
+  DUAL_HOLD: 'Dual Hold'
+
+  /**
+   * Call operations that require negotiation.
+   * @name OPERATIONS
+   * @type {Object}
+   * @property {string} CHANGE_MEDIA Media flow remains the same, includes non-flow related media changes.
+   * @property {string} HOLD_MEDIA   Media flow stops. May include non-flow related media changes.
+   * @property {string} UNHOLD_MEDIA Media flow restarts. May include non-flow related media changes.
+   */
+};const OPERATIONS = exports.OPERATIONS = {
+  CHANGE_MEDIA: 'Change Media',
+  HOLD_MEDIA: 'Hold Media',
+  UNHOLD_MEDIA: 'Unhold Media'
+
+  /**
+   * Call direction
+   * Indication of which direction the call is going
+   * @name CALL_DIRECTION
+   */
+};const CALL_DIRECTION = exports.CALL_DIRECTION = {
+  INCOMING: 'incoming',
+  OUTGOING: 'outgoing'
 
   /*
    * A conversion from MediaDeviceInfo.kind values to their more common terms.
@@ -59825,6 +59864,7 @@ function autoRestart(saga) {
         // Importing the LogManager in this file breaks tests for an unknown
         //    reason. Should find out why so that we can log in our utils.
         // log.error(`Unhandled error in saga ${saga.name}.`, e)
+        console.log(`Unhandled error in saga ${saga.name}.`, e);
         shouldRestart = true;
       }
     } while (shouldRestart);
@@ -61372,7 +61412,9 @@ const authCodes = exports.authCodes = {
   // A provided parameter is not valid.
   INVALID_PARAM: 'call:7',
   // There is a desync between components' state.
-  STATE_DESYNC: 'call:8'
+  STATE_DESYNC: 'call:8',
+  // Offer could not be generated
+  INVALID_OFFER: 'call:9'
 
   /**
    * Error codes for the Call History plugin.
@@ -62306,7 +62348,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.1.0-beta.54082';
+  let version = '3.2.0-beta.55685';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -70457,6 +70499,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = usersLink;
+exports.contactRequest = contactRequest;
 exports.fetchSelfInfo = fetchSelfInfo;
 exports.fetchUserLocale = fetchUserLocale;
 
@@ -70532,8 +70575,9 @@ function usersLink() {
       if (res.error) {
         yield (0, _effects3.put)(contactActions.refreshContactsFinish({ error: res.error }));
       } else {
+        var contacts = res.result.addressBookEntries ? res.result.addressBookEntries.map(localContactFromRemote) : [];
         yield (0, _effects3.put)(contactActions.refreshContactsFinish({
-          contacts: res.result.addressBookEntries.map(localContactFromRemote)
+          contacts: contacts
         }));
       }
     }
