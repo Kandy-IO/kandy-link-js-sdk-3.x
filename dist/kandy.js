@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.2.0-beta.55811
+ * Version: 3.2.0-beta.56097
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -62348,7 +62348,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.2.0-beta.55811';
+  let version = '3.2.0-beta.56097';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -67658,6 +67658,41 @@ function getPresence(state, users) {
 
 /***/ }),
 
+/***/ "./src/presence/link/constants.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * The status of the presence state
+ * @name STATUS
+ */
+const STATUS = exports.STATUS = {
+  OPEN: 'open',
+  CLOSED: 'closed'
+
+  /**
+   * The presence activity
+   * @name ACTIVITY
+   */
+};const ACTIVITY = exports.ACTIVITY = {
+  ACTIVE: 'active',
+  IDLE: 'idle',
+  AWAY: 'away',
+  LUNCH: 'lunch',
+  OTHER: 'other',
+  BUSY: 'busy',
+  VACATION: 'vacation',
+  ON_THE_PHONE: 'on-the-phone',
+  UNKNOWN: 'unknown'
+};
+
+/***/ }),
+
 /***/ "./src/presence/link/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -67667,6 +67702,7 @@ function getPresence(state, users) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = linkPresence;
 
 var _interface = __webpack_require__("./src/presence/interface/index.js");
 
@@ -67677,6 +67713,8 @@ var sagas = _interopRequireWildcard(_sagas);
 var _events = __webpack_require__("./src/presence/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
+
+var _constants = __webpack_require__("./src/presence/link/constants.js");
 
 var _actions = __webpack_require__("./src/events/interface/actions.js");
 
@@ -67689,22 +67727,65 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 // Libraries
-// Presence plugin.
 const name = 'presence';
 
 // Other plugins.
+// Presence plugin.
 
 
 const capabilities = ['presence'];
 
-exports.default = () => ({
-  name,
-  capabilities,
-  api: _interface.api,
-  reducer: _interface.reducer,
-  init: () => [(0, _effects.put)((0, _actions.mapEvents)(_events2.default))],
-  sagas: (0, _fp.values)(sagas)
-});
+/**
+ * Link Presence plugin factory.
+ * @method linkPresence
+ * @return {Object} A plugin.
+ */
+function linkPresence() {
+  // Add plugin-specific things to the API.
+  function augmentedApi(context) {
+    const newApi = (0, _interface.api)(context);
+
+    /**
+     * Possible status values.
+     * @public
+     * @memberof Presence
+     * @type {Object}
+     * @property {string} OPEN
+     * @property {string} CLOSED
+     * @example
+     * const { statuses, activities } = client.presence
+     * // Use the values when updating presence.
+     * client.presence.update(statuses.OPEN, activities.AVAILABLE)
+     */
+    newApi.presence.statuses = _constants.STATUS;
+
+    /**
+     * Possible activity values.
+     * @public
+     * @memberof Presence
+     * @type {Object}
+     * @property {string} AVAILABLE
+     * @property {string} IDLE
+     * @property {string} AWAY
+     * @property {string} LUNCH
+     * @property {string} BUSY
+     * @property {string} VACATION
+     * @property {string} ON_THE_PHONE
+     * @property {string} UNKNOWN
+     */
+    newApi.presence.activities = _constants.ACTIVITY;
+    return newApi;
+  }
+
+  return {
+    name,
+    capabilities,
+    api: augmentedApi,
+    reducer: _interface.reducer,
+    init: () => [(0, _effects.put)((0, _actions.mapEvents)(_events2.default))],
+    sagas: (0, _fp.values)(sagas)
+  };
+}
 
 /***/ }),
 
@@ -67863,49 +67944,24 @@ var _errors = __webpack_require__("./src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("./src/presence/link/constants.js");
+
+var _constants2 = __webpack_require__("./src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * The status of the presence state
- * @name STATUS
- */
-
-// Helpers
-// Presence plugin.
-const STATUS = {
-  OPEN: 'open',
-  CLOSED: 'closed'
-  /**
-   * The presence activity
-   * @name ACTIVITY
-   */
-};
 
 // Constants
 
 // Libraries.
 
 // Other plugins.
-const ACTIVITY = {
-  ACTIVE: 'active',
-  IDLE: 'idle',
-  AWAY: 'away',
-  LUNCH: 'lunch',
-  OTHER: 'other',
-  BUSY: 'busy',
-  VACATION: 'vacation',
-  ON_THE_PHONE: 'on-the-phone',
-  UNKNOWN: 'unknown'
-};
-
 function* presenceUpdateSaga() {
   yield (0, _effects.takeEvery)(actionTypes.UPDATE, updatePresence);
 }
-
+// Helpers
+// Presence plugin.
 function* presenceGetSaga() {
   yield (0, _effects.takeEvery)(actionTypes.GET, getPresence);
 }
@@ -67924,7 +67980,7 @@ function* presenceReceivedSaga() {
 
 function* updatePresence({ payload }) {
   // Verify that the status value is a valid
-  if ((0, _values2.default)(STATUS).indexOf(payload.status) === -1) {
+  if ((0, _values2.default)(_constants.STATUS).indexOf(payload.status) === -1) {
     yield (0, _effects.put)(actions.updatePresenceFinish({
       error: new _errors2.default({
         code: _errors.presenceCodes.INVALID_STATUS,
@@ -67935,7 +67991,7 @@ function* updatePresence({ payload }) {
   }
 
   // Verify that the activity value is a valid
-  if ((0, _values2.default)(ACTIVITY).indexOf(payload.activity) === -1) {
+  if ((0, _values2.default)(_constants.ACTIVITY).indexOf(payload.activity) === -1) {
     yield (0, _effects.put)(actions.updatePresenceFinish({
       error: new _errors2.default({
         code: _errors.presenceCodes.INVALID_ACTIVITY,
@@ -67947,7 +68003,7 @@ function* updatePresence({ payload }) {
 
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.updatePresenceRequest, payload, requestInfo);
   if (res instanceof Error) {
     yield (0, _effects.put)(actions.updatePresenceFinish(res));
@@ -67960,7 +68016,7 @@ function* getPresence({ payload }) {
   const users = Array.isArray(payload) ? payload : [payload];
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.watchPresenceRequest, users, 'get', requestInfo);
   yield (0, _effects.put)(actions.getPresenceFinish(res));
 }
@@ -67969,7 +68025,7 @@ function* subscribePresence({ payload }) {
   const users = Array.isArray(payload) ? payload : [payload];
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.watchPresenceRequest, users, 'watch', requestInfo);
   yield (0, _effects.put)(actions.subscribePresenceFinish(res));
 }
@@ -67978,7 +68034,7 @@ function* unsubscribePresence({ payload }) {
   const users = Array.isArray(payload) ? payload : [payload];
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.watchPresenceRequest, users, 'stopwatch', requestInfo);
   yield (0, _effects.put)(actions.unsubscribePresenceFinish(res));
 }
