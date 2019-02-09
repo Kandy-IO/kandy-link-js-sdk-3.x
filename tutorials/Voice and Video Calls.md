@@ -11,17 +11,11 @@ In this quickstart, we will cover the basics of making IP calls with Kandy. Code
 
 For information about other call features, such as mid-call operations or screensharing, please refer to their respective quickstarts.
 
-``` hidden javascript
-// Variables for connecting.
-var username = "UsernameHere";
-var password = "PasswordHere";
-```
-
 ## Call Configs
 
-When initalizing Kandy.js, call configurations can be provided that act as a default if they are not provided when making a call. For this quickstart, we will specify that we want calls to default to being audio-only. This can be overridden by providing these options when making or answering the call, though. To learn more about call configs, refer to the [Configurations Quickstart](index.html#Configurations).
+When initalizing Kandy.js, call configurations can be provided that act as a default if they are not provided when making a call. For this quickstart, we will specify that we want calls to default to being audio-only. This can be overridden by providing these options when making or answering the call, though. To learn more about call configs, refer to the [Configurations Quickstart](Configurations).
 
-``` exclude javascript
+```  javascript
 // Setup Kandy with "audio call by default" and server configurations.
 import { create } from kandy
 const kandy = create({
@@ -41,62 +35,9 @@ const kandy = create({
 });
 ```
 
-``` hidden javascript
-// Setup Kandy with "audio call by default" and server configurations.
-const { create } = Kandy
-const kandy = create({
-    call: {
-        callDefaults: {
-            sendInitialVideo: false
-        }
-    },
-    authentication: {
-        subscription: {
-            server: 'spidr-ucc.genband.com'
-        },
-        websocket: {
-            server: 'spidr-ucc.genband.com'
-        }
-    }
-});
-```
-
-After that, the user will need to connect to Kandy. We won't cover authentication in this quickstart, so we'll take a shortcut and steal the connect code from the [User Connection Quickstart](index.html#User%20Connect), except for the button part. So the user will automatically login after initialization.
-
-``` hidden javascript
-/*
- *  Authentication functionality.
- */
-
-// Authenticate, and connect, the user with Kandy.
-kandy.connect({
-    username: username,
-    password: password
-});
-
-// Setup a listener for changes in the connection state.
-kandy.on('auth:change', function() {
-   let isConnected = kandy.getConnection().isConnected;
-   document.getElementById('auth-state').innerHTML = 'Connected: ' + isConnected;
-   log('Connection state changed.');
-});
-
-// Setup a listener for authentication errors.
-kandy.on('auth:error', function(error) {
-    log('Connect error: ' + error.message + ' (' + error.code + ')');
-});
-
-// Utility function for appending messages to the message div.
-function log(message) {
-    document.getElementById('messages').innerHTML += '<div>' + message + '</div>';
-}
-```
+After that, the user will need to connect to Kandy. We won't cover authentication in this quickstart, so we'll take a shortcut and steal the connect code from the [User Connection Quickstart](User%20Connect), except for the button part. So the user will automatically login after initialization.
 
 ## User Interface
-
-``` hidden html
-<div id='auth-state'>Connected: false</div>
-```
 
 To interact with our demo application, we will have a basic UI that allows us to make outgoing calls and respond to incoming calls. The UI will be kept very simple, as it is not the focus of this quickstart, so it will be a straightforward set of elements for user input.
 
@@ -300,16 +241,6 @@ We can now call the demo application done. We've covered the basics of what is n
 
 Want to play around with this example for yourself? Feel free to edit this code on Codepen.
 
-``` codepen
-{
-    "title": "Kandy.io Voice and Video Call Demo",
-    "editors": 101,
-    "js_external": "https://localhost:3000/kandy/kandy.link.js"
-}
-```
 
-``` hidden css
-video {
-  width: 50% !important;
-}
-```
+
+<form action="https://codepen.io/pen/define" method="POST" target="_blank" class="codepen-form"><input type="hidden" name="data" value=' {&quot;js&quot;:&quot;/**\n * Kandy.io Voice and Video Call Demo\n */\n\n// Variables for connecting.\nvar username = \&quot;UsernameHere\&quot;;\nvar password = \&quot;PasswordHere\&quot;;\n\n// Setup Kandy with \&quot;audio call by default\&quot; and server configurations.\nconst { create } = Kandy\nconst kandy = create({\n    call: {\n        callDefaults: {\n            sendInitialVideo: false\n        }\n    },\n    authentication: {\n        subscription: {\n            server: &apos;spidr-ucc.genband.com&apos;\n        },\n        websocket: {\n            server: &apos;spidr-ucc.genband.com&apos;\n        }\n    }\n});\n\n/*\n *  Authentication functionality.\n */\n\n// Authenticate, and connect, the user with Kandy.\nkandy.connect({\n    username: username,\n    password: password\n});\n\n// Setup a listener for changes in the connection state.\nkandy.on(&apos;auth:change&apos;, function() {\n   let isConnected = kandy.getConnection().isConnected;\n   document.getElementById(&apos;auth-state&apos;).innerHTML = &apos;Connected: &apos; + isConnected;\n   log(&apos;Connection state changed.&apos;);\n});\n\n// Setup a listener for authentication errors.\nkandy.on(&apos;auth:error&apos;, function(error) {\n    log(&apos;Connect error: &apos; + error.message + &apos; (&apos; + error.code + &apos;)&apos;);\n});\n\n// Utility function for appending messages to the message div.\nfunction log(message) {\n    document.getElementById(&apos;messages&apos;).innerHTML += &apos;<div>&apos; + message + &apos;</div>&apos;;\n}\n\n/*\n *  Voice and Video Call functionality.\n */\n\n// Variable to keep track of the call.\nlet callId;\n\n// Get user input and make a call to the callee.\nfunction makeCall() {\n    // Gather call options.\n    let callee = document.getElementById(&apos;callee&apos;).value;\n    let withVideo = document.getElementById(&apos;make-with-video&apos;).checked;\n\n    // Gather media containers to be used for the call.\n    let remoteContainer = document.getElementById(&apos;remote-container&apos;);\n    let localContainer = document.getElementById(&apos;local-container&apos;);\n\n    log(&apos;Making call to &apos; + callee);\n    callId = kandy.call.make(callee, {\n        sendInitialVideo: withVideo,\n        remoteVideoContainer: remoteContainer,\n        localVideoContainer: localContainer,\n        normalizeAddress: true\n    });\n}\n\n// Answer an incoming call.\nfunction answerCall() {\n    // Gather call options.\n    let withVideo = document.getElementById(&apos;answer-with-video&apos;).checked;\n\n    // Gather media containers to be used for the call.\n    let remoteContainer = document.getElementById(&apos;remote-container&apos;);\n    let localContainer = document.getElementById(&apos;local-container&apos;);\n\n    // Retrieve call state.\n    let call = kandy.call.getById(callId);\n    log(&apos;Answering call from &apos; + call.from);\n\n    kandy.call.answer(callId, {\n        sendInitialVideo: withVideo,\n        remoteVideoContainer: remoteContainer,\n        localVideoContainer: localContainer\n    });\n}\n\n// Reject an incoming call.\nfunction rejectCall() {\n    // Retrieve call state.\n    let call = kandy.call.getById(callId);\n    log(&apos;Rejecting call from &apos; + call.from);\n\n    kandy.call.reject(callId);\n}\n\n// End an ongoing call.\nfunction endCall() {\n    // Retrieve call state.\n    let call = kandy.call.getById(callId);\n    log(&apos;Ending call with &apos; + call.from);\n\n    kandy.call.end(callId);\n}\n\n// Set listener for successful call starts.\nkandy.on(&apos;call:start&apos;, function(params) {\n    log(&apos;Call successfully started. Waiting for response.&apos;);\n});\n\n// Set listener for generic call errors.\nkandy.on(&apos;call:error&apos;, function(params) {\n    log(&apos;Encountered error on call: &apos; + params.error.message);\n});\n\n// Set listener for call media errors.\nkandy.on(&apos;media:error&apos;, function(params) {\n    log(&apos;Call encountered media error: &apos; + params.error.message);\n});\n\n// Set listener for changes in a call&apos;s state.\nkandy.on(&apos;call:stateChange&apos;, function(params) {\n    log(&apos;Call state changed to: &apos; + params.state);\n\n    // If the call ended, stop tracking the callId.\n    if(params.state === &apos;ENDED&apos;) {\n        callId = null;\n    }\n});\n\n// Set listener for incoming calls.\nkandy.on(&apos;call:receive&apos;, function(params) {\n    // Keep track of the callId.\n    callId = params.callId;\n\n    // Retrieve call information.\n    call = kandy.call.getById(params.callId);\n    log(&apos;Received incoming call from &apos; + call.from);\n});\n\n&quot;,&quot;html&quot;:&quot;<div id=&apos;auth-state&apos;>Connected: false</div>\n\n<div>\n    <fieldset>\n        <legend>Make a Call</legend>\n        <!-- User input for making a call. -->\n        <input type=&apos;button&apos; value=&apos;Make Call&apos; onclick=&apos;makeCall();&apos; />\n        to <input type=&apos;text&apos; id=&apos;callee&apos; />\n        with video <input type=&apos;checkbox&apos; id=&apos;make-with-video&apos; />\n    </fieldset>\n\n    <fieldset>\n        <legend>Respond to a Call</legend>\n        <!-- User input for responding to an incoming call. -->\n        <input type=&apos;button&apos; value=&apos;Answer Call&apos; onclick=&apos;answerCall();&apos; />\n        with video <input type=&apos;checkbox&apos; id=&apos;answer-with-video&apos; />\n        <input type=&apos;button&apos; value=&apos;Reject Call&apos; onclick=&apos;rejectCall();&apos; />\n    </fieldset>\n\n    <fieldset>\n        <legend>End a Call</legend>\n        <!-- User input for ending an ongoing call. -->\n        <input type=&apos;button&apos; value=&apos;End Call&apos; onclick=&apos;endCall();&apos; />\n    </fieldset>\n\n    <fieldset>\n        <!-- Message output container. -->\n        <legend>Messages</legend>\n        <div id=&apos;messages&apos;></div>\n    </fieldset>\n</div>\n\n<!-- Media containers. -->\nRemote video: <div id=\&quot;remote-container\&quot;></div>\n\nLocal video: <div id=\&quot;local-container\&quot;></div>\n\n&quot;,&quot;css&quot;:&quot;video {\n  width: 50% !important;\n}\n\n&quot;,&quot;title&quot;:&quot;Kandy.io Voice and Video Call Demo&quot;,&quot;editors&quot;:101,&quot;js_external&quot;:&quot;https://cdn.jsdelivr.net/gh/Kandy-IO/kandy-link-js-sdk@56362/dist/kandy.js&quot;} '><input type="image" src="./TryItOn-CodePen.png"></form>

@@ -11,7 +11,7 @@ In this quickstart we will cover how to connect and disconnect to the Kandy Plat
 
 The first step with Kandy.js is always to initialize it. You will need to know the server information for the Kandy platform that you are using for initialization. Depending on your platform, the only required configuration is the server address, as the others have generic defaults.
 
-``` exclude javascript
+```  javascript
 import { create } from kandy
 const kandy = create({
     authentication: {
@@ -25,21 +25,7 @@ const kandy = create({
 })
 ```
 
-``` hidden javascript
-const { create } = Kandy
-const kandy = create({
-    authentication: {
-        subscription: {
-            server: 'spidr-ucc.genband.com'
-        },
-        websocket: {
-            server: 'spidr-ucc.genband.com'
-        }
-    }
-})
-```
-
-To learn more about initializing Kandy, see our [Configuration Quickstart](index.html#Configurations).
+To learn more about initializing Kandy, see our [Configuration Quickstart](Configurations).
 
 Since we're going to be making a working demo, we also need some HTML. The HTML for this demo is quite simple.
 
@@ -54,17 +40,11 @@ Since we're going to be making a working demo, we also need some HTML. The HTML 
 
 What we have is a simple div containing the connected state of our app, two buttons, and an element for logging messages to.
 
-
 ## Step 1: Connecting
 
 To connect using Kandy, you will need two things:
 1. A username. This is the full username of a user on your domain. (Example: your-user@your-domain.kandy.io)
 1. A password. Don't worry, its safe with us.
-
-``` hidden javascript
-var username = "UsernameHere";
-var password = "PasswordHere";
-```
 
 With these three things, you can call the connect function on Kandy.
 
@@ -79,7 +59,7 @@ function login() {
 
 ## Step 2: Connection Events
 
-The `kandy.connect()` function does not return a value. Instead, Kandy.js uses events to tell you when something has changed. You can find a list of the authentication events [here](../docs#authentication).
+The `kandy.connect()` function does not return a value. Instead, Kandy.js uses events to tell you when something has changed. You can find a list of the authentication events [here](../../references/link#authentication).
 
 To subscribe to these events, you use `kandy.on()`. Here is the example for our demo app:
 
@@ -102,11 +82,11 @@ kandy.on('auth:error', function(params) {
 
 In the above piece of code we subscribe an anonymous function to the `auth:change` event. Now, whenever Kandy fires off an `auth:change` event, that function will be called. Inside this function we call `kandy.getConnection()`. This function returns an object that looks like so:
 
-``` javascript exclude
+``` javascript 
 { isConnected: true, isPending: false, error: undefined }
 ```
 
-To learn more about the response from this API checkout the documentation for `getConnection` [here](../docs#authentication).
+To learn more about the response from this API checkout the documentation for `getConnection` [here](../../references/link#authentication).
 
 ## Step 3: Disconnecting
 
@@ -120,21 +100,10 @@ function logout() {
 
 Calling this function will trigger a change in the connection state, which in turn will trigger any listeners to the `auth:change` event. You can therefore use your `auth:change` listener to detect if the disconnect was successful.
 
-``` hidden javascript
-// Utility function for appending messages to the message div.
-function log(message) {
-  document.getElementById('messages').innerHTML += '<div>' + message + '</div>';
-}
-```
-
 ### Live Demo
 
 Want to play around with this example for yourself? Feel free to edit this code on Codepen.
 
-``` codepen
-{
-	"title": "Kandy.io Authentication Demo",
-	"editors": "101",
-	"js_external": "https://localhost:3000/kandy/kandy.link.js"
-}
-```
+
+
+<form action="https://codepen.io/pen/define" method="POST" target="_blank" class="codepen-form"><input type="hidden" name="data" value=' {&quot;js&quot;:&quot;/**\n * Kandy.io Authentication Demo\n */\n\nconst { create } = Kandy\nconst kandy = create({\n    authentication: {\n        subscription: {\n            server: &apos;spidr-ucc.genband.com&apos;\n        },\n        websocket: {\n            server: &apos;spidr-ucc.genband.com&apos;\n        }\n    }\n})\n\nvar username = \&quot;UsernameHere\&quot;;\nvar password = \&quot;PasswordHere\&quot;;\n\nfunction login() {\n  kandy.connect({\n    username: username,\n    password: password\n  });\n}\n\nkandy.on(&apos;auth:change&apos;, function() {\n   let isConnected = kandy.getConnection().isConnected;\n   document.getElementById(&apos;auth-state&apos;).innerHTML = &apos;Connected: &apos; + isConnected;\n   log(&apos;Connection state changed.&apos;);\n});\n\n// Listen for authentication errors.\nkandy.on(&apos;auth:error&apos;, function(params) {\n  log(&apos;Connect error: &apos; + params.error.message + &apos; (&apos; + params.error.code + &apos;)&apos;);\n});\n\nfunction logout() {\n  kandy.disconnect();\n}\n\n// Utility function for appending messages to the message div.\nfunction log(message) {\n  document.getElementById(&apos;messages&apos;).innerHTML += &apos;<div>&apos; + message + &apos;</div>&apos;;\n}\n\n&quot;,&quot;html&quot;:&quot;<div id=&apos;auth-state&apos;>Connected: false</div>\n\n<input type=\&quot;submit\&quot; value=\&quot;Login\&quot; onclick=\&quot;login();\&quot;>\n<input type=\&quot;submit\&quot; value=\&quot;Logout\&quot; onclick=\&quot;logout();\&quot;>\n\n<div id=\&quot;messages\&quot;> </div>\n\n&quot;,&quot;css&quot;:&quot;&quot;,&quot;title&quot;:&quot;Kandy.io Authentication Demo&quot;,&quot;editors&quot;:&quot;101&quot;,&quot;js_external&quot;:&quot;https://cdn.jsdelivr.net/gh/Kandy-IO/kandy-link-js-sdk@56362/dist/kandy.js&quot;} '><input type="image" src="./TryItOn-CodePen.png"></form>
