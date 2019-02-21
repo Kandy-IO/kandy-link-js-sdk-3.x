@@ -27156,6 +27156,137 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "The user's self presence information has changed.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 50,
+                        "offset": 49
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 50,
+                    "offset": 49
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 50,
+                "offset": 49
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "Presence",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "presence"
+            },
+            {
+              "title": "event",
+              "description": "presence:selfChange",
+              "lineNumber": 6
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 0
+            },
+            "end": {
+              "line": 23,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 24,
+                "column": 0
+              },
+              "end": {
+                "line": 24,
+                "column": 48
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/presence/interface/eventTypes.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Presence",
+          "kind": "event",
+          "name": "presence:selfChange",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Presence",
+              "kind": "module"
+            },
+            {
+              "name": "presence:selfChange",
+              "kind": "event"
+            }
+          ],
+          "namespace": "Presence.event:presence:selfChange"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "An error occured with presence.",
                     "position": {
                       "start": {
@@ -27246,22 +27377,22 @@
           ],
           "loc": {
             "start": {
-              "line": 16,
+              "line": 26,
               "column": 0
             },
             "end": {
-              "line": 25,
+              "line": 35,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 26,
+                "line": 36,
                 "column": 0
               },
               "end": {
-                "line": 26,
+                "line": 36,
                 "column": 37
               }
             },
