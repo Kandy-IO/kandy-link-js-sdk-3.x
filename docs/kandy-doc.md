@@ -584,6 +584,17 @@ Prompt the user for permission to use their audio and/or video devices.
     -   `options.video` **[boolean][7]?** Whether to get permission for video.
     -   `options.audio` **[boolean][7]?** Whether to get permission for audio.
 
+### DEVICE_ERROR
+
+An error occurred while performing a device operation.
+
+Type: [string][2]
+
+**Parameters**
+
+-   `params` **[Object][5]** 
+    -   `params.error` **[BasicError][10]** The Basic error object.
+
 ## CallHistory
 
 The call history feature is used to retrieve and inspect the authenticated
@@ -665,7 +676,7 @@ If a conversation with the given user ID already exists in the store, it will be
 -   `destination` **[string][2]** The destination for messages created in this conversation. This will
     be a user's sip address.
 
-Returns **[Conversation][10]** A Conversation object.
+Returns **[Conversation][11]** A Conversation object.
 
 ## Conversation
 
@@ -693,7 +704,7 @@ Create and return a message object. You must provide a `text` part as demonstrat
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[Message][11]** The newly created Message object.
+Returns **[Message][12]** The newly created Message object.
 
 ### clearMessages
 
@@ -1399,6 +1410,8 @@ Returns **[Array][6]** A list of clickToCall records, ordered by earliest reques
 
 [9]: https://developer.mozilla.org/docs/Web/HTML/Element
 
-[10]: #conversation
+[10]: #basicerror
 
-[11]: #message
+[11]: #conversation
+
+[12]: #message
