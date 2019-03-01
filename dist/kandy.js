@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.2.0-beta.60099
+ * Version: 3.3.0-beta.60265
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -35621,8 +35621,27 @@ function createCodecRemover(config) {
         return typeof item === 'string' ? { name: item } : item;
     });
 
-    return function (params) {
-        var newSdp = (0, _fp.cloneDeep)(params.currentSdp);
+    return function () {
+        // Adding support for new callstack sdp handlers
+        // Old callstack sdp pipeline passes an object to each sdp
+        // handler that contains the currentSdp
+        // New callstack passes 3 arguments to each sdp handler
+        // newSdp, info, originalSdp
+        var oldCallstack = true;
+        var currentSdp = void 0;
+
+        for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
+            params[_key] = arguments[_key];
+        }
+
+        if (params[0].currentSdp) {
+            currentSdp = params[0].currentSdp;
+        } else if (params.length === 3) {
+            oldCallstack = false;
+            currentSdp = params[0];
+        }
+
+        var newSdp = (0, _fp.cloneDeep)(currentSdp);
 
         // This is an array of strings representing codec names we want to remove.
         var codecStringsToRemove = config.map(function (codec) {
@@ -35721,7 +35740,9 @@ function createCodecRemover(config) {
             }
         });
 
-        return params.next(newSdp);
+        // If old callstack, then return the results of the next sdp handler
+        // If new callstack, then just return the modified sdp
+        return oldCallstack ? params[0].next(newSdp) : newSdp;
     };
 }
 
@@ -51811,11 +51832,13 @@ const CALL_STATES = exports.CALL_STATES = {
    * @property {string} CHANGE_MEDIA Media flow remains the same, includes non-flow related media changes.
    * @property {string} HOLD_MEDIA   Media flow stops. May include non-flow related media changes.
    * @property {string} UNHOLD_MEDIA Media flow restarts. May include non-flow related media changes.
+   * @property {string} MUSIC_ON_HOLD Media flow changes to sendonly.
    */
 };const OPERATIONS = exports.OPERATIONS = {
   CHANGE_MEDIA: 'Change Media',
   HOLD_MEDIA: 'Hold Media',
-  UNHOLD_MEDIA: 'Unhold Media'
+  UNHOLD_MEDIA: 'Unhold Media',
+  MUSIC_ON_HOLD: 'Music on hold'
 
   /**
    * Call direction
@@ -58184,81 +58207,155 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.normalizeSipUri = normalizeSipUri;
 /**
+ * Extracts the domain from an address if an @ symbol exists and isn't at the start or end of the address.
+ * @param {string} addressString The address string to extract the domain from (if it exists).
+ * @returns {string} The extracted domain. Empty string of none found.
+ */
+function extractDomainFromAddress(addressString) {
+  const indexOfAtSymbol = addressString.indexOf('@');
+  if (indexOfAtSymbol !== 0 && indexOfAtSymbol !== addressString.length - 1) {
+    // If '@' symbol found in middle of addressString, split it.
+    if (indexOfAtSymbol !== -1) {
+      return addressString.substr(indexOfAtSymbol + 1);
+    }
+  }
+  return '';
+}
+
+/**
+ * Determines which address and domain to use depending on whether the address string contains a domain or not.
+ * @param {string} addressString The address string to examine and extract a domain from (if any).
+ * @param {string} defaultDomainString The domain to use if the address string does not contain a domain in it.
+ * @returns {Object} An object containing the correct address and domain to use.
+ */
+function separateAddressAndDomain(addressString, defaultDomainString) {
+  const extractedDomain = extractDomainFromAddress(addressString);
+  // If a domain was extracted from the address, use that as the domain and strip it from the address.
+  if (extractedDomain) {
+    return {
+      address: addressString.substr(0, addressString.length - extractedDomain.length - 1),
+      domain: extractedDomain
+    };
+  } else {
+    return {
+      address: addressString,
+      domain: defaultDomainString
+    };
+  }
+}
+
+/**
+ * Extracts any pre-pended data before a ":" (if it exists) from the beginning of a string.
+ * @param {string} inputString The string to remove pre-pended data from.
+ * @returns {string} The pre-pended data string.
+ */
+function extractPrependedData(inputString) {
+  const prependedDataMatches = inputString.match(/^.*:/g);
+  if (prependedDataMatches && prependedDataMatches[0]) {
+    return prependedDataMatches[0];
+  } else {
+    return '';
+  }
+}
+
+/**
+ * Finds the leading special characters ("#", "+", "*") of an address if it is a phone number.
+ * If the address contains letters or any non-visual-separator characters,
+ *  it is not a phone number and no leading special characters will be found.
+ * @param {string} addressString The address string to find the leading characters of (if any).
+ *  The addressString must not contain any pre-pended data such as "sip:".
+ *  The addressString must not contain a domain.
+ * @returns {string} The leading special characters as one string. Empty string if none found.
+ */
+function extractLeadingSpecialCharacters(addressString) {
+  // A single or group of contiguous characters are considered leading character/s if it is  the following:
+  // - starts at the beginning of the string - ^
+  // - is any of the following characters - [#+*]+
+  // - is followed by a digit or "(" - [\d|(]
+  // - is followed by any number of only digits and visual separators - [\d \-.()+]*$
+  const potentialLeadingChars = addressString.match(/^[#+*]+[\d|(][\d \-.()+]*$/g);
+  if (potentialLeadingChars && potentialLeadingChars[0]) {
+    // Guaranteed to have a match for regex [#+*]+ since we have potentialLeadingChars
+    // which was a match for a similar regex and we are simply extracting the leading characters part.
+    const actualLeadingChars = potentialLeadingChars[0].match(/[#+*]+/g);
+    return actualLeadingChars[0];
+  }
+  return '';
+}
+
+/**
+ * Outputs a new string without its phone number visual separators ("-", ".", "(", ")", "+").
+ * @param {string} inputString The string to remove visual separators from.
+ * @returns {string} A new string without visual separators.
+ */
+function withoutVisualSeparators(inputString) {
+  return inputString.replace(/[ \-.()+]/g, '');
+}
+
+/**
+ * Determines whether a string should be considered a phone number or not.
+ * @param {string} addressString The address string to check.
+ *  The addressString must not contain any pre-pended data such as "sip:"
+ *  The addressString must not contain any leading special characters.
+ *  The addressString must not contain a domain.
+ * @returns {boolean} True if the input string is a phone number. False if it is not.
+ */
+function isPhoneNumber(addressString) {
+  const cleanNumber = withoutVisualSeparators(addressString);
+  const phoneNumberMatch = cleanNumber.match(/^\d+$/g);
+  return phoneNumberMatch && phoneNumberMatch.length === 1;
+}
+
+/**
+ * Processes the address string and returns the correct output.
+ * If the address is a phone number, visual separators are removed.
+ * Otherwise, it will just return the address as-is.
+ * @param {string} addressString The address string to process.
+ *  The addressString must not contain any pre-pended data such as "sip:".
+ *  The addressString must not contain any leading special characters (if it is a phone number).
+ *  The addressString must not contain a domain.
+ * @returns {string} A phone number without visual-separators or the addressString as-is.
+ */
+function processAddress(addressString) {
+  return isPhoneNumber(addressString) ? withoutVisualSeparators(addressString) : addressString;
+}
+
+/**
+ * Processes the domain string and returns the correct output.
+ * Adds an "@" symbol if it isn't present at the beginning of the domain.
+ * @param {string} domainString The domain string to process.
+ * @returns {string} The domain with "@" symbol at the beginning if it doesn't exist.
+ */
+function processDomain(domainString) {
+  return (domainString.indexOf('@') === 0 ? '' : '@') + domainString;
+}
+
+/**
  *The function takes in the input dial string and domain address of the user, performs a normalization process based on the phone number handling normalization rules
  * @function normalizeSipUri
  * @param {string} address   It contains the input dial string the user dials in or the callee address
  * @param {string} domain    It contains the user's domain address
  * @returns {string} output  The output which is the normalized callee address/phone number
  */
-
 function normalizeSipUri(address, domain) {
-  var output;
-
-  // Remove all leading space and tailing space
+  // Remove leading and trailing white spaces.
   address = address.trim();
 
-  // Remove all in-between spaces
-  address = address.replace(/[ ]/g, '');
+  // Extract domain.
+  const resultingAddressAndDomain = separateAddressAndDomain(address, domain);
+  domain = resultingAddressAndDomain.domain;
+  address = resultingAddressAndDomain.address;
 
-  // Check for: '@' if at the beginning or at the end
-  if (address.indexOf('@') === 0 || address.indexOf('@') === address.length - 1) {
-    output = 'sip:' + address + '@' + domain;
-  } else {
-    var dialAddress;
-    var domainAddress;
+  // Extract pre-pended "sip:".
+  const prepend = extractPrependedData(address);
+  address = address.substr(prepend.length);
 
-    // Check for: '@' symbol in address
-    if (address.indexOf('@') !== -1) {
-      // Split address at the occurence of '@' into two e.g 12345 and @domain.com, so we can normalize better
-      dialAddress = address.substr(0, address.indexOf('@'));
-      domainAddress = address.substr(address.indexOf('@'));
-    } else {
-      dialAddress = address;
-      domainAddress = domain;
-    }
+  // Extract leading characters.
+  const leadingChars = extractLeadingSpecialCharacters(address);
+  address = address.substr(leadingChars.length);
 
-    let leadingChar = dialAddress.substring(0, 1);
-
-    // Check for: no leading char
-    if (!(['*', '+', '#'].indexOf(leadingChar) !== -1)) {
-      // Check for: digits and visual seperators
-      if (dialAddress.match(/^[0-9-+().]*$/)) {
-        address = dialAddress.replace(/[-+().]/g, '');
-      } else if (dialAddress.match(/^[a-zA-Z0-9-]*$/)) {
-        // Check for: lower case and uppercase alpha chars, digits and visual seperators
-        address = dialAddress;
-      }
-    } else {
-      // Check for: leading char
-      if (dialAddress.indexOf(leadingChar) === 0) {
-        // Check for: leading char(*), digits and visual seperators
-        if (dialAddress.match(/^\*+[0-9-+.()]*$/)) {
-          address = dialAddress.replace(/[-+.()]/g, '');
-        } else if (dialAddress.match(/^\+[0-9-+.()]*$/)) {
-          // Check for: leading char(+), digits and visual seperators
-          address = leadingChar + dialAddress.replace(/[-+.()]/g, '');
-        } else if (dialAddress.match(/^\+[a-zA-Z0-9-]*$/)) {
-          // Check for: leading char(+), alpha chars, digits and visual seperators
-          address = dialAddress.replace(/[.()]/g, '');
-        } else if (dialAddress.match(/^\+[#0-9-+.()]*$/)) {
-          // Check for: leading char(+), digits and visual seperators
-          address = leadingChar + dialAddress.replace(/[-+.()]/g, '');
-        } else if (dialAddress.match(/^[#0-9.()]*$/)) {
-          // Check for: leading char(#), digits and visual seperators
-          address = dialAddress.replace(/[.()]/g, '');
-        }
-      } else {
-        address = dialAddress;
-      }
-    }
-
-    if (domainAddress.indexOf('@') === 0) {
-      output = 'sip:' + address + domainAddress;
-    } else {
-      output = 'sip:' + address + '@' + domainAddress;
-    }
-  }
-  return output;
+  // Process and build parts into final output in the form of `<prepend>:<leadingChars><address>@<domain>`.
+  return 'sip:' + leadingChars + processAddress(address) + processDomain(domain);
 }
 
 /***/ }),
@@ -62349,7 +62446,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.2.0-beta.60099';
+  let version = '3.3.0-beta.60265';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -62820,6 +62917,7 @@ const logMgr = getLogManager(defaultOptions);
  * @public
  * @name config.logs
  * @memberof config
+ * @requires logs
  * @instance
  * @param {Object} logs Logs configs.
  * @param  {string} [logs.logLevel=debug] Log level to be set. See `logger.levels`.
@@ -62859,6 +62957,7 @@ function logger(options = {}) {
 
   var components = {
     name,
+    capabilities: ['logs'],
     init,
     api: _api2.default
     // Consider actions to be at the INFO log level.
@@ -62885,6 +62984,11 @@ function logger(options = {}) {
         nextState: false
       };
     }
+
+    if (options.logActions.excludeActions) {
+      actionOptions.predicate = excludeActions(options.logActions.excludeActions);
+    }
+
     // ALWAYS use our own logger
     actionOptions.logger = logMgr.getLogger('ACTION');
     // ALWAYS remove theming/styling from the action log messages
@@ -62917,6 +63021,16 @@ function getLogManager(options) {
   return getLogManager.instance;
 }
 
+/**
+ * Logger predicate function that will take an array of action types
+ * and exclude them from logs
+ * @param {Array} actions An array of action types to exclude from logs
+ * @returns {function} A predicate function
+ */
+function excludeActions(actions) {
+  return (getState, action) => !actions.includes(action.type);
+}
+
 /***/ }),
 
 /***/ "./src/logs/interface/api.js":
@@ -62940,6 +63054,7 @@ exports.default = api;
  *
  * @public
  * @module Logger
+ * @requires logs
  */
 
 function api() {
