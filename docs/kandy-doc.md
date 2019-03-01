@@ -584,6 +584,17 @@ Prompt the user for permission to use their audio and/or video devices.
     -   `options.video` **[boolean][7]?** Whether to get permission for video.
     -   `options.audio` **[boolean][7]?** Whether to get permission for audio.
 
+### DEVICE_ERROR
+
+An error occurred while performing a device operation.
+
+Type: [string][2]
+
+**Parameters**
+
+-   `params` **[Object][5]** 
+    -   `params.error` **[BasicError][10]** The Basic error object.
+
 ## CallHistory
 
 The call history feature is used to retrieve and inspect the authenticated
@@ -665,7 +676,7 @@ If a conversation with the given user ID already exists in the store, it will be
 -   `destination` **[string][2]** The destination for messages created in this conversation. This will
     be a user's sip address.
 
-Returns **[Conversation][10]** A Conversation object.
+Returns **[Conversation][11]** A Conversation object.
 
 ## Conversation
 
@@ -693,7 +704,7 @@ Create and return a message object. You must provide a `text` part as demonstrat
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[Message][11]** The newly created Message object.
+Returns **[Message][12]** The newly created Message object.
 
 ### clearMessages
 
@@ -771,6 +782,38 @@ on the server, as well as retrieve other users presence information.
 
 Presence functions are all part of the 'presence' namespace.
 
+### statuses
+
+Possible status values.
+
+**Properties**
+
+-   `OPEN` **[string][2]** 
+-   `CLOSED` **[string][2]** 
+
+**Examples**
+
+```javascript
+const { statuses, activities } = client.presence
+// Use the values when updating presence.
+client.presence.update(statuses.OPEN, activities.AVAILABLE)
+```
+
+### activities
+
+Possible activity values.
+
+**Properties**
+
+-   `AVAILABLE` **[string][2]** 
+-   `IDLE` **[string][2]** 
+-   `AWAY` **[string][2]** 
+-   `LUNCH` **[string][2]** 
+-   `BUSY` **[string][2]** 
+-   `VACATION` **[string][2]** 
+-   `ON_THE_PHONE` **[string][2]** 
+-   `UNKNOWN` **[string][2]** 
+
 ### update
 
 Update the presence for the current user.
@@ -791,6 +834,18 @@ Retrieve the presence information for specified users.
 -   `users` **([Array][6]&lt;[string][2]> | [string][2])** A user id or an array of user ids.
 
 Returns **[Array][6]** List of user presence information.
+
+### getAll
+
+Retrieve the presence information for all users.
+
+Returns **[Array][6]** List of user presence information.
+
+### getSelf
+
+Retrieves the presence information for the current user.
+
+Returns **[Object][5]** 
 
 ### fetch
 
@@ -903,6 +958,41 @@ Enables or disables connectivity checking.
 **Parameters**
 
 -   `enable` **[boolean][7]** Whether to enable or disable connectivity checking.
+
+## Notification
+
+### process
+
+Provides an external notification to the system for processing.
+
+**Parameters**
+
+-   `notification` **[Object][5]** 
+-   `channel` **[string][2]?** The channel that the notification came from.
+
+### registerPush
+
+Registers a device token for push notifications.
+
+**Parameters**
+
+-   `params` **[Object][5]** 
+    -   `params.deviceToken` **[string][2]** The device token to be registered.
+    -   `params.services` **[Array][6]&lt;[string][2]>** Array of services to register for.
+    -   `params.pushProvider` **[string][2]** The push provider, can be either 'apple' or 'google'.
+    -   `params.clientCorrelator` **[string][2]** Unique identifier for a client device.
+
+### deregisterPush
+
+Deregisters for push notifications.
+
+### enableWebsocket
+
+Enables, or disables, the processing of websocket notifications.
+
+**Parameters**
+
+-   `enable` **[boolean][7]** Whether the websocket channel should be enabled.
 
 ## Users
 
@@ -1031,6 +1121,33 @@ Will trigger the `contacts:change` event.
 
 -   `contactId` **[string][2]** The unique contact ID of the contact.
 
+## sdpHandlers
+
+A set of handlers for manipulating SDP information.
+These handlers are used to customize low-level call behaviour for very specific
+environments and/or scenarios. They can be provided during SDK instantiation
+to be used for all calls.
+
+### createCodecRemover
+
+In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
+
+To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.
+
+The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
+
+**Examples**
+
+```javascript
+import { create, sdpHandlers } from 'kandy';
+const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+const client = create({
+  call: {
+    sdpHandlers: [codecRemover]
+  }
+})
+```
+
 ## config
 
 The configuration object. This object defines what different configuration
@@ -1117,33 +1234,6 @@ Configuration options for the notification feature.
         -   `notifications.pushRegistration.version` **[string][2]?** Version for the push registration server.
     -   `notifications.realm` **[string][2]?** The realm used for push notifications
     -   `notifications.bundleId` **[string][2]?** The bundle id used for push notifications
-
-## sdpHandlers
-
-A set of handlers for manipulating SDP information.
-These handlers are used to customize low-level call behaviour for very specific
-environments and/or scenarios. They can be provided during SDK instantiation
-to be used for all calls.
-
-### createCodecRemover
-
-In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
-
-To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.
-
-The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
-
-**Examples**
-
-```javascript
-import { create, sdpHandlers } from 'kandy';
-const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
-const client = create({
-  call: {
-    sdpHandlers: [codecRemover]
-  }
-})
-```
 
 ## Logger
 
@@ -1320,6 +1410,8 @@ Returns **[Array][6]** A list of clickToCall records, ordered by earliest reques
 
 [9]: https://developer.mozilla.org/docs/Web/HTML/Element
 
-[10]: #conversation
+[10]: #basicerror
 
-[11]: #message
+[11]: #conversation
+
+[12]: #message
