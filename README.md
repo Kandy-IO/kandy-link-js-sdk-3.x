@@ -3,7 +3,7 @@
 
 ### Npm Install
 
-`$ npm install https://github.com/Kandy-IO/kandy-link-js-sdk#beta`
+`$ npm install https://github.com/Kandy-IO/kandy-link-js-sdk#KAA-1422`
 
 ### Reference
 
