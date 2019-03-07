@@ -9,7 +9,7 @@ permalink: /quickstarts/javascript/link/Configurations
 
 The first step for any application is to initialize Kandy.js. When doing this, you can customize certain features by providing a configurations object. Kandy's configuration object is separated by feature, and is provided to the Kandy Factory as seen in the example below.
 
-my ine i just added.
+my ine i just addex.
 my ine i just added.
 
 ```  javascript
