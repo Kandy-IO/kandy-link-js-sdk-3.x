@@ -6,6 +6,7 @@ permalink: /quickstarts/javascript/link/User%20Connect
 ---
 
 # Connecting and Disconnecting
+included a line to test
 
 In this quickstart we will cover how to connect and disconnect to the Kandy Platform using Kandy.js. We will provide snippets of code below, which together will form a working demo application.
 
