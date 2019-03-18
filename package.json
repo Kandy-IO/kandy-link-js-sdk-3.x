@@ -1,5 +1,5 @@
 {
-    "name": "'@kandy-io/link-sdk",
+    "name": "@kandy-io/link-sdk",
     "version": "3.3.0",
     "license": "SEE LICENSE IN LICENSE.md",
     "main":"./dist/kandy.js",

@@ -1,10 +1,12 @@
 @kandy-io/link-sdk
 
-### Npm Install with package name
+### Npm Install
+
+#### Package name :
 
 `$ npm install @kandy-io/link-sdk`
 
-### Npm Install with github url
+#### Github url :
 
 Install with the beta branch or a particular build with the Github URL
 
