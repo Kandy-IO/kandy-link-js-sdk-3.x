@@ -1,4 +1,4 @@
-@kandy-io/link-sdk
+# @kandy-io/link-sdk
 
 ### Npm Install
 
