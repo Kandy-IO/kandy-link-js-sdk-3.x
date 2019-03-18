@@ -1,16 +1,21 @@
 @kandy-io/link-sdk
-========
 
-### Npm Install
+### Npm Install with package name
 
-`$ npm install https://github.com/Kandy-IO/kandy-link-js-sdk#KAA-1422`
+`$ npm install @kandy-io/link-sdk`
+
+### Npm Install with github url
+
+Install with the beta branch or a particular build with the Github URL
+
+`$ npm install https://github.com/Kandy-IO/kandy-link-js-sdk#<build number or "beta"> --save`
 
 ### Reference
 
 The information about tutorials and documents can be found in the links below
 
-* `Documents`: [docs](https://kandy-io.github.io/kandy-link-js-sdk/docs).
-* `Tutorials`:  [Configurations](https://kandy-io.github.io/kandy-link-js-sdk/tutorials/#/Configurations)
+* `Documents`: [docs](/docs).
+
 
 
 
