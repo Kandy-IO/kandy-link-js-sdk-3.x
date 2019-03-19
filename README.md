@@ -16,7 +16,7 @@ Install with the beta branch or a particular build with the Github URL
 
 The information about tutorials and documents can be found in the links below
 
-* `Documents`: [docs](https://kandy-io.github.io/kandy-link-js-sdk.git/docs).
+* `Documents`: [docs](https://kandy-io.github.io/kandy-link-js-sdk/docs).
 * `Tutorials`: [tutorials](https://kandy-io.github.io/kandy-link-js-sdk/tutorials/#/Configurations).
 
 
