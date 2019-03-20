@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.3.0-beta.64558
+ * Version: 3.3.0-KAA-1440.64611
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -54505,9 +54505,7 @@ events[actionTypes.ANSWER_CALL_FINISH] = function (action) {
 };
 
 events[actionTypes.JOIN_CALL_FINISH] = function (action) {
-  if (action.error) {
-    return callErrorEvent(action);
-  } else {
+  if (!action.error) {
     return {
       type: eventTypes.CALL_JOIN,
       args: {
@@ -62448,7 +62446,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.3.0-beta.64558';
+  let version = '3.3.0-KAA-1440.64611';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -62681,7 +62679,7 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 // Disabling eslint for the next comment as we want to be able to use a disallowed word
 // eslint-disable-next-line no-warning-comments
 /**
- * The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.
+ * The SDK creation factory. Create an instance of the SDK by calling this factory with the the desired configurations.
  * @public
  * @method create
  * @param {config} config The configuration object.
