@@ -9,8 +9,8 @@
 
 The information about tutorials and documents can be found in the links below
 
-* `Documents`: [docs](/docs).
-
+* `Documents`: [docs](https://Kandy-IO.github.io/kandy-link-js-sdk/docs).
+* `Tutorials`:  [Configurations](https://Kandy-IO.github.io/kandy-link-js-sdk/tutorials/#/Configurations)
 
 
 
