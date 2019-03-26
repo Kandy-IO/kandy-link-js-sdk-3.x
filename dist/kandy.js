@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.3.0-KAA-1440.66220
+ * Version: 3.3.0-beta.66318
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -32666,13 +32666,13 @@ function CallControlServiceImpl(_ref) {
             };
         }
 
-        //TODO JF verify if we need to always do that and not only for callme realm;
+        //TODO JF verify if we need to always do that and not only for callMe realm;
         if (realm) {
             callid = callid.split('%0A')[0];
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32706,7 +32706,7 @@ function CallControlServiceImpl(_ref) {
             }
         }
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32741,7 +32741,7 @@ function CallControlServiceImpl(_ref) {
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32777,7 +32777,7 @@ function CallControlServiceImpl(_ref) {
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32814,7 +32814,7 @@ function CallControlServiceImpl(_ref) {
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32885,7 +32885,7 @@ function CallControlServiceImpl(_ref) {
         var realm = _config.realm;
         logger.info('endCall Function: ' + callid);
 
-        var endUrl = (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid;
+        var endUrl = (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid;
         var queryString = localReasonText ? '?reasonText=' + localReasonText : '';
         if (realm) {
             var delimiter = queryString ? '&' : '?';
@@ -32960,7 +32960,7 @@ function CallControlServiceImpl(_ref) {
             };
         }
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -33099,7 +33099,7 @@ function CallControlServiceImpl(_ref) {
         var realm = _config.realm;
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callData.id + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callData.id + (realm ? '?tokenrealm=' + realm : '')),
             'data': {
                 'callControlRequest': {
                     'type': 'updateIceCandidate',
@@ -54505,7 +54505,9 @@ events[actionTypes.ANSWER_CALL_FINISH] = function (action) {
 };
 
 events[actionTypes.JOIN_CALL_FINISH] = function (action) {
-  if (!action.error) {
+  if (action.error) {
+    return callErrorEvent(action);
+  } else {
     return {
       type: eventTypes.CALL_JOIN,
       args: {
@@ -62446,7 +62448,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.3.0-KAA-1440.66220';
+  let version = '3.3.0-beta.66318';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -62679,7 +62681,7 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 // Disabling eslint for the next comment as we want to be able to use a disallowed word
 // eslint-disable-next-line no-warning-comments
 /**
- * The SDK creation factory. Create an instance of the SDK by calling this factory with the the desired configurations.
+ * The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.
  * @public
  * @method create
  * @param {config} config The configuration object.
