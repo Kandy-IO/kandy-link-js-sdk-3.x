@@ -1007,7 +1007,7 @@ Will trigger a `directory:change` event.
 
 **Parameters**
 
--   `userId` **[string][2]** The URI uniquely identifying the user.
+-   `primaryContact` **[string][2]** The URI uniquely identifying the user.
 
 ### fetchSelfInfo
 
@@ -1020,7 +1020,7 @@ Retrieves local information about a previously fetched user.
 
 **Parameters**
 
--   `userId` **[string][2]** The URI uniquely identifying the user.
+-   `primaryContact` **[string][2]** The URI uniquely identifying the user.
 
 ### getAll
 

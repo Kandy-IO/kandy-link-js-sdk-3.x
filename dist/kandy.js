@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.3.0-beta.67129
+ * Version: 3.3.0-KAA-1440.67216
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -62448,7 +62448,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.3.0-beta.67129';
+  let version = '3.3.0-KAA-1440.67216';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -70134,10 +70134,10 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @memberof Users
      * @method fetch
      *
-     * @param {string} userId The URI uniquely identifying the user.
+     * @param {string} primaryContact The URI uniquely identifying the user.
      */
-    fetch(userId) {
-      dispatch(actions.fetchUser(userId));
+    fetch(primaryContact) {
+      dispatch(actions.fetchUser(primaryContact));
     },
 
     /**
@@ -70157,10 +70157,10 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @public
      * @memberof Users
      * @method get
-     * @param {string} userId The URI uniquely identifying the user.
+     * @param {string} primaryContact The URI uniquely identifying the user.
      */
-    get(userId) {
-      return (0, _selectors.getUser)(getState(), userId);
+    get(primaryContact) {
+      return (0, _selectors.getUser)(getState(), primaryContact);
     },
 
     /**
