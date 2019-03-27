@@ -36934,7 +36934,7 @@
                 "type": "NameExpression",
                 "name": "string"
               },
-              "name": "primaryContact"
+              "name": "userId"
             }
           ],
           "loc": {
@@ -36965,7 +36965,7 @@
           "params": [
             {
               "title": "param",
-              "name": "primaryContact",
+              "name": "userId",
               "lineNumber": 8,
               "description": {
                 "type": "root",
@@ -37296,7 +37296,7 @@
                 "type": "NameExpression",
                 "name": "string"
               },
-              "name": "primaryContact"
+              "name": "userId"
             }
           ],
           "loc": {
@@ -37327,7 +37327,7 @@
           "params": [
             {
               "title": "param",
-              "name": "primaryContact",
+              "name": "userId",
               "lineNumber": 5,
               "description": {
                 "type": "root",
