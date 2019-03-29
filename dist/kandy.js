@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.2.0
+ * Version: 3.3.0
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -32666,13 +32666,13 @@ function CallControlServiceImpl(_ref) {
             };
         }
 
-        //TODO JF verify if we need to always do that and not only for callme realm;
+        //TODO JF verify if we need to always do that and not only for callMe realm;
         if (realm) {
             callid = callid.split('%0A')[0];
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32706,7 +32706,7 @@ function CallControlServiceImpl(_ref) {
             }
         }
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32741,7 +32741,7 @@ function CallControlServiceImpl(_ref) {
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32777,7 +32777,7 @@ function CallControlServiceImpl(_ref) {
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32814,7 +32814,7 @@ function CallControlServiceImpl(_ref) {
         }
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -32885,7 +32885,7 @@ function CallControlServiceImpl(_ref) {
         var realm = _config.realm;
         logger.info('endCall Function: ' + callid);
 
-        var endUrl = (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid;
+        var endUrl = (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid;
         var queryString = localReasonText ? '?reasonText=' + localReasonText : '';
         if (realm) {
             var delimiter = queryString ? '&' : '?';
@@ -32960,7 +32960,7 @@ function CallControlServiceImpl(_ref) {
             };
         }
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid + (realm ? '?tokenrealm=' + realm : '')),
             'data': data
         }, onSuccess, onFailure, null, errorParser);
     };
@@ -33099,7 +33099,7 @@ function CallControlServiceImpl(_ref) {
         var realm = _config.realm;
 
         _server.sendPutRequest({
-            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callme/callSessions/' : '/callControl/callSessions/') + callData.id + (realm ? '?tokenrealm=' + realm : '')),
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callData.id + (realm ? '?tokenrealm=' + realm : '')),
             'data': {
                 'callControlRequest': {
                     'type': 'updateIceCandidate',
@@ -35621,8 +35621,27 @@ function createCodecRemover(config) {
         return typeof item === 'string' ? { name: item } : item;
     });
 
-    return function (params) {
-        var newSdp = (0, _fp.cloneDeep)(params.currentSdp);
+    return function () {
+        // Adding support for new callstack sdp handlers
+        // Old callstack sdp pipeline passes an object to each sdp
+        // handler that contains the currentSdp
+        // New callstack passes 3 arguments to each sdp handler
+        // newSdp, info, originalSdp
+        var oldCallstack = true;
+        var currentSdp = void 0;
+
+        for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
+            params[_key] = arguments[_key];
+        }
+
+        if (params[0].currentSdp) {
+            currentSdp = params[0].currentSdp;
+        } else if (params.length === 3) {
+            oldCallstack = false;
+            currentSdp = params[0];
+        }
+
+        var newSdp = (0, _fp.cloneDeep)(currentSdp);
 
         // This is an array of strings representing codec names we want to remove.
         var codecStringsToRemove = config.map(function (codec) {
@@ -35721,7 +35740,9 @@ function createCodecRemover(config) {
             }
         });
 
-        return params.next(newSdp);
+        // If old callstack, then return the results of the next sdp handler
+        // If new callstack, then just return the modified sdp
+        return oldCallstack ? params[0].next(newSdp) : newSdp;
     };
 }
 
@@ -50940,7 +50961,7 @@ function authLink(options = {}) {
   const capabilities = ['connect', 'userCredentialsAuth', 'updateConnection', 'services'];
 
   return {
-    sagas: [_sagas.connectFlow, _sagas.extendSubscription, _sagas.updateSubscription, _sagas.onSubscriptionGone],
+    sagas: [_sagas.connectFlow, _sagas.extendSubscription, _sagas.updateSubscription, _sagas.onSubscriptionGone, _sagas.onConnectionLostEntry],
     capabilities,
     init,
     api: _interface.api,
@@ -50971,6 +50992,8 @@ exports.disconnect = disconnect;
 exports.extendSubscription = extendSubscription;
 exports.updateSubscription = updateSubscription;
 exports.onSubscriptionGone = onSubscriptionGone;
+exports.onConnectionLostEntry = onConnectionLostEntry;
+exports.onConnectionLost = onConnectionLost;
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
@@ -50990,7 +51013,13 @@ var _requests = __webpack_require__("./src/auth/subscription/requests.js");
 
 var _actionTypes2 = __webpack_require__("./src/notifications/interface/actionTypes.js");
 
+var _actionTypes3 = __webpack_require__("./src/connectivity/interface/actionTypes.js");
+
+var connectivityActionTypes = _interopRequireWildcard(_actionTypes3);
+
 var _effects2 = __webpack_require__("./src/connectivity/interface/effects.js");
+
+var _selectors2 = __webpack_require__("./src/connectivity/interface/selectors.js");
 
 var _base = __webpack_require__("../../node_modules/base-64/base64.js");
 
@@ -51013,6 +51042,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // This is an Link plugin.
 
 
+// Libraries
+
+
 // Other plugins.
 
 // Constants
@@ -51025,6 +51057,7 @@ const platform = _constants.platforms.LINK;
 
 
 // State selectors
+
 
 // Auth
 const log = (0, _logs.getLogManager)().getLogger('AUTH');
@@ -51179,8 +51212,11 @@ function* disconnect() {
     response = yield (0, _effects.call)(_requests.unsubscribe, connection, subscription.url);
   }
 
-  // disconnect from the websocket
-  yield (0, _effects2.disconnectWebsocket)(undefined, platform);
+  const wsState = yield (0, _effects.select)(_selectors2.getConnectionState, platform);
+  if (wsState.connected) {
+    // disconnect from the websocket
+    yield (0, _effects2.disconnectWebsocket)(undefined, platform);
+  }
 
   // Dispatch disconnect finished action appropriate for the response.
   if (response.error) {
@@ -51314,13 +51350,33 @@ function* onSubscriptionGone() {
 
   while (true) {
     yield (0, _effects.take)(takeGoneSubscription);
+
     // Dispatch an action to disconnect the websocket (and let the connectivity
     //      plugin know we expect it to be disconnected).
-    yield (0, _effects2.disconnectWebsocket)(undefined, platform);
+    const wsState = yield (0, _effects.select)(_selectors2.getConnectionState, platform);
+    if (wsState.connected) {
+      yield (0, _effects2.disconnectWebsocket)(undefined, platform);
+    }
 
     // Dispatch a disconnect finished action to trigger "user disconnected" logic.
     yield (0, _effects.put)(actions.disconnectFinished({ forced: true }));
   }
+}
+
+/**
+ * Triggers onConnectionLost saga when a connectivity.WS_RECONNECT_FAILED actionType occurs
+ * @method onConnectionLostEntry
+ */
+function* onConnectionLostEntry() {
+  yield (0, _effects.takeEvery)(connectivityActionTypes.WS_RECONNECT_FAILED, onConnectionLost);
+}
+
+/**
+ * Handles lost connections from the connectivity plugin
+ * @method onConnectionLost
+ */
+function* onConnectionLost() {
+  yield (0, _effects.put)(actions.disconnect());
 }
 
 /***/ }),
@@ -51811,11 +51867,13 @@ const CALL_STATES = exports.CALL_STATES = {
    * @property {string} CHANGE_MEDIA Media flow remains the same, includes non-flow related media changes.
    * @property {string} HOLD_MEDIA   Media flow stops. May include non-flow related media changes.
    * @property {string} UNHOLD_MEDIA Media flow restarts. May include non-flow related media changes.
+   * @property {string} MUSIC_ON_HOLD Media flow changes to sendonly.
    */
 };const OPERATIONS = exports.OPERATIONS = {
   CHANGE_MEDIA: 'Change Media',
   HOLD_MEDIA: 'Hold Media',
-  UNHOLD_MEDIA: 'Unhold Media'
+  UNHOLD_MEDIA: 'Unhold Media',
+  MUSIC_ON_HOLD: 'Music on hold'
 
   /**
    * Call direction
@@ -54482,7 +54540,9 @@ events[actionTypes.ANSWER_CALL_FINISH] = function (action) {
 };
 
 events[actionTypes.JOIN_CALL_FINISH] = function (action) {
-  if (!action.error) {
+  if (action.error) {
+    return callErrorEvent(action);
+  } else {
     return {
       type: eventTypes.CALL_JOIN,
       args: {
@@ -58184,81 +58244,155 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.normalizeSipUri = normalizeSipUri;
 /**
+ * Extracts the domain from an address if an @ symbol exists and isn't at the start or end of the address.
+ * @param {string} addressString The address string to extract the domain from (if it exists).
+ * @returns {string} The extracted domain. Empty string of none found.
+ */
+function extractDomainFromAddress(addressString) {
+  const indexOfAtSymbol = addressString.indexOf('@');
+  if (indexOfAtSymbol !== 0 && indexOfAtSymbol !== addressString.length - 1) {
+    // If '@' symbol found in middle of addressString, split it.
+    if (indexOfAtSymbol !== -1) {
+      return addressString.substr(indexOfAtSymbol + 1);
+    }
+  }
+  return '';
+}
+
+/**
+ * Determines which address and domain to use depending on whether the address string contains a domain or not.
+ * @param {string} addressString The address string to examine and extract a domain from (if any).
+ * @param {string} defaultDomainString The domain to use if the address string does not contain a domain in it.
+ * @returns {Object} An object containing the correct address and domain to use.
+ */
+function separateAddressAndDomain(addressString, defaultDomainString) {
+  const extractedDomain = extractDomainFromAddress(addressString);
+  // If a domain was extracted from the address, use that as the domain and strip it from the address.
+  if (extractedDomain) {
+    return {
+      address: addressString.substr(0, addressString.length - extractedDomain.length - 1),
+      domain: extractedDomain
+    };
+  } else {
+    return {
+      address: addressString,
+      domain: defaultDomainString
+    };
+  }
+}
+
+/**
+ * Extracts any pre-pended data before a ":" (if it exists) from the beginning of a string.
+ * @param {string} inputString The string to remove pre-pended data from.
+ * @returns {string} The pre-pended data string.
+ */
+function extractPrependedData(inputString) {
+  const prependedDataMatches = inputString.match(/^.*:/g);
+  if (prependedDataMatches && prependedDataMatches[0]) {
+    return prependedDataMatches[0];
+  } else {
+    return '';
+  }
+}
+
+/**
+ * Finds the leading special characters ("#", "+", "*") of an address if it is a phone number.
+ * If the address contains letters or any non-visual-separator characters,
+ *  it is not a phone number and no leading special characters will be found.
+ * @param {string} addressString The address string to find the leading characters of (if any).
+ *  The addressString must not contain any pre-pended data such as "sip:".
+ *  The addressString must not contain a domain.
+ * @returns {string} The leading special characters as one string. Empty string if none found.
+ */
+function extractLeadingSpecialCharacters(addressString) {
+  // A single or group of contiguous characters are considered leading character/s if it is  the following:
+  // - starts at the beginning of the string - ^
+  // - is any of the following characters - [#+*]+
+  // - is followed by a digit or "(" - [\d|(]
+  // - is followed by any number of only digits and visual separators - [\d \-.()+]*$
+  const potentialLeadingChars = addressString.match(/^[#+*]+[\d|(][\d \-.()+]*$/g);
+  if (potentialLeadingChars && potentialLeadingChars[0]) {
+    // Guaranteed to have a match for regex [#+*]+ since we have potentialLeadingChars
+    // which was a match for a similar regex and we are simply extracting the leading characters part.
+    const actualLeadingChars = potentialLeadingChars[0].match(/[#+*]+/g);
+    return actualLeadingChars[0];
+  }
+  return '';
+}
+
+/**
+ * Outputs a new string without its phone number visual separators ("-", ".", "(", ")", "+").
+ * @param {string} inputString The string to remove visual separators from.
+ * @returns {string} A new string without visual separators.
+ */
+function withoutVisualSeparators(inputString) {
+  return inputString.replace(/[ \-.()+]/g, '');
+}
+
+/**
+ * Determines whether a string should be considered a phone number or not.
+ * @param {string} addressString The address string to check.
+ *  The addressString must not contain any pre-pended data such as "sip:"
+ *  The addressString must not contain any leading special characters.
+ *  The addressString must not contain a domain.
+ * @returns {boolean} True if the input string is a phone number. False if it is not.
+ */
+function isPhoneNumber(addressString) {
+  const cleanNumber = withoutVisualSeparators(addressString);
+  const phoneNumberMatch = cleanNumber.match(/^\d+$/g);
+  return phoneNumberMatch && phoneNumberMatch.length === 1;
+}
+
+/**
+ * Processes the address string and returns the correct output.
+ * If the address is a phone number, visual separators are removed.
+ * Otherwise, it will just return the address as-is.
+ * @param {string} addressString The address string to process.
+ *  The addressString must not contain any pre-pended data such as "sip:".
+ *  The addressString must not contain any leading special characters (if it is a phone number).
+ *  The addressString must not contain a domain.
+ * @returns {string} A phone number without visual-separators or the addressString as-is.
+ */
+function processAddress(addressString) {
+  return isPhoneNumber(addressString) ? withoutVisualSeparators(addressString) : addressString;
+}
+
+/**
+ * Processes the domain string and returns the correct output.
+ * Adds an "@" symbol if it isn't present at the beginning of the domain.
+ * @param {string} domainString The domain string to process.
+ * @returns {string} The domain with "@" symbol at the beginning if it doesn't exist.
+ */
+function processDomain(domainString) {
+  return (domainString.indexOf('@') === 0 ? '' : '@') + domainString;
+}
+
+/**
  *The function takes in the input dial string and domain address of the user, performs a normalization process based on the phone number handling normalization rules
  * @function normalizeSipUri
  * @param {string} address   It contains the input dial string the user dials in or the callee address
  * @param {string} domain    It contains the user's domain address
  * @returns {string} output  The output which is the normalized callee address/phone number
  */
-
 function normalizeSipUri(address, domain) {
-  var output;
-
-  // Remove all leading space and tailing space
+  // Remove leading and trailing white spaces.
   address = address.trim();
 
-  // Remove all in-between spaces
-  address = address.replace(/[ ]/g, '');
+  // Extract domain.
+  const resultingAddressAndDomain = separateAddressAndDomain(address, domain);
+  domain = resultingAddressAndDomain.domain;
+  address = resultingAddressAndDomain.address;
 
-  // Check for: '@' if at the beginning or at the end
-  if (address.indexOf('@') === 0 || address.indexOf('@') === address.length - 1) {
-    output = 'sip:' + address + '@' + domain;
-  } else {
-    var dialAddress;
-    var domainAddress;
+  // Extract pre-pended "sip:".
+  const prepend = extractPrependedData(address);
+  address = address.substr(prepend.length);
 
-    // Check for: '@' symbol in address
-    if (address.indexOf('@') !== -1) {
-      // Split address at the occurence of '@' into two e.g 12345 and @domain.com, so we can normalize better
-      dialAddress = address.substr(0, address.indexOf('@'));
-      domainAddress = address.substr(address.indexOf('@'));
-    } else {
-      dialAddress = address;
-      domainAddress = domain;
-    }
+  // Extract leading characters.
+  const leadingChars = extractLeadingSpecialCharacters(address);
+  address = address.substr(leadingChars.length);
 
-    let leadingChar = dialAddress.substring(0, 1);
-
-    // Check for: no leading char
-    if (!(['*', '+', '#'].indexOf(leadingChar) !== -1)) {
-      // Check for: digits and visual seperators
-      if (dialAddress.match(/^[0-9-+().]*$/)) {
-        address = dialAddress.replace(/[-+().]/g, '');
-      } else if (dialAddress.match(/^[a-zA-Z0-9-]*$/)) {
-        // Check for: lower case and uppercase alpha chars, digits and visual seperators
-        address = dialAddress;
-      }
-    } else {
-      // Check for: leading char
-      if (dialAddress.indexOf(leadingChar) === 0) {
-        // Check for: leading char(*), digits and visual seperators
-        if (dialAddress.match(/^\*+[0-9-+.()]*$/)) {
-          address = dialAddress.replace(/[-+.()]/g, '');
-        } else if (dialAddress.match(/^\+[0-9-+.()]*$/)) {
-          // Check for: leading char(+), digits and visual seperators
-          address = leadingChar + dialAddress.replace(/[-+.()]/g, '');
-        } else if (dialAddress.match(/^\+[a-zA-Z0-9-]*$/)) {
-          // Check for: leading char(+), alpha chars, digits and visual seperators
-          address = dialAddress.replace(/[.()]/g, '');
-        } else if (dialAddress.match(/^\+[#0-9-+.()]*$/)) {
-          // Check for: leading char(+), digits and visual seperators
-          address = leadingChar + dialAddress.replace(/[-+.()]/g, '');
-        } else if (dialAddress.match(/^[#0-9.()]*$/)) {
-          // Check for: leading char(#), digits and visual seperators
-          address = dialAddress.replace(/[.()]/g, '');
-        }
-      } else {
-        address = dialAddress;
-      }
-    }
-
-    if (domainAddress.indexOf('@') === 0) {
-      output = 'sip:' + address + domainAddress;
-    } else {
-      output = 'sip:' + address + '@' + domainAddress;
-    }
-  }
-  return output;
+  // Process and build parts into final output in the form of `<prepend>:<leadingChars><address>@<domain>`.
+  return 'sip:' + leadingChars + processAddress(address) + processDomain(domain);
 }
 
 /***/ }),
@@ -60280,6 +60414,7 @@ const WS_ATTEMPT_CONNECT = exports.WS_ATTEMPT_CONNECT = prefix + 'WS_ATTEMPT_CON
 const WS_CONNECT_FINISHED = exports.WS_CONNECT_FINISHED = prefix + 'WS_CONNECT_FINISHED';
 const WS_DISCONNECT = exports.WS_DISCONNECT = prefix + 'WS_DISCONNECT';
 const WS_DISCONNECT_FINISHED = exports.WS_DISCONNECT_FINISHED = prefix + 'WS_DISCONNECT_FINISHED';
+const WS_RECONNECT_FAILED = exports.WS_RECONNECT_FAILED = prefix + 'WS_RECONNECT_FAILED';
 
 // actions for hooking into connectivity plugin behaviour
 const WS_CLOSED = exports.WS_CLOSED = prefix + 'WS_CLOSED';
@@ -60304,7 +60439,7 @@ const CHANGE_PING_INTERVAL = exports.CHANGE_PING_INTERVAL = prefix + 'CHANGE_PIN
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changePingInterval = exports.changeConnectivityChecking = exports.receiveServerPong = exports.receiveServerPing = exports.lostConnection = exports.wsError = exports.wsClosed = exports.wsDisconnectFinished = exports.wsConnectFinished = exports.wsDisconnect = exports.wsAttemptConnect = undefined;
+exports.changePingInterval = exports.changeConnectivityChecking = exports.receiveServerPong = exports.receiveServerPing = exports.lostConnection = exports.wsError = exports.wsClosed = exports.wsReconnectFailed = exports.wsDisconnectFinished = exports.wsConnectFinished = exports.wsDisconnect = exports.wsAttemptConnect = undefined;
 
 var _actionTypes = __webpack_require__("./src/connectivity/interface/actionTypes.js");
 
@@ -60321,14 +60456,15 @@ function createWsAction(type) {
   /**
    * @param {any=} payload
    * @param {string=} platform
+   * @param {boolean=} [isReconnect] flag to signify if we are reconnecting or not.
    */
-  function action(payload, platform = _constants.platforms.LINK) {
+  function action(payload, platform = _constants.platforms.LINK, isReconnect = false) {
     return {
       type,
       // TODO: This must check for basic error eventually instead.
       error: payload instanceof Error,
       payload,
-      meta: { platform }
+      meta: { platform, isReconnect }
     };
   }
   return action;
@@ -60338,6 +60474,7 @@ const wsAttemptConnect = exports.wsAttemptConnect = createWsAction(actionTypes.W
 const wsDisconnect = exports.wsDisconnect = createWsAction(actionTypes.WS_DISCONNECT);
 const wsConnectFinished = exports.wsConnectFinished = createWsAction(actionTypes.WS_CONNECT_FINISHED);
 const wsDisconnectFinished = exports.wsDisconnectFinished = createWsAction(actionTypes.WS_DISCONNECT_FINISHED);
+const wsReconnectFailed = exports.wsReconnectFailed = createWsAction(actionTypes.WS_RECONNECT_FAILED);
 
 const wsClosed = exports.wsClosed = createWsAction(actionTypes.WS_CLOSED);
 const wsError = exports.wsError = createWsAction(actionTypes.WS_ERROR);
@@ -60636,6 +60773,17 @@ reducers[actionTypes.WS_ATTEMPT_CONNECT] = {
   }
 };
 
+reducers[actionTypes.WS_RECONNECT_FAILED] = {
+  next(state, action) {
+    return (0, _extends3.default)({}, state, {
+      [action.meta.platform]: (0, _extends3.default)({}, state[action.meta.platform], {
+        connected: false,
+        pinging: false
+      })
+    });
+  }
+};
+
 reducers[actionTypes.WS_CONNECT_FINISHED] = {
   next(state, action) {
     return (0, _extends3.default)({}, state, {
@@ -60867,7 +61015,8 @@ function* wsConnectFlow() {
  */
 function* websocketLifecycle(wsConnectAction) {
   const wsInfo = wsConnectAction.payload;
-  const platform = wsConnectAction.meta.platform;
+  const { platform, isReconnect } = wsConnectAction.meta;
+
   // Try to open the websocket.
   let websocket = yield (0, _effects.call)(connectWebsocket, wsInfo, platform);
 
@@ -60880,10 +61029,13 @@ function* websocketLifecycle(wsConnectAction) {
 
   // If the websocket didn't open, dispatch the error and stop here.
   if (websocket.error) {
-    // TODO: Differentiate between failed initial connect and reconnect?
-    //      So that actions/events can too.
-    yield (0, _effects.put)(actions.wsConnectFinished(new Error(websocket.message), platform));
-    return;
+    if (isReconnect) {
+      yield (0, _effects.put)(actions.wsReconnectFailed(undefined, platform));
+      return;
+    } else {
+      yield (0, _effects.put)(actions.wsConnectFinished(new Error(websocket.message), platform));
+      return;
+    }
   }
 
   // set last contact in both cases to be now
@@ -60939,7 +61091,7 @@ function* websocketLifecycle(wsConnectAction) {
 
     // If we've lost connection, re-dispatch the initial action, so that we can
     //      start the lifecycle over.
-    yield (0, _effects.put)(actions.wsAttemptConnect(wsInfo, wsConnectAction.meta.platform));
+    yield (0, _effects.put)(actions.wsAttemptConnect(wsInfo, wsConnectAction.meta.platform, true));
   }
 }
 
@@ -62349,7 +62501,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.2.0';
+  let version = '3.3.0';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -62582,7 +62734,7 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 // Disabling eslint for the next comment as we want to be able to use a disallowed word
 // eslint-disable-next-line no-warning-comments
 /**
- * The SDK creation factory. Create an instance of the SDK by calling this factory with the the desired configurations.
+ * The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.
  * @public
  * @method create
  * @param {config} config The configuration object.
@@ -62820,6 +62972,7 @@ const logMgr = getLogManager(defaultOptions);
  * @public
  * @name config.logs
  * @memberof config
+ * @requires logs
  * @instance
  * @param {Object} logs Logs configs.
  * @param  {string} [logs.logLevel=debug] Log level to be set. See `logger.levels`.
@@ -62859,6 +63012,7 @@ function logger(options = {}) {
 
   var components = {
     name,
+    capabilities: ['logs'],
     init,
     api: _api2.default
     // Consider actions to be at the INFO log level.
@@ -62885,6 +63039,11 @@ function logger(options = {}) {
         nextState: false
       };
     }
+
+    if (options.logActions.excludeActions) {
+      actionOptions.predicate = excludeActions(options.logActions.excludeActions);
+    }
+
     // ALWAYS use our own logger
     actionOptions.logger = logMgr.getLogger('ACTION');
     // ALWAYS remove theming/styling from the action log messages
@@ -62917,6 +63076,16 @@ function getLogManager(options) {
   return getLogManager.instance;
 }
 
+/**
+ * Logger predicate function that will take an array of action types
+ * and exclude them from logs
+ * @param {Array} actions An array of action types to exclude from logs
+ * @returns {function} A predicate function
+ */
+function excludeActions(actions) {
+  return (getState, action) => !actions.includes(action.type);
+}
+
 /***/ }),
 
 /***/ "./src/logs/interface/api.js":
@@ -62940,6 +63109,7 @@ exports.default = api;
  *
  * @public
  * @module Logger
+ * @requires logs
  */
 
 function api() {
@@ -70017,10 +70187,10 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @memberof Users
      * @method fetch
      *
-     * @param {string} primaryContact The URI uniquely identifying the user.
+     * @param {string} userId The URI uniquely identifying the user.
      */
-    fetch(primaryContact) {
-      dispatch(actions.fetchUser(primaryContact));
+    fetch(userId) {
+      dispatch(actions.fetchUser(userId));
     },
 
     /**
@@ -70040,10 +70210,10 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @public
      * @memberof Users
      * @method get
-     * @param {string} primaryContact The URI uniquely identifying the user.
+     * @param {string} userId The URI uniquely identifying the user.
      */
-    get(primaryContact) {
-      return (0, _selectors.getUser)(getState(), primaryContact);
+    get(userId) {
+      return (0, _selectors.getUser)(getState(), userId);
     },
 
     /**

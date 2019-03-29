@@ -2,7 +2,7 @@
 
 ## create
 
-The SDK creation factory. Create an instance of the SDK by calling this factory with the the desired configurations.
+The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.
 
 **Parameters**
 
@@ -1007,7 +1007,7 @@ Will trigger a `directory:change` event.
 
 **Parameters**
 
--   `primaryContact` **[string][2]** The URI uniquely identifying the user.
+-   `userId` **[string][2]** The URI uniquely identifying the user.
 
 ### fetchSelfInfo
 
@@ -1020,7 +1020,7 @@ Retrieves local information about a previously fetched user.
 
 **Parameters**
 
--   `primaryContact` **[string][2]** The URI uniquely identifying the user.
+-   `userId` **[string][2]** The URI uniquely identifying the user.
 
 ### getAll
 
