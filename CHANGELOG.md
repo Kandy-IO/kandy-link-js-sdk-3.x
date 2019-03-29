@@ -5,19 +5,29 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 3.3.0-beta
+## 3.4.0-beta
+
+## 3.3.0 - 2019-03-29
+
+### Fixed
+
+- Fixed an issue where JOIN_CALL was not emitting a call:error event when it failed. `KAA-922`
+- Fixed an issue where disconnecting from the network would leave isConnected in the wrong state `KAA-1547`
 
 ### Changed
+
 - Changed the callOptions parameter for the makeAnonymous API function of the CallMe SDK. It must now include a `from` property (callOptions.from), indicating the URI of the caller, as it no longer receives a default value of `anonymousUser@kandy.callMe`. `KAA-1350`
 
 ## 3.2.0 - 2019-03-01
 
 ### Added
+
 - Added new Presence event, `presence:selfChange`, to notify when self-presence information has changed. `KAA-1153`
 - Added Presence APIs for retrieving presence information. See `kandy.presence.getAll` and `kandy.presence.getSelf`. KAA-1152.
 - Added Presence constants to the API. See `kandy.presence.statuses` and `kandy.presence.activities`. `KAA-1151`
 
 ### Fixed
+
 - Fixed an issue where refreshing an empty address book generated an error. `KAA-1380`
 - Fixed an issue where the states property was not being defined on the call namespace (kandy.call.states). `KAA-1349`
 - Fixed a crash when using the Presence `fetch` API and receiving no data. `KAA-1169`.
@@ -25,6 +35,7 @@ Kandy.js change log.
 ## 3.1.0 - 2019-02-01
 
 ### Fixed
+
 - Fixed an issue where track removal does not get cleaned up properly. `KAA-1305`
 - Fixed an issue that sometimes cause an error when the user adds "sip:" before the destination address when making a call. `KAA-1360`
 - Fixed an issue with Firefox media rendering by escaping special characters from selector in Track component. `KAA-1231`

@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.3.0-KAA-1422.68049
+ * Version: 3.4.0-beta.68272
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -50961,7 +50961,7 @@ function authLink(options = {}) {
   const capabilities = ['connect', 'userCredentialsAuth', 'updateConnection', 'services'];
 
   return {
-    sagas: [_sagas.connectFlow, _sagas.extendSubscription, _sagas.updateSubscription, _sagas.onSubscriptionGone],
+    sagas: [_sagas.connectFlow, _sagas.extendSubscription, _sagas.updateSubscription, _sagas.onSubscriptionGone, _sagas.onConnectionLostEntry],
     capabilities,
     init,
     api: _interface.api,
@@ -50992,6 +50992,8 @@ exports.disconnect = disconnect;
 exports.extendSubscription = extendSubscription;
 exports.updateSubscription = updateSubscription;
 exports.onSubscriptionGone = onSubscriptionGone;
+exports.onConnectionLostEntry = onConnectionLostEntry;
+exports.onConnectionLost = onConnectionLost;
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
@@ -51011,7 +51013,13 @@ var _requests = __webpack_require__("./src/auth/subscription/requests.js");
 
 var _actionTypes2 = __webpack_require__("./src/notifications/interface/actionTypes.js");
 
+var _actionTypes3 = __webpack_require__("./src/connectivity/interface/actionTypes.js");
+
+var connectivityActionTypes = _interopRequireWildcard(_actionTypes3);
+
 var _effects2 = __webpack_require__("./src/connectivity/interface/effects.js");
+
+var _selectors2 = __webpack_require__("./src/connectivity/interface/selectors.js");
 
 var _base = __webpack_require__("../../node_modules/base-64/base64.js");
 
@@ -51034,6 +51042,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // This is an Link plugin.
 
 
+// Libraries
+
+
 // Other plugins.
 
 // Constants
@@ -51046,6 +51057,7 @@ const platform = _constants.platforms.LINK;
 
 
 // State selectors
+
 
 // Auth
 const log = (0, _logs.getLogManager)().getLogger('AUTH');
@@ -51200,8 +51212,11 @@ function* disconnect() {
     response = yield (0, _effects.call)(_requests.unsubscribe, connection, subscription.url);
   }
 
-  // disconnect from the websocket
-  yield (0, _effects2.disconnectWebsocket)(undefined, platform);
+  const wsState = yield (0, _effects.select)(_selectors2.getConnectionState, platform);
+  if (wsState.connected) {
+    // disconnect from the websocket
+    yield (0, _effects2.disconnectWebsocket)(undefined, platform);
+  }
 
   // Dispatch disconnect finished action appropriate for the response.
   if (response.error) {
@@ -51335,13 +51350,33 @@ function* onSubscriptionGone() {
 
   while (true) {
     yield (0, _effects.take)(takeGoneSubscription);
+
     // Dispatch an action to disconnect the websocket (and let the connectivity
     //      plugin know we expect it to be disconnected).
-    yield (0, _effects2.disconnectWebsocket)(undefined, platform);
+    const wsState = yield (0, _effects.select)(_selectors2.getConnectionState, platform);
+    if (wsState.connected) {
+      yield (0, _effects2.disconnectWebsocket)(undefined, platform);
+    }
 
     // Dispatch a disconnect finished action to trigger "user disconnected" logic.
     yield (0, _effects.put)(actions.disconnectFinished({ forced: true }));
   }
+}
+
+/**
+ * Triggers onConnectionLost saga when a connectivity.WS_RECONNECT_FAILED actionType occurs
+ * @method onConnectionLostEntry
+ */
+function* onConnectionLostEntry() {
+  yield (0, _effects.takeEvery)(connectivityActionTypes.WS_RECONNECT_FAILED, onConnectionLost);
+}
+
+/**
+ * Handles lost connections from the connectivity plugin
+ * @method onConnectionLost
+ */
+function* onConnectionLost() {
+  yield (0, _effects.put)(actions.disconnect());
 }
 
 /***/ }),
@@ -60379,6 +60414,7 @@ const WS_ATTEMPT_CONNECT = exports.WS_ATTEMPT_CONNECT = prefix + 'WS_ATTEMPT_CON
 const WS_CONNECT_FINISHED = exports.WS_CONNECT_FINISHED = prefix + 'WS_CONNECT_FINISHED';
 const WS_DISCONNECT = exports.WS_DISCONNECT = prefix + 'WS_DISCONNECT';
 const WS_DISCONNECT_FINISHED = exports.WS_DISCONNECT_FINISHED = prefix + 'WS_DISCONNECT_FINISHED';
+const WS_RECONNECT_FAILED = exports.WS_RECONNECT_FAILED = prefix + 'WS_RECONNECT_FAILED';
 
 // actions for hooking into connectivity plugin behaviour
 const WS_CLOSED = exports.WS_CLOSED = prefix + 'WS_CLOSED';
@@ -60403,7 +60439,7 @@ const CHANGE_PING_INTERVAL = exports.CHANGE_PING_INTERVAL = prefix + 'CHANGE_PIN
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changePingInterval = exports.changeConnectivityChecking = exports.receiveServerPong = exports.receiveServerPing = exports.lostConnection = exports.wsError = exports.wsClosed = exports.wsDisconnectFinished = exports.wsConnectFinished = exports.wsDisconnect = exports.wsAttemptConnect = undefined;
+exports.changePingInterval = exports.changeConnectivityChecking = exports.receiveServerPong = exports.receiveServerPing = exports.lostConnection = exports.wsError = exports.wsClosed = exports.wsReconnectFailed = exports.wsDisconnectFinished = exports.wsConnectFinished = exports.wsDisconnect = exports.wsAttemptConnect = undefined;
 
 var _actionTypes = __webpack_require__("./src/connectivity/interface/actionTypes.js");
 
@@ -60420,14 +60456,15 @@ function createWsAction(type) {
   /**
    * @param {any=} payload
    * @param {string=} platform
+   * @param {boolean=} [isReconnect] flag to signify if we are reconnecting or not.
    */
-  function action(payload, platform = _constants.platforms.LINK) {
+  function action(payload, platform = _constants.platforms.LINK, isReconnect = false) {
     return {
       type,
       // TODO: This must check for basic error eventually instead.
       error: payload instanceof Error,
       payload,
-      meta: { platform }
+      meta: { platform, isReconnect }
     };
   }
   return action;
@@ -60437,6 +60474,7 @@ const wsAttemptConnect = exports.wsAttemptConnect = createWsAction(actionTypes.W
 const wsDisconnect = exports.wsDisconnect = createWsAction(actionTypes.WS_DISCONNECT);
 const wsConnectFinished = exports.wsConnectFinished = createWsAction(actionTypes.WS_CONNECT_FINISHED);
 const wsDisconnectFinished = exports.wsDisconnectFinished = createWsAction(actionTypes.WS_DISCONNECT_FINISHED);
+const wsReconnectFailed = exports.wsReconnectFailed = createWsAction(actionTypes.WS_RECONNECT_FAILED);
 
 const wsClosed = exports.wsClosed = createWsAction(actionTypes.WS_CLOSED);
 const wsError = exports.wsError = createWsAction(actionTypes.WS_ERROR);
@@ -60735,6 +60773,17 @@ reducers[actionTypes.WS_ATTEMPT_CONNECT] = {
   }
 };
 
+reducers[actionTypes.WS_RECONNECT_FAILED] = {
+  next(state, action) {
+    return (0, _extends3.default)({}, state, {
+      [action.meta.platform]: (0, _extends3.default)({}, state[action.meta.platform], {
+        connected: false,
+        pinging: false
+      })
+    });
+  }
+};
+
 reducers[actionTypes.WS_CONNECT_FINISHED] = {
   next(state, action) {
     return (0, _extends3.default)({}, state, {
@@ -60966,7 +61015,8 @@ function* wsConnectFlow() {
  */
 function* websocketLifecycle(wsConnectAction) {
   const wsInfo = wsConnectAction.payload;
-  const platform = wsConnectAction.meta.platform;
+  const { platform, isReconnect } = wsConnectAction.meta;
+
   // Try to open the websocket.
   let websocket = yield (0, _effects.call)(connectWebsocket, wsInfo, platform);
 
@@ -60979,10 +61029,13 @@ function* websocketLifecycle(wsConnectAction) {
 
   // If the websocket didn't open, dispatch the error and stop here.
   if (websocket.error) {
-    // TODO: Differentiate between failed initial connect and reconnect?
-    //      So that actions/events can too.
-    yield (0, _effects.put)(actions.wsConnectFinished(new Error(websocket.message), platform));
-    return;
+    if (isReconnect) {
+      yield (0, _effects.put)(actions.wsReconnectFailed(undefined, platform));
+      return;
+    } else {
+      yield (0, _effects.put)(actions.wsConnectFinished(new Error(websocket.message), platform));
+      return;
+    }
   }
 
   // set last contact in both cases to be now
@@ -61038,7 +61091,7 @@ function* websocketLifecycle(wsConnectAction) {
 
     // If we've lost connection, re-dispatch the initial action, so that we can
     //      start the lifecycle over.
-    yield (0, _effects.put)(actions.wsAttemptConnect(wsInfo, wsConnectAction.meta.platform));
+    yield (0, _effects.put)(actions.wsAttemptConnect(wsInfo, wsConnectAction.meta.platform, true));
   }
 }
 
@@ -62448,7 +62501,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.3.0-KAA-1422.68049';
+  let version = '3.4.0-beta.68272';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -70134,10 +70187,10 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @memberof Users
      * @method fetch
      *
-     * @param {string} primaryContact The URI uniquely identifying the user.
+     * @param {string} userId The URI uniquely identifying the user.
      */
-    fetch(primaryContact) {
-      dispatch(actions.fetchUser(primaryContact));
+    fetch(userId) {
+      dispatch(actions.fetchUser(userId));
     },
 
     /**
@@ -70157,10 +70210,10 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @public
      * @memberof Users
      * @method get
-     * @param {string} primaryContact The URI uniquely identifying the user.
+     * @param {string} userId The URI uniquely identifying the user.
      */
-    get(primaryContact) {
-      return (0, _selectors.getUser)(getState(), primaryContact);
+    get(userId) {
+      return (0, _selectors.getUser)(getState(), userId);
     },
 
     /**
