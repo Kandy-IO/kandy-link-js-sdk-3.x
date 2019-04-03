@@ -18,7 +18,7 @@ The information about tutorials and documents can be found in the links below
 
 * Documents: [docs](https://Kandy-IO.github.io/kandy-link-js-sdk/docs)
 
-* Tutotials: [Configurations](/tutorials/#/Configurations)
+* Tutotials: [Configurations](https://Kandy-IO.github.io/kandy-link-js-sdk/tutorials/#/Configurations)
 
 
 
