@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.4.0-KAA-1440.68949
+ * Version: 3.4.0-beta.69030
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -55519,6 +55519,225 @@ function getBridgeCalls(state, bridgeId) {
 
 /***/ }),
 
+/***/ "./src/call/interfaceNew/actionTypes.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+const callPrefix = '@@KANDY/CALL/';
+
+/**
+ * Basic call operation actions.
+ */
+const MAKE_CALL = exports.MAKE_CALL = callPrefix + 'MAKE';
+const MAKE_CALL_FINISH = exports.MAKE_CALL_FINISH = callPrefix + 'MAKE_FINISH';
+
+const CALL_INCOMING = exports.CALL_INCOMING = callPrefix + 'INCOMING';
+
+const CALL_RINGING = exports.CALL_RINGING = callPrefix + 'RINGING';
+const CALL_CANCELLED = exports.CALL_CANCELLED = callPrefix + 'CANCELLED';
+
+const CALL_AUDIT = exports.CALL_AUDIT = callPrefix + 'AUDIT';
+
+const ANSWER_CALL = exports.ANSWER_CALL = callPrefix + 'ANSWER';
+const ANSWER_CALL_FINISH = exports.ANSWER_CALL_FINISH = callPrefix + 'ANSWER_FINISH';
+
+const REJECT_CALL = exports.REJECT_CALL = callPrefix + 'REJECT';
+const REJECT_CALL_FINISH = exports.REJECT_CALL_FINISH = callPrefix + 'REJECT_FINISH';
+
+const IGNORE_CALL = exports.IGNORE_CALL = callPrefix + 'IGNORE';
+const IGNORE_CALL_FINISH = exports.IGNORE_CALL_FINISH = callPrefix + 'IGNORE_FINISH';
+
+const CALL_ACCEPTED = exports.CALL_ACCEPTED = callPrefix + 'ACCEPTED';
+
+const END_CALL = exports.END_CALL = callPrefix + 'END';
+const END_CALL_FINISH = exports.END_CALL_FINISH = callPrefix + 'END_FINISH';
+
+/**
+ * Mid-call operation actions.
+ */
+
+const UPDATE_CALL = exports.UPDATE_CALL = callPrefix + 'UPDATE_CALL';
+
+const CALL_HOLD = exports.CALL_HOLD = callPrefix + 'HOLD';
+const CALL_HOLD_FINISH = exports.CALL_HOLD_FINISH = callPrefix + 'HOLD_FINISH';
+
+const CALL_UNHOLD = exports.CALL_UNHOLD = callPrefix + 'UNHOLD';
+const CALL_UNHOLD_FINISH = exports.CALL_UNHOLD_FINISH = callPrefix + 'UNHOLD_FINISH';
+
+const CALL_REMOTE_HOLD_FINISH = exports.CALL_REMOTE_HOLD_FINISH = callPrefix + 'CALL_REMOTE_HOLD_FINISH';
+
+const CALL_REMOTE_UNHOLD_FINISH = exports.CALL_REMOTE_UNHOLD_FINISH = callPrefix + 'CALL_REMOTE_UNHOLD_FINISH';
+
+const ADD_MEDIA = exports.ADD_MEDIA = callPrefix + 'ADD_MEDIA';
+const ADD_MEDIA_FINISH = exports.ADD_MEDIA_FINISH = callPrefix + 'ADD_MEDIA_FINISH';
+
+const REMOVE_MEDIA = exports.REMOVE_MEDIA = callPrefix + 'REMOVE_MEDIA';
+const REMOVE_MEDIA_FINISH = exports.REMOVE_MEDIA_FINISH = callPrefix + 'REMOVE_MEDIA_FINISH';
+
+const MUSIC_ON_HOLD = exports.MUSIC_ON_HOLD = callPrefix + 'MUSIC_ON_HOLD';
+
+const SEND_DTMF = exports.SEND_DTMF = callPrefix + 'SEND_DTMF';
+const SEND_DTMF_FINISH = exports.SEND_DTMF_FINISH = callPrefix + 'SEND_DTMF_FINISH';
+
+const GET_STATS = exports.GET_STATS = callPrefix + 'GET_STATS';
+const GET_STATS_FINISH = exports.GET_STATS_FINISH = callPrefix + 'GET_STATS_FINISH';
+
+/**
+ * Turn action types.
+ */
+const turnPrefix = callPrefix + 'TURN/';
+
+const TURN_CHANGED = exports.TURN_CHANGED = turnPrefix + 'CHANGED';
+
+/**
+ * Track action types.
+ */
+const trackPrefix = callPrefix + 'TRACK/';
+
+const TRACK_ADDED = exports.TRACK_ADDED = trackPrefix + 'ADDED';
+const TRACK_REMOVED = exports.TRACK_REMOVED = trackPrefix + 'REMOVED';
+
+/***/ }),
+
+/***/ "./src/call/interfaceNew/selectors.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.getCalls = getCalls;
+exports.getActiveCalls = getActiveCalls;
+exports.getCallById = getCallById;
+exports.getCallByWrtcsSessionId = getCallByWrtcsSessionId;
+exports.getCallByWebrtcSessionId = getCallByWebrtcSessionId;
+exports.getOptions = getOptions;
+exports.getTurnInfo = getTurnInfo;
+
+var _constants = __webpack_require__("./src/call/constants.js");
+
+var _selectors = __webpack_require__("./src/webrtc/interface/selectors.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Call selectors.
+ * Handles retrieving data from the `state.call.calls` substate.
+ */
+
+/**
+ * Helper function for adding track information to call state.
+ * @method addTracksToCall
+ * @param  {Object} state
+ * @param  {Object} callState
+ * @return {Object} Track augmented call state.
+ */
+// Call plugin.
+function addTracksToCall(state, callState) {
+  const session = (0, _selectors.getSessionById)(state, callState.webrtcSessionId);
+  if (session) {
+    return (0, _extends3.default)({}, callState, {
+      localTracks: session.localTracks,
+      remoteTracks: session.remoteTracks
+    });
+  } else {
+    return (0, _extends3.default)({}, callState, {
+      localTracks: [],
+      remoteTracks: []
+    });
+  }
+}
+
+/**
+ * Get the list of all calls this session.
+ * @method getCalls
+ * @param  {Object} state Redux state.
+ * @return {Array} A list of all call objects.
+ */
+
+
+// Webrtc plugin.
+function getCalls(state) {
+  // TODO: cloneDeep?
+  return state.call.calls.map(callState => addTracksToCall(state, callState));
+}
+
+/**
+ * Retrieves the list of all on-going calls.
+ * @method getActiveCalls
+ * @param {Object} state Redux state.
+ * @return {Array} A list of call objects.
+ */
+function getActiveCalls(state) {
+  const endedStates = [_constants.CALL_STATES.ENDED, _constants.CALL_STATES.CANCELLED];
+
+  return getCalls(state).filter(call => !endedStates.includes(call.state));
+}
+
+/**
+ * Get the call object of a specific call.
+ * @method getCallById
+ * @param  {Object} state Redux state.
+ * @param  {string} callId The call to retrieve.
+ * @return {Object} A call object.
+ */
+function getCallById(state, callId) {
+  return getCalls(state).find(call => call.id === callId);
+}
+
+/**
+ * Get the call object with a specific wrtcsSessionId (backend ID).
+ * @method getCallByWrtcsSessionId
+ * @param  {Object} state Redux state.
+ * @param  {string} wrtcsSessionId The call to retrieve.
+ * @return {Object} A call object.
+ */
+function getCallByWrtcsSessionId(state, wrtcsSessionId) {
+  return getCalls(state).find(call => call.wrtcsSessionId === wrtcsSessionId);
+}
+
+/**
+ * Get the call object with a specific webrtcSessionId.
+ * @method getCallByWebrtcSessionId
+ * @param  {Object} state Redux state.
+ * @param  {string} webrtcSessionId The call to retrieve.
+ * @return {Object} A call object.
+ */
+function getCallByWebrtcSessionId(state, webrtcSessionId) {
+  return getCalls(state).find(call => call.webrtcSessionId === webrtcSessionId);
+}
+
+/**
+ * Retrieve the call plugin's options.
+ * @method getOptions
+ * @param  {Object} state Redux state.
+ * @return {Object}
+ */
+function getOptions(state) {
+  return state.config.call;
+}
+
+/**
+ * Retrieve TURN server/credential information.
+ */
+function getTurnInfo(state) {
+  return state.call.turn;
+}
+
+/***/ }),
+
 /***/ "./src/call/oldLink/callShim.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58991,44 +59210,62 @@ function getCachedHistory(state) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.oldStoreCallLogs = oldStoreCallLogs;
 exports.storeCallLogs = storeCallLogs;
 
 var _actions = __webpack_require__("./src/callHistory/interface/actions.js");
 
-var _selectors = __webpack_require__("./src/call/interface/selectors.js");
+var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+
+var _actionTypes = __webpack_require__("./src/call/interfaceNew/actionTypes.js");
 
 var _constants = __webpack_require__("./src/call/constants.js");
+
+var _selectors2 = __webpack_require__("./src/call/interface/selectors.js");
+
+var _selectors3 = __webpack_require__("./src/call/interfaceNew/selectors.js");
 
 var _logs = __webpack_require__("./src/logs/index.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
 // Helpers.
-
-
-// Other plugins.
-const log = (0, _logs.getLogManager)().getLogger('CALLHISTORY');
-
-/**
- * Saga for storing call event in the local call history.
- * @method storeCallLogs
- * @param {Object} action A `CALL_STATE_CHANGE` action representing a call end.
- */
-
-
-// Libraries
 /**
  * Sagas related to client generated call history.
  */
 
 // Call History plugin.
-function* storeCallLogs(action) {
+const log = (0, _logs.getLogManager)().getLogger('CALLHISTORY');
+
+/**
+ * Constructs a local call log from a "call ended" action.
+ * Old callstack specific.
+ *
+ * This saga defines how a "local call log" is created after a call has ended.
+ *    The format of the log mimics the format of server-side call logs.
+ * Assumptions:
+ *    1. The provided action is a "call ended" action for the old callstack.
+ * Responsibilities:
+ *    1. Gather all information needed for a call log.
+ *    2. Create / format the call log.
+ *    3. Update redux state (via actions).
+ * @method oldStoreCallLogs
+ * @param {Object} action A `CALL_STATE_CHANGE` action representing a call end.
+ */
+
+
+// Libraries
+
+
+// Other plugins.
+function* oldStoreCallLogs(action) {
   // Make sure this is a call end state change.
   if (action.payload.state !== _constants.CALL_STATES_FCS['ENDED']) {
     return;
   }
 
-  let call = yield (0, _effects.select)(_selectors.getCallById, action.payload.callId);
+  // Get call state needed for the log.
+  const call = yield (0, _effects.select)(_selectors2.getCallById, action.payload.callId);
 
   if (!call) {
     log.debug(`Call info (${action.payload.callId}) not in state to create local log.`);
@@ -59046,6 +59283,7 @@ function* storeCallLogs(action) {
     originalRemoteParticipant: call.originalRemoteParticipant,
     resourceLocation: ''
   };
+
   if (call.direction === 'incoming') {
     // If the previous state was ringing, and the change was not because the call was
     //      answered by another device (ie. code 9904), then it is a missed call.
@@ -59061,7 +59299,61 @@ function* storeCallLogs(action) {
     let contactName = (call.contact.firstName + ' ' + call.contact.lastName).trim();
     logEntry.callerName = contactName || call.from.split('@')[0];
   }
+
   log.debug('Adding call event to the local call history:', logEntry);
+  yield (0, _effects.put)((0, _actions.addCallLogEntry)(logEntry));
+}
+
+/**
+ * Constructs a local call log from a "call ended" action.
+ * New callstack specific.
+ *
+ * This saga defines how a "local call log" is created after a call has ended.
+ *    The format of the log mimics the format of server-side call logs.
+ * Assumptions:
+ *    1. The provided action is a "call ended" action for the new callstack.
+ * Responsibilities:
+ *    1. Gather all information needed for a call log.
+ *    2. Create / format the call log.
+ *    3. Update redux state (via actions).
+ * @method storeCallLogs
+ * @param {Object} action A `END_CALL_FINISH` action representing a call end.
+ */
+function* storeCallLogs(action) {
+  if (action.type !== _actionTypes.END_CALL_FINISH) {
+    return;
+  }
+
+  // Get call state needed for the log.
+  const call = yield (0, _effects.select)(_selectors3.getCallById, action.payload.id);
+
+  if (!call) {
+    log.debug(`Call info (${action.payload.id}) not in state to create local log.`);
+    return;
+  }
+
+  // TODO: Call state doesn't have a property with the current user's name.
+  //    Get it from auth state for now.
+  const userInfo = yield (0, _effects.select)(_selectors.getUserInfo);
+
+  var logEntry = {
+    recordId: action.payload.id,
+    startTime: '' + call.startTime,
+    duration: '' + (call.endTime - call.startTime),
+    direction: call.direction,
+    callerDisplayNumber: call.isCaller ? userInfo.username : call.remoteParticipant.displayNumber,
+    calleeDisplayNumber: call.isCaller ? call.remoteParticipant.displayNumber : userInfo.username,
+    calleeName: call.isCaller ? call.remoteParticipant.displayName || call.remoteParticipant.displayNumber : userInfo.username,
+    callerName: call.isCaller ? userInfo.username : call.remoteParticipant.displayName || call.remoteParticipant.displayNumber,
+    remoteParticipant: call.remoteParticipant,
+    originalRemoteParticipant: null,
+    resourceLocation: ''
+
+    // TODO: We can't yet check for all scenarios that the old saga checks for.
+    //  1. Need to be able to determine if the call was missed.
+    //  2. Need to support the caller providing their own contact name.
+
+  };log.debug('Adding call event to the local call history:', logEntry);
   yield (0, _effects.put)((0, _actions.addCallLogEntry)(logEntry));
 }
 
@@ -59090,6 +59382,8 @@ var actionTypes = _interopRequireWildcard(_actionTypes);
 
 var _actionTypes2 = __webpack_require__("./src/call/interface/actionTypes.js");
 
+var _actionTypes3 = __webpack_require__("./src/call/interfaceNew/actionTypes.js");
+
 var _constants = __webpack_require__("./src/call/constants.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
@@ -59100,12 +59394,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  * Fetch server call history.
  * @method fetchLogs
  */
-/**
- * Call History saga index.
- * Defines which actions trigger which sagas.
- */
 
-// Call History plugin.
+
+// Other plugins.
 function* fetchLogs() {
   yield (0, _effects.takeEvery)(actionTypes.FETCH_CALL_HISTORY, _server.retrieveCallLogs);
 }
@@ -59117,23 +59408,41 @@ function* fetchLogs() {
 
 
 // Libraries.
+/**
+ * Call History saga index.
+ * Defines which actions trigger which sagas.
+ */
 
-
-// Other plugins.
+// Call History plugin.
 function* removeLogs() {
   yield (0, _effects.takeEvery)(actionTypes.DELETE_CALL_HISTORY, _server.removeCallLogs);
 }
 
 /**
- * Create local call log after call end.
+ * Create local call log after a call ends.
+ * Handles actions from both the new and old call interfaces (new/old callstacks).
  * @method createLocalLog
  */
 function* createLocalLog() {
-  // Redux-saga take() pattern.
-  function callEndedPattern(action) {
+  // Matches "call ended" actions from the old call interface (ie. old
+  //    callstack). The old "call ended" actions are "state change" actions
+  //    where the new state is "ended".
+  function oldCallEndedPattern(action) {
     return action.type === _actionTypes2.CALL_STATE_CHANGE && action.payload.state === _constants.CALL_STATES_FCS['ENDED'];
   }
 
+  // Matches "call ended" actions from the new call interface (ie. new
+  //    callstack). The "call ended" actions are straight-forward "end call"
+  //    actions, but since the old interface also uses these actions, we need
+  //    to make sure they're the new interface "end call" actions. This is done
+  //    by checking how the call ID is stored in the payload.
+  //    new = action.payload.id; old = action.payload.callId
+  function callEndedPattern(action) {
+    return action.type === _actionTypes3.END_CALL_FINISH && action.payload.id;
+  }
+
+  // Forward "call ended" actions to the appropriate saga.
+  yield (0, _effects.takeEvery)(oldCallEndedPattern, _client.oldStoreCallLogs);
   yield (0, _effects.takeEvery)(callEndedPattern, _client.storeCallLogs);
 }
 
@@ -61583,6 +61892,14 @@ const authCodes = exports.authCodes = {
 };const clickToCallCodes = exports.clickToCallCodes = {
   MISSING_ARGS: 'clickToCall:1',
   RESPONSE_ERROR: 'clickToCall:2'
+  /**
+   * Error codes for the Groups plugin.
+   * @name groupsCodes
+   */
+};const groupsCodes = exports.groupsCodes = {
+  UNKNOWN_ERROR: 'groups:1',
+  GENERIC_ERROR: 'groups:2',
+  MISSING_PARAMETERS: 'groups:3'
 
   /**
    * Error codes for the Message plugin.
@@ -61693,6 +62010,12 @@ Object.defineProperty(exports, 'callHistoryCodes', {
   enumerable: true,
   get: function () {
     return _codes.callHistoryCodes;
+  }
+});
+Object.defineProperty(exports, 'groupsCodes', {
+  enumerable: true,
+  get: function () {
+    return _codes.groupsCodes;
   }
 });
 Object.defineProperty(exports, 'messagingCodes', {
@@ -62501,7 +62824,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.4.0-KAA-1440.68949';
+  let version = '3.4.0-beta.69030';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -68412,7 +68735,8 @@ const log = (0, _logs.getLogManager)().getLogger('REQUEST');
  */
 const responseTypes = (0, _freeze2.default)({
   json: 'json',
-  blob: 'blob'
+  blob: 'blob',
+  text: 'text'
 });
 
 /*
@@ -68510,12 +68834,24 @@ async function makeRequest(options, requestId) {
         error: 'REQUEST',
         result
       };
+    } else if (response.status === 204) {
+      /*
+       * A `204 (No Content)` response indicates a success, but with no content to return.
+       * Avoid parsing the response because there isn't one.
+       */
+      responseBody = {};
+      return {
+        body: responseBody,
+        error: false,
+        result
+      };
     } else {
       if (responseType === responseTypes.json) {
         responseBody = await response.json();
-      } else {
-        // `blob` is the only other possible value for responseType
+      } else if (responseType === responseTypes.blob) {
         responseBody = await response.blob();
+      } else if (responseType === responseTypes.text) {
+        responseBody = await response.text();
       }
       return {
         body: responseBody,
@@ -71340,6 +71676,115 @@ function localUserFromRemote(user) {
   return (0, _extends3.default)({}, user, {
     userId: user.primaryContact || user.userId
   });
+}
+
+/***/ }),
+
+/***/ "./src/webrtc/interface/selectors.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getDevices = getDevices;
+exports.getSessions = getSessions;
+exports.getSessionById = getSessionById;
+exports.getTracks = getTracks;
+exports.getTrackById = getTrackById;
+exports.getMedia = getMedia;
+exports.getMediaById = getMediaById;
+exports.getMediaByCallId = getMediaByCallId;
+exports.getBrowserDetails = getBrowserDetails;
+
+var _selectors = __webpack_require__("./src/call/interfaceNew/selectors.js");
+
+/**
+ * Retrieves media devices available on the system.
+ * @method getDevices
+ * @param  {Object} state Redux state.
+ * @return {Object}
+ */
+function getDevices(state) {
+  return state.webrtc.devices;
+}
+
+/**
+ * Session selectors.
+ */
+// Call plugin.
+function getSessions(state) {
+  return state.webrtc.sessions;
+}
+
+function getSessionById(state, sessionId) {
+  return getSessions(state).find(session => session.id === sessionId);
+}
+
+/**
+ * Track selectors.
+ */
+function getTracks(state) {
+  return state.webrtc.tracks;
+}
+
+function getTrackById(state, trackId) {
+  return getTracks(state).find(track => track.trackId === trackId);
+}
+
+/**
+ * Media selectors.
+ * Handles retrieving data from the `state.webrtc.media` substate.
+ */
+
+/**
+ * Get the list of all media this session.
+ * @method getMedia
+ * @param  {Object} state Redux state.
+ * @return {Array} A list of all media objects.
+ */
+function getMedia(state) {
+  return state.webrtc.media;
+}
+
+/**
+ * Get a specific media object.
+ * @method getMediaById
+ * @param  {Object} state Redux state.
+ * @param  {string} mediaId The media to retrieve.
+ * @return {Object} A media object.
+ */
+function getMediaById(state, mediaId) {
+  return getMedia(state).find(media => media.id === mediaId);
+}
+
+/**
+ * Get all media objects associated with a specific call.
+ * @method getMediaByCallId
+ * @param  {Object} state Redux state.
+ * @param  {string} callId The call to retrieve media objects from.
+ * @return {Array} A list of media objects.
+ */
+function getMediaByCallId(state, callId) {
+  const call = (0, _selectors.getCallById)(state, callId);
+  if (call) {
+    const mediaIds = call.localMedia.concat(call.remoteMedia);
+    return mediaIds.map(mediaId => getMediaById(state, mediaId));
+  } else {
+    return [];
+  }
+}
+
+/**
+ * Retrieves information about the browser.
+ * @method getBrowserDetails
+ * @param  {Object} state Redux state.
+ * @return {Object}
+ */
+function getBrowserDetails(state) {
+  return state.webrtc.browser;
 }
 
 /***/ })
