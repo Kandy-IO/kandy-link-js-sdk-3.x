@@ -38758,7 +38758,7 @@
           "column": 2
         },
         "end": {
-          "line": 115,
+          "line": 175,
           "column": 3
         }
       },
@@ -39441,9 +39441,15 @@
               "name": "add"
             },
             {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 7,
+              "name": "addContactAsFriend"
+            },
+            {
               "title": "param",
               "description": "The contact object.",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -39453,7 +39459,7 @@
             {
               "title": "param",
               "description": "The primary userId for the contact",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -39462,21 +39468,18 @@
             },
             {
               "title": "param",
-              "description": "The name for the contact entry",
-              "lineNumber": 9,
+              "description": "The contact's unique contact ID",
+              "lineNumber": 10,
               "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
+                "type": "NameExpression",
+                "name": "string"
               },
-              "name": "contact.name"
+              "name": "contact.contactId"
             },
             {
               "title": "param",
               "description": "The contact's first name",
-              "lineNumber": 10,
+              "lineNumber": 11,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -39489,7 +39492,7 @@
             {
               "title": "param",
               "description": "The contact's last name",
-              "lineNumber": 11,
+              "lineNumber": 12,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -39501,20 +39504,7 @@
             },
             {
               "title": "param",
-              "description": "The contact's unique contact ID",
-              "lineNumber": 12,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "contact.contactId"
-            },
-            {
-              "title": "param",
-              "description": "The contact's email address",
+              "description": "The URL address identifying location of user's picture",
               "lineNumber": 13,
               "type": {
                 "type": "OptionalType",
@@ -39523,11 +39513,11 @@
                   "name": "string"
                 }
               },
-              "name": "contact.email"
+              "name": "contact.photoUrl"
             },
             {
               "title": "param",
-              "description": "The contact's home phone number",
+              "description": "The contact's email address",
               "lineNumber": 14,
               "type": {
                 "type": "OptionalType",
@@ -39536,11 +39526,11 @@
                   "name": "string"
                 }
               },
-              "name": "contact.homePhoneNumber"
+              "name": "contact.emailAddress"
             },
             {
               "title": "param",
-              "description": "The contact's business phone number",
+              "description": "The contact's home phone number",
               "lineNumber": 15,
               "type": {
                 "type": "OptionalType",
@@ -39549,11 +39539,11 @@
                   "name": "string"
                 }
               },
-              "name": "contact.businessPhoneNumber"
+              "name": "contact.homePhone"
             },
             {
               "title": "param",
-              "description": "The contact's mobile phone number",
+              "description": "The contact's business phone number",
               "lineNumber": 16,
               "type": {
                 "type": "OptionalType",
@@ -39562,11 +39552,11 @@
                   "name": "string"
                 }
               },
-              "name": "contact.mobilePhoneNumber"
+              "name": "contact.workPhone"
             },
             {
               "title": "param",
-              "description": "The name of the contact list for which to add this contact to (\"friends\" by default)",
+              "description": "The contact's mobile phone number",
               "lineNumber": 17,
               "type": {
                 "type": "OptionalType",
@@ -39575,12 +39565,64 @@
                   "name": "string"
                 }
               },
-              "name": "contact.list"
+              "name": "contact.mobilePhone"
+            },
+            {
+              "title": "param",
+              "description": "Conference URL and access code for this user's address book entry",
+              "lineNumber": 18,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.conferenceURL"
+            },
+            {
+              "title": "param",
+              "description": "The user's fax number",
+              "lineNumber": 19,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.fax"
+            },
+            {
+              "title": "param",
+              "description": "The user's pager number",
+              "lineNumber": 20,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.pager"
+            },
+            {
+              "title": "param",
+              "description": "The name of the contact list for which to add this contact to (\"friends\" by default)",
+              "lineNumber": 21,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.groupList"
             },
             {
               "title": "param",
               "description": "Indicates whether or not the contact is a friend of the user",
-              "lineNumber": 18,
+              "lineNumber": 22,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -39588,7 +39630,7 @@
                   "name": "boolean"
                 }
               },
-              "name": "contact.buddy"
+              "name": "contact.friendStatus"
             }
           ],
           "loc": {
@@ -39597,18 +39639,18 @@
               "column": 4
             },
             "end": {
-              "line": 34,
+              "line": 38,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 35,
+                "line": 59,
                 "column": 4
               },
               "end": {
-                "line": 37,
+                "line": 61,
                 "column": 5
               }
             },
@@ -39620,7 +39662,7 @@
             {
               "title": "param",
               "name": "contact",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "description": {
                 "type": "root",
                 "children": [
@@ -39681,7 +39723,7 @@
                 {
                   "title": "param",
                   "name": "contact.primaryContact",
-                  "lineNumber": 8,
+                  "lineNumber": 9,
                   "description": {
                     "type": "root",
                     "children": [
@@ -39741,8 +39783,8 @@
                 },
                 {
                   "title": "param",
-                  "name": "contact.name",
-                  "lineNumber": 9,
+                  "name": "contact.contactId",
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -39751,7 +39793,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The name for the contact entry",
+                            "value": "The contact's unique contact ID",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -39760,8 +39802,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 31,
-                                "offset": 30
+                                "column": 32,
+                                "offset": 31
                               },
                               "indent": []
                             }
@@ -39775,8 +39817,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 31,
-                            "offset": 30
+                            "column": 32,
+                            "offset": 31
                           },
                           "indent": []
                         }
@@ -39790,23 +39832,20 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 31,
-                        "offset": 30
+                        "column": 32,
+                        "offset": 31
                       }
                     }
                   },
                   "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
+                    "type": "NameExpression",
+                    "name": "string"
                   }
                 },
                 {
                   "title": "param",
                   "name": "contact.firstName",
-                  "lineNumber": 10,
+                  "lineNumber": 11,
                   "description": {
                     "type": "root",
                     "children": [
@@ -39870,7 +39909,7 @@
                 {
                   "title": "param",
                   "name": "contact.lastName",
-                  "lineNumber": 11,
+                  "lineNumber": 12,
                   "description": {
                     "type": "root",
                     "children": [
@@ -39933,8 +39972,8 @@
                 },
                 {
                   "title": "param",
-                  "name": "contact.contactId",
-                  "lineNumber": 12,
+                  "name": "contact.photoUrl",
+                  "lineNumber": 13,
                   "description": {
                     "type": "root",
                     "children": [
@@ -39943,7 +39982,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The contact's unique contact ID",
+                            "value": "The URL address identifying location of user's picture",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -39952,8 +39991,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 32,
-                                "offset": 31
+                                "column": 55,
+                                "offset": 54
                               },
                               "indent": []
                             }
@@ -39967,8 +40006,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 32,
-                            "offset": 31
+                            "column": 55,
+                            "offset": 54
                           },
                           "indent": []
                         }
@@ -39982,8 +40021,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 32,
-                        "offset": 31
+                        "column": 55,
+                        "offset": 54
                       }
                     }
                   },
@@ -39997,8 +40036,8 @@
                 },
                 {
                   "title": "param",
-                  "name": "contact.email",
-                  "lineNumber": 13,
+                  "name": "contact.emailAddress",
+                  "lineNumber": 14,
                   "description": {
                     "type": "root",
                     "children": [
@@ -40061,8 +40100,8 @@
                 },
                 {
                   "title": "param",
-                  "name": "contact.homePhoneNumber",
-                  "lineNumber": 14,
+                  "name": "contact.homePhone",
+                  "lineNumber": 15,
                   "description": {
                     "type": "root",
                     "children": [
@@ -40125,8 +40164,8 @@
                 },
                 {
                   "title": "param",
-                  "name": "contact.businessPhoneNumber",
-                  "lineNumber": 15,
+                  "name": "contact.workPhone",
+                  "lineNumber": 16,
                   "description": {
                     "type": "root",
                     "children": [
@@ -40189,8 +40228,8 @@
                 },
                 {
                   "title": "param",
-                  "name": "contact.mobilePhoneNumber",
-                  "lineNumber": 16,
+                  "name": "contact.mobilePhone",
+                  "lineNumber": 17,
                   "description": {
                     "type": "root",
                     "children": [
@@ -40253,8 +40292,200 @@
                 },
                 {
                   "title": "param",
-                  "name": "contact.list",
-                  "lineNumber": 17,
+                  "name": "contact.conferenceURL",
+                  "lineNumber": 18,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Conference URL and access code for this user's address book entry",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 66,
+                                "offset": 65
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 66,
+                            "offset": 65
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 66,
+                        "offset": 65
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.fax",
+                  "lineNumber": 19,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's fax number",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 22,
+                                "offset": 21
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 22,
+                            "offset": 21
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 22,
+                        "offset": 21
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.pager",
+                  "lineNumber": 20,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's pager number",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 24,
+                                "offset": 23
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.groupList",
+                  "lineNumber": 21,
                   "description": {
                     "type": "root",
                     "children": [
@@ -40317,8 +40548,8 @@
                 },
                 {
                   "title": "param",
-                  "name": "contact.buddy",
-                  "lineNumber": 18,
+                  "name": "contact.friendStatus",
+                  "lineNumber": 22,
                   "description": {
                     "type": "root",
                     "children": [
@@ -40503,22 +40734,22 @@
           ],
           "loc": {
             "start": {
-              "line": 39,
+              "line": 63,
               "column": 4
             },
             "end": {
-              "line": 47,
+              "line": 71,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 48,
+                "line": 72,
                 "column": 4
               },
               "end": {
-                "line": 50,
+                "line": 74,
                 "column": 5
               }
             },
@@ -40760,22 +40991,22 @@
           ],
           "loc": {
             "start": {
-              "line": 52,
+              "line": 76,
               "column": 4
             },
             "end": {
-              "line": 59,
+              "line": 83,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 60,
+                "line": 84,
                 "column": 4
               },
               "end": {
-                "line": 62,
+                "line": 86,
                 "column": 5
               }
             },
@@ -40984,22 +41215,22 @@
           ],
           "loc": {
             "start": {
-              "line": 64,
+              "line": 88,
               "column": 4
             },
             "end": {
-              "line": 71,
+              "line": 95,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 72,
+                "line": 96,
                 "column": 4
               },
               "end": {
-                "line": 74,
+                "line": 98,
                 "column": 5
               }
             },
@@ -41158,22 +41389,22 @@
           ],
           "loc": {
             "start": {
-              "line": 76,
+              "line": 100,
               "column": 4
             },
             "end": {
-              "line": 84,
+              "line": 108,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 85,
+                "line": 109,
                 "column": 4
               },
               "end": {
-                "line": 87,
+                "line": 111,
                 "column": 5
               }
             },
@@ -41382,9 +41613,15 @@
               "name": "update"
             },
             {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 7,
+              "name": "addContactAsFriend"
+            },
+            {
               "title": "param",
               "description": "The unique contact ID.",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -41394,32 +41631,208 @@
             {
               "title": "param",
               "description": "The contact object.",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
               },
               "name": "contact"
+            },
+            {
+              "title": "param",
+              "description": "The primary userId for the contact",
+              "lineNumber": 10,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "contact.primaryContact"
+            },
+            {
+              "title": "param",
+              "description": "The contact's unique contact ID",
+              "lineNumber": 11,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "contact.contactId"
+            },
+            {
+              "title": "param",
+              "description": "The contact's first name",
+              "lineNumber": 12,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.firstName"
+            },
+            {
+              "title": "param",
+              "description": "The contact's last name",
+              "lineNumber": 13,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.lastName"
+            },
+            {
+              "title": "param",
+              "description": "The URL address identifying location of user's picture",
+              "lineNumber": 14,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.photoUrl"
+            },
+            {
+              "title": "param",
+              "description": "The contact's email address",
+              "lineNumber": 15,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.emailAddress"
+            },
+            {
+              "title": "param",
+              "description": "The contact's home phone number",
+              "lineNumber": 16,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.homePhone"
+            },
+            {
+              "title": "param",
+              "description": "The contact's business phone number",
+              "lineNumber": 17,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.workPhone"
+            },
+            {
+              "title": "param",
+              "description": "The contact's mobile phone number",
+              "lineNumber": 18,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.mobilePhone"
+            },
+            {
+              "title": "param",
+              "description": "Conference URL and access code for this user's address book entry",
+              "lineNumber": 19,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.conferenceURL"
+            },
+            {
+              "title": "param",
+              "description": "The user's fax number",
+              "lineNumber": 20,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.fax"
+            },
+            {
+              "title": "param",
+              "description": "The user's pager number",
+              "lineNumber": 21,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.pager"
+            },
+            {
+              "title": "param",
+              "description": "The name of the contact list for which to add this contact to (\"friends\" by default)",
+              "lineNumber": 22,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "contact.groupList"
+            },
+            {
+              "title": "param",
+              "description": "Indicates whether or not the contact is a friend of the user",
+              "lineNumber": 23,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "boolean"
+                }
+              },
+              "name": "contact.friendStatus"
             }
           ],
           "loc": {
             "start": {
-              "line": 89,
+              "line": 113,
               "column": 4
             },
             "end": {
-              "line": 98,
+              "line": 137,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 99,
+                "line": 159,
                 "column": 4
               },
               "end": {
-                "line": 101,
+                "line": 161,
                 "column": 5
               }
             },
@@ -41431,7 +41844,7 @@
             {
               "title": "param",
               "name": "contactId",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "description": {
                 "type": "root",
                 "children": [
@@ -41492,7 +41905,7 @@
             {
               "title": "param",
               "name": "contact",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "description": {
                 "type": "root",
                 "children": [
@@ -41548,7 +41961,899 @@
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
-              }
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "contact.primaryContact",
+                  "lineNumber": 10,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The primary userId for the contact",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 35,
+                                "offset": 34
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 35,
+                            "offset": 34
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 35,
+                        "offset": 34
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.contactId",
+                  "lineNumber": 11,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The contact's unique contact ID",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 32,
+                                "offset": 31
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 32,
+                            "offset": 31
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 32,
+                        "offset": 31
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.firstName",
+                  "lineNumber": 12,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The contact's first name",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 25,
+                                "offset": 24
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 25,
+                            "offset": 24
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 25,
+                        "offset": 24
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.lastName",
+                  "lineNumber": 13,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The contact's last name",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 24,
+                                "offset": 23
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.photoUrl",
+                  "lineNumber": 14,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The URL address identifying location of user's picture",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 55,
+                                "offset": 54
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 55,
+                            "offset": 54
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 55,
+                        "offset": 54
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.emailAddress",
+                  "lineNumber": 15,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The contact's email address",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 28,
+                                "offset": 27
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 28,
+                            "offset": 27
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 28,
+                        "offset": 27
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.homePhone",
+                  "lineNumber": 16,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The contact's home phone number",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 32,
+                                "offset": 31
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 32,
+                            "offset": 31
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 32,
+                        "offset": 31
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.workPhone",
+                  "lineNumber": 17,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The contact's business phone number",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 36,
+                                "offset": 35
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 36,
+                            "offset": 35
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 36,
+                        "offset": 35
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.mobilePhone",
+                  "lineNumber": 18,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The contact's mobile phone number",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 34,
+                                "offset": 33
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 34,
+                            "offset": 33
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.conferenceURL",
+                  "lineNumber": 19,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Conference URL and access code for this user's address book entry",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 66,
+                                "offset": 65
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 66,
+                            "offset": 65
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 66,
+                        "offset": 65
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.fax",
+                  "lineNumber": 20,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's fax number",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 22,
+                                "offset": 21
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 22,
+                            "offset": 21
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 22,
+                        "offset": 21
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.pager",
+                  "lineNumber": 21,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's pager number",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 24,
+                                "offset": 23
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.groupList",
+                  "lineNumber": 22,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The name of the contact list for which to add this contact to (\"friends\" by default)",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 85,
+                                "offset": 84
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 85,
+                            "offset": 84
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 85,
+                        "offset": 84
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "contact.friendStatus",
+                  "lineNumber": 23,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Indicates whether or not the contact is a friend of the user",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 61,
+                                "offset": 60
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 61,
+                            "offset": 60
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 61,
+                        "offset": 60
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "boolean"
+                    }
+                  }
+                }
+              ]
             }
           ],
           "properties": [],
@@ -41701,22 +43006,22 @@
           ],
           "loc": {
             "start": {
-              "line": 103,
+              "line": 163,
               "column": 4
             },
             "end": {
-              "line": 111,
+              "line": 171,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 112,
+                "line": 172,
                 "column": 4
               },
               "end": {
-                "line": 114,
+                "line": 174,
                 "column": 5
               }
             },
@@ -41824,6 +43129,337 @@
       }
     ],
     "namespace": "Contacts"
+  },
+  {
+    "description": {
+      "type": "root",
+      "children": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "value": "A set of handlers for manipulating SDP information.\nThese handlers are used to customize low-level call behaviour for very specific\nenvironments and/or scenarios. They can be provided during SDK instantiation\nto be used for all calls.",
+              "position": {
+                "start": {
+                  "line": 1,
+                  "column": 1,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 4,
+                  "column": 26,
+                  "offset": 234
+                },
+                "indent": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 1,
+              "offset": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 26,
+              "offset": 234
+            },
+            "indent": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 26,
+          "offset": 234
+        }
+      }
+    },
+    "tags": [
+      {
+        "title": "public",
+        "description": null,
+        "lineNumber": 5,
+        "type": null
+      },
+      {
+        "title": "module",
+        "description": null,
+        "lineNumber": 6,
+        "type": null,
+        "name": "sdpHandlers"
+      }
+    ],
+    "loc": {
+      "start": {
+        "line": 27,
+        "column": 0
+      },
+      "end": {
+        "line": 34,
+        "column": 3
+      }
+    },
+    "context": {
+      "loc": {
+        "start": {
+          "line": 62,
+          "column": 0
+        },
+        "end": {
+          "line": 62,
+          "column": 35
+        }
+      },
+      "file": "/home/circleci/kandy/packages/kandy/src/index.common.js"
+    },
+    "augments": [],
+    "examples": [],
+    "params": [],
+    "properties": [],
+    "returns": [],
+    "sees": [],
+    "throws": [],
+    "todos": [],
+    "access": "public",
+    "kind": "module",
+    "name": "sdpHandlers",
+    "members": {
+      "global": [],
+      "inner": [],
+      "instance": [],
+      "events": [],
+      "static": [
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 264,
+                        "offset": 263
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 264,
+                    "offset": 263
+                  },
+                  "indent": []
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1,
+                        "offset": 265
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 108,
+                        "offset": 372
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1,
+                    "offset": 265
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 108,
+                    "offset": 372
+                  },
+                  "indent": []
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1,
+                        "offset": 374
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 167,
+                        "offset": 540
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1,
+                    "offset": 374
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 167,
+                    "offset": 540
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 167,
+                "offset": 540
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 7,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "sdpHandlers",
+              "lineNumber": 8
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 9,
+              "name": "createCodecRemover"
+            },
+            {
+              "title": "example",
+              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})",
+              "lineNumber": 10
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 38,
+              "column": 0
+            },
+            "end": {
+              "line": 57,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 62,
+                "column": 0
+              },
+              "end": {
+                "line": 62,
+                "column": 35
+              }
+            },
+            "file": "/home/circleci/kandy/packages/kandy/src/index.common.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})"
+            }
+          ],
+          "params": [],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "sdpHandlers",
+          "kind": "function",
+          "name": "createCodecRemover",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "sdpHandlers",
+              "kind": "module"
+            },
+            {
+              "name": "createCodecRemover",
+              "kind": "function"
+            }
+          ],
+          "namespace": "sdpHandlerscreateCodecRemover"
+        }
+      ]
+    },
+    "path": [
+      {
+        "name": "sdpHandlers",
+        "kind": "module"
+      }
+    ],
+    "namespace": "sdpHandlers"
   },
   {
     "description": {
@@ -46265,337 +47901,6 @@
       }
     ],
     "namespace": "config"
-  },
-  {
-    "description": {
-      "type": "root",
-      "children": [
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "value": "A set of handlers for manipulating SDP information.\nThese handlers are used to customize low-level call behaviour for very specific\nenvironments and/or scenarios. They can be provided during SDK instantiation\nto be used for all calls.",
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 1,
-                  "offset": 0
-                },
-                "end": {
-                  "line": 4,
-                  "column": 26,
-                  "offset": 234
-                },
-                "indent": [
-                  1,
-                  1,
-                  1
-                ]
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 1,
-              "offset": 0
-            },
-            "end": {
-              "line": 4,
-              "column": 26,
-              "offset": 234
-            },
-            "indent": [
-              1,
-              1,
-              1
-            ]
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
-        },
-        "end": {
-          "line": 4,
-          "column": 26,
-          "offset": 234
-        }
-      }
-    },
-    "tags": [
-      {
-        "title": "public",
-        "description": null,
-        "lineNumber": 5,
-        "type": null
-      },
-      {
-        "title": "module",
-        "description": null,
-        "lineNumber": 6,
-        "type": null,
-        "name": "sdpHandlers"
-      }
-    ],
-    "loc": {
-      "start": {
-        "line": 27,
-        "column": 0
-      },
-      "end": {
-        "line": 34,
-        "column": 3
-      }
-    },
-    "context": {
-      "loc": {
-        "start": {
-          "line": 62,
-          "column": 0
-        },
-        "end": {
-          "line": 62,
-          "column": 35
-        }
-      },
-      "file": "/home/circleci/kandy/packages/kandy/src/index.common.js"
-    },
-    "augments": [],
-    "examples": [],
-    "params": [],
-    "properties": [],
-    "returns": [],
-    "sees": [],
-    "throws": [],
-    "todos": [],
-    "access": "public",
-    "kind": "module",
-    "name": "sdpHandlers",
-    "members": {
-      "global": [],
-      "inner": [],
-      "instance": [],
-      "events": [],
-      "static": [
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 264,
-                        "offset": 263
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 264,
-                    "offset": 263
-                  },
-                  "indent": []
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.",
-                    "position": {
-                      "start": {
-                        "line": 3,
-                        "column": 1,
-                        "offset": 265
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 108,
-                        "offset": 372
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 3,
-                    "column": 1,
-                    "offset": 265
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 108,
-                    "offset": 372
-                  },
-                  "indent": []
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.",
-                    "position": {
-                      "start": {
-                        "line": 5,
-                        "column": 1,
-                        "offset": 374
-                      },
-                      "end": {
-                        "line": 5,
-                        "column": 167,
-                        "offset": 540
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 5,
-                    "column": 1,
-                    "offset": 374
-                  },
-                  "end": {
-                    "line": 5,
-                    "column": 167,
-                    "offset": 540
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 5,
-                "column": 167,
-                "offset": 540
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 7,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "sdpHandlers",
-              "lineNumber": 8
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 9,
-              "name": "createCodecRemover"
-            },
-            {
-              "title": "example",
-              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})",
-              "lineNumber": 10
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 38,
-              "column": 0
-            },
-            "end": {
-              "line": 57,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 62,
-                "column": 0
-              },
-              "end": {
-                "line": 62,
-                "column": 35
-              }
-            },
-            "file": "/home/circleci/kandy/packages/kandy/src/index.common.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "import { create, sdpHandlers } from 'kandy';\nconst codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])\nconst client = create({\n  call: {\n    sdpHandlers: [codecRemover]\n  }\n})"
-            }
-          ],
-          "params": [],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "sdpHandlers",
-          "kind": "function",
-          "name": "createCodecRemover",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "sdpHandlers",
-              "kind": "module"
-            },
-            {
-              "name": "createCodecRemover",
-              "kind": "function"
-            }
-          ],
-          "namespace": "sdpHandlerscreateCodecRemover"
-        }
-      ]
-    },
-    "path": [
-      {
-        "name": "sdpHandlers",
-        "kind": "module"
-      }
-    ],
-    "namespace": "sdpHandlers"
   },
   {
     "description": {
