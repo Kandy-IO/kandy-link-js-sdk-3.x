@@ -21,6 +21,19 @@ const kandy = create({
             server: 'spidr-ucc.genband.com'
         }
     },
+    call: {
+    serverProvidedTurnCredentials: true,
+    iceserver:[
+        { 
+            url: 'turns:turn-ucc-2.genband.com:443?transport=tcp',
+            credentials: ''
+        },
+        { 
+            url: 'turns:turn-ucc-1.genband.com:443?transport=tcp',
+            credentials: ''
+        }
+    ]  
+    },
     logs: {
         // Log output configs.
     },
@@ -66,7 +79,9 @@ call: {
 
 ### Authentication
 
-The Authentication configs are used to specify the backend service that Kandy.js should connect to. It is important to always include these configurations.
+The Authentication configs are used to specify the backend service that Kandy.js should connect to.The value provided is the host for the Kandy Link that the application is targeting. 
+Also if the Kandy Link is deployed on-prem, it will be up to the user to define the host.
+Note: It is important to always include these configurations.
 
 ``` javascript
 authentication: {
@@ -77,7 +92,42 @@ authentication: {
         server: 'spidr-ucc.genband.com'
     }
 }
+call: {
+    serverProvidedTurnCredentials: true,
+    iceserver:[
+        { 
+            url: 'turns:turn-ucc-2.genband.com:443?transport=tcp',
+            credentials: ''
+        },
+        { 
+            url: 'turns:turn-ucc-1.genband.com:443?transport=tcp',
+            credentials: ''
+        }
+    ]  
+}
 ```
+Examples of the Kandy Link Systems include:
+
+NA:
+* RESTURL: spidr-ucc.genband.com port 443
+* WebSocketURL: spidr-ucc.genband.com port 443
+* iceserver:
+    * turn-ucc-1.genband.com port 3478 for STUN and 443 for TURNS
+    * turn-ucc-2.genband.com port 3478 for STUN and 443 for TURNS
+
+EMEA:
+* RESTURL: spidr-em.genband.com port 443
+* WebSocketURL: spidr-em.genband.com port 443
+* iceserver: 
+    * turn-em-1.genband.com port 3478 for STUN and 443 for TURNS 
+    * turn-em-2.genband.com port 3478 for STUN and 443 for TURNS
+
+APAC:
+* RESTURL: spidr-ap.genband.com port 443
+* WebSocketURL: spidr-ap.genband.com port 443
+* iceserver: 
+    * turn-ap-1.genband.com port 3478 for STUN and 443 for TURNS
+    * turn-ap-2.genband.com port 3478 for STUN and 443 for TURNS
 
 ### Connectivity
 
