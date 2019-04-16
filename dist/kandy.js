@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.4.0-beta.70888
+ * Version: 3.4.0-beta.70990
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -33990,6 +33990,7 @@ function CoreImpl(_ref) {
      * @property {string} [localVideoContainer] html node in which to inject the preview of the user camera
      * @property {string} [iceserver=""] ice server ip address
      * @property {boolean} [webrtcdtls=false] webrtc dtls status
+     * @property {boolean} [recordCallStats=false] When enabled, call statistics are recorded in app's localstorage after the call is terminated.
      * @property {boolean} [dscpEnabled=false] Enabled experimental DSCP markings on supported platforms (Chrome only).
      * @property {string} [language="en"] language setting of the plugin
      * @property {ajaxHook} [ajaxHook] ajax hook to intercept outgoing xhr request to modify url and headers
@@ -34050,6 +34051,7 @@ function CoreImpl(_ref) {
      *              "credential": ""
      *       }],
      *       webrtcdtls: true,
+     *       recordCallStats: true,
      *       videoContainer: document.getElementById("defaultVideoContainer")
      *   }
      * );
@@ -34091,6 +34093,7 @@ function CoreImpl(_ref) {
      *                       "credential":"dummyCredential",
      *                       "password":"dummyPwd"}]
      *       webrtcdtls: true,
+     *       recordCallStats: true,
      *       videoContainer: document.getElementById("defaultVideoContainer")
      *   }
      * );
@@ -41537,7 +41540,8 @@ function WebRtcAdaptorImpl(_ref) {
         accumulatedStats.video.codec = currentStats.video.codec;
         accumulatedStats.video.rtt = currentStats.video.rtt;
 
-        if (callCache) {
+        if (callCache && _config.recordCallStats) {
+            // if flag enabled, allow saving the call statistics in app's local storage
             _cache.setItem(_fcs.getUser() + '_stats', (0, _stringify2.default)(accumulatedStats));
         }
         return accumulatedStats;
@@ -57457,6 +57461,7 @@ const log = logMgr.getLogger('CALL');
  * @param {Object} [call.callDefaults] Default options to be used when making/answering a call.
  * @param {string} [call.chromeExtensionId] ID of the screenshare extension being used for screenshare of Google Chrome.
  * @param {boolean} [call.webrtcdtls=true] Whether to enable the webRTC DTLS setting for calls.
+ * @param {boolean} [call.recordCallStats=false] Whether to enable the recording of call statistics as part of app's local storage.
  */
 
 /**
@@ -57479,7 +57484,8 @@ function callsLink(options = {}) {
     webrtcdtls: true,
     chromeExtensionId: undefined,
     serverProvidedTurnCredentials: false,
-    iceserver: []
+    iceserver: [],
+    recordCallStats: false
   };
 
   let callDefaults = (0, _fp.defaults)(defaultOptions.callDefaults, options.callDefaults);
@@ -62824,7 +62830,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.4.0-beta.70888';
+  let version = '3.4.0-beta.70990';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];

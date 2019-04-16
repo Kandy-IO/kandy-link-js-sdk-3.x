@@ -1216,6 +1216,7 @@ Configuration options for the call feature.
     -   `call.callDefaults` **[Object][5]?** Default options to be used when making/answering a call.
     -   `call.chromeExtensionId` **[string][2]?** ID of the screenshare extension being used for screenshare of Google Chrome.
     -   `call.webrtcdtls` **[boolean][7]** Whether to enable the webRTC DTLS setting for calls. (optional, default `true`)
+    -   `call.recordCallStats` **[boolean][7]** Whether to enable the recording of call statistics as part of app's local storage. (optional, default `false`)
 
 ### config.connectivity
 
