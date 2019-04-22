@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.4.0-beta.71044
+ * Version: 3.4.0-beta.71360
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -62830,7 +62830,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.4.0-beta.71044';
+  let version = '3.4.0-beta.71360';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -64525,6 +64525,7 @@ function api(context) {
             id: id,
             description,
             messages: messages,
+            lastMessage: conversation.lastMessage,
             isTypingList: conversation.isTypingList,
             lastReceived: conversation ? conversation.lastReceived : undefined,
             lastPull: conversation ? conversation.lastPull : undefined
@@ -64913,6 +64914,12 @@ const log = (0, _logs.getLogManager)().getLogger('MESSAGING');
  * Base conversation stamp
  * @param {Array} destination The Destination for messages being sent through
  * this conversation in this instance of the SDK. This should be an Array with any number of user IDs
+ * @param {string} type=im The type of the message.
+ * @param {string} id=undefined The unique identifier for base conversation.
+ * @param {string} description='' The description associated with base conversation.
+ * @param {Array} messages=[] An array containing the conversation's messages.
+ * @param {number} lastReceived The timestamp associated with the last received message.
+ * @param {string} lastMessage This is the last received message in a given conversation, as delivered by server.
  */
 
 // Events
@@ -64925,12 +64932,14 @@ const conversationBase = {
     messages = [],
     isTypingList = [],
     lastReceived,
-    lastPull
+    lastPull,
+    lastMessage = ''
   }) {
     this.destination = destination;
     this.type = type;
     this.description = description;
     this.messages = messages;
+    this.lastMessage = lastMessage;
     this.isTypingList = isTypingList;
     this.id = id;
     const features = (0, _selectors.getMessagingConfig)(this.context.getState()).features;
