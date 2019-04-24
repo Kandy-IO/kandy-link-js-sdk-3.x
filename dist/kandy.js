@@ -1,7 +1,7 @@
 /**
  * Kandy.js (Next)
  * kandy.link.js
- * Version: 3.4.0-beta.71522
+ * Version: 3.4.0-beta.71737
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -50622,7 +50622,8 @@ reducers[actionTypes.SET_TOKEN] = {
     return (0, _extends3.default)({}, state, {
       userInfo: (0, _extends3.default)({}, state.userInfo, {
         accessToken: action.payload.accessToken,
-        username: idTokenPayload.preferred_username
+        username: idTokenPayload.preferred_username,
+        identity: idTokenPayload['services-identity']
       })
     });
   }
@@ -62830,7 +62831,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.4.0-beta.71522';
+  let version = '3.4.0-beta.71737';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
