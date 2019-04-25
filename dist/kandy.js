@@ -1,7 +1,7 @@
 /**
- * Kandy.js (Next)
+ * Kandy.js
  * kandy.link.js
- * Version: 3.4.0-beta.72110
+ * Version: 3.4.0-beta.72187
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.link.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "../kandy/src/index.link.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -49400,12 +49400,12 @@ function loadModule(module) {
 
 /***/ }),
 
-/***/ "./node_modules/query-string/index.js":
+/***/ "../kandy/node_modules/query-string/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-const strictUriEncode = __webpack_require__("./node_modules/strict-uri-encode/index.js");
+const strictUriEncode = __webpack_require__("../kandy/node_modules/strict-uri-encode/index.js");
 const decodeComponent = __webpack_require__("../../node_modules/decode-uri-component/index.js");
 
 function encoderForArrayFormat(options) {
@@ -49639,7 +49639,7 @@ exports.parseUrl = (input, options) => {
 
 /***/ }),
 
-/***/ "./node_modules/strict-uri-encode/index.js":
+/***/ "../kandy/node_modules/strict-uri-encode/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49649,7 +49649,7 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 
 /***/ }),
 
-/***/ "./src/auth/constants.js":
+/***/ "../kandy/src/auth/constants.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49670,7 +49670,7 @@ const SUBSCRIPTION_STATE = exports.SUBSCRIPTION_STATE = {
 
 /***/ }),
 
-/***/ "./src/auth/interface/actionTypes.js":
+/***/ "../kandy/src/auth/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49699,7 +49699,7 @@ const SET_TOKEN = exports.SET_TOKEN = prefix + 'SET_TOKEN';
 
 /***/ }),
 
-/***/ "./src/auth/interface/actions.js":
+/***/ "../kandy/src/auth/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49722,7 +49722,7 @@ exports.updateSubscription = updateSubscription;
 exports.updateSubscriptionFinished = updateSubscriptionFinished;
 exports.setTokens = setTokens;
 
-var _actionTypes = __webpack_require__("./src/auth/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/auth/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -50003,7 +50003,7 @@ function setTokens({ accessToken, idToken }) {
 
 /***/ }),
 
-/***/ "./src/auth/interface/api.js":
+/***/ "../kandy/src/auth/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50014,15 +50014,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _actions = __webpack_require__("./src/auth/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/auth/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _constants = __webpack_require__("./src/auth/constants.js");
+var _constants = __webpack_require__("../kandy/src/auth/constants.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -50319,7 +50319,7 @@ function api({ dispatch, getState }) {
 
 /***/ }),
 
-/***/ "./src/auth/interface/eventTypes.js":
+/***/ "../kandy/src/auth/interface/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50372,7 +50372,7 @@ const AUTH_RESUB = exports.AUTH_RESUB = 'auth:resub';
 
 /***/ }),
 
-/***/ "./src/auth/interface/events.js":
+/***/ "../kandy/src/auth/interface/events.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50382,11 +50382,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _eventTypes = __webpack_require__("./src/auth/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/auth/interface/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
-var _actionTypes = __webpack_require__("./src/auth/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/auth/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -50433,7 +50433,7 @@ exports.default = eventsMap;
 
 /***/ }),
 
-/***/ "./src/auth/interface/index.js":
+/***/ "../kandy/src/auth/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50444,15 +50444,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.api = exports.name = exports.reducer = undefined;
 
-var _reducers = __webpack_require__("./src/auth/interface/reducers.js");
+var _reducers = __webpack_require__("../kandy/src/auth/interface/reducers.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
-var _name = __webpack_require__("./src/auth/interface/name.js");
+var _name = __webpack_require__("../kandy/src/auth/interface/name.js");
 
 var _name2 = _interopRequireDefault(_name);
 
-var _api = __webpack_require__("./src/auth/interface/api.js");
+var _api = __webpack_require__("../kandy/src/auth/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
@@ -50464,7 +50464,7 @@ exports.api = _api2.default;
 
 /***/ }),
 
-/***/ "./src/auth/interface/name.js":
+/***/ "../kandy/src/auth/interface/name.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50482,7 +50482,7 @@ exports.default = name;
 
 /***/ }),
 
-/***/ "./src/auth/interface/reducers.js":
+/***/ "../kandy/src/auth/interface/reducers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50496,7 +50496,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/auth/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/auth/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -50673,7 +50673,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/auth/interface/selectors.js":
+/***/ "../kandy/src/auth/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50695,9 +50695,9 @@ exports.getRequestInfo = getRequestInfo;
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _constants = __webpack_require__("./src/auth/constants.js");
+var _constants = __webpack_require__("../kandy/src/auth/constants.js");
 
-var _constants2 = __webpack_require__("./src/constants.js");
+var _constants2 = __webpack_require__("../kandy/src/constants.js");
 
 /**
  * Plugin selector function to expose state globally
@@ -50875,7 +50875,7 @@ function getRequestInfo(state, platform) {
 
 /***/ }),
 
-/***/ "./src/auth/link/index.js":
+/***/ "../kandy/src/auth/link/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50888,23 +50888,23 @@ exports.default = authLink;
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _events = __webpack_require__("./src/auth/interface/events.js");
+var _events = __webpack_require__("../kandy/src/auth/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
-var _interface = __webpack_require__("./src/auth/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/auth/interface/index.js");
 
-var _actions2 = __webpack_require__("./src/config/interface/actions.js");
+var _actions2 = __webpack_require__("../kandy/src/config/interface/actions.js");
 
-var _utils = __webpack_require__("./src/common/utils.js");
+var _utils = __webpack_require__("../kandy/src/common/utils.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _sagas = __webpack_require__("./src/auth/link/sagas.js");
+var _sagas = __webpack_require__("../kandy/src/auth/link/sagas.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50997,7 +50997,7 @@ function authLink(options = {}) {
 
 /***/ }),
 
-/***/ "./src/auth/link/sagas.js":
+/***/ "../kandy/src/auth/link/sagas.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51021,29 +51021,29 @@ exports.onConnectionLost = onConnectionLost;
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _actions = __webpack_require__("./src/auth/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/auth/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _actionTypes = __webpack_require__("./src/auth/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/auth/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
-var _requests = __webpack_require__("./src/auth/subscription/requests.js");
+var _requests = __webpack_require__("../kandy/src/auth/subscription/requests.js");
 
-var _actionTypes2 = __webpack_require__("./src/notifications/interface/actionTypes.js");
+var _actionTypes2 = __webpack_require__("../kandy/src/notifications/interface/actionTypes.js");
 
-var _actionTypes3 = __webpack_require__("./src/connectivity/interface/actionTypes.js");
+var _actionTypes3 = __webpack_require__("../kandy/src/connectivity/interface/actionTypes.js");
 
 var connectivityActionTypes = _interopRequireWildcard(_actionTypes3);
 
-var _effects2 = __webpack_require__("./src/connectivity/interface/effects.js");
+var _effects2 = __webpack_require__("../kandy/src/connectivity/interface/effects.js");
 
-var _selectors2 = __webpack_require__("./src/connectivity/interface/selectors.js");
+var _selectors2 = __webpack_require__("../kandy/src/connectivity/interface/selectors.js");
 
 var _base = __webpack_require__("../../node_modules/base-64/base64.js");
 
@@ -51053,9 +51053,9 @@ var _utf = __webpack_require__("../../node_modules/utf8/utf8.js");
 
 var _utf2 = _interopRequireDefault(_utf);
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
@@ -51405,7 +51405,7 @@ function* onConnectionLost() {
 
 /***/ }),
 
-/***/ "./src/auth/subscription/requests.js":
+/***/ "../kandy/src/auth/subscription/requests.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51427,25 +51427,25 @@ exports.subscribe = subscribe;
 exports.unsubscribe = unsubscribe;
 exports.resubscribe = resubscribe;
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _services = __webpack_require__("./src/auth/subscription/services.js");
+var _services = __webpack_require__("../kandy/src/auth/subscription/services.js");
 
-var _effects = __webpack_require__("./src/request/effects.js");
+var _effects = __webpack_require__("../kandy/src/request/effects.js");
 
 var _effects2 = _interopRequireDefault(_effects);
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 var _effects3 = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _utils = __webpack_require__("./src/common/utils.js");
+var _utils = __webpack_require__("../kandy/src/common/utils.js");
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51698,7 +51698,7 @@ function* resubscribe(connection, subscription) {
 
 /***/ }),
 
-/***/ "./src/auth/subscription/services.js":
+/***/ "../kandy/src/auth/subscription/services.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51709,7 +51709,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.parseSpidrServices = parseSpidrServices;
 
-var _constants = __webpack_require__("./src/auth/constants.js");
+var _constants = __webpack_require__("../kandy/src/auth/constants.js");
 
 /**
  * Uses the requested and received SPiDR [subscription] services to determine
@@ -51761,7 +51761,7 @@ function parseSpidrServices(requested, received) {
 
 /***/ }),
 
-/***/ "./src/basePlugins.js":
+/***/ "../kandy/src/basePlugins.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51771,19 +51771,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 var _logs2 = _interopRequireDefault(_logs);
 
-var _config = __webpack_require__("./src/config/index.js");
+var _config = __webpack_require__("../kandy/src/config/index.js");
 
 var _config2 = _interopRequireDefault(_config);
 
-var _events = __webpack_require__("./src/events/index.js");
+var _events = __webpack_require__("../kandy/src/events/index.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _request = __webpack_require__("./src/request/index.js");
+var _request = __webpack_require__("../kandy/src/request/index.js");
 
 var _request2 = _interopRequireDefault(_request);
 
@@ -51797,7 +51797,7 @@ exports.default = [{ name: 'logs', fn: _logs2.default }, { name: 'config', fn: _
 
 /***/ }),
 
-/***/ "./src/call/constants.js":
+/***/ "../kandy/src/call/constants.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51942,7 +51942,7 @@ const CALL_STATES = exports.CALL_STATES = {
 
 /***/ }),
 
-/***/ "./src/call/interface/actionTypes.js":
+/***/ "../kandy/src/call/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52073,7 +52073,7 @@ const UPDATE_AUDIO_BRIDGE_CALLS = exports.UPDATE_AUDIO_BRIDGE_CALLS = PREFIX + '
 
 /***/ }),
 
-/***/ "./src/call/interface/actions/audioBridge.js":
+/***/ "../kandy/src/call/interface/actions/audioBridge.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52100,7 +52100,7 @@ exports.silenceAudioBridgeFinish = silenceAudioBridgeFinish;
 exports.unsilenceAudioBridge = unsilenceAudioBridge;
 exports.unsilenceAudioBridgeFinish = unsilenceAudioBridgeFinish;
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -52250,7 +52250,7 @@ function unsilenceAudioBridgeFinish(bridgeId, error = false) {
 
 /***/ }),
 
-/***/ "./src/call/interface/actions/calls.js":
+/***/ "../kandy/src/call/interface/actions/calls.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52313,7 +52313,7 @@ exports.joinCall = joinCall;
 exports.joinCallFinish = joinCallFinish;
 exports.makeAnonymousCall = makeAnonymousCall;
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -53000,7 +53000,7 @@ function makeAnonymousCall(callee, callId, credentials = {}, options = {}) {
 
 /***/ }),
 
-/***/ "./src/call/interface/actions/devices.js":
+/***/ "../kandy/src/call/interface/actions/devices.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53023,11 +53023,11 @@ exports.changeSpeakerFinish = changeSpeakerFinish;
 exports.changeInputDevices = changeInputDevices;
 exports.changeInputDevicesFinish = changeInputDevicesFinish;
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _calls = __webpack_require__("./src/call/interface/actions/calls.js");
+var _calls = __webpack_require__("../kandy/src/call/interface/actions/calls.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -53151,7 +53151,7 @@ function changeInputDevicesFinish({ callId, error }) {
 
 /***/ }),
 
-/***/ "./src/call/interface/actions/index.js":
+/***/ "../kandy/src/call/interface/actions/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53162,23 +53162,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.audioBridgeActions = exports.callsActions = exports.devicesActions = exports.mediaActions = exports.localVideoActions = undefined;
 
-var _localVideo = __webpack_require__("./src/call/interface/actions/localVideo.js");
+var _localVideo = __webpack_require__("../kandy/src/call/interface/actions/localVideo.js");
 
 var localVideoActionsImport = _interopRequireWildcard(_localVideo);
 
-var _media = __webpack_require__("./src/call/interface/actions/media.js");
+var _media = __webpack_require__("../kandy/src/call/interface/actions/media.js");
 
 var mediaActionsImport = _interopRequireWildcard(_media);
 
-var _devices = __webpack_require__("./src/call/interface/actions/devices.js");
+var _devices = __webpack_require__("../kandy/src/call/interface/actions/devices.js");
 
 var devicesActionsImport = _interopRequireWildcard(_devices);
 
-var _calls = __webpack_require__("./src/call/interface/actions/calls.js");
+var _calls = __webpack_require__("../kandy/src/call/interface/actions/calls.js");
 
 var callsActionsImport = _interopRequireWildcard(_calls);
 
-var _audioBridge = __webpack_require__("./src/call/interface/actions/audioBridge.js");
+var _audioBridge = __webpack_require__("../kandy/src/call/interface/actions/audioBridge.js");
 
 var audioBridgeActionsImport = _interopRequireWildcard(_audioBridge);
 
@@ -53195,7 +53195,7 @@ const audioBridgeActions = exports.audioBridgeActions = audioBridgeActionsImport
 
 /***/ }),
 
-/***/ "./src/call/interface/actions/localVideo.js":
+/***/ "../kandy/src/call/interface/actions/localVideo.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53209,7 +53209,7 @@ exports.startLocalVideoFinish = startLocalVideoFinish;
 exports.stopLocalVideo = stopLocalVideo;
 exports.stopLocalVideoFinish = stopLocalVideoFinish;
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -53270,7 +53270,7 @@ function stopLocalVideoFinish(error) {
 
 /***/ }),
 
-/***/ "./src/call/interface/actions/media.js":
+/***/ "../kandy/src/call/interface/actions/media.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53284,7 +53284,7 @@ exports.initMediaFinish = initMediaFinish;
 exports.promptUserMedia = promptUserMedia;
 exports.promptUserMediaFinish = promptUserMediaFinish;
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -53361,7 +53361,7 @@ function promptUserMediaFinish(options, error) {
 
 /***/ }),
 
-/***/ "./src/call/interface/api.js":
+/***/ "../kandy/src/call/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53372,15 +53372,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _selectors = __webpack_require__("./src/call/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/call/interface/selectors.js");
 
-var _selectors2 = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors2 = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _actions = __webpack_require__("./src/call/interface/actions/index.js");
+var _actions = __webpack_require__("../kandy/src/call/interface/actions/index.js");
 
-var _normalization = __webpack_require__("./src/call/utils/normalization.js");
+var _normalization = __webpack_require__("../kandy/src/call/utils/normalization.js");
 
-var _constants = __webpack_require__("./src/call/constants.js");
+var _constants = __webpack_require__("../kandy/src/call/constants.js");
 
 var _v = __webpack_require__("../../node_modules/uuid/v4.js");
 
@@ -53388,7 +53388,7 @@ var _v2 = _interopRequireDefault(_v);
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54262,7 +54262,7 @@ function api({ dispatch, getState }) {
 
 /***/ }),
 
-/***/ "./src/call/interface/eventTypes.js":
+/***/ "../kandy/src/call/interface/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54498,7 +54498,7 @@ const BRIDGE_ERROR = exports.BRIDGE_ERROR = 'audioBridge:error';
 
 /***/ }),
 
-/***/ "./src/call/interface/events.js":
+/***/ "../kandy/src/call/interface/events.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54508,11 +54508,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _eventTypes = __webpack_require__("./src/call/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/call/interface/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -54825,7 +54825,7 @@ exports.default = events;
 
 /***/ }),
 
-/***/ "./src/call/interface/index.js":
+/***/ "../kandy/src/call/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54835,11 +54835,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _api = __webpack_require__("./src/call/interface/api.js");
+var _api = __webpack_require__("../kandy/src/call/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reducers = __webpack_require__("./src/call/interface/reducers/index.js");
+var _reducers = __webpack_require__("../kandy/src/call/interface/reducers/index.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -54861,7 +54861,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./src/call/interface/reducers/audioBridges.js":
+/***/ "../kandy/src/call/interface/reducers/audioBridges.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54875,7 +54875,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -54992,7 +54992,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/call/interface/reducers/calls.js":
+/***/ "../kandy/src/call/interface/reducers/calls.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55006,7 +55006,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -55305,7 +55305,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/call/interface/reducers/devices.js":
+/***/ "../kandy/src/call/interface/reducers/devices.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55319,7 +55319,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -55352,7 +55352,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/call/interface/reducers/index.js":
+/***/ "../kandy/src/call/interface/reducers/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55372,23 +55372,23 @@ exports.default = function (state = {}, action) {
   };
 };
 
-var _calls = __webpack_require__("./src/call/interface/reducers/calls.js");
+var _calls = __webpack_require__("../kandy/src/call/interface/reducers/calls.js");
 
 var _calls2 = _interopRequireDefault(_calls);
 
-var _devices = __webpack_require__("./src/call/interface/reducers/devices.js");
+var _devices = __webpack_require__("../kandy/src/call/interface/reducers/devices.js");
 
 var _devices2 = _interopRequireDefault(_devices);
 
-var _localVideo = __webpack_require__("./src/call/interface/reducers/localVideo.js");
+var _localVideo = __webpack_require__("../kandy/src/call/interface/reducers/localVideo.js");
 
 var _localVideo2 = _interopRequireDefault(_localVideo);
 
-var _media = __webpack_require__("./src/call/interface/reducers/media.js");
+var _media = __webpack_require__("../kandy/src/call/interface/reducers/media.js");
 
 var _media2 = _interopRequireDefault(_media);
 
-var _audioBridges = __webpack_require__("./src/call/interface/reducers/audioBridges.js");
+var _audioBridges = __webpack_require__("../kandy/src/call/interface/reducers/audioBridges.js");
 
 var _audioBridges2 = _interopRequireDefault(_audioBridges);
 
@@ -55396,7 +55396,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /***/ }),
 
-/***/ "./src/call/interface/reducers/localVideo.js":
+/***/ "../kandy/src/call/interface/reducers/localVideo.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55406,7 +55406,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -55442,7 +55442,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/call/interface/reducers/media.js":
+/***/ "../kandy/src/call/interface/reducers/media.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55452,7 +55452,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -55480,7 +55480,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/call/interface/selectors.js":
+/***/ "../kandy/src/call/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55588,7 +55588,7 @@ function getBridgeCalls(state, bridgeId) {
 
 /***/ }),
 
-/***/ "./src/call/interfaceNew/actionTypes.js":
+/***/ "../kandy/src/call/interfaceNew/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55673,7 +55673,7 @@ const TRACK_REMOVED = exports.TRACK_REMOVED = trackPrefix + 'REMOVED';
 
 /***/ }),
 
-/***/ "./src/call/interfaceNew/selectors.js":
+/***/ "../kandy/src/call/interfaceNew/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55695,9 +55695,9 @@ exports.getCallByWebrtcSessionId = getCallByWebrtcSessionId;
 exports.getOptions = getOptions;
 exports.getTurnInfo = getTurnInfo;
 
-var _constants = __webpack_require__("./src/call/constants.js");
+var _constants = __webpack_require__("../kandy/src/call/constants.js");
 
-var _selectors = __webpack_require__("./src/webrtc/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/webrtc/interface/selectors.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -55807,7 +55807,7 @@ function getTurnInfo(state) {
 
 /***/ }),
 
-/***/ "./src/call/oldLink/callShim.js":
+/***/ "../kandy/src/call/oldLink/callShim.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55825,13 +55825,13 @@ exports.default = shim;
 
 var _next = __webpack_require__("../fcs/next.js");
 
-var _constants = __webpack_require__("./src/call/constants.js");
+var _constants = __webpack_require__("../kandy/src/call/constants.js");
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 var _v = __webpack_require__("../../node_modules/uuid/v4.js");
 
@@ -57431,7 +57431,7 @@ function shim(context) {
 
 /***/ }),
 
-/***/ "./src/call/oldLink/index.js":
+/***/ "../kandy/src/call/oldLink/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57447,55 +57447,55 @@ var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = callsLink;
 
-var _callShim = __webpack_require__("./src/call/oldLink/callShim.js");
+var _callShim = __webpack_require__("../kandy/src/call/oldLink/callShim.js");
 
 var _callShim2 = _interopRequireDefault(_callShim);
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _actionTypes = __webpack_require__("./src/auth/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/auth/interface/actionTypes.js");
 
 var authActionTypes = _interopRequireWildcard(_actionTypes);
 
-var _actionTypes2 = __webpack_require__("./src/notifications/interface/actionTypes.js");
+var _actionTypes2 = __webpack_require__("../kandy/src/notifications/interface/actionTypes.js");
 
 var notiActionTypes = _interopRequireWildcard(_actionTypes2);
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _actions = __webpack_require__("./src/config/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/config/interface/actions.js");
 
-var _sagas = __webpack_require__("./src/call/oldLink/sagas.js");
+var _sagas = __webpack_require__("../kandy/src/call/oldLink/sagas.js");
 
-var _actions2 = __webpack_require__("./src/events/interface/actions.js");
+var _actions2 = __webpack_require__("../kandy/src/events/interface/actions.js");
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
-var _logManager = __webpack_require__("./src/logs/logManager.js");
+var _logManager = __webpack_require__("../kandy/src/logs/logManager.js");
 
-var _interface = __webpack_require__("./src/call/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/call/interface/index.js");
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _actions3 = __webpack_require__("./src/call/interface/actions/index.js");
+var _actions3 = __webpack_require__("../kandy/src/call/interface/actions/index.js");
 
-var _actionTypes3 = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes3 = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes3);
 
-var _selectors2 = __webpack_require__("./src/call/interface/selectors.js");
+var _selectors2 = __webpack_require__("../kandy/src/call/interface/selectors.js");
 
-var _events = __webpack_require__("./src/call/interface/events.js");
+var _events = __webpack_require__("../kandy/src/call/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -58352,7 +58352,7 @@ function middleware({ dispatch, getState }) {
 
 /***/ }),
 
-/***/ "./src/call/oldLink/sagas.js":
+/***/ "../kandy/src/call/oldLink/sagas.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58369,19 +58369,19 @@ var _reduxSaga = __webpack_require__("../../node_modules/redux-saga/es/index.js"
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
-var _actions = __webpack_require__("./src/call/interface/actions/index.js");
+var _actions = __webpack_require__("../kandy/src/call/interface/actions/index.js");
 
-var _actionTypes = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _mediaDevices = __webpack_require__("./src/call/utils/mediaDevices.js");
+var _mediaDevices = __webpack_require__("../kandy/src/call/utils/mediaDevices.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -58488,7 +58488,7 @@ function* onDeviceChange() {
 
 /***/ }),
 
-/***/ "./src/call/utils/mediaDevices.js":
+/***/ "../kandy/src/call/utils/mediaDevices.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58499,7 +58499,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.convertDevices = convertDevices;
 
-var _constants = __webpack_require__("./src/call/constants.js");
+var _constants = __webpack_require__("../kandy/src/call/constants.js");
 
 /**
  * Converts an array of MediaDevices into an object keyed on device type.
@@ -58523,7 +58523,7 @@ function convertDevices(devices = []) {
 
 /***/ }),
 
-/***/ "./src/call/utils/normalization.js":
+/***/ "../kandy/src/call/utils/normalization.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58687,7 +58687,7 @@ function normalizeSipUri(address, domain) {
 
 /***/ }),
 
-/***/ "./src/callHistory/index.js":
+/***/ "../kandy/src/callHistory/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58698,17 +58698,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = callHistory;
 
-var _interface = __webpack_require__("./src/callHistory/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/callHistory/interface/index.js");
 
-var _sagas = __webpack_require__("./src/callHistory/sagas/index.js");
+var _sagas = __webpack_require__("../kandy/src/callHistory/sagas/index.js");
 
 var sagas = _interopRequireWildcard(_sagas);
 
-var _events = __webpack_require__("./src/callHistory/interface/events.js");
+var _events = __webpack_require__("../kandy/src/callHistory/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
@@ -58746,7 +58746,7 @@ function callHistory() {
 
 /***/ }),
 
-/***/ "./src/callHistory/interface/actionTypes.js":
+/***/ "../kandy/src/callHistory/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58769,7 +58769,7 @@ const SET_CACHE = exports.SET_CACHE = prefix + 'SET_CACHE';
 
 /***/ }),
 
-/***/ "./src/callHistory/interface/actions.js":
+/***/ "../kandy/src/callHistory/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58785,7 +58785,7 @@ exports.removeCallLogsFinish = removeCallLogsFinish;
 exports.addCallLogEntry = addCallLogEntry;
 exports.setCache = setCache;
 
-var _actionTypes = __webpack_require__("./src/callHistory/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/callHistory/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -58881,7 +58881,7 @@ function setCache(data) {
 
 /***/ }),
 
-/***/ "./src/callHistory/interface/api.js":
+/***/ "../kandy/src/callHistory/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58897,13 +58897,13 @@ var _stringify2 = _interopRequireDefault(_stringify);
 
 exports.default = api;
 
-var _actions = __webpack_require__("./src/callHistory/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/callHistory/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors = __webpack_require__("./src/callHistory/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/callHistory/interface/selectors.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -59025,7 +59025,7 @@ function api({ dispatch, getState }) {
 
 /***/ }),
 
-/***/ "./src/callHistory/interface/eventTypes.js":
+/***/ "../kandy/src/callHistory/interface/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59062,7 +59062,7 @@ const CALL_HISTORY_CACHE_CHANGE = exports.CALL_HISTORY_CACHE_CHANGE = 'callHisto
 
 /***/ }),
 
-/***/ "./src/callHistory/interface/events.js":
+/***/ "../kandy/src/callHistory/interface/events.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59072,11 +59072,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _eventTypes = __webpack_require__("./src/callHistory/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/callHistory/interface/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
-var _actionTypes = __webpack_require__("./src/callHistory/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/callHistory/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -59109,7 +59109,7 @@ exports.default = events;
 
 /***/ }),
 
-/***/ "./src/callHistory/interface/index.js":
+/***/ "../kandy/src/callHistory/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59120,11 +59120,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.reducer = exports.api = exports.name = undefined;
 
-var _api = __webpack_require__("./src/callHistory/interface/api.js");
+var _api = __webpack_require__("../kandy/src/callHistory/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reducers = __webpack_require__("./src/callHistory/interface/reducers.js");
+var _reducers = __webpack_require__("../kandy/src/callHistory/interface/reducers.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -59138,7 +59138,7 @@ exports.reducer = _reducers2.default;
 
 /***/ }),
 
-/***/ "./src/callHistory/interface/reducers.js":
+/***/ "../kandy/src/callHistory/interface/reducers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59148,7 +59148,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__("./src/callHistory/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/callHistory/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -59246,7 +59246,7 @@ let isSimilar = function (serverLogEntry) {
 
 /***/ }),
 
-/***/ "./src/callHistory/interface/selectors.js":
+/***/ "../kandy/src/callHistory/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59282,7 +59282,7 @@ function getCachedHistory(state) {
 
 /***/ }),
 
-/***/ "./src/callHistory/sagas/client.js":
+/***/ "../kandy/src/callHistory/sagas/client.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59294,19 +59294,19 @@ Object.defineProperty(exports, "__esModule", {
 exports.oldStoreCallLogs = oldStoreCallLogs;
 exports.storeCallLogs = storeCallLogs;
 
-var _actions = __webpack_require__("./src/callHistory/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/callHistory/interface/actions.js");
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _actionTypes = __webpack_require__("./src/call/interfaceNew/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/call/interfaceNew/actionTypes.js");
 
-var _constants = __webpack_require__("./src/call/constants.js");
+var _constants = __webpack_require__("../kandy/src/call/constants.js");
 
-var _selectors2 = __webpack_require__("./src/call/interface/selectors.js");
+var _selectors2 = __webpack_require__("../kandy/src/call/interface/selectors.js");
 
-var _selectors3 = __webpack_require__("./src/call/interfaceNew/selectors.js");
+var _selectors3 = __webpack_require__("../kandy/src/call/interfaceNew/selectors.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
@@ -59440,7 +59440,7 @@ function* storeCallLogs(action) {
 
 /***/ }),
 
-/***/ "./src/callHistory/sagas/index.js":
+/***/ "../kandy/src/callHistory/sagas/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59453,19 +59453,19 @@ exports.fetchLogs = fetchLogs;
 exports.removeLogs = removeLogs;
 exports.createLocalLog = createLocalLog;
 
-var _server = __webpack_require__("./src/callHistory/sagas/server.js");
+var _server = __webpack_require__("../kandy/src/callHistory/sagas/server.js");
 
-var _client = __webpack_require__("./src/callHistory/sagas/client.js");
+var _client = __webpack_require__("../kandy/src/callHistory/sagas/client.js");
 
-var _actionTypes = __webpack_require__("./src/callHistory/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/callHistory/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _actionTypes2 = __webpack_require__("./src/call/interface/actionTypes.js");
+var _actionTypes2 = __webpack_require__("../kandy/src/call/interface/actionTypes.js");
 
-var _actionTypes3 = __webpack_require__("./src/call/interfaceNew/actionTypes.js");
+var _actionTypes3 = __webpack_require__("../kandy/src/call/interfaceNew/actionTypes.js");
 
-var _constants = __webpack_require__("./src/call/constants.js");
+var _constants = __webpack_require__("../kandy/src/call/constants.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
@@ -59529,7 +59529,7 @@ function* createLocalLog() {
 
 /***/ }),
 
-/***/ "./src/callHistory/sagas/server.js":
+/***/ "../kandy/src/callHistory/sagas/server.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59541,19 +59541,19 @@ Object.defineProperty(exports, "__esModule", {
 exports.retrieveCallLogs = retrieveCallLogs;
 exports.removeCallLogs = removeCallLogs;
 
-var _actions = __webpack_require__("./src/callHistory/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/callHistory/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
-var _effects = __webpack_require__("./src/request/effects.js");
+var _effects = __webpack_require__("../kandy/src/request/effects.js");
 
 var _effects2 = _interopRequireDefault(_effects);
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
@@ -59561,7 +59561,7 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
 var _effects3 = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -59754,7 +59754,7 @@ function* removeCallLogs(action) {
 
 /***/ }),
 
-/***/ "./src/clickToCall/index.js":
+/***/ "../kandy/src/clickToCall/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59765,17 +59765,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = clickToCallImplementation;
 
-var _interface = __webpack_require__("./src/clickToCall/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/clickToCall/interface/index.js");
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _sagas = __webpack_require__("./src/clickToCall/sagas.js");
+var _sagas = __webpack_require__("../kandy/src/clickToCall/sagas.js");
 
-var _events = __webpack_require__("./src/clickToCall/interface/events.js");
+var _events = __webpack_require__("../kandy/src/clickToCall/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
@@ -59822,7 +59822,7 @@ function clickToCallImplementation() {
 
 /***/ }),
 
-/***/ "./src/clickToCall/interface/actionTypes.js":
+/***/ "../kandy/src/clickToCall/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59838,7 +59838,7 @@ const CLICK_TO_CALL_FINISH = exports.CLICK_TO_CALL_FINISH = PREFIX + 'CLICK_TO_C
 
 /***/ }),
 
-/***/ "./src/clickToCall/interface/actions.js":
+/***/ "../kandy/src/clickToCall/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59850,7 +59850,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.clickToCall = clickToCall;
 exports.clickToCallFinish = clickToCallFinish;
 
-var _actionTypes = __webpack_require__("./src/clickToCall/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/clickToCall/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -59910,7 +59910,7 @@ function clickToCallFinish({ callId, caller, callee, requestTime, error }) {
 
 /***/ }),
 
-/***/ "./src/clickToCall/interface/api.js":
+/***/ "../kandy/src/clickToCall/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59921,17 +59921,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _actions = __webpack_require__("./src/clickToCall/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/clickToCall/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors = __webpack_require__("./src/clickToCall/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/clickToCall/interface/selectors.js");
 
 var _v = __webpack_require__("../../node_modules/uuid/v4.js");
 
 var _v2 = _interopRequireDefault(_v);
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -59986,7 +59986,7 @@ function api(context) {
 
 /***/ }),
 
-/***/ "./src/clickToCall/interface/eventTypes.js":
+/***/ "../kandy/src/clickToCall/interface/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60023,7 +60023,7 @@ const CLICK_TO_CALL_ERROR = exports.CLICK_TO_CALL_ERROR = 'clickToCall:error';
 
 /***/ }),
 
-/***/ "./src/clickToCall/interface/events.js":
+/***/ "../kandy/src/clickToCall/interface/events.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60033,11 +60033,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _eventTypes = __webpack_require__("./src/clickToCall/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/clickToCall/interface/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
-var _actionTypes = __webpack_require__("./src/clickToCall/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/clickToCall/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -60077,7 +60077,7 @@ exports.default = events;
 
 /***/ }),
 
-/***/ "./src/clickToCall/interface/index.js":
+/***/ "../kandy/src/clickToCall/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60087,11 +60087,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _api = __webpack_require__("./src/clickToCall/interface/api.js");
+var _api = __webpack_require__("../kandy/src/clickToCall/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reducers = __webpack_require__("./src/clickToCall/interface/reducers.js");
+var _reducers = __webpack_require__("../kandy/src/clickToCall/interface/reducers.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -60111,7 +60111,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./src/clickToCall/interface/reducers.js":
+/***/ "../kandy/src/clickToCall/interface/reducers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60123,7 +60123,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reduxActions = __webpack_require__("../../node_modules/redux-actions/es/index.js");
 
-var _actionTypes = __webpack_require__("./src/clickToCall/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/clickToCall/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -60162,7 +60162,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/clickToCall/interface/selectors.js":
+/***/ "../kandy/src/clickToCall/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60188,7 +60188,7 @@ function getAll(state) {
 
 /***/ }),
 
-/***/ "./src/clickToCall/sagas.js":
+/***/ "../kandy/src/clickToCall/sagas.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60204,29 +60204,29 @@ var _stringify2 = _interopRequireDefault(_stringify);
 
 exports.clickToCallSaga = clickToCallSaga;
 
-var _actionTypes = __webpack_require__("./src/clickToCall/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/clickToCall/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _actions = __webpack_require__("./src/clickToCall/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/clickToCall/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
-var _effects2 = __webpack_require__("./src/request/effects.js");
+var _effects2 = __webpack_require__("../kandy/src/request/effects.js");
 
 var _effects3 = _interopRequireDefault(_effects2);
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -60313,7 +60313,7 @@ function* clickToCallSaga() {
 
 /***/ }),
 
-/***/ "./src/common/utils.js":
+/***/ "../kandy/src/common/utils.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60333,7 +60333,7 @@ exports.autoRestart = autoRestart;
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _queryString = __webpack_require__("./node_modules/query-string/index.js");
+var _queryString = __webpack_require__("../kandy/node_modules/query-string/index.js");
 
 var _queryString2 = _interopRequireDefault(_queryString);
 
@@ -60405,7 +60405,7 @@ function autoRestart(saga) {
 
 /***/ }),
 
-/***/ "./src/config/index.js":
+/***/ "../kandy/src/config/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60416,7 +60416,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = configImplementation;
 
-var _interface = __webpack_require__("./src/config/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/config/interface/index.js");
 
 var _interface2 = _interopRequireDefault(_interface);
 
@@ -60448,7 +60448,7 @@ function configImplementation() {
 
 /***/ }),
 
-/***/ "./src/config/interface/actionTypes.js":
+/***/ "../kandy/src/config/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60463,7 +60463,7 @@ const CONFIG_UPDATE = exports.CONFIG_UPDATE = PREFIX + 'CONFIG_UPDATE';
 
 /***/ }),
 
-/***/ "./src/config/interface/actions.js":
+/***/ "../kandy/src/config/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60474,7 +60474,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.update = update;
 
-var _actionTypes = __webpack_require__("./src/config/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/config/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -60506,7 +60506,7 @@ function update(values, pluginName = '') {
 
 /***/ }),
 
-/***/ "./src/config/interface/api.js":
+/***/ "../kandy/src/config/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60517,13 +60517,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _actions = __webpack_require__("./src/config/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/config/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors = __webpack_require__("./src/config/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/config/interface/selectors.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -60570,7 +60570,7 @@ function api(context) {
 
 /***/ }),
 
-/***/ "./src/config/interface/index.js":
+/***/ "../kandy/src/config/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60580,11 +60580,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _api = __webpack_require__("./src/config/interface/api.js");
+var _api = __webpack_require__("../kandy/src/config/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reducers = __webpack_require__("./src/config/interface/reducers.js");
+var _reducers = __webpack_require__("../kandy/src/config/interface/reducers.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -60604,7 +60604,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./src/config/interface/reducers.js":
+/***/ "../kandy/src/config/interface/reducers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60614,7 +60614,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__("./src/config/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/config/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -60638,7 +60638,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/config/interface/selectors.js":
+/***/ "../kandy/src/config/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60664,7 +60664,7 @@ function getConfiguration(state) {
 
 /***/ }),
 
-/***/ "./src/connectivity/defaults.js":
+/***/ "../kandy/src/connectivity/defaults.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60674,7 +60674,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 /**
  * Connectivity plugin defaults.
@@ -60702,7 +60702,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./src/connectivity/index.js":
+/***/ "../kandy/src/connectivity/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60713,27 +60713,27 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = connectivity;
 
-var _interface = __webpack_require__("./src/connectivity/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/connectivity/interface/index.js");
 
-var _defaults = __webpack_require__("./src/connectivity/defaults.js");
+var _defaults = __webpack_require__("../kandy/src/connectivity/defaults.js");
 
 var _defaults2 = _interopRequireDefault(_defaults);
 
-var _events = __webpack_require__("./src/connectivity/interface/events.js");
+var _events = __webpack_require__("../kandy/src/connectivity/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _sagas = __webpack_require__("./src/connectivity/sagas.js");
+var _sagas = __webpack_require__("../kandy/src/connectivity/sagas.js");
 
-var _actions = __webpack_require__("./src/config/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/config/interface/actions.js");
 
-var _actions2 = __webpack_require__("./src/events/interface/actions.js");
+var _actions2 = __webpack_require__("../kandy/src/events/interface/actions.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -60799,7 +60799,7 @@ function connectivity(options = {}) {
 
 /***/ }),
 
-/***/ "./src/connectivity/interface/actionTypes.js":
+/***/ "../kandy/src/connectivity/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60831,7 +60831,7 @@ const CHANGE_PING_INTERVAL = exports.CHANGE_PING_INTERVAL = prefix + 'CHANGE_PIN
 
 /***/ }),
 
-/***/ "./src/connectivity/interface/actions.js":
+/***/ "../kandy/src/connectivity/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60842,11 +60842,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.changePingInterval = exports.changeConnectivityChecking = exports.receiveServerPong = exports.receiveServerPing = exports.lostConnection = exports.wsError = exports.wsClosed = exports.wsReconnectFailed = exports.wsDisconnectFinished = exports.wsConnectFinished = exports.wsDisconnect = exports.wsAttemptConnect = undefined;
 
-var _actionTypes = __webpack_require__("./src/connectivity/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/connectivity/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -60890,7 +60890,7 @@ const changePingInterval = exports.changePingInterval = createWsAction(actionTyp
 
 /***/ }),
 
-/***/ "./src/connectivity/interface/api.js":
+/***/ "../kandy/src/connectivity/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60901,13 +60901,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
-var _actions = __webpack_require__("./src/connectivity/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/connectivity/interface/actions.js");
 
-var _selectors = __webpack_require__("./src/connectivity/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/connectivity/interface/selectors.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 // Constants
 const log = (0, _logs.getLogManager)().getLogger('CONNECTIVITY');
@@ -60954,7 +60954,7 @@ function api({ dispatch, getState }) {
 
 /***/ }),
 
-/***/ "./src/connectivity/interface/effects.js":
+/***/ "../kandy/src/connectivity/interface/effects.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60966,9 +60966,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.connectWebsocket = connectWebsocket;
 exports.disconnectWebsocket = disconnectWebsocket;
 
-var _actions = __webpack_require__("./src/connectivity/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/connectivity/interface/actions.js");
 
-var _actionTypes = __webpack_require__("./src/connectivity/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/connectivity/interface/actionTypes.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
@@ -61021,7 +61021,7 @@ function* disconnectWebsocket(payload, platform) {
 
 /***/ }),
 
-/***/ "./src/connectivity/interface/eventTypes.js":
+/***/ "../kandy/src/connectivity/interface/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61043,7 +61043,7 @@ const WS_CHANGE = exports.WS_CHANGE = 'ws:change';
 
 /***/ }),
 
-/***/ "./src/connectivity/interface/events.js":
+/***/ "../kandy/src/connectivity/interface/events.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61053,11 +61053,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _eventTypes = __webpack_require__("./src/connectivity/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/connectivity/interface/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
-var _actionTypes = __webpack_require__("./src/connectivity/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/connectivity/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -61097,7 +61097,7 @@ exports.default = events;
 
 /***/ }),
 
-/***/ "./src/connectivity/interface/index.js":
+/***/ "../kandy/src/connectivity/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61108,15 +61108,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.reducer = exports.api = exports.name = undefined;
 
-var _name = __webpack_require__("./src/connectivity/interface/name.js");
+var _name = __webpack_require__("../kandy/src/connectivity/interface/name.js");
 
 var _name2 = _interopRequireDefault(_name);
 
-var _api = __webpack_require__("./src/connectivity/interface/api.js");
+var _api = __webpack_require__("../kandy/src/connectivity/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reducers = __webpack_require__("./src/connectivity/interface/reducers.js");
+var _reducers = __webpack_require__("../kandy/src/connectivity/interface/reducers.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -61128,7 +61128,7 @@ exports.reducer = _reducers2.default;
 
 /***/ }),
 
-/***/ "./src/connectivity/interface/name.js":
+/***/ "../kandy/src/connectivity/interface/name.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61142,7 +61142,7 @@ exports.default = name;
 
 /***/ }),
 
-/***/ "./src/connectivity/interface/reducers.js":
+/***/ "../kandy/src/connectivity/interface/reducers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61156,7 +61156,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/connectivity/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/connectivity/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -61295,7 +61295,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/connectivity/interface/selectors.js":
+/***/ "../kandy/src/connectivity/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61311,7 +61311,7 @@ exports.getCheckConnectivity = getCheckConnectivity;
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _name = __webpack_require__("./src/connectivity/interface/name.js");
+var _name = __webpack_require__("../kandy/src/connectivity/interface/name.js");
 
 var _name2 = _interopRequireDefault(_name);
 
@@ -61356,7 +61356,7 @@ function getCheckConnectivity(state) {
 
 /***/ }),
 
-/***/ "./src/connectivity/sagas.js":
+/***/ "../kandy/src/connectivity/sagas.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61376,25 +61376,25 @@ exports.serverPingFlow = serverPingFlow;
 exports.clientPingFlow = clientPingFlow;
 exports.connectWebsocket = connectWebsocket;
 
-var _websocket = __webpack_require__("./src/connectivity/websocket.js");
+var _websocket = __webpack_require__("../kandy/src/connectivity/websocket.js");
 
-var _selectors = __webpack_require__("./src/connectivity/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/connectivity/interface/selectors.js");
 
-var _actionTypes = __webpack_require__("./src/connectivity/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/connectivity/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _actions = __webpack_require__("./src/connectivity/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/connectivity/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors2 = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors2 = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -61755,7 +61755,7 @@ function* connectWebsocket(wsInfo, platform) {
 
 /***/ }),
 
-/***/ "./src/connectivity/websocket.js":
+/***/ "../kandy/src/connectivity/websocket.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61773,15 +61773,15 @@ exports.openWebsocket = openWebsocket;
 exports.closeWebsocket = closeWebsocket;
 exports.wsEmitter = wsEmitter;
 
-var _actions = __webpack_require__("./src/connectivity/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/connectivity/interface/actions.js");
 
 var _reduxSaga = __webpack_require__("../../node_modules/redux-saga/es/index.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _utils = __webpack_require__("./src/common/utils.js");
+var _utils = __webpack_require__("../kandy/src/common/utils.js");
 
-var _actions2 = __webpack_require__("./src/notifications/interface/actions.js");
+var _actions2 = __webpack_require__("../kandy/src/notifications/interface/actions.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61899,7 +61899,7 @@ function* wsEmitter(ws, platform) {
 
 /***/ }),
 
-/***/ "./src/constants.js":
+/***/ "../kandy/src/constants.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61931,7 +61931,7 @@ const connCheckMethods = exports.connCheckMethods = {
 
 /***/ }),
 
-/***/ "./src/errors/codes.js":
+/***/ "../kandy/src/errors/codes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62081,7 +62081,7 @@ const authCodes = exports.authCodes = {
 
 /***/ }),
 
-/***/ "./src/errors/index.js":
+/***/ "../kandy/src/errors/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62091,7 +62091,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _codes = __webpack_require__("./src/errors/codes.js");
+var _codes = __webpack_require__("../kandy/src/errors/codes.js");
 
 Object.defineProperty(exports, 'authCodes', {
   enumerable: true,
@@ -62176,7 +62176,7 @@ exports.default = BasicError;
 
 /***/ }),
 
-/***/ "./src/events/eventEmitter.js":
+/***/ "../kandy/src/events/eventEmitter.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62349,7 +62349,7 @@ function eventEmitter(prototype = {}) {
 
 /***/ }),
 
-/***/ "./src/events/index.js":
+/***/ "../kandy/src/events/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62365,17 +62365,17 @@ var _promise2 = _interopRequireDefault(_promise);
 
 exports.default = eventsImplementation;
 
-var _interface = __webpack_require__("./src/events/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/events/interface/index.js");
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
-var _actionTypes = __webpack_require__("./src/events/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/events/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _eventEmitter = __webpack_require__("./src/events/eventEmitter.js");
+var _eventEmitter = __webpack_require__("../kandy/src/events/eventEmitter.js");
 
 var _eventEmitter2 = _interopRequireDefault(_eventEmitter);
 
@@ -62487,7 +62487,7 @@ function middleware(context) {
 
 /***/ }),
 
-/***/ "./src/events/interface/actionTypes.js":
+/***/ "../kandy/src/events/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62508,7 +62508,7 @@ const MAP_EVENTS = exports.MAP_EVENTS = PREFIX + 'MAP_EVENTS';
 
 /***/ }),
 
-/***/ "./src/events/interface/actions.js":
+/***/ "../kandy/src/events/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62525,7 +62525,7 @@ exports.unsubscribe = unsubscribe;
 exports.emitEvent = emitEvent;
 exports.aliasEvent = aliasEvent;
 
-var _actionTypes = __webpack_require__("./src/events/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/events/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -62646,7 +62646,7 @@ function aliasEvent(type, alias) {
 
 /***/ }),
 
-/***/ "./src/events/interface/api.js":
+/***/ "../kandy/src/events/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62657,9 +62657,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 /**
  * The Events feature allows an application to listen for events that the SDK emits.
@@ -62748,7 +62748,7 @@ function api({ dispatch }) {
 
 /***/ }),
 
-/***/ "./src/events/interface/index.js":
+/***/ "../kandy/src/events/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62758,11 +62758,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _api = __webpack_require__("./src/events/interface/api.js");
+var _api = __webpack_require__("../kandy/src/events/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reducers = __webpack_require__("./src/events/interface/reducers.js");
+var _reducers = __webpack_require__("../kandy/src/events/interface/reducers.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -62783,7 +62783,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./src/events/interface/reducers.js":
+/***/ "../kandy/src/events/interface/reducers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62799,7 +62799,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = reducer;
 
-var _actionTypes = __webpack_require__("./src/events/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/events/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -62846,7 +62846,7 @@ function reducer(state = {}, action) {
 
 /***/ }),
 
-/***/ "./src/factory.js":
+/***/ "../kandy/src/factory.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62886,9 +62886,9 @@ var _compose = __webpack_require__("../../node_modules/stampit/compose.js");
 
 var _compose2 = _interopRequireDefault(_compose);
 
-var _utils = __webpack_require__("./src/common/utils.js");
+var _utils = __webpack_require__("../kandy/src/common/utils.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62932,7 +62932,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.4.0-beta.72110';
+  let version = '3.4.0-beta.72187';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];
@@ -63143,7 +63143,7 @@ const factoryDefaults = {
 
 /***/ }),
 
-/***/ "./src/index.common.js":
+/***/ "../kandy/src/index.common.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63154,7 +63154,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = commonIndex;
 
-var _factory = __webpack_require__("./src/factory.js");
+var _factory = __webpack_require__("../kandy/src/factory.js");
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
@@ -63235,61 +63235,61 @@ function commonIndex(options = {}, plugins = []) {
 
 /***/ }),
 
-/***/ "./src/index.link.js":
+/***/ "../kandy/src/index.link.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _index = __webpack_require__("./src/index.common.js");
+var _index = __webpack_require__("../kandy/src/index.common.js");
 
 var _index2 = _interopRequireDefault(_index);
 
-var _basePlugins = __webpack_require__("./src/basePlugins.js");
+var _basePlugins = __webpack_require__("../kandy/src/basePlugins.js");
 
 var _basePlugins2 = _interopRequireDefault(_basePlugins);
 
-var _link = __webpack_require__("./src/auth/link/index.js");
+var _link = __webpack_require__("../kandy/src/auth/link/index.js");
 
 var _link2 = _interopRequireDefault(_link);
 
-var _oldLink = __webpack_require__("./src/call/oldLink/index.js");
+var _oldLink = __webpack_require__("../kandy/src/call/oldLink/index.js");
 
 var _oldLink2 = _interopRequireDefault(_oldLink);
 
-var _callHistory = __webpack_require__("./src/callHistory/index.js");
+var _callHistory = __webpack_require__("../kandy/src/callHistory/index.js");
 
 var _callHistory2 = _interopRequireDefault(_callHistory);
 
-var _clickToCall = __webpack_require__("./src/clickToCall/index.js");
+var _clickToCall = __webpack_require__("../kandy/src/clickToCall/index.js");
 
 var _clickToCall2 = _interopRequireDefault(_clickToCall);
 
-var _connectivity = __webpack_require__("./src/connectivity/index.js");
+var _connectivity = __webpack_require__("../kandy/src/connectivity/index.js");
 
 var _connectivity2 = _interopRequireDefault(_connectivity);
 
-var _link3 = __webpack_require__("./src/messaging/link/index.js");
+var _link3 = __webpack_require__("../kandy/src/messaging/link/index.js");
 
 var _link4 = _interopRequireDefault(_link3);
 
-var _link5 = __webpack_require__("./src/mwi/link/index.js");
+var _link5 = __webpack_require__("../kandy/src/mwi/link/index.js");
 
 var _link6 = _interopRequireDefault(_link5);
 
-var _link7 = __webpack_require__("./src/notifications/link/index.js");
+var _link7 = __webpack_require__("../kandy/src/notifications/link/index.js");
 
 var _link8 = _interopRequireDefault(_link7);
 
-var _link9 = __webpack_require__("./src/presence/link/index.js");
+var _link9 = __webpack_require__("../kandy/src/presence/link/index.js");
 
 var _link10 = _interopRequireDefault(_link9);
 
-var _sipEvents = __webpack_require__("./src/sipEvents/index.js");
+var _sipEvents = __webpack_require__("../kandy/src/sipEvents/index.js");
 
 var _sipEvents2 = _interopRequireDefault(_sipEvents);
 
-var _link11 = __webpack_require__("./src/users/link.js");
+var _link11 = __webpack_require__("../kandy/src/users/link.js");
 
 var _link12 = _interopRequireDefault(_link11);
 
@@ -63318,7 +63318,7 @@ root.sdpHandlers = {
 
 /***/ }),
 
-/***/ "./src/logs/index.js":
+/***/ "../kandy/src/logs/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63336,25 +63336,25 @@ var _extends3 = _interopRequireDefault(_extends2);
 exports.default = logger;
 exports.getLogManager = getLogManager;
 
-var _transformers = __webpack_require__("./src/logs/transformers.js");
+var _transformers = __webpack_require__("../kandy/src/logs/transformers.js");
 
 var _transformers2 = _interopRequireDefault(_transformers);
 
-var _api = __webpack_require__("./src/logs/interface/api.js");
+var _api = __webpack_require__("../kandy/src/logs/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _actions = __webpack_require__("./src/config/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/config/interface/actions.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _utils = __webpack_require__("./src/common/utils.js");
+var _utils = __webpack_require__("../kandy/src/common/utils.js");
 
-var _logManager = __webpack_require__("./src/logs/logManager.js");
+var _logManager = __webpack_require__("../kandy/src/logs/logManager.js");
 
 var _logManager2 = _interopRequireDefault(_logManager);
 
-var _utils2 = __webpack_require__("./src/logs/utils.js");
+var _utils2 = __webpack_require__("../kandy/src/logs/utils.js");
 
 var _reduxLogger = __webpack_require__("../../node_modules/redux-logger/dist/redux-logger.js");
 
@@ -63523,7 +63523,7 @@ function excludeActions(actions) {
 
 /***/ }),
 
-/***/ "./src/logs/interface/api.js":
+/***/ "../kandy/src/logs/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63575,7 +63575,7 @@ function api() {
 
 /***/ }),
 
-/***/ "./src/logs/logManager.js":
+/***/ "../kandy/src/logs/logManager.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63596,7 +63596,7 @@ var _loglevel = __webpack_require__("../../node_modules/loglevel/lib/loglevel.js
 
 var _loglevel2 = _interopRequireDefault(_loglevel);
 
-var _utils = __webpack_require__("./src/logs/utils.js");
+var _utils = __webpack_require__("../kandy/src/logs/utils.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63931,7 +63931,7 @@ function LogItem(level, msg, args, stackTraces = false) {
 
 /***/ }),
 
-/***/ "./src/logs/transformers.js":
+/***/ "../kandy/src/logs/transformers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63999,7 +63999,7 @@ function removePayloads(action) {
 
 /***/ }),
 
-/***/ "./src/logs/utils.js":
+/***/ "../kandy/src/logs/utils.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64049,7 +64049,7 @@ function titleFormatter(action, time, took) {
 
 /***/ }),
 
-/***/ "./src/messaging/interface/actionTypes.js":
+/***/ "../kandy/src/messaging/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64089,7 +64089,7 @@ const FILE_UPLOAD_FAIL = exports.FILE_UPLOAD_FAIL = PREFIX + 'FILE_UPLOAD_FAIL';
 
 /***/ }),
 
-/***/ "./src/messaging/interface/actions/conversations.js":
+/***/ "../kandy/src/messaging/interface/actions/conversations.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64110,7 +64110,7 @@ exports.updateConversation = updateConversation;
 exports.deleteConversation = deleteConversation;
 exports.deleteConversationFinish = deleteConversationFinish;
 
-var _actionTypes = __webpack_require__("./src/messaging/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/messaging/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -64224,7 +64224,7 @@ function deleteConversationFinish({ destination, type, error }) {
 
 /***/ }),
 
-/***/ "./src/messaging/interface/actions/index.js":
+/***/ "../kandy/src/messaging/interface/actions/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64235,11 +64235,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.convoActions = exports.messageActions = undefined;
 
-var _messages = __webpack_require__("./src/messaging/interface/actions/messages.js");
+var _messages = __webpack_require__("../kandy/src/messaging/interface/actions/messages.js");
 
 var messageActionsImport = _interopRequireWildcard(_messages);
 
-var _conversations = __webpack_require__("./src/messaging/interface/actions/conversations.js");
+var _conversations = __webpack_require__("../kandy/src/messaging/interface/actions/conversations.js");
 
 var convoActionsImport = _interopRequireWildcard(_conversations);
 
@@ -64260,7 +64260,7 @@ const convoActions = exports.convoActions = convoActionsImport;
 
 /***/ }),
 
-/***/ "./src/messaging/interface/actions/messages.js":
+/***/ "../kandy/src/messaging/interface/actions/messages.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64278,7 +64278,7 @@ exports.clearMessages = clearMessages;
 exports.deleteMessage = deleteMessage;
 exports.deleteMessageFinish = deleteMessageFinish;
 
-var _actionTypes = __webpack_require__("./src/messaging/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/messaging/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -64519,7 +64519,7 @@ function deleteMessageFinish({ destination, type, messageId, error }) {
 
 /***/ }),
 
-/***/ "./src/messaging/interface/api.js":
+/***/ "../kandy/src/messaging/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64530,11 +64530,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _actions = __webpack_require__("./src/messaging/interface/actions/index.js");
+var _actions = __webpack_require__("../kandy/src/messaging/interface/actions/index.js");
 
-var _selectors = __webpack_require__("./src/messaging/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/messaging/interface/selectors.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 // Retrieve logger
 const log = (0, _logs.getLogManager)().getLogger('MESSAGING'); /**
@@ -64704,7 +64704,7 @@ function api(context) {
 
 /***/ }),
 
-/***/ "./src/messaging/interface/eventTypes.js":
+/***/ "../kandy/src/messaging/interface/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64763,7 +64763,7 @@ const MESSAGES_ERROR = exports.MESSAGES_ERROR = 'messages:error';
 
 /***/ }),
 
-/***/ "./src/messaging/interface/events.js":
+/***/ "../kandy/src/messaging/interface/events.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64773,11 +64773,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__("./src/messaging/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/messaging/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _eventTypes = __webpack_require__("./src/messaging/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/messaging/interface/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
@@ -64911,7 +64911,7 @@ exports.default = eventsMap;
 
 /***/ }),
 
-/***/ "./src/messaging/interface/index.js":
+/***/ "../kandy/src/messaging/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64921,15 +64921,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _api = __webpack_require__("./src/messaging/interface/api.js");
+var _api = __webpack_require__("../kandy/src/messaging/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reducers = __webpack_require__("./src/messaging/interface/reducers.js");
+var _reducers = __webpack_require__("../kandy/src/messaging/interface/reducers.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
-var _mixins = __webpack_require__("./src/messaging/interface/mixins.js");
+var _mixins = __webpack_require__("../kandy/src/messaging/interface/mixins.js");
 
 var _mixins2 = _interopRequireDefault(_mixins);
 
@@ -64949,7 +64949,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./src/messaging/interface/mixins.js":
+/***/ "../kandy/src/messaging/interface/mixins.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64965,21 +64965,21 @@ var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _actions = __webpack_require__("./src/messaging/interface/actions/index.js");
+var _actions = __webpack_require__("../kandy/src/messaging/interface/actions/index.js");
 
-var _selectors = __webpack_require__("./src/messaging/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/messaging/interface/selectors.js");
 
-var _selectors2 = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors2 = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
 var _compose = __webpack_require__("../../node_modules/stampit/compose.js");
 
 var _compose2 = _interopRequireDefault(_compose);
 
-var _actions2 = __webpack_require__("./src/events/interface/actions.js");
+var _actions2 = __webpack_require__("../kandy/src/events/interface/actions.js");
 
-var _eventTypes = __webpack_require__("./src/messaging/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/messaging/interface/eventTypes.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65421,7 +65421,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./src/messaging/interface/reducers.js":
+/***/ "../kandy/src/messaging/interface/reducers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65435,7 +65435,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/messaging/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/messaging/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -65702,7 +65702,7 @@ function sendMessageFinishHelper(message, action) {
 
 /***/ }),
 
-/***/ "./src/messaging/interface/selectors.js":
+/***/ "../kandy/src/messaging/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65787,7 +65787,7 @@ function findMember(state, destination, id) {
 
 /***/ }),
 
-/***/ "./src/messaging/link/index.js":
+/***/ "../kandy/src/messaging/link/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65800,21 +65800,21 @@ exports.default = linkMessaging;
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _events = __webpack_require__("./src/messaging/interface/events.js");
+var _events = __webpack_require__("../kandy/src/messaging/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
-var _actions2 = __webpack_require__("./src/config/interface/actions.js");
+var _actions2 = __webpack_require__("../kandy/src/config/interface/actions.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _sagas = __webpack_require__("./src/messaging/link/sagas.js");
+var _sagas = __webpack_require__("../kandy/src/messaging/link/sagas.js");
 
-var _interface = __webpack_require__("./src/messaging/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/messaging/interface/index.js");
 
 var _interface2 = _interopRequireDefault(_interface);
 
@@ -65859,7 +65859,7 @@ function linkMessaging(options = {}) {
 
 /***/ }),
 
-/***/ "./src/messaging/link/sagas.js":
+/***/ "../kandy/src/messaging/link/sagas.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65878,31 +65878,31 @@ exports.receiveMessage = receiveMessage;
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _actionTypes = __webpack_require__("./src/messaging/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/messaging/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _actions = __webpack_require__("./src/messaging/interface/actions/index.js");
+var _actions = __webpack_require__("../kandy/src/messaging/interface/actions/index.js");
 
-var _selectors = __webpack_require__("./src/messaging/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/messaging/interface/selectors.js");
 
-var _selectors2 = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors2 = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _actionTypes2 = __webpack_require__("./src/notifications/interface/actionTypes.js");
+var _actionTypes2 = __webpack_require__("../kandy/src/notifications/interface/actionTypes.js");
 
-var _predicates = __webpack_require__("./src/predicates.js");
+var _predicates = __webpack_require__("../kandy/src/predicates.js");
 
 var P = _interopRequireWildcard(_predicates);
 
-var _effects2 = __webpack_require__("./src/request/effects.js");
+var _effects2 = __webpack_require__("../kandy/src/request/effects.js");
 
 var _effects3 = _interopRequireDefault(_effects2);
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -66031,7 +66031,7 @@ function* receiveMessage() {
 
 /***/ }),
 
-/***/ "./src/mwi/interface/actionTypes.js":
+/***/ "../kandy/src/mwi/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66047,7 +66047,7 @@ const FETCH_MWI = exports.FETCH_MWI = PREFIX + 'FETCH_MWI';
 
 /***/ }),
 
-/***/ "./src/mwi/interface/actions.js":
+/***/ "../kandy/src/mwi/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66064,7 +66064,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 exports.mwiUpdate = mwiUpdate;
 exports.fetchMwi = fetchMwi;
 
-var _actionTypes = __webpack_require__("./src/mwi/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/mwi/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -66110,7 +66110,7 @@ function fetchMwi() {
 
 /***/ }),
 
-/***/ "./src/mwi/interface/api.js":
+/***/ "../kandy/src/mwi/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66121,13 +66121,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _actions = __webpack_require__("./src/mwi/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/mwi/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors = __webpack_require__("./src/mwi/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/mwi/interface/selectors.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -66177,7 +66177,7 @@ function api({ dispatch, getState }) {
 
 /***/ }),
 
-/***/ "./src/mwi/interface/eventTypes.js":
+/***/ "../kandy/src/mwi/interface/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66219,7 +66219,7 @@ const MWI_ERROR = exports.MWI_ERROR = 'voicemail:error';
 
 /***/ }),
 
-/***/ "./src/mwi/interface/events.js":
+/***/ "../kandy/src/mwi/interface/events.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66229,11 +66229,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__("./src/mwi/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/mwi/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _eventTypes = __webpack_require__("./src/mwi/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/mwi/interface/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
@@ -66267,7 +66267,7 @@ exports.default = eventsMap;
 
 /***/ }),
 
-/***/ "./src/mwi/interface/index.js":
+/***/ "../kandy/src/mwi/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66277,11 +66277,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _api = __webpack_require__("./src/mwi/interface/api.js");
+var _api = __webpack_require__("../kandy/src/mwi/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reducers = __webpack_require__("./src/mwi/interface/reducers.js");
+var _reducers = __webpack_require__("../kandy/src/mwi/interface/reducers.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -66302,7 +66302,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./src/mwi/interface/reducers.js":
+/***/ "../kandy/src/mwi/interface/reducers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66316,7 +66316,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/mwi/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/mwi/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -66339,7 +66339,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/mwi/interface/selectors.js":
+/***/ "../kandy/src/mwi/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66369,7 +66369,7 @@ function getMwi(state) {
 
 /***/ }),
 
-/***/ "./src/mwi/link/index.js":
+/***/ "../kandy/src/mwi/link/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66382,17 +66382,17 @@ exports.default = mwiLink;
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _events = __webpack_require__("./src/mwi/interface/events.js");
+var _events = __webpack_require__("../kandy/src/mwi/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
-var _interface = __webpack_require__("./src/mwi/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/mwi/interface/index.js");
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _sagas = __webpack_require__("./src/mwi/link/sagas.js");
+var _sagas = __webpack_require__("../kandy/src/mwi/link/sagas.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -66424,7 +66424,7 @@ function mwiLink() {
 
 /***/ }),
 
-/***/ "./src/mwi/link/sagas.js":
+/***/ "../kandy/src/mwi/link/sagas.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66443,29 +66443,29 @@ exports.fetchMwi = fetchMwi;
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _actionTypes = __webpack_require__("./src/notifications/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/notifications/interface/actionTypes.js");
 
-var _actions = __webpack_require__("./src/mwi/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/mwi/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _actionTypes2 = __webpack_require__("./src/mwi/interface/actionTypes.js");
+var _actionTypes2 = __webpack_require__("../kandy/src/mwi/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes2);
 
-var _effects2 = __webpack_require__("./src/request/effects.js");
+var _effects2 = __webpack_require__("../kandy/src/request/effects.js");
 
 var _effects3 = _interopRequireDefault(_effects2);
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -66564,7 +66564,7 @@ function* fetchMwi() {
 
 /***/ }),
 
-/***/ "./src/notifications/interface/actionTypes.js":
+/***/ "../kandy/src/notifications/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66584,7 +66584,7 @@ const ENABLE_NOTIFICATION_CHANNEL_FINISH = exports.ENABLE_NOTIFICATION_CHANNEL_F
 
 /***/ }),
 
-/***/ "./src/notifications/interface/actions.js":
+/***/ "../kandy/src/notifications/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66605,11 +66605,11 @@ exports.processNotificationFinish = processNotificationFinish;
 exports.enableNotificationChannel = enableNotificationChannel;
 exports.enableNotificationChannelFinish = enableNotificationChannelFinish;
 
-var _actionTypes = __webpack_require__("./src/notifications/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/notifications/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -66744,7 +66744,7 @@ function enableNotificationChannelFinish(channel, { params, error } = {}) {
 
 /***/ }),
 
-/***/ "./src/notifications/interface/api.js":
+/***/ "../kandy/src/notifications/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66760,13 +66760,13 @@ var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = api;
 
-var _actions = __webpack_require__("./src/notifications/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/notifications/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -66859,7 +66859,7 @@ function api({ dispatch }) {
 
 /***/ }),
 
-/***/ "./src/notifications/interface/eventTypes.js":
+/***/ "../kandy/src/notifications/interface/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66895,7 +66895,7 @@ const NOTI_ERROR = exports.NOTI_ERROR = 'notifications:error';
 
 /***/ }),
 
-/***/ "./src/notifications/interface/events.js":
+/***/ "../kandy/src/notifications/interface/events.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66905,11 +66905,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _eventTypes = __webpack_require__("./src/notifications/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/notifications/interface/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
-var _actionTypes = __webpack_require__("./src/notifications/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/notifications/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -66935,7 +66935,7 @@ exports.default = events;
 
 /***/ }),
 
-/***/ "./src/notifications/interface/index.js":
+/***/ "../kandy/src/notifications/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66946,11 +66946,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.reducer = exports.api = exports.name = undefined;
 
-var _reducers = __webpack_require__("./src/notifications/interface/reducers.js");
+var _reducers = __webpack_require__("../kandy/src/notifications/interface/reducers.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
-var _api = __webpack_require__("./src/notifications/interface/api.js");
+var _api = __webpack_require__("../kandy/src/notifications/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
@@ -66964,7 +66964,7 @@ exports.reducer = _reducers2.default;
 
 /***/ }),
 
-/***/ "./src/notifications/interface/reducers.js":
+/***/ "../kandy/src/notifications/interface/reducers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66978,11 +66978,11 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/notifications/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/notifications/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _actionTypes2 = __webpack_require__("./src/connectivity/interface/actionTypes.js");
+var _actionTypes2 = __webpack_require__("../kandy/src/connectivity/interface/actionTypes.js");
 
 var _reduxActions = __webpack_require__("../../node_modules/redux-actions/es/index.js");
 
@@ -67050,7 +67050,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/notifications/interface/selectors.js":
+/***/ "../kandy/src/notifications/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67089,7 +67089,7 @@ function getNotificationConfig(state) {
 
 /***/ }),
 
-/***/ "./src/notifications/link/index.js":
+/***/ "../kandy/src/notifications/link/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67100,19 +67100,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = notifications;
 
-var _interface = __webpack_require__("./src/notifications/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/notifications/interface/index.js");
 
-var _events = __webpack_require__("./src/notifications/interface/events.js");
+var _events = __webpack_require__("../kandy/src/notifications/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _sagas = __webpack_require__("./src/notifications/link/sagas.js");
+var _sagas = __webpack_require__("../kandy/src/notifications/link/sagas.js");
 
 var sagas = _interopRequireWildcard(_sagas);
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
-var _actions2 = __webpack_require__("./src/config/interface/actions.js");
+var _actions2 = __webpack_require__("../kandy/src/config/interface/actions.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
@@ -67179,7 +67179,7 @@ function notifications(options = {}) {
 
 /***/ }),
 
-/***/ "./src/notifications/link/requests.js":
+/***/ "../kandy/src/notifications/link/requests.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67201,11 +67201,11 @@ exports.pushNotificationsRegistration = pushNotificationsRegistration;
 exports.pushNotificationsDeRegistration = pushNotificationsDeRegistration;
 exports.fetchSDP = fetchSDP;
 
-var _effects = __webpack_require__("./src/request/effects.js");
+var _effects = __webpack_require__("../kandy/src/request/effects.js");
 
 var _effects2 = _interopRequireDefault(_effects);
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -67350,7 +67350,7 @@ function* fetchSDP(connection, partialUrl) {
 
 /***/ }),
 
-/***/ "./src/notifications/link/sagas.js":
+/***/ "../kandy/src/notifications/link/sagas.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67373,33 +67373,33 @@ exports.registerPushDeviceToken = registerPushDeviceToken;
 exports.deregisterPushDeviceToken = deregisterPushDeviceToken;
 exports.enableWebsocketChannel = enableWebsocketChannel;
 
-var _actions = __webpack_require__("./src/notifications/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/notifications/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _actionTypes = __webpack_require__("./src/notifications/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/notifications/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _selectors = __webpack_require__("./src/notifications/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/notifications/interface/selectors.js");
 
-var _requests = __webpack_require__("./src/notifications/link/requests.js");
+var _requests = __webpack_require__("../kandy/src/notifications/link/requests.js");
 
 var requests = _interopRequireWildcard(_requests);
 
-var _selectors2 = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors2 = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
 var _pako = __webpack_require__("../../node_modules/pako/index.js");
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 var _reduxSaga = __webpack_require__("../../node_modules/redux-saga/es/index.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -67666,7 +67666,7 @@ function* enableWebsocketChannel() {
 
 /***/ }),
 
-/***/ "./src/predicates.js":
+/***/ "../kandy/src/predicates.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67679,7 +67679,7 @@ exports.link = exports.types = exports.platform = exports.type = exports.or = ex
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 exports.matches = _fp.matches;
 // Constants
@@ -67694,7 +67694,7 @@ const link = exports.link = platform(_constants.platforms.LINK);
 
 /***/ }),
 
-/***/ "./src/presence/interface/actionTypes.js":
+/***/ "../kandy/src/presence/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67721,7 +67721,7 @@ const GET_PRESENCE_LIST = exports.GET_PRESENCE_LIST = prefix + 'GET_PRESENCE_LIS
 
 /***/ }),
 
-/***/ "./src/presence/interface/actions.js":
+/***/ "../kandy/src/presence/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67744,11 +67744,11 @@ exports.getPresenceList = getPresenceList;
 exports.createListFinish = createListFinish;
 exports.presenceReceived = presenceReceived;
 
-var _actionTypes = __webpack_require__("./src/presence/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/presence/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
@@ -67900,7 +67900,7 @@ function presenceReceived(presence) {
 
 /***/ }),
 
-/***/ "./src/presence/interface/api.js":
+/***/ "../kandy/src/presence/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68029,15 +68029,15 @@ exports.default = function (context) {
   return { presence: presenceApi };
 };
 
-var _actions = __webpack_require__("./src/presence/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/presence/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors = __webpack_require__("./src/presence/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/presence/interface/selectors.js");
 
 var selectors = _interopRequireWildcard(_selectors);
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -68054,7 +68054,7 @@ const log = (0, _logs.getLogManager)().getLogger('PRESENCE'); /**
 
 /***/ }),
 
-/***/ "./src/presence/interface/eventTypes.js":
+/***/ "../kandy/src/presence/interface/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68102,7 +68102,7 @@ const ERROR = exports.ERROR = 'presence:error';
 
 /***/ }),
 
-/***/ "./src/presence/interface/events.js":
+/***/ "../kandy/src/presence/interface/events.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68112,11 +68112,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__("./src/presence/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/presence/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _eventTypes = __webpack_require__("./src/presence/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/presence/interface/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
@@ -68164,7 +68164,7 @@ exports.default = eventsMap;
 
 /***/ }),
 
-/***/ "./src/presence/interface/index.js":
+/***/ "../kandy/src/presence/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68174,7 +68174,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _api = __webpack_require__("./src/presence/interface/api.js");
+var _api = __webpack_require__("../kandy/src/presence/interface/api.js");
 
 Object.defineProperty(exports, 'api', {
   enumerable: true,
@@ -68183,7 +68183,7 @@ Object.defineProperty(exports, 'api', {
   }
 });
 
-var _reducers = __webpack_require__("./src/presence/interface/reducers.js");
+var _reducers = __webpack_require__("../kandy/src/presence/interface/reducers.js");
 
 Object.defineProperty(exports, 'reducer', {
   enumerable: true,
@@ -68196,7 +68196,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /***/ }),
 
-/***/ "./src/presence/interface/reducers.js":
+/***/ "../kandy/src/presence/interface/reducers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68210,7 +68210,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/presence/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/presence/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -68328,7 +68328,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/presence/interface/selectors.js":
+/***/ "../kandy/src/presence/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68380,7 +68380,7 @@ function getSelfPresence(state) {
 
 /***/ }),
 
-/***/ "./src/presence/link/constants.js":
+/***/ "../kandy/src/presence/link/constants.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68415,7 +68415,7 @@ const STATUS = exports.STATUS = {
 
 /***/ }),
 
-/***/ "./src/presence/link/index.js":
+/***/ "../kandy/src/presence/link/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68426,19 +68426,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = linkPresence;
 
-var _interface = __webpack_require__("./src/presence/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/presence/interface/index.js");
 
-var _sagas = __webpack_require__("./src/presence/link/sagas.js");
+var _sagas = __webpack_require__("../kandy/src/presence/link/sagas.js");
 
 var sagas = _interopRequireWildcard(_sagas);
 
-var _events = __webpack_require__("./src/presence/interface/events.js");
+var _events = __webpack_require__("../kandy/src/presence/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _constants = __webpack_require__("./src/presence/link/constants.js");
+var _constants = __webpack_require__("../kandy/src/presence/link/constants.js");
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
@@ -68511,7 +68511,7 @@ function linkPresence() {
 
 /***/ }),
 
-/***/ "./src/presence/link/requests.js":
+/***/ "../kandy/src/presence/link/requests.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68528,11 +68528,11 @@ var _stringify2 = _interopRequireDefault(_stringify);
 exports.updatePresenceRequest = updatePresenceRequest;
 exports.watchPresenceRequest = watchPresenceRequest;
 
-var _effects = __webpack_require__("./src/request/effects.js");
+var _effects = __webpack_require__("../kandy/src/request/effects.js");
 
 var _effects2 = _interopRequireDefault(_effects);
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -68626,7 +68626,7 @@ function* watchPresenceRequest(users, action, requestInfo) {
 
 /***/ }),
 
-/***/ "./src/presence/link/sagas.js":
+/***/ "../kandy/src/presence/link/sagas.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68646,29 +68646,29 @@ exports.presenceSubscribeSaga = presenceSubscribeSaga;
 exports.presenceUnsubscribeSaga = presenceUnsubscribeSaga;
 exports.presenceReceivedSaga = presenceReceivedSaga;
 
-var _actionTypes = __webpack_require__("./src/presence/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/presence/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _actions = __webpack_require__("./src/presence/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/presence/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _requests = __webpack_require__("./src/presence/link/requests.js");
+var _requests = __webpack_require__("../kandy/src/presence/link/requests.js");
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _actionTypes2 = __webpack_require__("./src/notifications/interface/actionTypes.js");
+var _actionTypes2 = __webpack_require__("../kandy/src/notifications/interface/actionTypes.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
-var _constants = __webpack_require__("./src/presence/link/constants.js");
+var _constants = __webpack_require__("../kandy/src/presence/link/constants.js");
 
-var _constants2 = __webpack_require__("./src/constants.js");
+var _constants2 = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -68774,7 +68774,7 @@ function* receivePresence(wsAction) {
 
 /***/ }),
 
-/***/ "./src/request/effects.js":
+/***/ "../kandy/src/request/effects.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68786,13 +68786,13 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = request;
 exports.requestSaga = requestSaga;
 
-var _actionTypes = __webpack_require__("./src/request/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/request/interface/actionTypes.js");
 
-var _actions = __webpack_require__("./src/request/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/request/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _utils = __webpack_require__("./src/common/utils.js");
+var _utils = __webpack_require__("../kandy/src/common/utils.js");
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
@@ -68837,7 +68837,7 @@ function* requestSaga(options, commonOptions) {
 
 /***/ }),
 
-/***/ "./src/request/index.js":
+/***/ "../kandy/src/request/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68862,11 +68862,11 @@ var _promise2 = _interopRequireDefault(_promise);
 
 exports.default = request;
 
-var _actionTypes = __webpack_require__("./src/request/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/request/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _actions = __webpack_require__("./src/request/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/request/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
@@ -68876,9 +68876,9 @@ var _fetchPonyfill = __webpack_require__("../../node_modules/fetch-ponyfill/buil
 
 var _fetchPonyfill2 = _interopRequireDefault(_fetchPonyfill);
 
-var _utils = __webpack_require__("./src/common/utils.js");
+var _utils = __webpack_require__("../kandy/src/common/utils.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -69038,7 +69038,7 @@ const __testonly__ = exports.__testonly__ = { makeRequest, watchRequests, handle
 
 /***/ }),
 
-/***/ "./src/request/interface/actionTypes.js":
+/***/ "../kandy/src/request/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69054,7 +69054,7 @@ const RESPONSE = exports.RESPONSE = PREFIX + 'RESPONSE';
 
 /***/ }),
 
-/***/ "./src/request/interface/actions.js":
+/***/ "../kandy/src/request/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69066,7 +69066,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.request = request;
 exports.response = response;
 
-var _actionTypes = __webpack_require__("./src/request/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/request/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -69111,7 +69111,7 @@ function response(requestId, result, error = false) {
 
 /***/ }),
 
-/***/ "./src/sipEvents/index.js":
+/***/ "../kandy/src/sipEvents/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69122,19 +69122,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = sipEvents;
 
-var _interface = __webpack_require__("./src/sipEvents/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/sipEvents/interface/index.js");
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _sagas = __webpack_require__("./src/sipEvents/sagas.js");
+var _sagas = __webpack_require__("../kandy/src/sipEvents/sagas.js");
 
 var sagas = _interopRequireWildcard(_sagas);
 
-var _events = __webpack_require__("./src/sipEvents/interface/events.js");
+var _events = __webpack_require__("../kandy/src/sipEvents/interface/events.js");
 
 var _events2 = _interopRequireDefault(_events);
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
@@ -69175,7 +69175,7 @@ function sipEvents() {
 
 /***/ }),
 
-/***/ "./src/sipEvents/interface/actionTypes.js":
+/***/ "../kandy/src/sipEvents/interface/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69199,7 +69199,7 @@ const SIP_EVENT_RECEIVED = exports.SIP_EVENT_RECEIVED = PREFIX + 'SIP_EVENT_RECE
 
 /***/ }),
 
-/***/ "./src/sipEvents/interface/actions.js":
+/***/ "../kandy/src/sipEvents/interface/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69221,7 +69221,7 @@ exports.sipEventUnsubscribe = sipEventUnsubscribe;
 exports.sipEventUnsubscribeFinish = sipEventUnsubscribeFinish;
 exports.sipEventReceived = sipEventReceived;
 
-var _actionTypes = __webpack_require__("./src/sipEvents/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/sipEvents/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -69355,7 +69355,7 @@ function sipEventReceived(sipEvent) {
 
 /***/ }),
 
-/***/ "./src/sipEvents/interface/api.js":
+/***/ "../kandy/src/sipEvents/interface/api.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69366,13 +69366,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _selectors = __webpack_require__("./src/sipEvents/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/sipEvents/interface/selectors.js");
 
-var _actions = __webpack_require__("./src/sipEvents/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/sipEvents/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -69465,7 +69465,7 @@ function api({ dispatch, getState }) {
 
 /***/ }),
 
-/***/ "./src/sipEvents/interface/eventTypes.js":
+/***/ "../kandy/src/sipEvents/interface/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69514,7 +69514,7 @@ const EVENT_RECEIVED = exports.EVENT_RECEIVED = 'sip:eventsChange';
 
 /***/ }),
 
-/***/ "./src/sipEvents/interface/events.js":
+/***/ "../kandy/src/sipEvents/interface/events.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69524,11 +69524,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _eventTypes = __webpack_require__("./src/sipEvents/interface/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/sipEvents/interface/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
-var _actionTypes = __webpack_require__("./src/sipEvents/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/sipEvents/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -69593,7 +69593,7 @@ exports.default = events;
 
 /***/ }),
 
-/***/ "./src/sipEvents/interface/index.js":
+/***/ "../kandy/src/sipEvents/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69603,11 +69603,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _api = __webpack_require__("./src/sipEvents/interface/api.js");
+var _api = __webpack_require__("../kandy/src/sipEvents/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reducer = __webpack_require__("./src/sipEvents/interface/reducer.js");
+var _reducer = __webpack_require__("../kandy/src/sipEvents/interface/reducer.js");
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -69624,7 +69624,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./src/sipEvents/interface/reducer.js":
+/***/ "../kandy/src/sipEvents/interface/reducer.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69638,7 +69638,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/sipEvents/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/sipEvents/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -69715,7 +69715,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/sipEvents/interface/selectors.js":
+/***/ "../kandy/src/sipEvents/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69744,7 +69744,7 @@ function getSipEventInfo(state, eventType) {
 
 /***/ }),
 
-/***/ "./src/sipEvents/sagas.js":
+/***/ "../kandy/src/sipEvents/sagas.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69767,35 +69767,35 @@ exports.sipEventUpdate = sipEventUpdate;
 exports.sipEventUnsubscribe = sipEventUnsubscribe;
 exports.receiveEventNotify = receiveEventNotify;
 
-var _actionTypes = __webpack_require__("./src/sipEvents/interface/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/sipEvents/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _actions = __webpack_require__("./src/sipEvents/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/sipEvents/interface/actions.js");
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors = __webpack_require__("./src/sipEvents/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/sipEvents/interface/selectors.js");
 
-var _selectors2 = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors2 = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _actionTypes2 = __webpack_require__("./src/notifications/interface/actionTypes.js");
+var _actionTypes2 = __webpack_require__("../kandy/src/notifications/interface/actionTypes.js");
 
-var _effects = __webpack_require__("./src/request/effects.js");
+var _effects = __webpack_require__("../kandy/src/request/effects.js");
 
 var _effects2 = _interopRequireDefault(_effects);
 
-var _errors = __webpack_require__("./src/errors/index.js");
+var _errors = __webpack_require__("../kandy/src/errors/index.js");
 
 var _errors2 = _interopRequireDefault(_errors);
 
 var _effects3 = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -70154,7 +70154,7 @@ function* receiveEventNotify() {
 
 /***/ }),
 
-/***/ "./src/users/interface/actions/actionTypes.js":
+/***/ "../kandy/src/users/interface/actions/actionTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70201,7 +70201,7 @@ const SEARCH_DIRECTORY_FINISH = exports.SEARCH_DIRECTORY_FINISH = prefix + 'SEAR
 
 /***/ }),
 
-/***/ "./src/users/interface/actions/contacts.js":
+/***/ "../kandy/src/users/interface/actions/contacts.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70221,7 +70221,7 @@ exports.removeContactFinish = removeContactFinish;
 exports.updateContact = updateContact;
 exports.updateContactFinish = updateContactFinish;
 
-var _actionTypes = __webpack_require__("./src/users/interface/actions/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/users/interface/actions/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -70363,7 +70363,7 @@ function updateContactFinish({ contact, error }) {
 
 /***/ }),
 
-/***/ "./src/users/interface/actions/users.js":
+/***/ "../kandy/src/users/interface/actions/users.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70379,7 +70379,7 @@ exports.fetchUserFinish = fetchUserFinish;
 exports.searchDirectory = searchDirectory;
 exports.searchDirectoryFinish = searchDirectoryFinish;
 
-var _actionTypes = __webpack_require__("./src/users/interface/actions/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/users/interface/actions/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -70475,7 +70475,7 @@ function searchDirectoryFinish({ users, error }) {
 
 /***/ }),
 
-/***/ "./src/users/interface/api/contacts.js":
+/***/ "../kandy/src/users/interface/api/contacts.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70486,13 +70486,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = contactsAPI;
 
-var _contacts = __webpack_require__("./src/users/interface/actions/contacts.js");
+var _contacts = __webpack_require__("../kandy/src/users/interface/actions/contacts.js");
 
 var actions = _interopRequireWildcard(_contacts);
 
-var _selectors = __webpack_require__("./src/users/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/users/interface/selectors.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -70679,7 +70679,7 @@ function contactsAPI({ dispatch, getState, primitives }) {
 
 /***/ }),
 
-/***/ "./src/users/interface/api/index.js":
+/***/ "../kandy/src/users/interface/api/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70690,11 +70690,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = api;
 
-var _users = __webpack_require__("./src/users/interface/api/users.js");
+var _users = __webpack_require__("../kandy/src/users/interface/api/users.js");
 
 var _users2 = _interopRequireDefault(_users);
 
-var _contacts = __webpack_require__("./src/users/interface/api/contacts.js");
+var _contacts = __webpack_require__("../kandy/src/users/interface/api/contacts.js");
 
 var _contacts2 = _interopRequireDefault(_contacts);
 
@@ -70719,7 +70719,7 @@ function api(context) {
 
 /***/ }),
 
-/***/ "./src/users/interface/api/users.js":
+/***/ "../kandy/src/users/interface/api/users.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70730,13 +70730,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = usersAPI;
 
-var _users = __webpack_require__("./src/users/interface/actions/users.js");
+var _users = __webpack_require__("../kandy/src/users/interface/actions/users.js");
 
 var actions = _interopRequireWildcard(_users);
 
-var _selectors = __webpack_require__("./src/users/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/users/interface/selectors.js");
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -70831,7 +70831,7 @@ function usersAPI({ dispatch, getState, primitives }) {
 
 /***/ }),
 
-/***/ "./src/users/interface/events/contacts.js":
+/***/ "../kandy/src/users/interface/events/contacts.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70841,11 +70841,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__("./src/users/interface/actions/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/users/interface/actions/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _eventTypes = __webpack_require__("./src/users/interface/events/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/users/interface/events/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
@@ -70890,7 +70890,7 @@ exports.default = eventsMap;
 
 /***/ }),
 
-/***/ "./src/users/interface/events/eventTypes.js":
+/***/ "../kandy/src/users/interface/events/eventTypes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70956,7 +70956,7 @@ const DIRECTORY_ERROR = exports.DIRECTORY_ERROR = 'directory:error';
 
 /***/ }),
 
-/***/ "./src/users/interface/events/users.js":
+/***/ "../kandy/src/users/interface/events/users.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70966,11 +70966,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__("./src/users/interface/actions/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/users/interface/actions/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _eventTypes = __webpack_require__("./src/users/interface/events/eventTypes.js");
+var _eventTypes = __webpack_require__("../kandy/src/users/interface/events/eventTypes.js");
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
@@ -71010,7 +71010,7 @@ exports.default = eventsMap;
 
 /***/ }),
 
-/***/ "./src/users/interface/index.js":
+/***/ "../kandy/src/users/interface/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71020,11 +71020,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _api = __webpack_require__("./src/users/interface/api/index.js");
+var _api = __webpack_require__("../kandy/src/users/interface/api/index.js");
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reducers = __webpack_require__("./src/users/interface/reducers/index.js");
+var _reducers = __webpack_require__("../kandy/src/users/interface/reducers/index.js");
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -71042,7 +71042,7 @@ exports.default = { name, api: _api2.default, reducer: _reducers2.default };
 
 /***/ }),
 
-/***/ "./src/users/interface/reducers/contacts.js":
+/***/ "../kandy/src/users/interface/reducers/contacts.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71056,7 +71056,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/users/interface/actions/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/users/interface/actions/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -71170,7 +71170,7 @@ exports.default = reducers;
 
 /***/ }),
 
-/***/ "./src/users/interface/reducers/index.js":
+/***/ "../kandy/src/users/interface/reducers/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71184,11 +71184,11 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _contacts = __webpack_require__("./src/users/interface/reducers/contacts.js");
+var _contacts = __webpack_require__("../kandy/src/users/interface/reducers/contacts.js");
 
 var _contacts2 = _interopRequireDefault(_contacts);
 
-var _users = __webpack_require__("./src/users/interface/reducers/users.js");
+var _users = __webpack_require__("../kandy/src/users/interface/reducers/users.js");
 
 var _users2 = _interopRequireDefault(_users);
 
@@ -71210,7 +71210,7 @@ exports.default = reducer;
 
 /***/ }),
 
-/***/ "./src/users/interface/reducers/users.js":
+/***/ "../kandy/src/users/interface/reducers/users.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71224,7 +71224,7 @@ var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/ex
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__("./src/users/interface/actions/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/users/interface/actions/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -71291,7 +71291,7 @@ exports.default = reducers;
 
 /***/ }),
 
-/***/ "./src/users/interface/selectors.js":
+/***/ "../kandy/src/users/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71351,7 +71351,7 @@ function getUser(state, name) {
 
 /***/ }),
 
-/***/ "./src/users/link.js":
+/***/ "../kandy/src/users/link.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71378,43 +71378,43 @@ exports.contactRequest = contactRequest;
 exports.fetchSelfInfo = fetchSelfInfo;
 exports.fetchUserLocale = fetchUserLocale;
 
-var _actionTypes = __webpack_require__("./src/users/interface/actions/actionTypes.js");
+var _actionTypes = __webpack_require__("../kandy/src/users/interface/actions/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _users = __webpack_require__("./src/users/interface/actions/users.js");
+var _users = __webpack_require__("../kandy/src/users/interface/actions/users.js");
 
 var userActions = _interopRequireWildcard(_users);
 
-var _contacts = __webpack_require__("./src/users/interface/actions/contacts.js");
+var _contacts = __webpack_require__("../kandy/src/users/interface/actions/contacts.js");
 
 var contactActions = _interopRequireWildcard(_contacts);
 
-var _selectors = __webpack_require__("./src/auth/interface/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/auth/interface/selectors.js");
 
-var _interface = __webpack_require__("./src/users/interface/index.js");
+var _interface = __webpack_require__("../kandy/src/users/interface/index.js");
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _contacts2 = __webpack_require__("./src/users/interface/events/contacts.js");
+var _contacts2 = __webpack_require__("../kandy/src/users/interface/events/contacts.js");
 
 var _contacts3 = _interopRequireDefault(_contacts2);
 
-var _users2 = __webpack_require__("./src/users/interface/events/users.js");
+var _users2 = __webpack_require__("../kandy/src/users/interface/events/users.js");
 
 var _users3 = _interopRequireDefault(_users2);
 
-var _actions = __webpack_require__("./src/events/interface/actions.js");
+var _actions = __webpack_require__("../kandy/src/events/interface/actions.js");
 
-var _effects = __webpack_require__("./src/request/effects.js");
+var _effects = __webpack_require__("../kandy/src/request/effects.js");
 
 var _effects2 = _interopRequireDefault(_effects);
 
-var _logs = __webpack_require__("./src/logs/index.js");
+var _logs = __webpack_require__("../kandy/src/logs/index.js");
 
 var _effects3 = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
-var _constants = __webpack_require__("./src/constants.js");
+var _constants = __webpack_require__("../kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -71924,7 +71924,7 @@ function localUserFromRemote(user) {
 
 /***/ }),
 
-/***/ "./src/webrtc/interface/selectors.js":
+/***/ "../kandy/src/webrtc/interface/selectors.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71943,7 +71943,7 @@ exports.getMediaById = getMediaById;
 exports.getMediaByCallId = getMediaByCallId;
 exports.getBrowserDetails = getBrowserDetails;
 
-var _selectors = __webpack_require__("./src/call/interfaceNew/selectors.js");
+var _selectors = __webpack_require__("../kandy/src/call/interfaceNew/selectors.js");
 
 /**
  * Retrieves media devices available on the system.
