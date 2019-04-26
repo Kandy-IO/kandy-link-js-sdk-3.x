@@ -1061,16 +1061,19 @@ Will trigger the `contacts:new` event.
 
 -   `contact` **[Object][5]** The contact object.
     -   `contact.primaryContact` **[string][2]** The primary userId for the contact
-    -   `contact.name` **[string][2]?** The name for the contact entry
+    -   `contact.contactId` **[string][2]** The contact's unique contact ID
     -   `contact.firstName` **[string][2]?** The contact's first name
     -   `contact.lastName` **[string][2]?** The contact's last name
-    -   `contact.contactId` **[string][2]?** The contact's unique contact ID
-    -   `contact.email` **[string][2]?** The contact's email address
-    -   `contact.homePhoneNumber` **[string][2]?** The contact's home phone number
-    -   `contact.businessPhoneNumber` **[string][2]?** The contact's business phone number
-    -   `contact.mobilePhoneNumber` **[string][2]?** The contact's mobile phone number
-    -   `contact.list` **[string][2]?** The name of the contact list for which to add this contact to ("friends" by default)
-    -   `contact.buddy` **[boolean][7]?** Indicates whether or not the contact is a friend of the user
+    -   `contact.photoUrl` **[string][2]?** The URL address identifying location of user's picture
+    -   `contact.emailAddress` **[string][2]?** The contact's email address
+    -   `contact.homePhone` **[string][2]?** The contact's home phone number
+    -   `contact.workPhone` **[string][2]?** The contact's business phone number
+    -   `contact.mobilePhone` **[string][2]?** The contact's mobile phone number
+    -   `contact.conferenceURL` **[string][2]?** Conference URL and access code for this user's address book entry
+    -   `contact.fax` **[string][2]?** The user's fax number
+    -   `contact.pager` **[string][2]?** The user's pager number
+    -   `contact.groupList` **[string][2]?** The name of the contact list for which to add this contact to ("friends" by default)
+    -   `contact.friendStatus` **[boolean][7]?** Indicates whether or not the contact is a friend of the user
 
 ### get
 
@@ -1111,6 +1114,20 @@ Will trigger the `contacts:change` event.
 
 -   `contactId` **[string][2]** The unique contact ID.
 -   `contact` **[Object][5]** The contact object.
+    -   `contact.primaryContact` **[string][2]** The primary userId for the contact
+    -   `contact.contactId` **[string][2]** The contact's unique contact ID
+    -   `contact.firstName` **[string][2]?** The contact's first name
+    -   `contact.lastName` **[string][2]?** The contact's last name
+    -   `contact.photoUrl` **[string][2]?** The URL address identifying location of user's picture
+    -   `contact.emailAddress` **[string][2]?** The contact's email address
+    -   `contact.homePhone` **[string][2]?** The contact's home phone number
+    -   `contact.workPhone` **[string][2]?** The contact's business phone number
+    -   `contact.mobilePhone` **[string][2]?** The contact's mobile phone number
+    -   `contact.conferenceURL` **[string][2]?** Conference URL and access code for this user's address book entry
+    -   `contact.fax` **[string][2]?** The user's fax number
+    -   `contact.pager` **[string][2]?** The user's pager number
+    -   `contact.groupList` **[string][2]?** The name of the contact list for which to add this contact to ("friends" by default)
+    -   `contact.friendStatus` **[boolean][7]?** Indicates whether or not the contact is a friend of the user
 
 ### fetch
 
@@ -1120,6 +1137,33 @@ Will trigger the `contacts:change` event.
 **Parameters**
 
 -   `contactId` **[string][2]** The unique contact ID of the contact.
+
+## sdpHandlers
+
+A set of handlers for manipulating SDP information.
+These handlers are used to customize low-level call behaviour for very specific
+environments and/or scenarios. They can be provided during SDK instantiation
+to be used for all calls.
+
+### createCodecRemover
+
+In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
+
+To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.
+
+The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
+
+**Examples**
+
+```javascript
+import { create, sdpHandlers } from 'kandy';
+const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+const client = create({
+  call: {
+    sdpHandlers: [codecRemover]
+  }
+})
+```
 
 ## config
 
@@ -1172,6 +1216,7 @@ Configuration options for the call feature.
     -   `call.callDefaults` **[Object][5]?** Default options to be used when making/answering a call.
     -   `call.chromeExtensionId` **[string][2]?** ID of the screenshare extension being used for screenshare of Google Chrome.
     -   `call.webrtcdtls` **[boolean][7]** Whether to enable the webRTC DTLS setting for calls. (optional, default `true`)
+    -   `call.recordCallStats` **[boolean][7]** Whether to enable the recording of call statistics as part of app's local storage. (optional, default `false`)
 
 ### config.connectivity
 
@@ -1207,33 +1252,6 @@ Configuration options for the notification feature.
         -   `notifications.pushRegistration.version` **[string][2]?** Version for the push registration server.
     -   `notifications.realm` **[string][2]?** The realm used for push notifications
     -   `notifications.bundleId` **[string][2]?** The bundle id used for push notifications
-
-## sdpHandlers
-
-A set of handlers for manipulating SDP information.
-These handlers are used to customize low-level call behaviour for very specific
-environments and/or scenarios. They can be provided during SDK instantiation
-to be used for all calls.
-
-### createCodecRemover
-
-In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
-
-To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.
-
-The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
-
-**Examples**
-
-```javascript
-import { create, sdpHandlers } from 'kandy';
-const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
-const client = create({
-  call: {
-    sdpHandlers: [codecRemover]
-  }
-})
-```
 
 ## Logger
 
