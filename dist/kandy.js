@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.4.1-beta.72626
+ * Version: 3.5.0-beta.72746
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -55626,6 +55626,9 @@ const CALL_ACCEPTED = exports.CALL_ACCEPTED = callPrefix + 'ACCEPTED';
 const END_CALL = exports.END_CALL = callPrefix + 'END';
 const END_CALL_FINISH = exports.END_CALL_FINISH = callPrefix + 'END_FINISH';
 
+const FORWARD_CALL = exports.FORWARD_CALL = callPrefix + 'FORWARD_CALL';
+const FORWARD_CALL_FINISH = exports.FORWARD_CALL_FINISH = callPrefix + 'FORWARD_CALL_FINISH';
+
 /**
  * Mid-call operation actions.
  */
@@ -62932,7 +62935,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.4.1-beta.72626';
+  let version = '3.5.0-beta.72746';
   log.info(`CPaaS SDK version: ${version}`);
 
   var sagas = [];

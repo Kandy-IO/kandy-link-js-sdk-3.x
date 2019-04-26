@@ -14,7 +14,7 @@ To install a particular build branch or beta branch with the Github URL, run:
 
 ### In the browser :
 
-`$ <script src="https://cdn.jsdelivr.net/npm/@kandy-io/link-sdk@v3.4.1"></script>`
+`$ <script src="https://cdn.jsdelivr.net/npm/@kandy-io/link-sdk@v3.5.0"></script>`
 
 ## Reference
 
