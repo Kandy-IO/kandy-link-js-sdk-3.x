@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.5.0-beta.77378
+ * Version: 3.5.0-beta.77806
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -518,7 +518,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 const platforms = exports.platforms = {
   LINK: 'link',
-  CPAAS: 'cpaas',
+  UC: 'uc',
   CPAAS2: 'cpaas2'
 };
 
@@ -723,7 +723,7 @@ function getRequestInfo(state, platform) {
         }
       }
     };
-  } else if (platform === _constants2.platforms.CPAAS) {
+  } else if (platform === _constants2.platforms.UC) {
     requestInfo = {
       baseURL: `${subscription.protocol}://${subscription.server}:${subscription.port}`,
       version: subscription.version,
@@ -737,12 +737,12 @@ function getRequestInfo(state, platform) {
 
       /*
        * If the requested platform was Link but the platform set in state is
-       *    CPaaS, then we're using CPaaS 1.5 but making a request for SPiDR.
+       *    UC, and so we're using UC but making a request for SPiDR.
        * Change the requestInfo provided to ensure the URL will be valid for
        *    SPiDR and authentication will be valid for CIM.
        */
     };const setPlatform = getPlatform(state);
-    if (setPlatform === _constants2.platforms.CPAAS) {
+    if (setPlatform === _constants2.platforms.UC) {
       requestInfo.version = '1';
 
       const connInfo = getConnectionInfo(state, setPlatform);
@@ -16792,8 +16792,8 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.5.0-beta.77378';
-  log.info(`CPaaS SDK version: ${version}`);
+  let version = '3.5.0-beta.77806';
+  log.info(`UC SDK version: ${version}`);
 
   var sagas = [];
   var store;
@@ -25006,7 +25006,7 @@ var _constants = __webpack_require__(92);
  * @return {Object} Information about the SDK's subscriptions.
  */
 function parseSpidrServices(requested, received) {
-  // CPaaS platform is not case-sensitive (Link is), so filter without caring about case.
+  // UC platform is not case-sensitive (Link is), so filter without caring about case.
   let upperReceived = received.map(service => service.toUpperCase());
 
   // Find the missing services.
@@ -25066,11 +25066,11 @@ const authCodes = exports.authCodes = {
   LINK_SUBSCRIBE_FAIL: 'authentication:4',
   LINK_EXTEND_SUBSCRIPTION_FAIL: 'authentication:5',
   LINK_UPDATE_SUBSCRIPTION_FAIL: 'authentication:6',
-  CPAAS_SUBSCRIBE_FAIL: 'authentication:7',
-  CPAAS_REFRESH_TOKEN_FAIL: 'authentication:8',
-  CPAAS_CREATE_TOKEN_FAIL: 'authentication:9',
-  CPAAS_EXTEND_SUBSCRIPTION_FAIL: 'authentication:10',
-  CPAAS_DISCONNECT_FAIL: 'authentication:11',
+  UC_SUBSCRIBE_FAIL: 'authentication:7',
+  UC_REFRESH_TOKEN_FAIL: 'authentication:8',
+  UC_CREATE_TOKEN_FAIL: 'authentication:9',
+  UC_EXTEND_SUBSCRIPTION_FAIL: 'authentication:10',
+  UC_DISCONNECT_FAIL: 'authentication:11',
   MISSING_SERVICE: 'authentication:12'
 
   /**
@@ -25985,7 +25985,7 @@ function middleware({ dispatch, getState }) {
               websocketIP: authConfig.websocket.server,
               websocketPort: authConfig.websocket.port
             };
-          } else if (action.meta.platform === _constants.platforms.CPAAS) {
+          } else if (action.meta.platform === _constants.platforms.UC) {
             // If we're Link, config has the variables we need.
             const authConfig = (0, _selectors.getAuthConfig)(getState());
             log.debug(`Auth config is: ${authConfig}`);
@@ -56551,7 +56551,7 @@ function* retrieveCallLogs(action) {
   // TODO: Break the callHistory requests into its own file.
   const requestInfo = yield (0, _effects3.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : requestInfo.version;
+  const version = platform === _constants.platforms.UC ? 1 : requestInfo.version;
   let url = `${requestInfo.baseURL}/rest/version/${version}/user/${requestInfo.username}/logHistory`;
 
   let queryParams = {
@@ -56653,7 +56653,7 @@ function* removeCallLogs(action) {
 
   const requestInfo = yield (0, _effects3.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : requestInfo.version;
+  const version = platform === _constants.platforms.UC ? 1 : requestInfo.version;
   let url = `${requestInfo.baseURL}/rest/version/${version}/user/${requestInfo.username}/`;
 
   if (action.payload === 'all') {
@@ -57374,7 +57374,7 @@ function* clickToCallSaga() {
 
     const { server, username, requestOptions } = conn;
 
-    const version = platform === _constants.platforms.CPAAS ? 1 : server.version;
+    const version = platform === _constants.platforms.UC ? 1 : server.version;
 
     const url = `${server.protocol}://${server.server}:${server.port}/rest/version/${version}/user/${username}/clicktocall`;
 
@@ -58085,7 +58085,7 @@ function* websocketLifecycle(wsConnectAction) {
   } else {
     // If this is a Link websocket, we need to ensure the URL is using the
     //     "latest" access token from state.
-    if (wsConnectAction.meta.platform === _constants.platforms.CPAAS) {
+    if (wsConnectAction.meta.platform === _constants.platforms.UC) {
       let { notificationChannel } = yield (0, _effects.select)(_selectors2.getSubscriptionInfo);
       let { accessToken, oauthToken } = yield (0, _effects.select)(_selectors2.getConnectionInfo);
       wsInfo.url = notificationChannel;
@@ -60671,7 +60671,7 @@ function* fetchMwi() {
     const options = (0, _extends3.default)({}, action.payload, connInfo);
 
     let platform = yield (0, _effects.select)(_selectors.getPlatform);
-    const version = platform === _constants.platforms.CPAAS ? 1 : options.server.version;
+    const version = platform === _constants.platforms.UC ? 1 : options.server.version;
     const response = yield (0, _effects3.default)({
       url: `${options.server.protocol}://${options.server.server}:${options.server.port}/rest/version/${version}/user/${options.username}/voicemail`,
       method: 'GET'
@@ -61227,7 +61227,7 @@ function* processNotification() {
       case _constants.platforms.LINK:
         notificationId = action.payload.notificationMessage.eventId;
         break;
-      case _constants.platforms.CPAAS:
+      case _constants.platforms.UC:
         // A Link notification can be in either the Link format or the SPiDR format (for calls).
         notificationId = action.payload.notificationMessage.id || action.payload.notificationMessage.eventId;
         break;
@@ -68490,7 +68490,7 @@ function* updatePresence({ payload }) {
 
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.UC ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.updatePresenceRequest, payload, requestInfo);
   if (res instanceof Error) {
     yield (0, _effects.put)(actions.updatePresenceFinish(res));
@@ -68503,7 +68503,7 @@ function* getPresence({ payload }) {
   const users = Array.isArray(payload) ? payload : [payload];
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.UC ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.watchPresenceRequest, users, 'get', requestInfo);
   yield (0, _effects.put)(actions.getPresenceFinish(res));
 }
@@ -68512,7 +68512,7 @@ function* subscribePresence({ payload }) {
   const users = Array.isArray(payload) ? payload : [payload];
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.UC ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.watchPresenceRequest, users, 'watch', requestInfo);
   yield (0, _effects.put)(actions.subscribePresenceFinish(res));
 }
@@ -68521,7 +68521,7 @@ function* unsubscribePresence({ payload }) {
   const users = Array.isArray(payload) ? payload : [payload];
   const requestInfo = yield (0, _effects.select)(_selectors.getRequestInfo);
   let platform = yield (0, _effects.select)(_selectors.getPlatform);
-  requestInfo.version = platform === _constants2.platforms.CPAAS ? 1 : requestInfo.version;
+  requestInfo.version = platform === _constants2.platforms.UC ? 1 : requestInfo.version;
   const res = yield (0, _effects.call)(_requests.watchPresenceRequest, users, 'stopwatch', requestInfo);
   yield (0, _effects.put)(actions.unsubscribePresenceFinish(res));
 }
@@ -69156,8 +69156,8 @@ function* sipEventSubscribe() {
     let platform = yield (0, _effects3.select)(_selectors2.getPlatform);
     let { server, username, token, accessToken, requestOptions: commonOptions } = yield (0, _effects3.select)(_selectors2.getConnectionInfo);
 
-    // TODO: CPaaS should store it's token the same way as Link.
-    if (platform === _constants.platforms.CPAAS && !token) {
+    // TODO: UC should store it's token the same way as Link.
+    if (platform === _constants.platforms.UC && !token) {
       token = accessToken;
     }
 
@@ -69287,8 +69287,8 @@ function* sipEventUpdate() {
     let platform = yield (0, _effects3.select)(_selectors2.getPlatform);
     let { server, username, token, accessToken, requestOptions: commonOptions } = yield (0, _effects3.select)(_selectors2.getConnectionInfo);
 
-    // TODO: CPaaS should store it's token the same way as Link.
-    if (platform === _constants.platforms.CPAAS && !token) {
+    // TODO: UC should store it's token the same way as Link.
+    if (platform === _constants.platforms.UC && !token) {
       token = accessToken;
     }
 
@@ -69375,8 +69375,8 @@ function* sipEventUnsubscribe() {
     let platform = yield (0, _effects3.select)(_selectors2.getPlatform);
     let { server, username, token, accessToken, requestOptions: commonOptions } = yield (0, _effects3.select)(_selectors2.getConnectionInfo);
 
-    // TODO: CPaaS should store it's token the same way as Link.
-    if (platform === _constants.platforms.CPAAS && !token) {
+    // TODO: UC should store it's token the same way as Link.
+    if (platform === _constants.platforms.UC && !token) {
       token = accessToken;
     }
 
@@ -69890,7 +69890,7 @@ function usersLink() {
 
 function* contactRequest(method, conn, extraURL, body) {
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : conn.server.version;
+  const version = platform === _constants.platforms.UC ? 1 : conn.server.version;
   var url;
   if (extraURL) {
     url = `${conn.server.protocol}://${conn.server.server}:${conn.server.port}/rest/version/${version}/user/${conn.username}/addressbook/${extraURL}`;
@@ -69970,7 +69970,7 @@ function searchTypeInteger(searchType) {
 
 function* getDirectory(conn, params = {}) {
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : conn.server.version;
+  const version = platform === _constants.platforms.UC ? 1 : conn.server.version;
   var url = `${conn.server.protocol}://${conn.server.server}:${conn.server.port}/rest/version/${version}/user/${conn.username}/directory`;
 
   let queryParams = {};
@@ -70018,7 +70018,7 @@ function* getDirectory(conn, params = {}) {
  */
 function* fetchSelfInfo(connection) {
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : connection.server.version;
+  const version = platform === _constants.platforms.UC ? 1 : connection.server.version;
   var url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}/rest/version/${version}/user/${connection.username}/userProfileData`;
 
   var params = {
@@ -70068,7 +70068,7 @@ function* fetchSelfInfo(connection) {
  */
 function* fetchUserLocale(connection) {
   let platform = yield (0, _effects3.select)(_selectors.getPlatform);
-  const version = platform === _constants.platforms.CPAAS ? 1 : connection.server.version;
+  const version = platform === _constants.platforms.UC ? 1 : connection.server.version;
   const url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}/rest/version/${version}/localization`;
 
   var params = {
@@ -70923,8 +70923,8 @@ var _fp = __webpack_require__(0);
  *  }]
  * @return {Function}        [description]
  *
- * INSTRUCTIONS FOR EXPOSING FUNCTION TO CPAAS VERSION OF THE SDK:
- * the following code will need to be added to the appropriate index files (ie: kandy.cpaas.js)
+ * INSTRUCTIONS FOR EXPOSING FUNCTION TO UC VERSION OF THE SDK:
+ * the following code will need to be added to the appropriate index files (ie: kandy.uc.js)
  * this will expose the createCodecRemover function in the browser
     import createCodecRemover from '../../fcs/src/js/sdp/codecRemover';
     kandy.sdpHandlers = {
