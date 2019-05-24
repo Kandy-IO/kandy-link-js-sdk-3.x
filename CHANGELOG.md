@@ -5,85 +5,28 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 4.3.1 - 2019-04-26
-
-### Fixed
-- Made a hotfix release just to update the version because something went wrong with NPM and it requires a new version.
-
-## 4.3.0 - 2019-04-26
-
-### Added
-- Added group chat functionality with support for sending and receiving messages `KAA-1594`
-- Added an API to create, retrieve, update and delete groups. These groups are used for the group chat functionality.  See `kandy.groups` namespace. `KAA-1516` `KAA-1517` `KAA-1518` `KAA-1519` `KAA-1520`
-- Added the error event to the `subscription`, to prevent subscription change to emmited when there is a subscription failure. `KAA-1351`
-- [CPaaS 2.0] Added reject call functionality. `KAA-1511`
-- Added an API to retrieve basic browser information. See `getBrowserDetails`. `KAA-1470`
-
-### Fixed
-- Fixed an issue where local call logs would not be generated after a call ended. `KAA-1535`
-- Fixed a "remove media" call issue where the error event provided an incorrect message if the track ID was invalid. `KAA-1436`
-- Fixed a call issue where, when put on hold by a Cisco Phone, the call would end after a short period. `KAA-1562`
-- Fixed reject call behaviour to make call state `Ended` on callee side instead of `Cancelled`. `KAA-1584`
-- Fixed a call issue where a media mismatch error on answer would leave the call in `Ringing` state instead of ending the call. `KAA-1432`
-- Fixed an issue where errors prevented renegotiation from completing. `KAA-1497`
-- Fixed call issue where, when on dual hold with a Cisco phone, a remote unhold operation may incorrectly show a video track being added to the call. `KAA-1593`
-
-### Changed
-- The `subscription:change` event is no longer emmitted when there is an error. User will have to subscribe to `subscription:error` as well. `KAA-1351`
-
-## 4.2.0 - 2019-03-29
-
-### Fixed
-
-- Fixed an issue where disconnecting from the network would leave isConnected in the wrong state `KAA-1547`
-
-## 4.1.0 - 2019-03-01
-
-### Added
-
-- Added new Presence event, `presence:selfChange`, to notify when self-presence information has changed. `KAA-1153`
-- Added Presence APIs for retrieving presence information. See `kandy.presence.getAll` and `kandy.presence.getSelf`. KAA-1152.
-- Added Presence constants to the API. See `kandy.presence.statuses` and `kandy.presence.activities`. `KAA-1151`
-
-### Fixed
-
-- Fixed an issue where the states property was not being defined on the call namespace (kandy.call.states). `KAA-1349`
-- Fixed a crash when using the Presence `fetch` API and receiving no data. `KAA-1169`.
-
-### Changed
-
-- Changed the default sdpSemantics to "unified-plan". `KAA-1427`
-
-## 4.0.0 - 2019-02-01
-
-### Compatibility Warning
-
-Version 4.0.0 has many breaking changes for call APIs. Please see the API reference documentation to see the new Call API.
-
-### Added
-
-- Added support to make calls on Safari 12.
-
-### Changed
-
-- Refactored all of the WebRTC-related code.
-
 ## 3.4.1 - 2019-04-26
 
 ### Fixed
 - Made a hotfix release just to update the version because something went wrong with NPM and it requires a new version.
 
-## 3.4.0 - 2019-04-26
+## 3.4.0-beta
 
 ### Added
-- Added the error event to the `subscription`, to prevent subscription change to emmited when there is a subscription failure `KAA-1351`
+
 - Added a DEBUG log at the start of every public API invocation, which will better help with future investigations `KAA-1353`
+- Added the error event to the `subscription`, to prevent subscription change to emmited when there is a subscription failure `KAA-1351`
 
 ### Changed
 - The `subscription:change` event is no longer emmitted when there is an error. User will have to subscribe to `subscription:error` as well. `KAA-1351`
 - No longer stores call stats in localstorage by default. Use the `recordCallStats` configuration to turn this back on. `KAA-1552`
 
-## 3.3.0 - 2018-03-29
+## 3.3.0 - 2019-03-29
+
+### Fixed
+
+- Fixed an issue where JOIN_CALL was not emitting a call:error event when it failed. `KAA-922`
+- Fixed an issue where disconnecting from the network would leave isConnected in the wrong state `KAA-1547`
 
 ### Changed
 
@@ -161,7 +104,7 @@ The function to instantiate the SDK has been renamed from `createKandy()` to `Ka
 
 - Fixed Safari11 and IE11 browser support `KAA-1109`
 - Removed an extra colon from the eventType CALL_HISTORY_CACHE_CHANGE `KAA-546`
-- Fixed the `callHistory` and `presence` plugins to work on both Link and CPaaS 1.5 platforms. `KAA-947`
+- Fixed the `callHistory` and `presence` plugins to work on both Link and UC platforms. `KAA-947`
 - Updated API documentation for 'customParameters' parameter. `KAA-913`
 - Fixed debug message falsely claiming calls may fail in Anonymous Call scenarios. `KAA-934`
 - Updated logs to output slightly less noise as part of a logged item.
@@ -197,7 +140,7 @@ The function to instantiate the SDK has been renamed from `createKandy()` to `Ka
 
 - Fixed an issue where messages fetched for a conversation may show up as duplicate messages. `KAA-849`
 - Fixed an error when trying to fetch a conversation's messages after it received a message. `KAA-848`
-- Fixed a connection issue for CPaaS 1.5 when using the SDK's default services. `KAA-807`
+- Fixed a connection issue for UC when using the SDK's default services. `KAA-807`
 - Fixed an issue where call logs were missing in the logs when a fetch is made immediately after making a call. `KAA-653`
 - Fixed an issue where the `remoteParticipant` property was not being added to call state. `KAA-747`
 
@@ -209,7 +152,7 @@ The function to instantiate the SDK has been renamed from `createKandy()` to `Ka
 
 ### Added
 
-- Added support for OAuth Token subscription via the CPaaS 1.5 API. `KAA-780`
+- Added support for OAuth Token subscription via the UC API. `KAA-780`
 - Added a more consistent structure to SDK debug logs. `KAA-685`
 - Added documentation for the Config plugin's API. `KAA-728`
 - Added kandy.getConfig() functionality for getting the current configuration `KAA-728`

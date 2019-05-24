@@ -675,6 +675,9 @@ If a conversation with the given user ID already exists in the store, it will be
 
 -   `destination` **[string][2]** The destination for messages created in this conversation. This will
     be a user's sip address.
+-   `options` **[Object][5]?** An optional configuration object to query for more specific results.
+    If this object is not passed, the function will query for "im" conversation with that recipient.
+    -   `options.type` **[string][2]?** The type of conversation to retrieve. Can be one of "im", "sms" or "other".
 
 Returns **[Conversation][11]** A Conversation object.
 

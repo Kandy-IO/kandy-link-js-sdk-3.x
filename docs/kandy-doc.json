@@ -23852,9 +23852,35 @@
               "name": "destination"
             },
             {
+              "title": "param",
+              "description": "An optional configuration object to query for more specific results.\nIf this object is not passed, the function will query for \"im\" conversation with that recipient.",
+              "lineNumber": 11,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Object"
+                }
+              },
+              "name": "options"
+            },
+            {
+              "title": "param",
+              "description": "The type of conversation to retrieve. Can be one of \"im\", \"sms\" or \"other\".",
+              "lineNumber": 13,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "options.type"
+            },
+            {
               "title": "returns",
               "description": "A Conversation object.",
-              "lineNumber": 11,
+              "lineNumber": 14,
               "type": {
                 "type": "NameExpression",
                 "name": "Conversation"
@@ -23867,18 +23893,18 @@
               "column": 4
             },
             "end": {
-              "line": 56,
+              "line": 59,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 84,
+                "line": 92,
                 "column": 4
               },
               "end": {
-                "line": 120,
+                "line": 128,
                 "column": 5
               }
             },
@@ -23951,6 +23977,140 @@
                 "type": "NameExpression",
                 "name": "string"
               }
+            },
+            {
+              "title": "param",
+              "name": "options",
+              "lineNumber": 11,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "An optional configuration object to query for more specific results.\nIf this object is not passed, the function will query for \"im\" conversation with that recipient.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 97,
+                            "offset": 165
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 97,
+                        "offset": 165
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 97,
+                    "offset": 165
+                  }
+                }
+              },
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Object"
+                }
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "options.type",
+                  "lineNumber": 13,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The type of conversation to retrieve. Can be one of \"im\", \"sms\" or \"other\".",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 76,
+                                "offset": 75
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 76,
+                            "offset": 75
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 76,
+                        "offset": 75
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                }
+              ]
             }
           ],
           "properties": [],
