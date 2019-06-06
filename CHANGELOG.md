@@ -7,6 +7,9 @@ Kandy.js change log.
 
 ## 3.5.0 - beta
 
+### Compatibility Warning
+- Removed the first parameter (contactId) from kandy.contacts.update() API. The user will need to remove such parameter from any calls made to this API and ensure that contactId is now being supplied as part of the contact object which is passed to this API. `KAA-1600`
+
 ## 3.4.1 - 2019-04-26
 
 ### Fixed
@@ -80,7 +83,7 @@ The function to instantiate the SDK has been renamed from `createKandy()` to `Ka
 
 ### Added
 
-- [CPaaS 2.0] Added chat functionality with support for sending and receiving messages `KAA-617`
+- [CPaaS] Added chat functionality with support for sending and receiving messages `KAA-617`
 - Added user's locale to data returned in fetchSelfInfo(). `KAA-787`
 - Added new Authorization name (authname) to the Kandy connect method. `KAA-606`
 - Implemented originalRemoteParticipant field to call and callHistory for keeping track of the initial call "to" `feat/KAA-959`
