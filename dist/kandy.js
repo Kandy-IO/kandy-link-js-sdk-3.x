@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.5.0-beta.23
+ * Version: 3.5.0-beta.25
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -57408,9 +57408,37 @@ const log = logMgr.getLogger('CALL');
  * @instance
  * @param {Object} call The call configuration object.
  * @param {Object} [call.callDefaults] Default options to be used when making/answering a call.
+ * @param {boolean} [call.callDefaults.isAudioEnabled=true] Specifies whether audio is enabled or not.
+ * @param {boolean} [call.callDefaults.isVideoEnabled=true] Specifies whether video is enabled or not.
+ * @param {boolean} [call.callDefaults.sendInitialVideo=false] Specifies whether to send an inital video stream or not.
+ * @param {Object} [call.callDefaults.remoteVideoContainer] Specifies the container where video (coming from remote party) is rendered.
+ * @param {Object} [call.callDefaults.localVideoContainer] Specifies the container where video (coming from local party) is rendered.
  * @param {string} [call.chromeExtensionId] ID of the screenshare extension being used for screenshare of Google Chrome.
- * @param {boolean} [call.webrtcdtls=true] Whether to enable the webRTC DTLS setting for calls.
  * @param {boolean} [call.recordCallStats=false] Whether to enable the recording of call statistics as part of app's local storage.
+ * @param {boolean} [call.earlyMedia=false] Whether to use early media (e.g. for playing incoming tones) as part of an outgoing call.
+ * @param {number} [call.callAuditTimer=30000] Audit time value for calls, as a positive number in milliseconds.
+ * @param {number} [call.activeCallTimeoutMS=120000] Timeout for an existing ringing call before it gets terminated, as a positive number in milliseconds.
+ * @param {boolean} [call.ringingFeedback] When enabled, inform Spidr that RingingFeedback is supported.
+ * @param {string} [call.codecsToReplace] Specifies alternative audio/video codecs to use for a given call. It has been deprecated so pipeline parameter should be used instead.
+ * @param {boolean} [call.videoInactiveOnHold=false] Sets the video as "inactive" instead of "sendonly" when holding a call.
+ * @param {boolean} [call.forceDisableMediaOnHold=false] Disables any type of media (e.g. Comfort Noise) from transmitting when call is held locally.
+ * @param {number} [call.iceCandidateCollectionTimeoutInterval=3000] When provided (in milliseconds), ice candidate collection is assumed to be completed if at least one candidate is received within the interval.
+ * @param {boolean} [call.relayCandidateCollectionTimeoutCycle=false] When enabled, iceCandidateCollectionTimeoutInterval is restarted until receiving first relay candidate. If the provided cycle limit is reached, ice candidate collection assumed to be completed.
+ * @param {boolean} [call.recordCallStats=false] When enabled, call statistics are recorded in app's localstorage after the call is terminated.
+ * @param {Object} [call.callConstraints] Custom RTCPeerConnection constraints to use for calls. Will cause errors if malformed.
+ * @param {Object} [call.callConstraints.chrome] Custom constraints to be used on Google Chrome.
+ * @param {Object} [call.callConstraints.firefox] Custom constraints to be used on Mozilla Firefox.
+ * @param {string} [call.bundlePolicy='DISABLED'] The bundle policy to use for peer connections. Value can be fcs.SDP_CONSTANTS.BUNDLE_POLICY.MAX_COMPAT, fcs.SDP_CONSTANTS.BUNDLE_POLICY.MAX_BUNDLE, fcs.SDP_CONSTANTS.BUNDLE_POLICY.BALANCED or fcs.SDP_CONSTANTS.BUNDLE_POLICY.DISABLED. The DISABLED option means that bundle group lines will be removed from every SDP.
+ * @param {Object} [call.opusConfig] Bandwidth controls to add for Opus audio codec.
+ * @param {number} [call.opusConfig.maxPlaybackRate] Maximum playback rate, in bits per second. Must be a positive value between 8000 and 48000.
+ * @param {number} [call.opusConfig.maxAverageBitrate] A bitrate encoding value between 6000 and 510000 bits per second.
+ * @param {number} [call.opusConfig.fec] Specifies whether Forward Error Correction is enabled or not. When enabled, FEC provides robustness against packet loss. Acceptable values can only be 0 or 1.
+ * @param {number} [call.opusConfig.dtx] Specifies whether Discontinuous Transmission mode is enabled or not. When enabled, DTX reduces the bitrate during silence or background noise. Acceptable values can only be 0 or 1.
+ * @param {number} [call.opusConfig.ptime] Packet (i.e. frame) duration in milliseconds. Frames will be combined into packets to achieve the maximum of 120 ms duration. A positive value between 2.5 and 120.
+ * @param {number} [call.webrtcLogCollectionInterval=3000] Interval at which to collect WebRTC logs for calls, in milliseconds.
+ * @param {boolean} [call.useRelay=false] Whether we should force connection through the relay candidates (i.e. TURN server). Mostly used for testing.
+ * @param {string} [call.trickleIceSupport='none'] Whether we should advertise and use Trickle ICE. Accepted value is one of: 'none', 'half' or 'full'.
+ * @param {boolean} [call.continuity=false] Whether an existing voice call can be persisted, as a mobile phone moves between circuit switched and packet switched domains (e.g. GSM to WiFi).
  */
 
 /**
@@ -62817,7 +62845,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.5.0-beta.23';
+  let version = '3.5.0-beta.25';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
