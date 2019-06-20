@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.5.0-beta.35
+ * Version: 3.5.0-beta.38
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -62845,7 +62845,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.5.0-beta.35';
+  let version = '3.5.0-beta.38';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -66777,6 +66777,17 @@ const NOTI_CHANGE = exports.NOTI_CHANGE = 'notifications:change';
  */
 const NOTI_ERROR = exports.NOTI_ERROR = 'notifications:error';
 
+/**
+ * A notification was received by the SDK.
+ *
+ * @private This is an undocumented feature.
+ *
+ * @event notification:received
+ * @param {Object} params Object that has information about the notification.
+ * @param {Object} params.payload The payload of the notification.
+ */
+const NOTI_RECEIVED = exports.NOTI_RECEIVED = 'notification:received';
+
 /***/ }),
 
 /***/ "../kandy/src/notifications/interface/events.js":
@@ -66811,6 +66822,15 @@ events[actionTypes.ENABLE_NOTIFICATION_CHANNEL_FINISH] = function (action) {
     return {
       type: eventTypes.NOTI_CHANGE,
       args: { channel: action.meta.channel }
+    };
+  }
+};
+
+events[actionTypes.NOTIFICATION_RECEIVED] = function (action) {
+  if (!action.error) {
+    return {
+      type: eventTypes.NOTI_RECEIVED,
+      args: { payload: action.payload }
     };
   }
 };
