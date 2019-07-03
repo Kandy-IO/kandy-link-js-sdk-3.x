@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.5.0-beta.41
+ * Version: 3.5.0-beta.51
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -62845,7 +62845,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.5.0-beta.41';
+  let version = '3.5.0-beta.51';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -64571,11 +64571,14 @@ function api(context) {
      * @memberof Messaging
      * @requires internalAndSmsMessaging
      * @method getAll
-     * @returns {Array} An array of conversation objects.
+     * @returns {Array<Conversation>} An array of conversation objects.
      */
     getAll: function () {
       log.debug(_logs.API_LOG_TAG + 'conversation.getAll');
-      return (0, _selectors.getConversations)(context.getState());
+      const conversations = (0, _selectors.getConversations)(context.getState());
+
+      // Map conversation Objects to Conversation-Mixin Objects
+      return conversations.map(conversation => context.primitives.Conversation(conversation));
     }
   };
   return { conversation: messagingApi };
