@@ -134,6 +134,12 @@
                         .subscriptionStates
                       </a></li>
                     
+                      <li><a
+                        href='#authenticationdisconnectreasons'
+                        class='regular pre-open'>
+                        .disconnectReasons
+                      </a></li>
+                    
                     </ul>
                   
                   
@@ -2541,6 +2547,71 @@ It's not meant to be displayed to a user.
       </div>
     </div>
   
+    <div class='border-bottom' id='authenticationdisconnectreasons'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>disconnectReasons</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Possible reasons for disconnecting.</p>
+
+
+  <div class='pre p1 fill-light mt0'>disconnectReasons</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>GONE</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : Connection was terminated by the server
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>LOST_CONNECTION</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : Internet connection was lost
+
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
 </div>
 
   
@@ -2601,9 +2672,11 @@ It's not meant to be displayed to a user.
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.forced</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>
+  <td class='break-word'><span class='code bold'>params.reason</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   </td>
-  <td class='break-word'><span>For a disconnection, whether the change was forced by the system.
+  <td class='break-word'><span>The cause of the authentication change, provided in the event of an unsolicited disconnection. See the 
+<code>disconnectReasons</code>
+ API for possible values.
 </span></td>
 </tr>
 

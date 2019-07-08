@@ -174,6 +174,15 @@ Possible subscription states of the user.
 -   `PARTIAL` **[string][2]** Some feature subscriptions exist.
 -   `NONE` **[string][2]** No feature subscriptions exist.
 
+### disconnectReasons
+
+Possible reasons for disconnecting.
+
+**Properties**
+
+-   `GONE` **[string][2]** Connection was terminated by the server
+-   `LOST_CONNECTION` **[string][2]** Internet connection was lost
+
 ## Calls
 
 The call feature is used to make audio and video calls to and from

@@ -1778,13 +1778,13 @@
             },
             {
               "title": "param",
-              "description": "For a disconnection, whether the change was forced by the system.",
+              "description": "The cause of the authentication change, provided in the event of an unsolicited disconnection. See the `disconnectReasons` API for possible values.",
               "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
-                "name": "boolean"
+                "name": "string"
               },
-              "name": "params.forced"
+              "name": "params.reason"
             }
           ],
           "loc": {
@@ -1824,7 +1824,7 @@
               "properties": [
                 {
                   "title": "param",
-                  "name": "params.forced",
+                  "name": "params.reason",
                   "lineNumber": 8,
                   "description": {
                     "type": "root",
@@ -1834,7 +1834,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "For a disconnection, whether the change was forced by the system.",
+                            "value": "The cause of the authentication change, provided in the event of an unsolicited disconnection. See the ",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -1843,8 +1843,42 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 66,
-                                "offset": 65
+                                "column": 104,
+                                "offset": 103
+                              },
+                              "indent": []
+                            }
+                          },
+                          {
+                            "type": "inlineCode",
+                            "value": "disconnectReasons",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 104,
+                                "offset": 103
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 123,
+                                "offset": 122
+                              },
+                              "indent": []
+                            }
+                          },
+                          {
+                            "type": "text",
+                            "value": " API for possible values.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 123,
+                                "offset": 122
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 148,
+                                "offset": 147
                               },
                               "indent": []
                             }
@@ -1858,8 +1892,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 66,
-                            "offset": 65
+                            "column": 148,
+                            "offset": 147
                           },
                           "indent": []
                         }
@@ -1873,14 +1907,14 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 66,
-                        "offset": 65
+                        "column": 148,
+                        "offset": 147
                       }
                     }
                   },
                   "type": {
                     "type": "NameExpression",
-                    "name": "boolean"
+                    "name": "string"
                   }
                 }
               ]
@@ -4779,6 +4813,273 @@
             }
           ],
           "namespace": "AuthenticationsubscriptionStates"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Possible reasons for disconnecting.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 36,
+                        "offset": 35
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 36,
+                    "offset": 35
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 36,
+                "offset": 35
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "Authentication",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "connect"
+            },
+            {
+              "title": "property",
+              "description": "Connection was terminated by the server",
+              "lineNumber": 6,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "GONE"
+            },
+            {
+              "title": "property",
+              "description": "Internet connection was lost",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "LOST_CONNECTION"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 272,
+              "column": 4
+            },
+            "end": {
+              "line": 280,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 281,
+                "column": 4
+              },
+              "end": {
+                "line": 281,
+                "column": 41
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [
+            {
+              "title": "property",
+              "name": "GONE",
+              "lineNumber": 6,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Connection was terminated by the server",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 40,
+                            "offset": 39
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 40,
+                        "offset": 39
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 40,
+                    "offset": 39
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            },
+            {
+              "title": "property",
+              "name": "LOST_CONNECTION",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Internet connection was lost",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 29,
+                            "offset": 28
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 29,
+                        "offset": 28
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 29,
+                    "offset": 28
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            }
+          ],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "Authentication",
+          "name": "disconnectReasons",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "Authentication",
+              "kind": "module"
+            },
+            {
+              "name": "disconnectReasons"
+            }
+          ],
+          "namespace": "AuthenticationdisconnectReasons"
         }
       ]
     },
