@@ -43691,31 +43691,36 @@
               "type": null
             },
             {
+              "title": "static",
+              "description": null,
+              "lineNumber": 3
+            },
+            {
               "title": "name",
               "description": null,
-              "lineNumber": 3,
+              "lineNumber": 4,
               "name": "config.logs"
             },
             {
               "title": "memberof",
               "description": "config",
-              "lineNumber": 4
+              "lineNumber": 5
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 5,
+              "lineNumber": 6,
               "name": "logs"
             },
             {
               "title": "instance",
               "description": null,
-              "lineNumber": 6
+              "lineNumber": 7
             },
             {
               "title": "param",
               "description": "Logs configs.",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -43724,8 +43729,8 @@
             },
             {
               "title": "param",
-              "description": "Log level to be set. See `logger.levels`.",
-              "lineNumber": 8,
+              "description": "Log level to be set. See {@link Logger.levels levels}.",
+              "lineNumber": 9,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -43739,7 +43744,7 @@
             {
               "title": "param",
               "description": "Whether all logs should be output in a string-only format.",
-              "lineNumber": 9,
+              "lineNumber": 10,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -43753,7 +43758,7 @@
             {
               "title": "param",
               "description": "Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.",
-              "lineNumber": 10,
+              "lineNumber": 11,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -43766,7 +43771,7 @@
             {
               "title": "param",
               "description": "Only output information about the action itself. Omits the SDK context for when it occurred.",
-              "lineNumber": 11,
+              "lineNumber": 12,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -43780,7 +43785,7 @@
             {
               "title": "param",
               "description": "Whether logs should be minimized when initially output. The full log is still output and can be inspected on the console.",
-              "lineNumber": 12,
+              "lineNumber": 13,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -43794,7 +43799,7 @@
             {
               "title": "param",
               "description": "Include a diff of what SDK context was changed by the action.",
-              "lineNumber": 13,
+              "lineNumber": 14,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -43808,7 +43813,7 @@
             {
               "title": "param",
               "description": "Allow action payloads to be exposed in the logs, potentially displaying sensitive information",
-              "lineNumber": 14,
+              "lineNumber": 15,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -43822,7 +43827,7 @@
             {
               "title": "param",
               "description": "Enable the detailed call logger.",
-              "lineNumber": 15,
+              "lineNumber": 16,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -43836,7 +43841,7 @@
             {
               "title": "param",
               "description": "Whether to group information about an action log together in the console.",
-              "lineNumber": 16,
+              "lineNumber": 17,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -43854,18 +43859,18 @@
               "column": 0
             },
             "end": {
-              "line": 64,
+              "line": 65,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 72,
+                "line": 73,
                 "column": 0
               },
               "end": {
-                "line": 146,
+                "line": 147,
                 "column": 1
               }
             },
@@ -43877,7 +43882,7 @@
             {
               "title": "param",
               "name": "logs",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "description": {
                 "type": "root",
                 "children": [
@@ -43938,7 +43943,7 @@
                 {
                   "title": "param",
                   "name": "logs.logLevel",
-                  "lineNumber": 8,
+                  "lineNumber": 9,
                   "description": {
                     "type": "root",
                     "children": [
@@ -43963,8 +43968,16 @@
                             }
                           },
                           {
-                            "type": "inlineCode",
-                            "value": "logger.levels",
+                            "type": "link",
+                            "url": "#loggerlevels",
+                            "title": null,
+                            "jsdoc": true,
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "levels"
+                              }
+                            ],
                             "position": {
                               "start": {
                                 "line": 1,
@@ -43973,8 +43986,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 41,
-                                "offset": 40
+                                "column": 54,
+                                "offset": 53
                               },
                               "indent": []
                             }
@@ -43985,13 +43998,13 @@
                             "position": {
                               "start": {
                                 "line": 1,
-                                "column": 41,
-                                "offset": 40
+                                "column": 54,
+                                "offset": 53
                               },
                               "end": {
                                 "line": 1,
-                                "column": 42,
-                                "offset": 41
+                                "column": 55,
+                                "offset": 54
                               },
                               "indent": []
                             }
@@ -44005,8 +44018,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 42,
-                            "offset": 41
+                            "column": 55,
+                            "offset": 54
                           },
                           "indent": []
                         }
@@ -44020,8 +44033,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 42,
-                        "offset": 41
+                        "column": 55,
+                        "offset": 54
                       }
                     }
                   },
@@ -44034,7 +44047,7 @@
                 {
                   "title": "param",
                   "name": "logs.flatten",
-                  "lineNumber": 9,
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44096,7 +44109,7 @@
                 {
                   "title": "param",
                   "name": "logs.logActions",
-                  "lineNumber": 10,
+                  "lineNumber": 11,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44160,7 +44173,7 @@
                     {
                       "title": "param",
                       "name": "logs.logActions.actionOnly",
-                      "lineNumber": 11,
+                      "lineNumber": 12,
                       "description": {
                         "type": "root",
                         "children": [
@@ -44222,7 +44235,7 @@
                     {
                       "title": "param",
                       "name": "logs.logActions.collapsed",
-                      "lineNumber": 12,
+                      "lineNumber": 13,
                       "description": {
                         "type": "root",
                         "children": [
@@ -44284,7 +44297,7 @@
                     {
                       "title": "param",
                       "name": "logs.logActions.diff",
-                      "lineNumber": 13,
+                      "lineNumber": 14,
                       "description": {
                         "type": "root",
                         "children": [
@@ -44346,7 +44359,7 @@
                     {
                       "title": "param",
                       "name": "logs.logActions.exposePayloads",
-                      "lineNumber": 14,
+                      "lineNumber": 15,
                       "description": {
                         "type": "root",
                         "children": [
@@ -44410,7 +44423,7 @@
                 {
                   "title": "param",
                   "name": "logs.enableFcsLogs",
-                  "lineNumber": 15,
+                  "lineNumber": 16,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44472,7 +44485,7 @@
                 {
                   "title": "param",
                   "name": "logs.enableGrouping",
-                  "lineNumber": 16,
+                  "lineNumber": 17,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44540,9 +44553,9 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "scope": "instance",
           "name": "config.logs",
           "memberof": "config",
-          "scope": "instance",
           "members": {
             "global": [],
             "inner": [],
@@ -50524,7 +50537,7 @@
           "children": [
             {
               "type": "text",
-              "value": "The internal logger used to provide information about the SDK's behaviour.\nThe logger can provide two types of logs: basic logs and action logs. Basic\nlogs are simple lines of information about what the SDK is doing during operations.\nAction logs are complete information about a specific action that occurred\nwithin the SDK, prodiving debug information describing it.\nThe amount of information logged can be configured as part of the SDK\n(see ",
+              "value": "The internal logger is used to provide information about the SDK's behaviour.\nThe logger can provide two types of logs: basic logs and action logs. Basic\nlogs are simple lines of information about what the SDK is doing during operations.\nAction logs are complete information about a specific action that occurred\nwithin the SDK, providing debug information describing it.\nThe amount of information logged can be configured as part of the SDK configuration.\nSee ",
               "position": {
                 "start": {
                   "line": 1,
@@ -50533,8 +50546,8 @@
                 },
                 "end": {
                   "line": 7,
-                  "column": 6,
-                  "offset": 444
+                  "column": 5,
+                  "offset": 461
                 },
                 "indent": [
                   1,
@@ -50547,35 +50560,43 @@
               }
             },
             {
-              "type": "inlineCode",
-              "value": "configs.logs",
+              "type": "link",
+              "url": "#configconfiglogs",
+              "title": null,
+              "jsdoc": true,
+              "children": [
+                {
+                  "type": "text",
+                  "value": "config.logs"
+                }
+              ],
               "position": {
                 "start": {
                   "line": 7,
-                  "column": 6,
-                  "offset": 444
+                  "column": 5,
+                  "offset": 461
                 },
                 "end": {
                   "line": 7,
-                  "column": 20,
-                  "offset": 458
+                  "column": 42,
+                  "offset": 498
                 },
                 "indent": []
               }
             },
             {
               "type": "text",
-              "value": ") configuration.",
+              "value": " .",
               "position": {
                 "start": {
                   "line": 7,
-                  "column": 20,
-                  "offset": 458
+                  "column": 42,
+                  "offset": 498
                 },
                 "end": {
                   "line": 7,
-                  "column": 36,
-                  "offset": 474
+                  "column": 44,
+                  "offset": 500
                 },
                 "indent": []
               }
@@ -50589,8 +50610,8 @@
             },
             "end": {
               "line": 7,
-              "column": 36,
-              "offset": 474
+              "column": 44,
+              "offset": 500
             },
             "indent": [
               1,
@@ -50611,8 +50632,8 @@
         },
         "end": {
           "line": 7,
-          "column": 36,
-          "offset": 474
+          "column": 44,
+          "offset": 500
         }
       }
     },
@@ -50654,7 +50675,7 @@
           "column": 0
         },
         "end": {
-          "line": 39,
+          "line": 40,
           "column": 1
         }
       },
@@ -50738,14 +50759,19 @@
               "type": null
             },
             {
-              "title": "memberof",
-              "description": "Logger",
+              "title": "static",
+              "description": null,
               "lineNumber": 3
             },
             {
+              "title": "memberof",
+              "description": "Logger",
+              "lineNumber": 4
+            },
+            {
               "title": "property",
-              "description": "Logs nothing.",
-              "lineNumber": 4,
+              "description": "Log nothing.",
+              "lineNumber": 5,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -50754,8 +50780,8 @@
             },
             {
               "title": "property",
-              "description": "Only log unhandled errors.",
-              "lineNumber": 5,
+              "description": "Log only unhandled errors.",
+              "lineNumber": 6,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -50765,7 +50791,7 @@
             {
               "title": "property",
               "description": "Log issues that may cause problems or unexpected behaviour.",
-              "lineNumber": 6,
+              "lineNumber": 7,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -50775,7 +50801,7 @@
             {
               "title": "property",
               "description": "Log useful information and messages to indicate the SDK's internal operations.",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -50785,7 +50811,7 @@
             {
               "title": "property",
               "description": "Log information to help diagnose problematic behaviour.",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -50799,18 +50825,18 @@
               "column": 4
             },
             "end": {
-              "line": 26,
+              "line": 27,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 27,
+                "line": 28,
                 "column": 4
               },
               "end": {
-                "line": 33,
+                "line": 34,
                 "column": 5
               }
             },
@@ -50823,7 +50849,7 @@
             {
               "title": "property",
               "name": "SILENT",
-              "lineNumber": 4,
+              "lineNumber": 5,
               "description": {
                 "type": "root",
                 "children": [
@@ -50832,7 +50858,7 @@
                     "children": [
                       {
                         "type": "text",
-                        "value": "Logs nothing.",
+                        "value": "Log nothing.",
                         "position": {
                           "start": {
                             "line": 1,
@@ -50841,8 +50867,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 14,
-                            "offset": 13
+                            "column": 13,
+                            "offset": 12
                           },
                           "indent": []
                         }
@@ -50856,8 +50882,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 14,
-                        "offset": 13
+                        "column": 13,
+                        "offset": 12
                       },
                       "indent": []
                     }
@@ -50871,8 +50897,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 14,
-                    "offset": 13
+                    "column": 13,
+                    "offset": 12
                   }
                 }
               },
@@ -50884,7 +50910,7 @@
             {
               "title": "property",
               "name": "ERROR",
-              "lineNumber": 5,
+              "lineNumber": 6,
               "description": {
                 "type": "root",
                 "children": [
@@ -50893,7 +50919,7 @@
                     "children": [
                       {
                         "type": "text",
-                        "value": "Only log unhandled errors.",
+                        "value": "Log only unhandled errors.",
                         "position": {
                           "start": {
                             "line": 1,
@@ -50945,7 +50971,7 @@
             {
               "title": "property",
               "name": "WARN",
-              "lineNumber": 6,
+              "lineNumber": 7,
               "description": {
                 "type": "root",
                 "children": [
@@ -51006,7 +51032,7 @@
             {
               "title": "property",
               "name": "INFO",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "description": {
                 "type": "root",
                 "children": [
@@ -51067,7 +51093,7 @@
             {
               "title": "property",
               "name": "DEBUG",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "description": {
                 "type": "root",
                 "children": [
@@ -51131,6 +51157,7 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "scope": "static",
           "memberof": "Logger",
           "name": "levels",
           "members": {
@@ -51146,10 +51173,11 @@
               "kind": "module"
             },
             {
-              "name": "levels"
+              "name": "levels",
+              "scope": "static"
             }
           ],
-          "namespace": "Loggerlevels"
+          "namespace": "Logger.levels"
         }
       ]
     },

@@ -13256,7 +13256,7 @@ values you can use when instantiating the SDK.</p>
     (default <code>debug</code>)
   </td>
   <td class='break-word'><span>Log level to be set. See 
-<code>logger.levels</code>
+<a href="#loggerlevels">levels</a>
 .
 </span></td>
 </tr>
@@ -14468,13 +14468,13 @@ to be used for all calls.</p>
   </div>
   
 
-  <p>The internal logger used to provide information about the SDK's behaviour.
+  <p>The internal logger is used to provide information about the SDK's behaviour.
 The logger can provide two types of logs: basic logs and action logs. Basic
 logs are simple lines of information about what the SDK is doing during operations.
 Action logs are complete information about a specific action that occurred
-within the SDK, prodiving debug information describing it.
-The amount of information logged can be configured as part of the SDK
-(see <code>configs.logs</code>) configuration.</p>
+within the SDK, providing debug information describing it.
+The amount of information logged can be configured as part of the SDK configuration.
+See <a href="#configconfiglogs">config.logs</a> .</p>
 
 
   <div class='pre p1 fill-light mt0'>Logger</div>
@@ -14536,14 +14536,14 @@ The amount of information logged can be configured as part of the SDK
       
         <div class='space-bottom0'>
           <span class='code bold'>SILENT</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-          : Logs nothing.
+          : Log nothing.
 
           
         </div>
       
         <div class='space-bottom0'>
           <span class='code bold'>ERROR</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-          : Only log unhandled errors.
+          : Log only unhandled errors.
 
           
         </div>
