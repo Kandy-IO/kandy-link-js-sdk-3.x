@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.6.0-beta.69
+ * Version: 3.6.0-beta.91
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -42164,24 +42164,24 @@ function WebRtcAdaptorImpl(_ref) {
         }
     };
 
-    var updateVideoConstraints = function updateVideoConstraints(videoConstraints, videoResolutionArray, deviceId) {
+    var updateVideoConstraints = function updateVideoConstraints(videoConstraints, videoResolution, deviceId) {
         // If the constraint is a boolean, leave it as such if no resolution or deviceId was specified
         if (typeof videoConstraints === 'boolean') {
-            if (!videoResolutionArray && !deviceId) {
+            if (!videoResolution && !deviceId) {
                 return videoConstraints;
             }
 
             videoConstraints = {};
         }
 
-        if (videoResolutionArray && videoResolutionArray.length) {
+        if (videoResolution) {
             videoConstraints.height = {
-                max: videoResolutionArray[1],
-                min: videoResolutionArray[3]
+                max: videoResolution.maxHeight ? videoResolution.maxHeight : videoResolution.height,
+                min: videoResolution.minHeight ? videoResolution.minHeight : videoResolution.height
             };
             videoConstraints.width = {
-                max: videoResolutionArray[0],
-                min: videoResolutionArray[2]
+                max: videoResolution.maxWidth ? videoResolution.maxWidth : videoResolution.width,
+                min: videoResolution.minWidth ? videoResolution.minWidth : videoResolution.width
             };
         }
 
@@ -42191,7 +42191,6 @@ function WebRtcAdaptorImpl(_ref) {
 
     self.prepareVideoConstraints = function (data) {
         var mediaConstraints,
-            videoResolutionArray,
             selectedCameraId = self.getSelectedCameraId(),
             isVideoEnabled,
             videoResolution,
@@ -42211,23 +42210,9 @@ function WebRtcAdaptorImpl(_ref) {
             return false;
         }
 
-        if (videoResolution) {
-            if (typeof videoResolution === 'string') {
-                // First and third elements of array will be Width and second and fourth elements will be Height
-                videoResolutionArray = videoResolution.split('x');
-                // we need an array with 4 elements
-                videoResolutionArray = videoResolutionArray.concat(videoResolutionArray);
-                logger.warn('Deprecated usage of video resolution!!');
-                logger.warn('Pass video resolution as an object. Please see documentation for more information.');
-            } else {
-                // videoResolution is an object in this case
-                videoResolutionArray = [videoResolution.minWidth ? videoResolution.minWidth : videoResolution.width, videoResolution.minHeight ? videoResolution.minHeight : videoResolution.height, videoResolution.maxWidth ? videoResolution.maxWidth : videoResolution.width, videoResolution.maxHeight ? videoResolution.maxHeight : videoResolution.height];
-            }
-        }
-
         if (isVideoEnabled) {
             mediaConstraints = self.getUserMediaContraints();
-            mediaConstraints.video = updateVideoConstraints(mediaConstraints.video, videoResolutionArray, selectedCameraId);
+            mediaConstraints.video = updateVideoConstraints(mediaConstraints.video, videoResolution, selectedCameraId);
         }
 
         //We need to handle specific resolution constraints for screen sharing.
@@ -53359,7 +53344,7 @@ const log = (0, _logs.getLogManager)().getLogger('CALL');
 
 // Libraries.
 /**
- * The call feature is used to make audio and video calls to and from
+ * The Calls feature is used to make audio and video calls to and from
  * SIP users and PSTN phones.
  *
  * Call functions are all part of the 'call' namespace.
@@ -53468,7 +53453,7 @@ function api({ dispatch, getState }) {
      * @requires callMe
      * @method init
      * @param {Object} [options]
-     * @param {string} [options.chromeExtensionId] The ID of the Chrome Screenshare extension, if your application will be using screenshare on Chrome.
+     * @param {string} [options.chromeExtensionId] The ID of the Chrome Screenshare extension if your application will be using screenshare on Chrome.
      */
     init(options) {
       log.debug(_logs.API_LOG_TAG + 'media.init: ', options);
@@ -60528,6 +60513,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 const log = (0, _logs.getLogManager)().getLogger('CONFIG'); /**
                                                              * An interface for getting and updating the configuration Object.
                                                              *
+                                                             * Config functions are available directly on the SDK Object
+                                                             *
                                                              * @public
                                                              * @module Config
                                                              * @requires config
@@ -60541,7 +60528,7 @@ function api(context) {
      * @memberof Config
      * @requires config
      * @method getConfig
-     * @returns {Object} A configuration Object
+     * @returns {Object} A configuration Object.
      */
     getConfig: function () {
       log.debug(_logs.API_LOG_TAG + 'getConfig');
@@ -60552,10 +60539,11 @@ function api(context) {
      * Update values in the global Config section of the store.
      *
      * @public
+     * @static
      * @memberof Config
      * @requires config
      * @method updateConfig
-     * @param {Object} newConfigValues Key Value pairs that will be placed into the store.
+     * @param {Object} newConfigValues Key-value pairs that will be placed into the store. See {@link config} for details on what key-value pairs are available for use.
      */
     updateConfig: function (newConfigValues) {
       log.debug(_logs.API_LOG_TAG + 'updateConfig: ', newConfigValues);
@@ -60927,7 +60915,7 @@ function api({ dispatch, getState }) {
      * @public
      * @memberof Connectivity
      * @method getSocketState
-     * @param  {string} [platform='link'] Backend platform for which websocket's state to request.
+     * @param {string} [platform='link'] Backend platform for which to request the websocket's state.
      */
     getSocketState(platform = _constants.platforms.LINK) {
       log.debug(_logs.API_LOG_TAG + 'connection.getSocketState: ', platform);
@@ -60939,14 +60927,13 @@ function api({ dispatch, getState }) {
      * @public
      * @memberof Connectivity
      * @method enableConnectivityChecking
-     * @param {boolean} enable Whether to enable or disable connectivity checking.
+     * @param {boolean} enable Enable connectivity checking.
      */
     enableConnectivityChecking(enable) {
       log.debug(_logs.API_LOG_TAG + 'connection.enableConnectivityChecking: ', enable);
       dispatch((0, _actions.changeConnectivityChecking)(enable));
     }
   };
-
   return { connection: connectivityApi };
 }
 
@@ -61926,6 +61913,45 @@ const connCheckMethods = exports.connCheckMethods = {
   KEEP_ALIVE: 'keepAlive',
   PING_PONG: 'pingPong'
 };
+
+/***/ }),
+
+/***/ "../kandy/src/docs/docs.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * The User ID ie: joe@test.3s5j.att.com
+ *
+ * @public
+ * @module UserID
+ * @requires cpaas_user_id
+ */
+
+/**
+ * The SIP URI ie: sip:joe@domain.com
+ *
+ * @public
+ * @module SIP_URI
+ * @requires link_user_id
+ */
+
+/**
+ * The Phone Numer ie: +18885559876
+ *
+ * @public
+ * @module PhoneNumber
+ * @requires cpaas_pstn
+ */
+
+/**
+ * The TEL URI ie: tel:+18885559876
+ *
+ * @public
+ * @module TEL_URI
+ * @requires link_pstn
+ */
+
 
 /***/ }),
 
@@ -62931,7 +62957,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.6.0-beta.69';
+  let version = '3.6.0-beta.91';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -63187,27 +63213,41 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
  * @module config
  */
 
+// Disabling eslint for the next comment as we want to be able to use a disallowed word
+// eslint-disable-next-line no-warning-comments
 /**
- * A set of handlers for manipulating SDP information.
+ * A set of {@link #sdphandlerfunction SdpHandlerFunction}s for manipulating SDP information.
  * These handlers are used to customize low-level call behaviour for very specific
  * environments and/or scenarios. They can be provided during SDK instantiation
  * to be used for all calls.
+ *
  * @public
  * @module sdpHandlers
+ * @example
+ * import { create, sdpHandlers } from 'kandy';
+ * const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+ * const client = create({
+ *   call: {
+ *     sdpHandlers: [ <Your-SDP-Handler-Function>, ...]
+ *   }
+ * })
  */
 
 // Disabling eslint for the next comment as we want to be able to use a disallowed word
 // eslint-disable-next-line no-warning-comments
 /**
- * In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
+ * In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party.
+ * While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
  *
- * To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.
+ * To facilitate this common task, the SDK provides a codec removal handler creator that can be used for this purpose.
  *
  * The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
  *
  * @public
  * @memberof sdpHandlers
  * @method createCodecRemover
+ * @param {Array<string>} codecs A list of codec names to remove from the SDP.
+ * @returns {SdpHandlerFunction} The resulting SDP handler that will remove the codec.
  * @example
  * import { create, sdpHandlers } from 'kandy';
  * const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
@@ -63292,14 +63332,16 @@ var _link11 = __webpack_require__("../kandy/src/users/link.js");
 
 var _link12 = _interopRequireDefault(_link11);
 
+__webpack_require__("../kandy/src/docs/docs.js");
+
 var _codecRemover = __webpack_require__("../fcs/src/js/sdp/codecRemover.js");
 
 var _codecRemover2 = _interopRequireDefault(_codecRemover);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// TODO: Update when new Link is done.
-const defaultPlugins = [..._basePlugins2.default, { name: 'authentication', fn: _link2.default }, { name: 'call', fn: _oldLink2.default }, { name: 'callHistory', fn: _callHistory2.default }, { name: 'clickToCall', fn: _clickToCall2.default }, { name: 'connectivity', fn: _connectivity2.default }, { name: 'messaging', fn: _link4.default }, { name: 'mwi', fn: _link6.default }, { name: 'notifications', fn: _link8.default }, { name: 'presence', fn: _link10.default }, { name: 'sipEvents', fn: _sipEvents2.default }, { name: 'users', fn: _link12.default }];
+const defaultPlugins = [..._basePlugins2.default, { name: 'authentication', fn: _link2.default }, { name: 'call', fn: _oldLink2.default }, { name: 'callHistory', fn: _callHistory2.default }, { name: 'clickToCall', fn: _clickToCall2.default }, { name: 'connectivity', fn: _connectivity2.default }, { name: 'messaging', fn: _link4.default }, { name: 'mwi', fn: _link6.default }, { name: 'notifications', fn: _link8.default }, { name: 'presence', fn: _link10.default }, { name: 'sipEvents', fn: _sipEvents2.default }, { name: 'users', fn: _link12.default }]; // TODO: Update when new Link is done.
+
 
 function root(options = {}, plugins = []) {
   return (0, _index2.default)(options, [...defaultPlugins, ...plugins]);
@@ -63408,7 +63450,7 @@ const logMgr = getLogManager(defaultOptions);
  * @requires logs
  * @instance
  * @param {Object} logs Logs configs.
- * @param  {string} [logs.logLevel=debug] Log level to be set. See {@link Logger.levels levels}.
+ * @param  {string} [logs.logLevel='debug'] Log level to be set. See {@link Logger.levels levels}.
  * @param  {boolean} [logs.flatten=false] Whether all logs should be output in a string-only format.
  * @param  {Object} [logs.logActions] Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.
  * @param  {boolean} [logs.logActions.actionOnly=true] Only output information about the action itself. Omits the SDK context for when it occurred.
@@ -67908,16 +67950,28 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (context) {
   const presenceApi = {
     /**
-     * Update the presence for the current user.
-     * Other users subscribed for this user's presence will receive the update.
+     * Updates the presence information for the current user.
+     *
+     * See {@link Presence.statuses presence.statuses} and
+     *    {@link Presence.activities presence.activities} for valid values.
+     *
+     * The SDK will emit a
+     *    {@link Presence.event:presence:selfChange presence:selfChange} event
+     *    when the operation completes. The updated presence information is
+     *    available and can be retrieved with
+     *    {@link Presence.getSelf presence.getSelf}.
+     *
+     * Other users subscribed for this user's presence will receive a
+     *    {@link Presence.event:presence:change presence:change} event.
      *
      * @public
+     * @static
      * @memberof Presence
      * @requires presence
      * @method update
      * @param  {string} status The status of the presence state.
      * @param  {string} activity The activity to be shown as presence state
-     * @param  {string} [note] An additional note to be provided when the activity is "other".
+     * @param  {string} [note] An additional note to be provided when the activity is `presence.activities.ACTIVITIES_OTHER`.
      */
     update(status, activity, note) {
       log.debug(_logs.API_LOG_TAG + 'presence.update: ', status, activity, note);
@@ -67925,14 +67979,15 @@ exports.default = function (context) {
     },
 
     /**
-     * Retrieve the presence information for specified users.
+     * Retrieves the presence information for specified users, if available.
      *
      * @public
+     * @static
      * @memberof Presence
      * @requires presence
      * @method get
-     * @param  {Array<string>|string} users  A user id or an array of user ids.
-     * @return {Array} List of user presence information.
+     * @param  {Array<string>|string} user A User ID or an array of User IDs.
+     * @return {Array<Object>|Object} List of user presence information.
      */
     get(user) {
       log.debug(_logs.API_LOG_TAG + 'presence.get: ', user);
@@ -67949,13 +68004,14 @@ exports.default = function (context) {
     },
 
     /**
-     * Retrieve the presence information for all users.
+     * Retrieves the presence information for all available users.
      *
      * @public
+     * @static
      * @memberof Presence
      * @requires presence
      * @method getAll
-     * @return {Array} List of user presence information.
+     * @return {Array<Object>} List of user presence information.
      */
     getAll() {
       log.debug(_logs.API_LOG_TAG + 'presence.getAll');
@@ -67965,11 +68021,15 @@ exports.default = function (context) {
     /**
      * Retrieves the presence information for the current user.
      *
+     * This information is set using the {@link Presence.update presnece.update}
+     *    API.
+     *
      * @public
+     * @static
      * @memberof Presence
      * @requires presence
      * @method getSelf
-     * @return {Object}
+     * @return {Object} Presence information for the current user.
      */
     getSelf() {
       log.debug(_logs.API_LOG_TAG + 'presence.getSelf');
@@ -67977,15 +68037,19 @@ exports.default = function (context) {
     },
 
     /**
-     * Fetch (from the server) the presence for the given users.
-     * This will update the store with the retrieved values, which can then
-     * be accessed using `get`.
+     * Fetches presence information for the given users. This will refresh the
+     *    available information with any new information from the server.
+     *
+     * Available presence information an be retrieved using the
+     *    {@link Presence.get presence.get} or
+     *    {@link Presence.getAll presence.getAll} APIs.
      *
      * @public
+     * @static
      * @memberof Presence
      * @requires presence
      * @method fetch
-     * @param  {Array<string>|string} users  A user id or an array of user ids.
+     * @param {Array<string>|string} user A User ID or an array of User IDs.
      */
     fetch(user) {
       log.debug(_logs.API_LOG_TAG + 'presence.fetch: ', user);
@@ -67994,13 +68058,17 @@ exports.default = function (context) {
     },
 
     /**
-     * Subscribe to retrieve presence updates about specified user.
+     * Subscribe to another User's presence updates.
+     *
+     * When the User updates their presence information, the SDK will emit a
+     *    {@link Presence.event:presence:change presence:change} event.
      *
      * @public
+     * @static
      * @memberof Presence
      * @requires presence
      * @method subscribe
-     * @param  {string} user  The ID of the user to subscribe to.
+     * @param {Array<string>|string} users A User ID or an array of User IDs.
      */
     subscribe(users) {
       log.debug(_logs.API_LOG_TAG + 'presence.subscribe: ', users);
@@ -68008,13 +68076,14 @@ exports.default = function (context) {
     },
 
     /**
-     * Unsubscribe from presence updates about specified user.
+     * Unsubscribe from another User's presence updates.
      *
      * @public
+     * @static
      * @memberof Presence
      * @requires presence
      * @method unsubscribe
-     * @param  {string} user  The ID of the user to unsubscribe from.
+     * @param {Array<string>|string} users A User ID or an array of User IDs.
      */
     unsubscribe(users) {
       log.debug(_logs.API_LOG_TAG + 'presence.unsubscribe: ', users);
@@ -68037,10 +68106,20 @@ var _logs = __webpack_require__("../kandy/src/logs/index.js");
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 const log = (0, _logs.getLogManager)().getLogger('PRESENCE'); /**
-                                                               * The presence features are used to update the authenticated users presence
-                                                               * on the server, as well as retrieve other users presence information.
+                                                               * The Presence feature provides an interface for an application to set the
+                                                               *    User's presence information and to track other Users' presence
+                                                               *    information.
                                                                *
-                                                               * Presence functions are all part of the 'presence' namespace.
+                                                               * Presence information is persisted by the server. When the SDK is initialized,
+                                                               *    there will be no information available. Presence information will become
+                                                               *    available either by using {@link Presence.fetch presence.fetch} or
+                                                               *    by subscribing for updates about other Users, using
+                                                               *    {@link Presence.subscribe presence.subscribe}.
+                                                               *
+                                                               * Available presence information can be retrieved using
+                                                               *    {@link Presence.get presence.get} or {@link Presence.getAll presence.getAll}.
+                                                               *
+                                                               * Presence APIs are part of the 'presence' namespace.
                                                                *
                                                                * @public
                                                                * @requires presence
@@ -68059,7 +68138,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 /**
- * A presence update has been received from a subscribed user.
+ * A presence update about a subscribed user has been received.
  *
  * @public
  * @memberof Presence
@@ -68074,7 +68153,10 @@ Object.defineProperty(exports, "__esModule", {
 const RECEIVED = exports.RECEIVED = 'presence:change';
 
 /**
- * The user's self presence information has changed.
+ * The current user's presence information has changed.
+ *
+ * The changed information can be retrieved using the
+ *    {@link Presence.getSelf presence.getSelf} API.
  *
  * @public
  * @memberof Presence
@@ -68084,7 +68166,7 @@ const RECEIVED = exports.RECEIVED = 'presence:change';
 const SELF_CHANGE = exports.SELF_CHANGE = 'presence:selfChange';
 
 /**
- * An error occured with presence.
+ * An error occurred with presence.
  *
  * @public
  * @memberof Presence
@@ -68465,6 +68547,7 @@ function linkPresence() {
     /**
      * Possible status values.
      * @public
+     * @static
      * @memberof Presence
      * @type {Object}
      * @property {string} OPEN
@@ -68479,6 +68562,7 @@ function linkPresence() {
     /**
      * Possible activity values.
      * @public
+     * @static
      * @memberof Presence
      * @type {Object}
      * @property {string} AVAILABLE
@@ -70747,21 +70831,40 @@ function usersAPI({ dispatch, getState, primitives }) {
   /**
    * The Users feature allows access to user information for users within the same domain.
    *
-   * These functions are namespaced beneath 'user' on the API.
+   * The functions in this module are namespaced under 'user'.
    * @public
    * @module Users
    */
 
+  /**
+   * The User data object.
+   *
+   * @public
+   * @module User
+   * @property {string} userId The User ID of the user.
+   * @property {string} emailAddress The email address of the user.
+   * @property {string} firstName The first name of the user.
+   * @property {string} lastName The last name of the user.
+   * @property {string} photoURL The URL to get the photo of the user.
+   * @property {string} buddy Whether the user is a "buddy". Values can be "true" or "false".
+   */
+
   return {
     /**
-     * Fetches information about a specified user from the platform.
-     * Will trigger a `directory:change` event.
+     * Fetches information about a User.
+     *
+     * The SDK will emit a {@link Users.event:directory:change directory:change}
+     *    event after the operation completes. The User's information will then
+     *    be available.
+     *
+     * Information about an available User can be retrieved using the
+     *    {@link Users.get user.get} API.
      *
      * @public
+     * @static
      * @memberof Users
      * @method fetch
-     *
-     * @param {string} userId The URI uniquely identifying the user.
+     * @param {string} userId The User ID of the user.
      */
     fetch(userId) {
       log.debug(_logs.API_LOG_TAG + 'user.fetch: ', userId);
@@ -70769,10 +70872,17 @@ function usersAPI({ dispatch, getState, primitives }) {
     },
 
     /**
-     * Fetches information about the current user's profile data from the platform.
-     * Will trigger a `directory:change` event.
+     * Fetches information about the current User.
+     *
+     * The SDK will emit a {@link Users.event:directory:change directory:change}
+     *    event after the operation completes. The User's information will then
+     *    be available.
+     *
+     * Information about an available User can be retrieved using the
+     *    {@link Users.get user.get} API.
      *
      * @public
+     * @static
      * @memberof Users
      * @method fetchSelfInfo
      */
@@ -70782,11 +70892,17 @@ function usersAPI({ dispatch, getState, primitives }) {
     },
 
     /**
-     * Retrieves local information about a previously fetched user.
+     * Retrieves information about a User, if available.
+     *
+     * See the {@link Users.fetch user.fetch} and
+     *    {@link Users.search user.search} APIs for details about making Users'
+     *    information available.
+     *
      * @public
      * @memberof Users
      * @method get
-     * @param {string} userId The URI uniquely identifying the user.
+     * @param {string} userId The User ID of the user.
+     * @returns {User} The User object for the specified user.
      */
     get(userId) {
       log.debug(_logs.API_LOG_TAG + 'user.get: ', userId);
@@ -70794,10 +70910,16 @@ function usersAPI({ dispatch, getState, primitives }) {
     },
 
     /**
-     * Retrieves local information about previously fetched users.
+     * Retrieves information about all available Users.
+     *
+     * See the {@link Users.fetch user.fetch} and
+     *    {@link Users.search user.search} APIs for details about making Users'
+     *    information available.
+     *
      * @public
      * @memberof Users
      * @method getAll
+     * @returns {Array<User>} An array of all the User objects.
      */
     getAll() {
       log.debug(_logs.API_LOG_TAG + 'user.getAll');
@@ -70805,24 +70927,29 @@ function usersAPI({ dispatch, getState, primitives }) {
     },
 
     /**
-     * Search the users in the directory.
-     * Will trigger a `directory:change` event.
+     * Searches the domain's directory for Users.
+     *
+     * The SDK will emit a {@link Users.event:directory:change directory:change}
+     *    event after the operation completes. The search results will be
+     *    provided as part of the event, and will also be available using the
+     *    {@link Users.get user.get} and {@link Users.getAll user.getAll} APIs.
      *
      * @public
+     * @static
      * @memberof Users
      * @method search
-     * @param {Object} filters Query filter options.
-     * @param {string} [filters.userId] Matches the unique URI identifying the user.
-     * @param {string} [filters.name] Matches firstName or lastName.
-     * @param {string} [filters.firstName] Matches firstName.
-     * @param {string} [filters.lastName] Matches lastName.
-     * @param {string} [filters.userName] Matches userName.
-     * @param {string} [filters.phoneNumber] Matches phoneNumber.
-     * @param {Object} [options] Sorting options
-     * @param {string} [options.sortBy] The attribute upon which to sort results. This can be any of the above listed filters which describe a user attribute.
-     * @param {string} [options.order] Order by which to return results. Can be one of "asc" or "desc".
-     * @param {number} [options.max] The maximmum number of results to return.
-     * @param {string} [options.next] The pointer for a chunk of results, which may be returned from other a previous query.
+     * @param {Object} filters The filter options for the search.
+     * @param {string} [filters.userId] Matches the User ID of the user.
+     * @param {string} [filters.name] Matches the firstName or lastName.
+     * @param {string} [filters.firstName] Matches the firstName.
+     * @param {string} [filters.lastName] Matches the lastName.
+     * @param {string} [filters.userName] Matches the userName.
+     * @param {string} [filters.phoneNumber] Matches the phoneNumber.
+     * @param {Object} [options] Sorting options.
+     * @param {string} [options.sortBy] The User property to sort the results by. This can be any of the above listed filters.
+     * @param {string} [options.order] Order in which results are returned. Can be either "asc" or "desc".
+     * @param {number} [options.max] The maximum number of results to return.
+     * @param {string} [options.next] The pointer for a chunk of results, which may be returned from a previous query.
      */
     search(filters = {}, options = {}) {
       log.debug(_logs.API_LOG_TAG + 'user.search: ', filters, options);
@@ -70939,10 +71066,12 @@ const CONTACTS_CHANGE = exports.CONTACTS_CHANGE = 'contacts:change';
 /**
  * The directory has changed.
  * @public
+ * @static
  * @memberof Users
  * @event directory:change
  * @param {Object} params
- * @param {Array} params.results The results of the directory search.
+ * @param {Array<User>} params.results The Users' information returned by the
+ *    operation.
  */
 const DIRECTORY_CHANGE = exports.DIRECTORY_CHANGE = 'directory:change';
 

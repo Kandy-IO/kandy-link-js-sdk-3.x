@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>kandy 3.4.1 | Documentation</title>
+  <title>kandy 3.6.0 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>kandy</h3>
-          <div class='mb1'><code>3.4.1</code></div>
+          <div class='mb1'><code>3.6.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -1223,6 +1223,34 @@
               
                 
                 <li><a
+                  href='#sdphandlers'
+                  class=" toggle-sibling">
+                  sdpHandlers
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  <ul class='list-reset py1-ul pl1'>
+                    <li class='h5'><span>Static members</span></li>
+                    
+                      <li><a
+                        href='#sdphandlerscreatecodecremover'
+                        class='regular pre-open'>
+                        .createCodecRemover
+                      </a></li>
+                    
+                    </ul>
+                  
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
                   href='#config'
                   class=" toggle-sibling">
                   config
@@ -1266,34 +1294,6 @@
                       </a></li>
                       
                     </ul>
-                  
-                  
-                  
-                </div>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#sdphandlers'
-                  class=" toggle-sibling">
-                  sdpHandlers
-                  <span class='icon'>▸</span>
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                  <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Static members</span></li>
-                    
-                      <li><a
-                        href='#sdphandlerscreatecodecremover'
-                        class='regular pre-open'>
-                        .createCodecRemover
-                      </a></li>
-                    
-                    </ul>
-                  
                   
                   
                   
@@ -1520,6 +1520,16 @@
                     </ul>
                   
                 </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#user'
+                  class="">
+                  User
+                  
+                </a>
                 
                 </li>
               
@@ -2918,7 +2928,7 @@ session expires.</p>
   </div>
   
 
-  <p>The call feature is used to make audio and video calls to and from
+  <p>The Calls feature is used to make audio and video calls to and from
 SIP users and PSTN phones.</p>
 <p>Call functions are all part of the 'call' namespace.</p>
 <p>Whenever 'user' is mentioned as input parameter within this API, it needs to be provided in the user@domain format.</p>
@@ -8810,9 +8820,17 @@ function.</p>
   </div>
   
 
-  <p>The presence features are used to update the authenticated users presence
-on the server, as well as retrieve other users presence information.</p>
-<p>Presence functions are all part of the 'presence' namespace.</p>
+  <p>The Presence feature provides an interface for an application to set the
+User's presence information and to track other Users' presence
+information.</p>
+<p>Presence information is persisted by the server. When the SDK is initialized,
+there will be no information available. Presence information will become
+available either by using <a href="#presencefetch">presence.fetch</a> or
+by subscribing for updates about other Users, using
+<a href="#presencesubscribe">presence.subscribe</a>.</p>
+<p>Available presence information can be retrieved using
+<a href="#presenceget">presence.get</a> or <a href="#presencegetall">presence.getAll</a>.</p>
+<p>Presence APIs are part of the 'presence' namespace.</p>
 
 
   <div class='pre p1 fill-light mt0'>Presence</div>
@@ -9022,8 +9040,16 @@ client.presence.update(statuses.OPEN, activities.AVAILABLE)</pre>
 
   
 
-  <p>Update the presence for the current user.
-Other users subscribed for this user's presence will receive the update.</p>
+  <p>Updates the presence information for the current user.</p>
+<p>See <a href="#presencestatuses">presence.statuses</a> and
+<a href="#presenceactivities">presence.activities</a> for valid values.</p>
+<p>The SDK will emit a
+<a href="#presenceeventpresenceselfchange">presence:selfChange</a> event
+when the operation completes. The updated presence information is
+available and can be retrieved with
+<a href="#presencegetself">presence.getSelf</a>.</p>
+<p>Other users subscribed for this user's presence will receive a
+<a href="#presenceeventpresencechange">presence:change</a> event.</p>
 
 
   <div class='pre p1 fill-light mt0'>update(status: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, activity: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, note: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</div>
@@ -9062,7 +9088,9 @@ Other users subscribed for this user's presence will receive the update.</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>note</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</code>
-	    An additional note to be provided when the activity is "other".
+	    An additional note to be provided when the activity is 
+<code>presence.activities.ACTIVITIES_OTHER</code>
+.
 
           </div>
           
@@ -9093,7 +9121,7 @@ Other users subscribed for this user's presence will receive the update.</p>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>get(users)</span>
+            <span class='code strong strong truncate'>get(user)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -9101,10 +9129,10 @@ Other users subscribed for this user's presence will receive the update.</p>
 
   
 
-  <p>Retrieve the presence information for specified users.</p>
+  <p>Retrieves the presence information for specified users, if available.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(users: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></div>
+  <div class='pre p1 fill-light mt0'>get(user: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)): (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
   
   
 
@@ -9121,8 +9149,8 @@ Other users subscribed for this user's presence will receive the update.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>users</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</code>
-	    A user id or an array of user ids.
+            <span class='code bold'>user</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</code>
+	    A User ID or an array of User IDs.
 
           </div>
           
@@ -9137,7 +9165,7 @@ Other users subscribed for this user's presence will receive the update.</p>
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>:
+        <code>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>:
           List of user presence information.
 
         
@@ -9171,10 +9199,10 @@ Other users subscribed for this user's presence will receive the update.</p>
 
   
 
-  <p>Retrieve the presence information for all users.</p>
+  <p>Retrieves the presence information for all available users.</p>
 
 
-  <div class='pre p1 fill-light mt0'>getAll(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></div>
+  <div class='pre p1 fill-light mt0'>getAll(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>></div>
   
   
 
@@ -9193,7 +9221,7 @@ Other users subscribed for this user's presence will receive the update.</p>
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>:
+        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>></code>:
           List of user presence information.
 
         
@@ -9228,6 +9256,8 @@ Other users subscribed for this user's presence will receive the update.</p>
   
 
   <p>Retrieves the presence information for the current user.</p>
+<p>This information is set using the <a href="#presenceupdate">presnece.update</a>
+API.</p>
 
 
   <div class='pre p1 fill-light mt0'>getSelf(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
@@ -9250,7 +9280,7 @@ Other users subscribed for this user's presence will receive the update.</p>
     
       <div>
         <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
-          
+          Presence information for the current user.
 
         
       </div>
@@ -9275,7 +9305,7 @@ Other users subscribed for this user's presence will receive the update.</p>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>fetch(users)</span>
+            <span class='code strong strong truncate'>fetch(user)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -9283,12 +9313,14 @@ Other users subscribed for this user's presence will receive the update.</p>
 
   
 
-  <p>Fetch (from the server) the presence for the given users.
-This will update the store with the retrieved values, which can then
-be accessed using <code>get</code>.</p>
+  <p>Fetches presence information for the given users. This will refresh the
+available information with any new information from the server.</p>
+<p>Available presence information an be retrieved using the
+<a href="#presenceget">presence.get</a> or
+<a href="#presencegetall">presence.getAll</a> APIs.</p>
 
 
-  <div class='pre p1 fill-light mt0'>fetch(users: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</div>
+  <div class='pre p1 fill-light mt0'>fetch(user: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</div>
   
   
 
@@ -9305,8 +9337,8 @@ be accessed using <code>get</code>.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>users</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</code>
-	    A user id or an array of user ids.
+            <span class='code bold'>user</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</code>
+	    A User ID or an array of User IDs.
 
           </div>
           
@@ -9337,7 +9369,7 @@ be accessed using <code>get</code>.</p>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>subscribe(user)</span>
+            <span class='code strong strong truncate'>subscribe(users)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -9345,10 +9377,12 @@ be accessed using <code>get</code>.</p>
 
   
 
-  <p>Subscribe to retrieve presence updates about specified user.</p>
+  <p>Subscribe to another User's presence updates.</p>
+<p>When the User updates their presence information, the SDK will emit a
+<a href="#presenceeventpresencechange">presence:change</a> event.</p>
 
 
-  <div class='pre p1 fill-light mt0'>subscribe(user: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  <div class='pre p1 fill-light mt0'>subscribe(users: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</div>
   
   
 
@@ -9365,8 +9399,8 @@ be accessed using <code>get</code>.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>user</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    The ID of the user to subscribe to.
+            <span class='code bold'>users</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</code>
+	    A User ID or an array of User IDs.
 
           </div>
           
@@ -9397,7 +9431,7 @@ be accessed using <code>get</code>.</p>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>unsubscribe(user)</span>
+            <span class='code strong strong truncate'>unsubscribe(users)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -9405,10 +9439,10 @@ be accessed using <code>get</code>.</p>
 
   
 
-  <p>Unsubscribe from presence updates about specified user.</p>
+  <p>Unsubscribe from another User's presence updates.</p>
 
 
-  <div class='pre p1 fill-light mt0'>unsubscribe(user: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  <div class='pre p1 fill-light mt0'>unsubscribe(users: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</div>
   
   
 
@@ -9425,8 +9459,8 @@ be accessed using <code>get</code>.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>user</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    The ID of the user to unsubscribe from.
+            <span class='code bold'>users</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>))</code>
+	    A User ID or an array of User IDs.
 
           </div>
           
@@ -9475,7 +9509,7 @@ be accessed using <code>get</code>.</p>
 
   
 
-  <p>A presence update has been received from a subscribed user.</p>
+  <p>A presence update about a subscribed user has been received.</p>
 
 
   <div class='pre p1 fill-light mt0'>presence:change</div>
@@ -9587,7 +9621,9 @@ be accessed using <code>get</code>.</p>
 
   
 
-  <p>The user's self presence information has changed.</p>
+  <p>The current user's presence information has changed.</p>
+<p>The changed information can be retrieved using the
+<a href="#presencegetself">presence.getSelf</a> API.</p>
 
 
   <div class='pre p1 fill-light mt0'>presence:selfChange</div>
@@ -9633,7 +9669,7 @@ be accessed using <code>get</code>.</p>
 
   
 
-  <p>An error occured with presence.</p>
+  <p>An error occurred with presence.</p>
 
 
   <div class='pre p1 fill-light mt0'>presence:error</div>
@@ -10852,7 +10888,7 @@ the SDK and one or more backend servers.</p>
           <div>
             <span class='code bold'>platform</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
             = <code>&#39;link&#39;</code>)</code>
-	    Backend platform for which websocket's state to request.
+	    Backend platform for which to request the websocket's state.
 
           </div>
           
@@ -10912,7 +10948,7 @@ the SDK and one or more backend servers.</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>enable</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
-	    Whether to enable or disable connectivity checking.
+	    Enable connectivity checking.
 
           </div>
           
@@ -11575,7 +11611,7 @@ the SDK and one or more backend servers.</p>
   
 
   <p>The Users feature allows access to user information for users within the same domain.</p>
-<p>These functions are namespaced beneath 'user' on the API.</p>
+<p>The functions in this module are namespaced under 'user'.</p>
 
 
   <div class='pre p1 fill-light mt0'>Users</div>
@@ -11615,8 +11651,12 @@ the SDK and one or more backend servers.</p>
 
   
 
-  <p>Fetches information about a specified user from the platform.
-Will trigger a <code>directory:change</code> event.</p>
+  <p>Fetches information about a User.</p>
+<p>The SDK will emit a <a href="#userseventdirectorychange">directory:change</a>
+event after the operation completes. The User's information will then
+be available.</p>
+<p>Information about an available User can be retrieved using the
+<a href="Users.get">user.get</a> API.</p>
 
 
   <div class='pre p1 fill-light mt0'>fetch(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
@@ -11637,7 +11677,7 @@ Will trigger a <code>directory:change</code> event.</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>userId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    The URI uniquely identifying the user.
+	    The User ID of the user.
 
           </div>
           
@@ -11676,8 +11716,12 @@ Will trigger a <code>directory:change</code> event.</p>
 
   
 
-  <p>Fetches information about the current user's profile data from the platform.
-Will trigger a <code>directory:change</code> event.</p>
+  <p>Fetches information about the current User.</p>
+<p>The SDK will emit a <a href="#userseventdirectorychange">directory:change</a>
+event after the operation completes. The User's information will then
+be available.</p>
+<p>Information about an available User can be retrieved using the
+<a href="Users.get">user.get</a> API.</p>
 
 
   <div class='pre p1 fill-light mt0'>fetchSelfInfo()</div>
@@ -11723,10 +11767,13 @@ Will trigger a <code>directory:change</code> event.</p>
 
   
 
-  <p>Retrieves local information about a previously fetched user.</p>
+  <p>Retrieves information about a User, if available.</p>
+<p>See the <a href="#usersfetch">user.fetch</a> and
+<a href="#userssearch">user.search</a> APIs for details about making Users'
+information available.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  <div class='pre p1 fill-light mt0'>get(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="#user">User</a></div>
   
   
 
@@ -11744,7 +11791,7 @@ Will trigger a <code>directory:change</code> event.</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>userId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    The URI uniquely identifying the user.
+	    The User ID of the user.
 
           </div>
           
@@ -11755,6 +11802,16 @@ Will trigger a <code>directory:change</code> event.</p>
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Returns</div>
+    
+      <div>
+        <code><a href="#user">User</a></code>:
+          The User object for the specified user.
+
+        
+      </div>
+    
   
 
   
@@ -11783,24 +11840,37 @@ Will trigger a <code>directory:change</code> event.</p>
 
   
 
-  <p>Retrieves local information about previously fetched users.</p>
+  <p>Retrieves information about all available Users.</p>
+<p>See the <a href="#usersfetch">user.fetch</a> and
+<a href="#userssearch">user.search</a> APIs for details about making Users'
+information available.</p>
 
 
-  <div class='pre p1 fill-light mt0'>getAll()</div>
-  
-  
-
-  
-  
-  
-  
+  <div class='pre p1 fill-light mt0'>getAll(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#user">User</a>></div>
   
   
 
   
+  
+  
+  
+  
+  
 
   
 
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Returns</div>
+    
+      <div>
+        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#user">User</a>></code>:
+          An array of all the User objects.
+
+        
+      </div>
+    
   
 
   
@@ -11829,8 +11899,11 @@ Will trigger a <code>directory:change</code> event.</p>
 
   
 
-  <p>Search the users in the directory.
-Will trigger a <code>directory:change</code> event.</p>
+  <p>Searches the domain's directory for Users.</p>
+<p>The SDK will emit a <a href="#userseventdirectorychange">directory:change</a>
+event after the operation completes. The search results will be
+provided as part of the event, and will also be available using the
+<a href="Users.get">user.get</a> and <a href="Users.getAll">user.getAll</a> APIs.</p>
 
 
   <div class='pre p1 fill-light mt0'>search(filters: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
@@ -11851,7 +11924,7 @@ Will trigger a <code>directory:change</code> event.</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>filters</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    Query filter options.
+	    The filter options for the search.
 
           </div>
           
@@ -11871,7 +11944,7 @@ Will trigger a <code>directory:change</code> event.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>filters.userId</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>Matches the unique URI identifying the user.
+  <td class='break-word'><span>Matches the User ID of the user.
 </span></td>
 </tr>
 
@@ -11880,7 +11953,7 @@ Will trigger a <code>directory:change</code> event.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>filters.name</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>Matches firstName or lastName.
+  <td class='break-word'><span>Matches the firstName or lastName.
 </span></td>
 </tr>
 
@@ -11889,7 +11962,7 @@ Will trigger a <code>directory:change</code> event.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>filters.firstName</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>Matches firstName.
+  <td class='break-word'><span>Matches the firstName.
 </span></td>
 </tr>
 
@@ -11898,7 +11971,7 @@ Will trigger a <code>directory:change</code> event.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>filters.lastName</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>Matches lastName.
+  <td class='break-word'><span>Matches the lastName.
 </span></td>
 </tr>
 
@@ -11907,7 +11980,7 @@ Will trigger a <code>directory:change</code> event.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>filters.userName</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>Matches userName.
+  <td class='break-word'><span>Matches the userName.
 </span></td>
 </tr>
 
@@ -11916,7 +11989,7 @@ Will trigger a <code>directory:change</code> event.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>filters.phoneNumber</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>Matches phoneNumber.
+  <td class='break-word'><span>Matches the phoneNumber.
 </span></td>
 </tr>
 
@@ -11930,7 +12003,7 @@ Will trigger a <code>directory:change</code> event.</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
-	    Sorting options
+	    Sorting options.
 
           </div>
           
@@ -11950,7 +12023,7 @@ Will trigger a <code>directory:change</code> event.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>options.sortBy</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>The attribute upon which to sort results. This can be any of the above listed filters which describe a user attribute.
+  <td class='break-word'><span>The User property to sort the results by. This can be any of the above listed filters.
 </span></td>
 </tr>
 
@@ -11959,7 +12032,7 @@ Will trigger a <code>directory:change</code> event.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>options.order</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>Order by which to return results. Can be one of "asc" or "desc".
+  <td class='break-word'><span>Order in which results are returned. Can be either "asc" or "desc".
 </span></td>
 </tr>
 
@@ -11968,7 +12041,7 @@ Will trigger a <code>directory:change</code> event.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>options.max</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?</code>
   </td>
-  <td class='break-word'><span>The maximmum number of results to return.
+  <td class='break-word'><span>The maximum number of results to return.
 </span></td>
 </tr>
 
@@ -11977,7 +12050,7 @@ Will trigger a <code>directory:change</code> event.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>options.next</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
-  <td class='break-word'><span>The pointer for a chunk of results, which may be returned from other a previous query.
+  <td class='break-word'><span>The pointer for a chunk of results, which may be returned from a previous query.
 </span></td>
 </tr>
 
@@ -12069,9 +12142,10 @@ Will trigger a <code>directory:change</code> event.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.results</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></code>
+  <td class='break-word'><span class='code bold'>params.results</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#user">User</a>></code>
   </td>
-  <td class='break-word'><span>The results of the directory search.
+  <td class='break-word'><span>The Users' information returned by the
+operation.
 </span></td>
 </tr>
 
@@ -13161,6 +13235,159 @@ Will trigger the <code>contacts:change</code> event.</p>
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='sdphandlers'>
+      sdpHandlers
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A set of <a href="#sdphandlerfunction">SdpHandlerFunction</a>s for manipulating SDP information.
+These handlers are used to customize low-level call behaviour for very specific
+environments and/or scenarios. They can be provided during SDK instantiation
+to be used for all calls.</p>
+
+
+  <div class='pre p1 fill-light mt0'>sdpHandlers</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">import</span> { create, sdpHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">'kandy'</span>;
+<span class="hljs-keyword">const</span> codecRemover = sdpHandlers.createCodecRemover([<span class="hljs-string">'VP8'</span>, <span class="hljs-string">'VP9'</span>])
+<span class="hljs-keyword">const</span> client = create({
+  <span class="hljs-attr">call</span>: {
+    <span class="hljs-attr">sdpHandlers</span>: [ <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Your-SDP-Handler-Function</span>&gt;</span>, ...]
+  }
+})</span></pre>
+    
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>API Functions</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='sdphandlerscreatecodecremover'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>createCodecRemover(codecs)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party.
+While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.</p>
+<p>To facilitate this common task, the SDK provides a codec removal handler creator that can be used for this purpose.</p>
+<p>The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.</p>
+
+
+  <div class='pre p1 fill-light mt0'>createCodecRemover(codecs: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>): SdpHandlerFunction</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>codecs</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)</code>
+	    A list of codec names to remove from the SDP.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Returns</div>
+    
+      <div>
+        <code>SdpHandlerFunction</code>:
+          The resulting SDP handler that will remove the codec.
+
+        
+      </div>
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">import</span> { create, sdpHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">'kandy'</span>;
+<span class="hljs-keyword">const</span> codecRemover = sdpHandlers.createCodecRemover([<span class="hljs-string">'VP8'</span>, <span class="hljs-string">'VP9'</span>])
+<span class="hljs-keyword">const</span> client = create({
+  <span class="hljs-attr">call</span>: {
+    <span class="hljs-attr">sdpHandlers</span>: [codecRemover]
+  }
+})</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='config'>
       config
     </h3>
@@ -13253,7 +13480,7 @@ values you can use when instantiating the SDK.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>logs.logLevel</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   
-    (default <code>debug</code>)
+    (default <code>&#39;debug&#39;</code>)
   </td>
   <td class='break-word'><span>Log level to be set. See 
 <a href="#loggerlevels">levels</a>
@@ -14344,122 +14571,6 @@ values you can use when instantiating the SDK.</p>
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='sdphandlers'>
-      sdpHandlers
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>A set of handlers for manipulating SDP information.
-These handlers are used to customize low-level call behaviour for very specific
-environments and/or scenarios. They can be provided during SDK instantiation
-to be used for all calls.</p>
-
-
-  <div class='pre p1 fill-light mt0'>sdpHandlers</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>API Functions</div>
-    <div class="clearfix">
-  
-    <div class='border-bottom' id='sdphandlerscreatecodecremover'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>createCodecRemover()</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.</p>
-<p>To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.</p>
-<p>The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.</p>
-
-
-  <div class='pre p1 fill-light mt0'>createCodecRemover()</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">import</span> { create, sdpHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">'kandy'</span>;
-<span class="hljs-keyword">const</span> codecRemover = sdpHandlers.createCodecRemover([<span class="hljs-string">'VP8'</span>, <span class="hljs-string">'VP9'</span>])
-<span class="hljs-keyword">const</span> client = create({
-  <span class="hljs-attr">call</span>: {
-    <span class="hljs-attr">sdpHandlers</span>: [codecRemover]
-  }
-})</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-</div>
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
     <h3 class='fl m0' id='logger'>
       Logger
     </h3>
@@ -14614,6 +14725,7 @@ See <a href="#configconfiglogs">config.logs</a> .</p>
   
 
   <p>An interface for getting and updating the configuration Object.</p>
+<p>Config functions are available directly on the SDK Object</p>
 
 
   <div class='pre p1 fill-light mt0'>Config</div>
@@ -14676,7 +14788,7 @@ See <a href="#configconfiglogs">config.logs</a> .</p>
     
       <div>
         <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
-          A configuration Object
+          A configuration Object.
 
         
       </div>
@@ -14730,7 +14842,9 @@ See <a href="#configconfiglogs">config.logs</a> .</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>newConfigValues</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    Key Value pairs that will be placed into the store.
+	    Key-value pairs that will be placed into the store. See 
+<a href="#config">config</a>
+ for details on what key-value pairs are available for use.
 
           </div>
           
@@ -14782,7 +14896,7 @@ See <a href="#configconfiglogs">config.logs</a> .</p>
   </div>
   
 
-  <p>The Basic error object. Provides information about an error that occurred in the SDK.</p>
+  <p>The Basic Error object. Provides information about an error that occurred in the SDK.</p>
 
 
   <div class='pre p1 fill-light mt0'>BasicError</div>
@@ -14804,14 +14918,14 @@ See <a href="#configconfiglogs">config.logs</a> .</p>
       
         <div class='space-bottom0'>
           <span class='code bold'>code</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-          : The code of the error. If no code is known, this will be a string 'NO_CODE'.
+          : The code of the error. If no code is known, this will be 'NO_CODE'.
 
           
         </div>
       
         <div class='space-bottom0'>
           <span class='code bold'>message</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-          : A human-readable message to describe the error. If no message is known, this will be a string 'An error occured'.
+          : A human-readable message to describe the error. If no message is known, this will be 'An error occured'.
 
           
         </div>
@@ -16032,6 +16146,100 @@ for a local three-way call.</p>
     </div>
   
 </div>
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='user'>
+      User
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The User data object.</p>
+
+
+  <div class='pre p1 fill-light mt0'>User</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>userId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : The User ID of the user.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>emailAddress</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : The email address of the user.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>firstName</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : The first name of the user.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>lastName</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : The last name of the user.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>photoURL</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : The URL to get the photo of the user.
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>buddy</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+          : Whether the user is a "buddy". Values can be "true" or "false".
+
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 </section>

@@ -11,6 +11,7 @@ Kandy.js change log.
 
 - User now automatically disconnects gracefully when internet connection is lost for too long. `KAA-1591`
 - Fixed an issue where call audio would be played out of the wrong speaker after a midcall operation that re-rendered media. `KAA-1824`
+- Fixed an issue where specifying min and max resolutions when making or answering a call got mixed up. `KAA-1886`
 
 ## 3.5.0 - 2019-06-28
 

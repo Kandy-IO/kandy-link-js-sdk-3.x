@@ -185,7 +185,7 @@ Possible reasons for disconnecting.
 
 ## Calls
 
-The call feature is used to make audio and video calls to and from
+The Calls feature is used to make audio and video calls to and from
 SIP users and PSTN phones.
 
 Call functions are all part of the 'call' namespace.
@@ -789,10 +789,20 @@ Sends the message.
 
 ## Presence
 
-The presence features are used to update the authenticated users presence
-on the server, as well as retrieve other users presence information.
+The Presence feature provides an interface for an application to set the
+   User's presence information and to track other Users' presence
+   information.
 
-Presence functions are all part of the 'presence' namespace.
+Presence information is persisted by the server. When the SDK is initialized,
+   there will be no information available. Presence information will become
+   available either by using [presence.fetch][13] or
+   by subscribing for updates about other Users, using
+   [presence.subscribe][14].
+
+Available presence information can be retrieved using
+   [presence.get][15] or [presence.getAll][16].
+
+Presence APIs are part of the 'presence' namespace.
 
 ### statuses
 
@@ -828,62 +838,82 @@ Possible activity values.
 
 ### update
 
-Update the presence for the current user.
-Other users subscribed for this user's presence will receive the update.
+Updates the presence information for the current user.
+
+See [presence.statuses][17] and
+   [presence.activities][18] for valid values.
+
+The SDK will emit a
+   [presence:selfChange][19] event
+   when the operation completes. The updated presence information is
+   available and can be retrieved with
+   [presence.getSelf][20].
+
+Other users subscribed for this user's presence will receive a
+   [presence:change][21] event.
 
 **Parameters**
 
 -   `status` **[string][2]** The status of the presence state.
 -   `activity` **[string][2]** The activity to be shown as presence state
--   `note` **[string][2]?** An additional note to be provided when the activity is "other".
+-   `note` **[string][2]?** An additional note to be provided when the activity is `presence.activities.ACTIVITIES_OTHER`.
 
 ### get
 
-Retrieve the presence information for specified users.
+Retrieves the presence information for specified users, if available.
 
 **Parameters**
 
--   `users` **([Array][6]&lt;[string][2]> | [string][2])** A user id or an array of user ids.
+-   `user` **([Array][6]&lt;[string][2]> | [string][2])** A User ID or an array of User IDs.
 
-Returns **[Array][6]** List of user presence information.
+Returns **([Array][6]&lt;[Object][5]> | [Object][5])** List of user presence information.
 
 ### getAll
 
-Retrieve the presence information for all users.
+Retrieves the presence information for all available users.
 
-Returns **[Array][6]** List of user presence information.
+Returns **[Array][6]&lt;[Object][5]>** List of user presence information.
 
 ### getSelf
 
 Retrieves the presence information for the current user.
 
-Returns **[Object][5]** 
+This information is set using the [presnece.update][22]
+   API.
+
+Returns **[Object][5]** Presence information for the current user.
 
 ### fetch
 
-Fetch (from the server) the presence for the given users.
-This will update the store with the retrieved values, which can then
-be accessed using `get`.
+Fetches presence information for the given users. This will refresh the
+   available information with any new information from the server.
+
+Available presence information an be retrieved using the
+   [presence.get][15] or
+   [presence.getAll][16] APIs.
 
 **Parameters**
 
--   `users` **([Array][6]&lt;[string][2]> | [string][2])** A user id or an array of user ids.
+-   `user` **([Array][6]&lt;[string][2]> | [string][2])** A User ID or an array of User IDs.
 
 ### subscribe
 
-Subscribe to retrieve presence updates about specified user.
+Subscribe to another User's presence updates.
+
+When the User updates their presence information, the SDK will emit a
+   [presence:change][21] event.
 
 **Parameters**
 
--   `user` **[string][2]** The ID of the user to subscribe to.
+-   `users` **([Array][6]&lt;[string][2]> | [string][2])** A User ID or an array of User IDs.
 
 ### unsubscribe
 
-Unsubscribe from presence updates about specified user.
+Unsubscribe from another User's presence updates.
 
 **Parameters**
 
--   `user` **[string][2]** The ID of the user to unsubscribe from.
+-   `users` **([Array][6]&lt;[string][2]> | [string][2])** A User ID or an array of User IDs.
 
 ## Voicemail
 
@@ -961,7 +991,7 @@ Get the state of the websocket.
 
 **Parameters**
 
--   `platform` **[string][2]** Backend platform for which websocket's state to request. (optional, default `'link'`)
+-   `platform` **[string][2]** Backend platform for which to request the websocket's state. (optional, default `'link'`)
 
 ### enableConnectivityChecking
 
@@ -969,7 +999,7 @@ Enables or disables connectivity checking.
 
 **Parameters**
 
--   `enable` **[boolean][7]** Whether to enable or disable connectivity checking.
+-   `enable` **[boolean][7]** Enable connectivity checking.
 
 ## Notification
 
@@ -1010,53 +1040,81 @@ Enables, or disables, the processing of websocket notifications.
 
 The Users feature allows access to user information for users within the same domain.
 
-These functions are namespaced beneath 'user' on the API.
+The functions in this module are namespaced under 'user'.
 
 ### fetch
 
-Fetches information about a specified user from the platform.
-Will trigger a `directory:change` event.
+Fetches information about a User.
+
+The SDK will emit a [directory:change][23]
+   event after the operation completes. The User's information will then
+   be available.
+
+Information about an available User can be retrieved using the
+   [user.get][24] API.
 
 **Parameters**
 
--   `userId` **[string][2]** The URI uniquely identifying the user.
+-   `userId` **[string][2]** The User ID of the user.
 
 ### fetchSelfInfo
 
-Fetches information about the current user's profile data from the platform.
-Will trigger a `directory:change` event.
+Fetches information about the current User.
+
+The SDK will emit a [directory:change][23]
+   event after the operation completes. The User's information will then
+   be available.
+
+Information about an available User can be retrieved using the
+   [user.get][24] API.
 
 ### get
 
-Retrieves local information about a previously fetched user.
+Retrieves information about a User, if available.
+
+See the [user.fetch][25] and
+   [user.search][26] APIs for details about making Users'
+   information available.
 
 **Parameters**
 
--   `userId` **[string][2]** The URI uniquely identifying the user.
+-   `userId` **[string][2]** The User ID of the user.
+
+Returns **[User][27]** The User object for the specified user.
 
 ### getAll
 
-Retrieves local information about previously fetched users.
+Retrieves information about all available Users.
+
+See the [user.fetch][25] and
+   [user.search][26] APIs for details about making Users'
+   information available.
+
+Returns **[Array][6]&lt;[User][27]>** An array of all the User objects.
 
 ### search
 
-Search the users in the directory.
-Will trigger a `directory:change` event.
+Searches the domain's directory for Users.
+
+The SDK will emit a [directory:change][23]
+   event after the operation completes. The search results will be
+   provided as part of the event, and will also be available using the
+   [user.get][24] and [user.getAll][28] APIs.
 
 **Parameters**
 
--   `filters` **[Object][5]** Query filter options.
-    -   `filters.userId` **[string][2]?** Matches the unique URI identifying the user.
-    -   `filters.name` **[string][2]?** Matches firstName or lastName.
-    -   `filters.firstName` **[string][2]?** Matches firstName.
-    -   `filters.lastName` **[string][2]?** Matches lastName.
-    -   `filters.userName` **[string][2]?** Matches userName.
-    -   `filters.phoneNumber` **[string][2]?** Matches phoneNumber.
--   `options` **[Object][5]?** Sorting options
-    -   `options.sortBy` **[string][2]?** The attribute upon which to sort results. This can be any of the above listed filters which describe a user attribute.
-    -   `options.order` **[string][2]?** Order by which to return results. Can be one of "asc" or "desc".
-    -   `options.max` **[number][8]?** The maximmum number of results to return.
-    -   `options.next` **[string][2]?** The pointer for a chunk of results, which may be returned from other a previous query.
+-   `filters` **[Object][5]** The filter options for the search.
+    -   `filters.userId` **[string][2]?** Matches the User ID of the user.
+    -   `filters.name` **[string][2]?** Matches the firstName or lastName.
+    -   `filters.firstName` **[string][2]?** Matches the firstName.
+    -   `filters.lastName` **[string][2]?** Matches the lastName.
+    -   `filters.userName` **[string][2]?** Matches the userName.
+    -   `filters.phoneNumber` **[string][2]?** Matches the phoneNumber.
+-   `options` **[Object][5]?** Sorting options.
+    -   `options.sortBy` **[string][2]?** The User property to sort the results by. This can be any of the above listed filters.
+    -   `options.order` **[string][2]?** Order in which results are returned. Can be either "asc" or "desc".
+    -   `options.max` **[number][8]?** The maximum number of results to return.
+    -   `options.next` **[string][2]?** The pointer for a chunk of results, which may be returned from a previous query.
 
 ## Contacts
 
@@ -1149,6 +1207,52 @@ Will trigger the `contacts:change` event.
 
 -   `contactId` **[string][2]** The unique contact ID of the contact.
 
+## sdpHandlers
+
+A set of [SdpHandlerFunction][29]s for manipulating SDP information.
+These handlers are used to customize low-level call behaviour for very specific
+environments and/or scenarios. They can be provided during SDK instantiation
+to be used for all calls.
+
+**Examples**
+
+```javascript
+import { create, sdpHandlers } from 'kandy';
+const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+const client = create({
+  call: {
+    sdpHandlers: [ <Your-SDP-Handler-Function>, ...]
+  }
+})
+```
+
+### createCodecRemover
+
+In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party.
+While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
+
+To facilitate this common task, the SDK provides a codec removal handler creator that can be used for this purpose.
+
+The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
+
+**Parameters**
+
+-   `codecs` **[Array][6]&lt;[string][2]>** A list of codec names to remove from the SDP.
+
+**Examples**
+
+```javascript
+import { create, sdpHandlers } from 'kandy';
+const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+const client = create({
+  call: {
+    sdpHandlers: [codecRemover]
+  }
+})
+```
+
+Returns **SdpHandlerFunction** The resulting SDP handler that will remove the codec.
+
 ## config
 
 The configuration object. This object defines what different configuration
@@ -1161,7 +1265,7 @@ Configuration options for the Logs feature.
 **Parameters**
 
 -   `logs` **[Object][5]** Logs configs.
-    -   `logs.logLevel` **[string][2]** Log level to be set. See [levels][13]. (optional, default `debug`)
+    -   `logs.logLevel` **[string][2]** Log level to be set. See [levels][30]. (optional, default `'debug'`)
     -   `logs.flatten` **[boolean][7]** Whether all logs should be output in a string-only format. (optional, default `false`)
     -   `logs.logActions` **[Object][5]?** Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.
         -   `logs.logActions.actionOnly` **[boolean][7]** Only output information about the action itself. Omits the SDK context for when it occurred. (optional, default `true`)
@@ -1265,33 +1369,6 @@ Configuration options for the notification feature.
     -   `notifications.realm` **[string][2]?** The realm used for push notifications
     -   `notifications.bundleId` **[string][2]?** The bundle id used for push notifications
 
-## sdpHandlers
-
-A set of handlers for manipulating SDP information.
-These handlers are used to customize low-level call behaviour for very specific
-environments and/or scenarios. They can be provided during SDK instantiation
-to be used for all calls.
-
-### createCodecRemover
-
-In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party. While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
-
-To facilitate this common task, the SDK provides a codec removal handler that can be used for this purpose.
-
-The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
-
-**Examples**
-
-```javascript
-import { create, sdpHandlers } from 'kandy';
-const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
-const client = create({
-  call: {
-    sdpHandlers: [codecRemover]
-  }
-})
-```
-
 ## Logger
 
 The internal logger is used to provide information about the SDK's behaviour.
@@ -1300,7 +1377,7 @@ logs are simple lines of information about what the SDK is doing during operatio
 Action logs are complete information about a specific action that occurred
 within the SDK, providing debug information describing it.
 The amount of information logged can be configured as part of the SDK configuration.
-See [config.logs][14] .
+See [config.logs][31] .
 
 ### levels
 
@@ -1318,11 +1395,13 @@ Possible levels for the SDK logger.
 
 An interface for getting and updating the configuration Object.
 
+Config functions are available directly on the SDK Object
+
 ### getConfig
 
 Gets the current configuration Object
 
-Returns **[Object][5]** A configuration Object
+Returns **[Object][5]** A configuration Object.
 
 ### updateConfig
 
@@ -1330,16 +1409,16 @@ Update values in the global Config section of the store.
 
 **Parameters**
 
--   `newConfigValues` **[Object][5]** Key Value pairs that will be placed into the store.
+-   `newConfigValues` **[Object][5]** Key-value pairs that will be placed into the store. See [config][32] for details on what key-value pairs are available for use.
 
 ## BasicError
 
-The Basic error object. Provides information about an error that occurred in the SDK.
+The Basic Error object. Provides information about an error that occurred in the SDK.
 
 **Properties**
 
--   `code` **[string][2]** The code of the error. If no code is known, this will be a string 'NO_CODE'.
--   `message` **[string][2]** A human-readable message to describe the error. If no message is known, this will be a string 'An error occured'.
+-   `code` **[string][2]** The code of the error. If no code is known, this will be 'NO_CODE'.
+-   `message` **[string][2]** A human-readable message to describe the error. If no message is known, this will be 'An error occured'.
 
 ## AudioBridge
 
@@ -1449,6 +1528,19 @@ Gets all local clickToCall calls
 
 Returns **[Array][6]** A list of clickToCall records, ordered by earliest requestTime
 
+## User
+
+The User data object.
+
+**Properties**
+
+-   `userId` **[string][2]** The User ID of the user.
+-   `emailAddress` **[string][2]** The email address of the user.
+-   `firstName` **[string][2]** The first name of the user.
+-   `lastName` **[string][2]** The last name of the user.
+-   `photoURL` **[string][2]** The URL to get the photo of the user.
+-   `buddy` **[string][2]** Whether the user is a "buddy". Values can be "true" or "false".
+
 [1]: #config
 
 [2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
@@ -1473,6 +1565,42 @@ Returns **[Array][6]** A list of clickToCall records, ordered by earliest reques
 
 [12]: #message
 
-[13]: #loggerlevels
+[13]: #presencefetch
 
-[14]: #configconfiglogs
+[14]: #presencesubscribe
+
+[15]: #presenceget
+
+[16]: #presencegetall
+
+[17]: #presencestatuses
+
+[18]: #presenceactivities
+
+[19]: #presenceeventpresenceselfchange
+
+[20]: #presencegetself
+
+[21]: #presenceeventpresencechange
+
+[22]: #presenceupdate
+
+[23]: #userseventdirectorychange
+
+[24]: Users.get
+
+[25]: #usersfetch
+
+[26]: #userssearch
+
+[27]: #user
+
+[28]: Users.getAll
+
+[29]: #sdphandlerfunction
+
+[30]: #loggerlevels
+
+[31]: #configconfiglogs
+
+[32]: #config
