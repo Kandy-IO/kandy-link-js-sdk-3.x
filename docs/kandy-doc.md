@@ -4,7 +4,7 @@
 
 The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.
 
-**Parameters**
+**Parameters** 
 
 -   `config` **[config][1]** The configuration object.
 
