@@ -7,6 +7,11 @@ Kandy.js change log.
 
 ## 3.7.0 - beta
 
+### Fixed
+
+- Fixed an issue where the `kandy.call.history.clear()` is not clearing history data and returning an empty array. `KAA-1873`
+- Fixed implementation of public API 'getAll' (for 'users' plugin) to return an array of all users instead of an object of all users, so that it aligns with current API documentation. `KAA-1923`
+
 ## 3.6.0 - 2018-08-01
 
 ### Fixed
