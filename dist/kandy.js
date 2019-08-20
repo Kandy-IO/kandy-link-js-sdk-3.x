@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.7.0-beta.120
+ * Version: 3.7.0-beta.121
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -51369,7 +51369,21 @@ function* subscribe(connection, credentials, extras = {}) {
 
   if (response.error) {
     if (response.payload.body) {
-      let { statusCode } = response.payload.body.subscribeResponse;
+      const body = response.payload.body;
+
+      let statusCode;
+      /*
+       * In some cases, the response is not wrapped in a `subscribeResponse`
+       *    property. This seems to be when using a pre-provisioned user (stored
+       *    as part of KL?) rather than a dynamically created user (retrieved
+       *    from AS?).
+       * Reference: ABE-23981 (and KAA-1937)
+       */
+      if (body.statusCode && body.reason) {
+        statusCode = body.statusCode;
+      } else {
+        statusCode = body.subscribeResponse.statusCode;
+      }
       log.debug(`Failed user subscription with status code ${statusCode}.`);
 
       // Handle errors from the server.
@@ -62963,7 +62977,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.7.0-beta.120';
+  let version = '3.7.0-beta.121';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -69068,6 +69082,21 @@ async function makeRequest(options, requestId) {
     let error = !response.ok;
 
     if (error) {
+      /*
+       * Handle a special-case error where the response body is a HTML page...
+       * Throw away the body and to its simply reported as 'Forbidden'.
+       * TODO: Handle responses based on their type rather than checking for
+       *    individual special cases...
+       */
+      const cType = response.headers.map['content-type'];
+      if (response.status === 403 && cType.includes('html')) {
+        return {
+          body: false,
+          error: 'REQUEST',
+          result
+        };
+      }
+
       // If the response indicates an error, resolve the body as JSON and return a `REQUEST` error
       log.debug(`Response indicates that request ${requestId} failed`);
       responseBody = await response.json();
