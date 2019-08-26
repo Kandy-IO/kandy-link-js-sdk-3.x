@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.7.0-beta.122
+ * Version: 3.7.0-beta.123
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -59423,20 +59423,28 @@ function* storeCallLogs(action) {
     recordId: action.payload.id,
     startTime: '' + call.startTime,
     duration: '' + (call.endTime - call.startTime),
-    direction: call.direction,
     callerDisplayNumber: call.isCaller ? userInfo.username : call.remoteParticipant.displayNumber,
     calleeDisplayNumber: call.isCaller ? call.remoteParticipant.displayNumber : userInfo.username,
     calleeName: call.isCaller ? call.remoteParticipant.displayName || call.remoteParticipant.displayNumber : userInfo.username,
-    callerName: call.isCaller ? userInfo.username : call.remoteParticipant.displayName || call.remoteParticipant.displayNumber,
+    callerName: call.isCaller ? call.displayName ? call.displayName : userInfo.username : call.remoteParticipant.displayName || call.remoteParticipant.displayNumber,
     remoteParticipant: call.remoteParticipant,
     originalRemoteParticipant: null,
     resourceLocation: ''
+  };
 
-    // TODO: We can't yet check for all scenarios that the old saga checks for.
-    //  1. Need to be able to determine if the call was missed.
-    //  2. Need to support the caller providing their own contact name.
+  if (call.direction === 'incoming') {
+    // If the previous state was ringing, and the change was not because the call was
+    //      answered by another device (ie. code 9904), then it is a missed call.
+    if (action.payload.transition.prevState === _constants.CALL_STATES['RINGING'] && action.payload.transition.code !== '9904') {
+      logEntry.direction = 'missed';
+    } else {
+      logEntry.direction = 'incoming';
+    }
+  } else {
+    logEntry.direction = 'outgoing';
+  }
 
-  };log.debug('Adding call event to the local call history:', logEntry);
+  log.debug('Adding call event to the local call history:', logEntry);
   yield (0, _effects.put)((0, _actions.addCallLogEntry)(logEntry));
 }
 
@@ -62977,7 +62985,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.7.0-beta.122';
+  let version = '3.7.0-beta.123';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
