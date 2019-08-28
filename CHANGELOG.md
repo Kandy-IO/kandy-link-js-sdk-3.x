@@ -14,13 +14,15 @@ Kandy.js change log.
 - Fixed an issue causing some BasicError objects to have a misleading message rather than a message about the operation that failed. `KAA-1947`
 - Fixed an Authentication issue where connecting with invalid credentials for a pre-provisioned user would return an error event with misleading information. `KAA-1937`
 
-## 3.6.0 - 2018-08-01
+## 3.6.0 - 2019-08-01
 
 ### Fixed
 
 - User now automatically disconnects gracefully when internet connection is lost for too long. `KAA-1591`
 - Fixed an issue where call audio would be played out of the wrong speaker after a midcall operation that re-rendered media. `KAA-1824`
 - Fixed an issue where specifying min and max resolutions when making or answering a call got mixed up. `KAA-1886`
+- Fixed many API documentation issues across all SDK's plugins.
+- Fixed version numbering associated with public documentation. `KAA-1823`
 
 ## 3.5.0 - 2019-06-28
 
