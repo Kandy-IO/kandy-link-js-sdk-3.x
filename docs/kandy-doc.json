@@ -37995,7 +37995,7 @@
           "column": 2
         },
         "end": {
-          "line": 136,
+          "line": 155,
           "column": 3
         }
       },
@@ -38862,7 +38862,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Fetches information about the current User.",
+                    "value": "Fetches information about the current User from directory.\nCompared to ",
                     "position": {
                       "start": {
                         "line": 1,
@@ -38870,9 +38870,53 @@
                         "offset": 0
                       },
                       "end": {
-                        "line": 1,
-                        "column": 44,
-                        "offset": 43
+                        "line": 2,
+                        "column": 13,
+                        "offset": 71
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#usersfetch",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "user.fetch"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 2,
+                        "column": 13,
+                        "offset": 71
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 43,
+                        "offset": 101
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " API, this API retrieves additional user related information.",
+                    "position": {
+                      "start": {
+                        "line": 2,
+                        "column": 43,
+                        "offset": 101
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 104,
+                        "offset": 162
                       },
                       "indent": []
                     }
@@ -38885,11 +38929,13 @@
                     "offset": 0
                   },
                   "end": {
-                    "line": 1,
-                    "column": 44,
-                    "offset": 43
+                    "line": 2,
+                    "column": 104,
+                    "offset": 162
                   },
-                  "indent": []
+                  "indent": [
+                    1
+                  ]
                 }
               },
               {
@@ -38900,14 +38946,14 @@
                     "value": "The SDK will emit a ",
                     "position": {
                       "start": {
-                        "line": 3,
+                        "line": 4,
                         "column": 1,
-                        "offset": 45
+                        "offset": 164
                       },
                       "end": {
-                        "line": 3,
+                        "line": 4,
                         "column": 21,
-                        "offset": 65
+                        "offset": 184
                       },
                       "indent": []
                     }
@@ -38925,14 +38971,14 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 3,
+                        "line": 4,
                         "column": 21,
-                        "offset": 65
+                        "offset": 184
                       },
                       "end": {
-                        "line": 3,
+                        "line": 4,
                         "column": 74,
-                        "offset": 118
+                        "offset": 237
                       },
                       "indent": []
                     }
@@ -38942,14 +38988,14 @@
                     "value": "\n   event after the operation completes. The User's information will then\n   be available.",
                     "position": {
                       "start": {
-                        "line": 3,
+                        "line": 4,
                         "column": 74,
-                        "offset": 118
+                        "offset": 237
                       },
                       "end": {
-                        "line": 5,
+                        "line": 6,
                         "column": 17,
-                        "offset": 208
+                        "offset": 327
                       },
                       "indent": [
                         1,
@@ -38960,14 +39006,14 @@
                 ],
                 "position": {
                   "start": {
-                    "line": 3,
+                    "line": 4,
                     "column": 1,
-                    "offset": 45
+                    "offset": 164
                   },
                   "end": {
-                    "line": 5,
+                    "line": 6,
                     "column": 17,
-                    "offset": 208
+                    "offset": 327
                   },
                   "indent": [
                     1,
@@ -38983,14 +39029,14 @@
                     "value": "Information about an available User can be retrieved using the\n   ",
                     "position": {
                       "start": {
-                        "line": 7,
+                        "line": 8,
                         "column": 1,
-                        "offset": 210
+                        "offset": 329
                       },
                       "end": {
-                        "line": 8,
+                        "line": 9,
                         "column": 4,
-                        "offset": 276
+                        "offset": 395
                       },
                       "indent": [
                         1
@@ -39010,14 +39056,14 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 8,
+                        "line": 9,
                         "column": 4,
-                        "offset": 276
+                        "offset": 395
                       },
                       "end": {
-                        "line": 8,
+                        "line": 9,
                         "column": 30,
-                        "offset": 302
+                        "offset": 421
                       },
                       "indent": []
                     }
@@ -39027,14 +39073,14 @@
                     "value": " API.",
                     "position": {
                       "start": {
-                        "line": 8,
+                        "line": 9,
                         "column": 30,
-                        "offset": 302
+                        "offset": 421
                       },
                       "end": {
-                        "line": 8,
+                        "line": 9,
                         "column": 35,
-                        "offset": 307
+                        "offset": 426
                       },
                       "indent": []
                     }
@@ -39042,14 +39088,14 @@
                 ],
                 "position": {
                   "start": {
-                    "line": 7,
+                    "line": 8,
                     "column": 1,
-                    "offset": 210
+                    "offset": 329
                   },
                   "end": {
-                    "line": 8,
+                    "line": 9,
                     "column": 35,
-                    "offset": 307
+                    "offset": 426
                   },
                   "indent": [
                     1
@@ -39064,9 +39110,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 8,
+                "line": 9,
                 "column": 35,
-                "offset": 307
+                "offset": 426
               }
             }
           },
@@ -39074,24 +39120,30 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 10,
+              "lineNumber": 11,
               "type": null
             },
             {
               "title": "static",
               "description": null,
-              "lineNumber": 11
+              "lineNumber": 12
             },
             {
               "title": "memberof",
               "description": "Users",
-              "lineNumber": 12
+              "lineNumber": 13
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 13,
+              "lineNumber": 14,
               "name": "fetchSelfInfo"
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 15,
+              "name": "selfInfoAsUserProfile"
             }
           ],
           "loc": {
@@ -39100,18 +39152,18 @@
               "column": 4
             },
             "end": {
-              "line": 66,
+              "line": 68,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 67,
+                "line": 86,
                 "column": 4
               },
               "end": {
-                "line": 70,
+                "line": 89,
                 "column": 5
               }
             },
@@ -39369,22 +39421,22 @@
           ],
           "loc": {
             "start": {
-              "line": 72,
+              "line": 91,
               "column": 4
             },
             "end": {
-              "line": 84,
+              "line": 103,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 85,
+                "line": 104,
                 "column": 4
               },
               "end": {
-                "line": 88,
+                "line": 107,
                 "column": 5
               }
             },
@@ -39761,22 +39813,22 @@
           ],
           "loc": {
             "start": {
-              "line": 90,
+              "line": 109,
               "column": 4
             },
             "end": {
-              "line": 101,
+              "line": 120,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 102,
+                "line": 121,
                 "column": 4
               },
               "end": {
-                "line": 105,
+                "line": 124,
                 "column": 5
               }
             },
@@ -40283,22 +40335,22 @@
           ],
           "loc": {
             "start": {
-              "line": 107,
+              "line": 126,
               "column": 4
             },
             "end": {
-              "line": 131,
+              "line": 150,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 132,
+                "line": 151,
                 "column": 4
               },
               "end": {
-                "line": 135,
+                "line": 154,
                 "column": 5
               }
             },
@@ -58405,7 +58457,7 @@
           "column": 2
         },
         "end": {
-          "line": 136,
+          "line": 155,
           "column": 3
         }
       },

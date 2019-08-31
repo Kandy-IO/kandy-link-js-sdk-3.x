@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.6.0
+ * Version: 3.7.0
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -28798,6 +28798,10 @@ var _keys = __webpack_require__("../../node_modules/babel-runtime/core-js/object
 
 var _keys2 = _interopRequireDefault(_keys);
 
+var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _stringify = __webpack_require__("../../node_modules/babel-runtime/core-js/json/stringify.js");
 
 var _stringify2 = _interopRequireDefault(_stringify);
@@ -30771,7 +30775,7 @@ function CallManagerImpl(_ref) {
                 if (_callFSM.getCurrentState(internalCall) === fsmState.COMPLETED) {
                     //Screen sharing video stream has been stopped, act as if someone called screenStopStart
                     //but pass the result to onScreenStop instead.
-                    self.screenStopStart(data.callid, onScreenStop, function () {
+                    self.screenStopStart((0, _extends3.default)({}, data, { isScreenStart: false }), onScreenStop, function () {
                         logger.error('Failed to stop screen properly after user stopped the stream via' + ' the browser controls');
                     }, false);
                 } else if (internalCall.isScreenShared) {
@@ -31576,9 +31580,9 @@ function CallManagerImpl(_ref) {
                 }, function () {
                     logger.error('callControlService.endCall FAILED!! callId: ' + call.id);
                 });
-                clearResources(call);
                 triggerCallState(callStates.TRANSFERRED);
                 triggerCallState(callStates.ENDED);
+                clearResources(call);
                 logger.info('endCall successful. callId: ' + call.id);
                 break;
             case transferEvent.stateReverted_fsm:
@@ -50526,6 +50530,7 @@ exports.getAuthConfig = getAuthConfig;
 exports.getSubscriptionInfo = getSubscriptionInfo;
 exports.getConnectionInfo = getConnectionInfo;
 exports.getDomain = getDomain;
+exports.getIdentity = getIdentity;
 exports.getUserInfo = getUserInfo;
 exports.getAuthScenario = getAuthScenario;
 exports.getServices = getServices;
@@ -50612,9 +50617,20 @@ function getDomain(state) {
 }
 
 /**
+ * Retrieves the identity of the currently logged-in user.
+ * The identity is of the form: <userName>@<domain>
+ * @method getIdentity
+ * @return {string}
+ */
+function getIdentity(state) {
+  const userInfo = getUserInfo(state);
+  return userInfo.identity || userInfo.username || '';
+}
+
+/**
  * Retrieves the user information.
  * @method getUserInfo
- * @return {Object}
+ * @return {Object} An object whose properties are: accessToken, identity & username. Identity is user's primary contact address.
  */
 function getUserInfo(state) {
   return (0, _fp.cloneDeep)(state.authentication.userInfo) || {};
@@ -51369,7 +51385,21 @@ function* subscribe(connection, credentials, extras = {}) {
 
   if (response.error) {
     if (response.payload.body) {
-      let { statusCode } = response.payload.body.subscribeResponse;
+      const body = response.payload.body;
+
+      let statusCode;
+      /*
+       * In some cases, the response is not wrapped in a `subscribeResponse`
+       *    property. This seems to be when using a pre-provisioned user (stored
+       *    as part of KL?) rather than a dynamically created user (retrieved
+       *    from AS?).
+       * Reference: ABE-23981 (and KAA-1937)
+       */
+      if (body.statusCode && body.reason) {
+        statusCode = body.statusCode;
+      } else {
+        statusCode = body.subscribeResponse.statusCode;
+      }
       log.debug(`Failed user subscription with status code ${statusCode}.`);
 
       // Handle errors from the server.
@@ -55541,6 +55571,7 @@ const callPrefix = '@@KANDY/CALL/';
  * Basic call operation actions.
  */
 const MAKE_CALL = exports.MAKE_CALL = callPrefix + 'MAKE';
+const PENDING_MAKE_CALL = exports.PENDING_MAKE_CALL = callPrefix + 'PENDING_MAKE';
 const MAKE_CALL_FINISH = exports.MAKE_CALL_FINISH = callPrefix + 'MAKE_FINISH';
 
 const MAKE_ANONYMOUS_CALL = exports.MAKE_ANONYMOUS_CALL = callPrefix + 'MAKE_ANONYMOUS_CALL';
@@ -55568,6 +55599,8 @@ const END_CALL_FINISH = exports.END_CALL_FINISH = callPrefix + 'END_FINISH';
 
 const FORWARD_CALL = exports.FORWARD_CALL = callPrefix + 'FORWARD_CALL';
 const FORWARD_CALL_FINISH = exports.FORWARD_CALL_FINISH = callPrefix + 'FORWARD_CALL_FINISH';
+
+const PENDING_OPERATION = exports.PENDING_OPERATION = callPrefix + 'PENDING_OPERATION';
 
 /**
  * Mid-call operation actions.
@@ -55600,12 +55633,14 @@ const GET_STATS = exports.GET_STATS = callPrefix + 'GET_STATS';
 const GET_STATS_FINISH = exports.GET_STATS_FINISH = callPrefix + 'GET_STATS_FINISH';
 
 const CONSULTATIVE_TRANSFER = exports.CONSULTATIVE_TRANSFER = callPrefix + 'CONSULTATIVE_TRANSFER';
+const PENDING_CONSULTATIVE_TRANSFER = exports.PENDING_CONSULTATIVE_TRANSFER = callPrefix + 'PENDING_CONSULTATIVE_TRANSFER';
 const CONSULTATIVE_TRANSFER_FINISH = exports.CONSULTATIVE_TRANSFER_FINISH = callPrefix + 'CONSULTATIVE_TRANSFER_FINISH';
 
 const DIRECT_TRANSFER = exports.DIRECT_TRANSFER = callPrefix + 'DIRECT_TRANSFER';
 const DIRECT_TRANSFER_FINISH = exports.DIRECT_TRANSFER_FINISH = callPrefix + 'DIRECT_TRANSFER_FINISH';
 
 const JOIN = exports.JOIN = callPrefix + 'JOIN';
+const PENDING_JOIN = exports.PENDING_JOIN = callPrefix + 'PENDING_JOIN';
 const JOIN_FINISH = exports.JOIN_FINISH = callPrefix + 'JOIN_FINISH';
 
 const REPLACE_TRACK = exports.REPLACE_TRACK = callPrefix + 'REPLACE_TRACK';
@@ -59404,20 +59439,28 @@ function* storeCallLogs(action) {
     recordId: action.payload.id,
     startTime: '' + call.startTime,
     duration: '' + (call.endTime - call.startTime),
-    direction: call.direction,
     callerDisplayNumber: call.isCaller ? userInfo.username : call.remoteParticipant.displayNumber,
     calleeDisplayNumber: call.isCaller ? call.remoteParticipant.displayNumber : userInfo.username,
     calleeName: call.isCaller ? call.remoteParticipant.displayName || call.remoteParticipant.displayNumber : userInfo.username,
-    callerName: call.isCaller ? userInfo.username : call.remoteParticipant.displayName || call.remoteParticipant.displayNumber,
+    callerName: call.isCaller ? call.displayName ? call.displayName : userInfo.username : call.remoteParticipant.displayName || call.remoteParticipant.displayNumber,
     remoteParticipant: call.remoteParticipant,
     originalRemoteParticipant: null,
     resourceLocation: ''
+  };
 
-    // TODO: We can't yet check for all scenarios that the old saga checks for.
-    //  1. Need to be able to determine if the call was missed.
-    //  2. Need to support the caller providing their own contact name.
+  if (call.direction === 'incoming') {
+    // If the previous state was ringing, and the change was not because the call was
+    //      answered by another device (ie. code 9904), then it is a missed call.
+    if (action.payload.transition.prevState === _constants.CALL_STATES['RINGING'] && action.payload.transition.code !== '9904') {
+      logEntry.direction = 'missed';
+    } else {
+      logEntry.direction = 'incoming';
+    }
+  } else {
+    logEntry.direction = 'outgoing';
+  }
 
-  };log.debug('Adding call event to the local call history:', logEntry);
+  log.debug('Adding call event to the local call history:', logEntry);
   yield (0, _effects.put)((0, _actions.addCallLogEntry)(logEntry));
 }
 
@@ -59703,7 +59746,8 @@ function* removeCallLogs(action) {
 
   let response = yield (0, _effects2.default)({
     url,
-    method: 'DELETE'
+    method: 'DELETE',
+    responseType: 'text'
   }, requestInfo.requestOptions);
 
   if (response.error) {
@@ -59731,7 +59775,7 @@ function* removeCallLogs(action) {
     yield (0, _effects3.put)(actions.removeCallLogsFinish({ error }));
   } else {
     log.info('Successfully removed log(s) from call history.');
-    yield (0, _effects3.put)(actions.removeCallLogsFinish({ recordId: action.payload.body }));
+    yield (0, _effects3.put)(actions.removeCallLogsFinish({ recordId: action.payload }));
   }
 }
 
@@ -62957,7 +63001,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.6.0';
+  let version = '3.7.0';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -68975,6 +69019,10 @@ const responseTypes = (0, _freeze2.default)({
   text: 'text'
 });
 
+const contentTypes = (0, _freeze2.default)({
+  jsonType: 'application/json'
+});
+
 /*
  * HTTP request plugin.
  */
@@ -69038,6 +69086,7 @@ async function makeRequest(options, requestId) {
     };
   }
   let response;
+  let contentType;
   try {
     response = await fetch(url + (0, _utils.toQueryString)(queryParams), fetchOptions);
   } catch (err) {
@@ -69053,6 +69102,12 @@ async function makeRequest(options, requestId) {
     };
   }
   try {
+    contentType = response.headers.get('content-type');
+  } catch (err) {
+    log.debug(`Failed to get content-type:${err.message}.`);
+  }
+
+  try {
     let result = {
       ok: response.ok,
       code: response.status,
@@ -69062,9 +69117,26 @@ async function makeRequest(options, requestId) {
     let error = !response.ok;
 
     if (error) {
-      // If the response indicates an error, resolve the body as JSON and return a `REQUEST` error
       log.debug(`Response indicates that request ${requestId} failed`);
-      responseBody = await response.json();
+      /*
+       * Handle a special-case error where the response body is a HTML page...
+       * Throw away the body and so it is simply reported as 'Forbidden'.
+       * TODO: Handle responses based on their type rather than checking for
+       *    individual special cases...
+       */
+      if (response.status === 403 && contentType.includes('html')) {
+        return {
+          body: false,
+          error: 'REQUEST',
+          result
+        };
+      }
+
+      /*
+       * If the response indicates an error and has a body, resolve the body as JSON
+       * but no body return an empty object then return a `REQUEST` error
+       */
+      responseBody = contentTypes.jsonType === contentType ? await response.json() : {};
       return {
         body: responseBody,
         error: 'REQUEST',
@@ -69082,13 +69154,15 @@ async function makeRequest(options, requestId) {
         result
       };
     } else {
-      if (responseType === responseTypes.json) {
+      responseBody = {};
+      if (contentTypes.jsonType === contentType && responseType === responseTypes.json) {
         responseBody = await response.json();
       } else if (responseType === responseTypes.blob) {
         responseBody = await response.blob();
       } else if (responseType === responseTypes.text) {
         responseBody = await response.text();
       }
+
       return {
         body: responseBody,
         error: false,
@@ -70872,7 +70946,8 @@ function usersAPI({ dispatch, getState, primitives }) {
     },
 
     /**
-     * Fetches information about the current User.
+     * Fetches information about the current User from directory.
+     * Compared to {@link Users.fetch user.fetch} API, this API retrieves additional user related information.
      *
      * The SDK will emit a {@link Users.event:directory:change directory:change}
      *    event after the operation completes. The User's information will then
@@ -70885,6 +70960,24 @@ function usersAPI({ dispatch, getState, primitives }) {
      * @static
      * @memberof Users
      * @method fetchSelfInfo
+     * @requires selfInfoAsUserProfile
+     */
+    /**
+     * Fetches information about the current User from directory.
+     * This API is simply a shortcut for the {@link Users.fetch user.fetch(getUserInfo().identity)} API.
+     *
+     * The SDK will emit a {@link Users.event:directory:change directory:change}
+     *    event after the operation completes. The User's information will then
+     *    be available.
+     *
+     * Information about an available User can be retrieved using the
+     *    {@link Users.get user.get} API.
+     *
+     * @public
+     * @static
+     * @memberof Users
+     * @method fetchSelfInfo
+     * @requires selfInfoAsUserSearch
      */
     fetchSelfInfo() {
       log.debug(_logs.API_LOG_TAG + 'user.fetchSelfInfo');
@@ -71431,12 +71524,19 @@ exports.default = reducers;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _values = __webpack_require__("../../node_modules/babel-runtime/core-js/object/values.js");
+
+var _values2 = _interopRequireDefault(_values);
+
 exports.getContacts = getContacts;
 exports.getContact = getContact;
 exports.getUsers = getUsers;
 exports.getUser = getUser;
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * Redux-saga selector functions.
@@ -71465,10 +71565,11 @@ function getContact(state, id) {
 /**
  * Gets the users from state.
  * @method getUsers
- * @return {Object}
+ * @return {Array<User>} An array of all the User objects.
  */
 function getUsers(state) {
-  return (0, _fp.cloneDeep)(state.users.users);
+  let allUsers = (0, _fp.cloneDeep)(state.users.users);
+  return (0, _values2.default)(allUsers);
 }
 
 /**
@@ -71564,7 +71665,7 @@ const log = (0, _logs.getLogManager)().getLogger('USERS');
 
 const { api, name, reducer } = _interface2.default;
 
-const capabilities = ['addContactAsFriend'];
+const capabilities = ['addContactAsFriend', 'selfInfoAsUserProfile'];
 
 function usersLink() {
   function* init() {
@@ -71908,6 +72009,8 @@ function* getDirectory(conn, params = {}) {
 
 /**
  * Fetch userProfileData from SPiDR with the provided connection info.
+ * Compared to {@link Users.fetch user.fetch} API, this API retrieves additional user related information.
+ *
  * @param  {Object}     connection Connection information for the platform in use.
  * @return {Object}            Fetch request's response, parsed.
  */

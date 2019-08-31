@@ -4,7 +4,7 @@
 
 The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.
 
-**Parameters** 
+**Parameters**
 
 -   `config` **[config][1]** The configuration object.
 
@@ -1059,7 +1059,8 @@ Information about an available User can be retrieved using the
 
 ### fetchSelfInfo
 
-Fetches information about the current User.
+Fetches information about the current User from directory.
+Compared to [user.fetch][25] API, this API retrieves additional user related information.
 
 The SDK will emit a [directory:change][23]
    event after the operation completes. The User's information will then
