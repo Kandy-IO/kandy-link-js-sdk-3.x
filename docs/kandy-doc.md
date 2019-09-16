@@ -1240,52 +1240,6 @@ Will trigger the `contacts:change` event.
 
 -   `contactId` **[string][2]** The unique contact ID of the contact.
 
-## sdpHandlers
-
-A set of [SdpHandlerFunction][29]s for manipulating SDP information.
-These handlers are used to customize low-level call behaviour for very specific
-environments and/or scenarios. They can be provided during SDK instantiation
-to be used for all calls.
-
-**Examples**
-
-```javascript
-import { create, sdpHandlers } from 'kandy';
-const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
-const client = create({
-  call: {
-    sdpHandlers: [ <Your-SDP-Handler-Function>, ...]
-  }
-})
-```
-
-### createCodecRemover
-
-In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party.
-While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
-
-To facilitate this common task, the SDK provides a codec removal handler creator that can be used for this purpose.
-
-The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
-
-**Parameters**
-
--   `codecs` **[Array][6]&lt;[string][2]>** A list of codec names to remove from the SDP.
-
-**Examples**
-
-```javascript
-import { create, sdpHandlers } from 'kandy';
-const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
-const client = create({
-  call: {
-    sdpHandlers: [codecRemover]
-  }
-})
-```
-
-Returns **SdpHandlerFunction** The resulting SDP handler that will remove the codec.
-
 ## config
 
 The configuration object. This object defines what different configuration
@@ -1298,7 +1252,7 @@ Configuration options for the Logs feature.
 **Parameters**
 
 -   `logs` **[Object][5]** Logs configs.
-    -   `logs.logLevel` **[string][2]** Log level to be set. See [levels][30]. (optional, default `'debug'`)
+    -   `logs.logLevel` **[string][2]** Log level to be set. See [levels][29]. (optional, default `'debug'`)
     -   `logs.flatten` **[boolean][7]** Whether all logs should be output in a string-only format. (optional, default `false`)
     -   `logs.logActions` **[Object][5]?** Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.
         -   `logs.logActions.actionOnly` **[boolean][7]** Only output information about the action itself. Omits the SDK context for when it occurred. (optional, default `true`)
@@ -1401,6 +1355,52 @@ Configuration options for the notification feature.
         -   `notifications.pushRegistration.version` **[string][2]?** Version for the push registration server.
     -   `notifications.realm` **[string][2]?** The realm used for push notifications
     -   `notifications.bundleId` **[string][2]?** The bundle id used for push notifications
+
+## sdpHandlers
+
+A set of [SdpHandlerFunction][30]s for manipulating SDP information.
+These handlers are used to customize low-level call behaviour for very specific
+environments and/or scenarios. They can be provided during SDK instantiation
+to be used for all calls.
+
+**Examples**
+
+```javascript
+import { create, sdpHandlers } from 'kandy';
+const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+const client = create({
+  call: {
+    sdpHandlers: [ <Your-SDP-Handler-Function>, ...]
+  }
+})
+```
+
+### createCodecRemover
+
+In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party.
+While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
+
+To facilitate this common task, the SDK provides a codec removal handler creator that can be used for this purpose.
+
+The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
+
+**Parameters**
+
+-   `codecs` **[Array][6]&lt;[string][2]>** A list of codec names to remove from the SDP.
+
+**Examples**
+
+```javascript
+import { create, sdpHandlers } from 'kandy';
+const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+const client = create({
+  call: {
+    sdpHandlers: [codecRemover]
+  }
+})
+```
+
+Returns **SdpHandlerFunction** The resulting SDP handler that will remove the codec.
 
 ## Logger
 
@@ -1630,9 +1630,9 @@ The User data object.
 
 [28]: Users.getAll
 
-[29]: #sdphandlerfunction
+[29]: #loggerlevels
 
-[30]: #loggerlevels
+[30]: #sdphandlerfunction
 
 [31]: #configconfiglogs
 
