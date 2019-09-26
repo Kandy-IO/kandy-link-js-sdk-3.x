@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.8.0-beta.142
+ * Version: 3.8.0-beta.143
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -55142,7 +55142,7 @@ callReducers[actionTypes.ANSWER_CALL_FINISH] = {
 };
 
 /*
- * Reducer to handle ANSWER_CALL_FINISH actions.
+ * Reducer to handle ANSWER_CALL actions.
  * Only intended to set call info, not current state.
  */
 callReducers[actionTypes.ANSWER_CALL] = {
@@ -63075,7 +63075,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.8.0-beta.142';
+  let version = '3.8.0-beta.143';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
