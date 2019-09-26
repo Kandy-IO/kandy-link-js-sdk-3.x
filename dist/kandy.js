@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.8.0-beta.143
+ * Version: 3.8.0-beta.144
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -59509,7 +59509,7 @@ function* storeCallLogs(action) {
   if (call.direction === 'incoming') {
     // If the previous state was ringing, and the change was not because the call was
     //      answered by another device (ie. code 9904), then it is a missed call.
-    if (action.payload.transition.prevState === _constants.CALL_STATES['RINGING'] && action.payload.transition.code !== '9904') {
+    if (action.payload.transition && action.payload.transition.prevState === _constants.CALL_STATES['RINGING'] && action.payload.transition.code !== '9904') {
       logEntry.direction = 'missed';
     } else {
       logEntry.direction = 'incoming';
@@ -63075,7 +63075,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.8.0-beta.143';
+  let version = '3.8.0-beta.144';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
