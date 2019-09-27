@@ -5,6 +5,16 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.8.0 - 2019-09-27
+
+### Fixed
+
+- Fixed the ordering and nesting of types & namespaces in public documentation. `KAA-1880`
+
+### Added
+
+- Support for HMAC token-based authentication. `KAA-1919`
+
 ## 3.7.1 - 2019-09-03
 
 ### Fixed
