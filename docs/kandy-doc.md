@@ -1111,19 +1111,6 @@ If a conversation with the given user ID already exists in the store, it will be
 
 Returns **Conversation** A Conversation object.
 
-### Message
-
-A Message object represents an individual message. Messages have parts
-which represent pieces of a message, such as a text part or a file part. Once
-all the desired parts have been added, a message can be sent with the send()
-function.
-
-Type: [Object][3]
-
-#### send
-
-Sends the message.
-
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
@@ -1211,6 +1198,19 @@ Messages can then be retrieved using getMessages.
 **Parameters**
 
 -   `amount` **[number][7]** An amount of messages to fetch. (optional, default `50`)
+
+### Message
+
+A Message object represents an individual message. Messages have parts
+which represent pieces of a message, such as a text part or a file part. Once
+all the desired parts have been added, a message can be sent with the send()
+function.
+
+Type: [Object][3]
+
+#### send
+
+Sends the message.
 
 ## Notification
 
