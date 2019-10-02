@@ -11,6 +11,10 @@ Kandy.js change log.
 
 - Fixed the ordering and nesting of types & namespaces in public documentation. `KAA-1880`
 
+### Changed
+
+- Changed the public API documentation groupings to namespaces. `KAA-1918`
+
 ### Added
 
 - Support for HMAC token-based authentication. `KAA-1919`
