@@ -42460,6 +42460,293 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "A Message object represents an individual message. Messages have parts\nwhich represent pieces of a message, such as a text part or a file part. Once\nall the desired parts have been added, a message can be sent with the send()\nfunction.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 10,
+                        "offset": 235
+                      },
+                      "indent": [
+                        1,
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 10,
+                    "offset": 235
+                  },
+                  "indent": [
+                    1,
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 4,
+                "column": 10,
+                "offset": 235
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 5,
+              "type": null
+            },
+            {
+              "title": "module",
+              "description": null,
+              "lineNumber": 6,
+              "type": null,
+              "name": "Message"
+            },
+            {
+              "title": "typedef",
+              "description": null,
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "Message"
+            },
+            {
+              "title": "memberof",
+              "description": "Messaging",
+              "lineNumber": 8
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 0
+            },
+            "end": {
+              "line": 37,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 39,
+                "column": 0
+              },
+              "end": {
+                "line": 39,
+                "column": 42
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_master/packages/kandy/src/messaging/interface/mixins.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "kind": "typedef",
+          "name": "Message",
+          "type": {
+            "type": "NameExpression",
+            "name": "Object"
+          },
+          "memberof": "Messaging",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": [
+              {
+                "description": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Sends the message.",
+                          "position": {
+                            "start": {
+                              "line": 1,
+                              "column": 1,
+                              "offset": 0
+                            },
+                            "end": {
+                              "line": 1,
+                              "column": 19,
+                              "offset": 18
+                            },
+                            "indent": []
+                          }
+                        }
+                      ],
+                      "position": {
+                        "start": {
+                          "line": 1,
+                          "column": 1,
+                          "offset": 0
+                        },
+                        "end": {
+                          "line": 1,
+                          "column": 19,
+                          "offset": 18
+                        },
+                        "indent": []
+                      }
+                    }
+                  ],
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 19,
+                      "offset": 18
+                    }
+                  }
+                },
+                "tags": [
+                  {
+                    "title": "public",
+                    "description": null,
+                    "lineNumber": 3,
+                    "type": null
+                  },
+                  {
+                    "title": "static",
+                    "description": null,
+                    "lineNumber": 4
+                  },
+                  {
+                    "title": "method",
+                    "description": null,
+                    "lineNumber": 5,
+                    "name": "send"
+                  },
+                  {
+                    "title": "memberof",
+                    "description": "Messaging.Message",
+                    "lineNumber": 6
+                  }
+                ],
+                "loc": {
+                  "start": {
+                    "line": 367,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 374,
+                    "column": 7
+                  }
+                },
+                "context": {
+                  "loc": {
+                    "start": {
+                      "line": 375,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 380,
+                      "column": 5
+                    }
+                  },
+                  "file": "/var/jenkins_home/workspace/Kandy.js_master/packages/kandy/src/messaging/interface/mixins.js"
+                },
+                "augments": [],
+                "examples": [],
+                "params": [],
+                "properties": [],
+                "returns": [],
+                "sees": [],
+                "throws": [],
+                "todos": [],
+                "access": "public",
+                "scope": "static",
+                "kind": "function",
+                "name": "send",
+                "memberof": "Messaging.Message",
+                "members": {
+                  "global": [],
+                  "inner": [],
+                  "instance": [],
+                  "events": [],
+                  "static": []
+                },
+                "path": [
+                  {
+                    "name": "Messaging",
+                    "kind": "namespace"
+                  },
+                  {
+                    "name": "Message",
+                    "kind": "typedef"
+                  },
+                  {
+                    "name": "send",
+                    "kind": "function",
+                    "scope": "static"
+                  }
+                ],
+                "namespace": "MessagingMessage.send"
+              }
+            ]
+          },
+          "path": [
+            {
+              "name": "Messaging",
+              "kind": "namespace"
+            },
+            {
+              "name": "Message",
+              "kind": "typedef"
+            }
+          ],
+          "namespace": "MessagingMessage"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "A Conversation object represents a conversation between either two users, or a\nuser and a group. A Conversation can create messages via the conversation's\ncreateMessage() function.",
                     "position": {
                       "start": {
@@ -44954,293 +45241,6 @@
             }
           ],
           "namespace": "MessagingConversation"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "A Message object represents an individual message. Messages have parts\nwhich represent pieces of a message, such as a text part or a file part. Once\nall the desired parts have been added, a message can be sent with the send()\nfunction.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 10,
-                        "offset": 235
-                      },
-                      "indent": [
-                        1,
-                        1,
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 10,
-                    "offset": 235
-                  },
-                  "indent": [
-                    1,
-                    1,
-                    1
-                  ]
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 4,
-                "column": 10,
-                "offset": 235
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 5,
-              "type": null
-            },
-            {
-              "title": "module",
-              "description": null,
-              "lineNumber": 6,
-              "type": null,
-              "name": "Message"
-            },
-            {
-              "title": "typedef",
-              "description": null,
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "Message"
-            },
-            {
-              "title": "memberof",
-              "description": "Messaging",
-              "lineNumber": 8
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 28,
-              "column": 0
-            },
-            "end": {
-              "line": 37,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 39,
-                "column": 0
-              },
-              "end": {
-                "line": 39,
-                "column": 42
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_master/packages/kandy/src/messaging/interface/mixins.js"
-          },
-          "augments": [],
-          "examples": [],
-          "params": [],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "kind": "typedef",
-          "name": "Message",
-          "type": {
-            "type": "NameExpression",
-            "name": "Object"
-          },
-          "memberof": "Messaging",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": [
-              {
-                "description": {
-                  "type": "root",
-                  "children": [
-                    {
-                      "type": "paragraph",
-                      "children": [
-                        {
-                          "type": "text",
-                          "value": "Sends the message.",
-                          "position": {
-                            "start": {
-                              "line": 1,
-                              "column": 1,
-                              "offset": 0
-                            },
-                            "end": {
-                              "line": 1,
-                              "column": 19,
-                              "offset": 18
-                            },
-                            "indent": []
-                          }
-                        }
-                      ],
-                      "position": {
-                        "start": {
-                          "line": 1,
-                          "column": 1,
-                          "offset": 0
-                        },
-                        "end": {
-                          "line": 1,
-                          "column": 19,
-                          "offset": 18
-                        },
-                        "indent": []
-                      }
-                    }
-                  ],
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 19,
-                      "offset": 18
-                    }
-                  }
-                },
-                "tags": [
-                  {
-                    "title": "public",
-                    "description": null,
-                    "lineNumber": 3,
-                    "type": null
-                  },
-                  {
-                    "title": "static",
-                    "description": null,
-                    "lineNumber": 4
-                  },
-                  {
-                    "title": "method",
-                    "description": null,
-                    "lineNumber": 5,
-                    "name": "send"
-                  },
-                  {
-                    "title": "memberof",
-                    "description": "Messaging.Message",
-                    "lineNumber": 6
-                  }
-                ],
-                "loc": {
-                  "start": {
-                    "line": 367,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 374,
-                    "column": 7
-                  }
-                },
-                "context": {
-                  "loc": {
-                    "start": {
-                      "line": 375,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 380,
-                      "column": 5
-                    }
-                  },
-                  "file": "/var/jenkins_home/workspace/Kandy.js_master/packages/kandy/src/messaging/interface/mixins.js"
-                },
-                "augments": [],
-                "examples": [],
-                "params": [],
-                "properties": [],
-                "returns": [],
-                "sees": [],
-                "throws": [],
-                "todos": [],
-                "access": "public",
-                "scope": "static",
-                "kind": "function",
-                "name": "send",
-                "memberof": "Messaging.Message",
-                "members": {
-                  "global": [],
-                  "inner": [],
-                  "instance": [],
-                  "events": [],
-                  "static": []
-                },
-                "path": [
-                  {
-                    "name": "Messaging",
-                    "kind": "namespace"
-                  },
-                  {
-                    "name": "Message",
-                    "kind": "typedef"
-                  },
-                  {
-                    "name": "send",
-                    "kind": "function",
-                    "scope": "static"
-                  }
-                ],
-                "namespace": "MessagingMessage.send"
-              }
-            ]
-          },
-          "path": [
-            {
-              "name": "Messaging",
-              "kind": "namespace"
-            },
-            {
-              "name": "Message",
-              "kind": "typedef"
-            }
-          ],
-          "namespace": "MessagingMessage"
         }
       ]
     },
