@@ -5180,7 +5180,7 @@
                 }
               },
               "name": "connectivity.checkConnectivity",
-              "default": "false"
+              "default": "true"
             }
           ],
           "loc": {
@@ -6121,7 +6121,7 @@
                     "type": "NameExpression",
                     "name": "Boolean"
                   },
-                  "default": "false"
+                  "default": "true"
                 }
               ]
             }
