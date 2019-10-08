@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.9.0-beta.156
+ * Version: 3.9.0-beta.157
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -63043,7 +63043,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.9.0-beta.156';
+  let version = '3.9.0-beta.157';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
