@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.9.0-beta.155
+ * Version: 3.9.0-beta.156
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -55592,6 +55592,7 @@ const callPrefix = '@@KANDY/CALL/';
  */
 const MAKE_CALL = exports.MAKE_CALL = callPrefix + 'MAKE';
 const PENDING_MAKE_CALL = exports.PENDING_MAKE_CALL = callPrefix + 'PENDING_MAKE';
+const SESSION_CREATED = exports.SESSION_CREATED = callPrefix + 'SESSION_CREATED';
 const MAKE_CALL_FINISH = exports.MAKE_CALL_FINISH = callPrefix + 'MAKE_FINISH';
 
 const MAKE_ANONYMOUS_CALL = exports.MAKE_ANONYMOUS_CALL = callPrefix + 'MAKE_ANONYMOUS_CALL';
@@ -63042,7 +63043,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.9.0-beta.155';
+  let version = '3.9.0-beta.156';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
