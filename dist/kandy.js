@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.9.0-beta.171
+ * Version: 3.9.0-beta.172
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -61989,6 +61989,7 @@ const connCheckMethods = exports.connCheckMethods = {
  * The User ID ie: joe@test.3s5j.att.com
  *
  * @public
+ * @static
  * @module UserID
  * @typedef {string} UserID
  * @memberof user
@@ -61999,6 +62000,7 @@ const connCheckMethods = exports.connCheckMethods = {
  * The User ID ie: joe@test.3s5j.att.com
  *
  * @public
+ * @static
  * @module UserID
  * @typedef {string} UserID
  * @memberof call
@@ -62009,7 +62011,10 @@ const connCheckMethods = exports.connCheckMethods = {
  * The SIP URI ie: sip:joe@domain.com
  *
  * @public
+ * @static
  * @module SIP_URI
+ * @typedef {string} SIP_URI
+ * @memberof call
  * @requires link_user_id
  */
 
@@ -62017,6 +62022,7 @@ const connCheckMethods = exports.connCheckMethods = {
  * The Phone Numer ie: +18885559876
  *
  * @public
+ * @static
  * @module PhoneNumber
  * @typedef {string} PhoneNumber
  * @memberof call
@@ -62027,6 +62033,7 @@ const connCheckMethods = exports.connCheckMethods = {
  * The TEL URI ie: tel:+18885559876
  *
  * @public
+ * @static
  * @module TEL_URI
  * @typedef {string} TEL_URI
  * @memberof call
@@ -63031,7 +63038,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.9.0-beta.171';
+  let version = '3.9.0-beta.172';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
