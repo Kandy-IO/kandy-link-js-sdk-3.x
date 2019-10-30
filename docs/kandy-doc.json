@@ -314,8 +314,8 @@
                 },
                 "end": {
                   "line": 2,
-                  "column": 79,
-                  "offset": 153
+                  "column": 71,
+                  "offset": 145
                 },
                 "indent": []
               }
@@ -326,13 +326,13 @@
               "position": {
                 "start": {
                   "line": 2,
-                  "column": 79,
-                  "offset": 153
+                  "column": 71,
+                  "offset": 145
                 },
                 "end": {
                   "line": 2,
-                  "column": 89,
-                  "offset": 163
+                  "column": 81,
+                  "offset": 155
                 },
                 "indent": []
               }
@@ -346,8 +346,8 @@
             },
             "end": {
               "line": 2,
-              "column": 89,
-              "offset": 163
+              "column": 81,
+              "offset": 155
             },
             "indent": [
               1
@@ -363,8 +363,8 @@
         },
         "end": {
           "line": 2,
-          "column": 89,
-          "offset": 163
+          "column": 81,
+          "offset": 155
         }
       }
     },
@@ -520,7 +520,7 @@
             },
             {
               "title": "param",
-              "description": "Log level to be set. See {@link Logger.levels levels}.",
+              "description": "Log level to be set. See {@link logger.levels}.",
               "lineNumber": 9,
               "type": {
                 "type": "OptionalType",
@@ -760,13 +760,13 @@
                           },
                           {
                             "type": "link",
-                            "url": "Logger.levels",
+                            "url": "#loggerlevels",
                             "title": null,
                             "jsdoc": true,
                             "children": [
                               {
                                 "type": "text",
-                                "value": "levels"
+                                "value": "logger.levels"
                               }
                             ],
                             "position": {
@@ -777,8 +777,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 54,
-                                "offset": 53
+                                "column": 47,
+                                "offset": 46
                               },
                               "indent": []
                             }
@@ -789,13 +789,13 @@
                             "position": {
                               "start": {
                                 "line": 1,
-                                "column": 54,
-                                "offset": 53
+                                "column": 47,
+                                "offset": 46
                               },
                               "end": {
                                 "line": 1,
-                                "column": 55,
-                                "offset": 54
+                                "column": 48,
+                                "offset": 47
                               },
                               "indent": []
                             }
@@ -809,8 +809,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 55,
-                            "offset": 54
+                            "column": 48,
+                            "offset": 47
                           },
                           "indent": []
                         }
@@ -824,8 +824,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 55,
-                        "offset": 54
+                        "column": 48,
+                        "offset": 47
                       }
                     }
                   },
@@ -10575,440 +10575,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect with user credentials to any backend services that the SDK instance deals with.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 88,
-                        "offset": 87
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 88,
-                    "offset": 87
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 88,
-                "offset": 87
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "api",
-              "lineNumber": 4
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 5,
-              "name": "userCredentialsAuth"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 6,
-              "name": "connect"
-            },
-            {
-              "title": "param",
-              "description": "The credentials object.",
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "credentials"
-            },
-            {
-              "title": "param",
-              "description": "The username including the application's domain.",
-              "lineNumber": 8,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.username"
-            },
-            {
-              "title": "param",
-              "description": "The user's password.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.password"
-            },
-            {
-              "title": "param",
-              "description": "The user's authorization name.",
-              "lineNumber": 10,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "credentials.authname"
-            },
-            {
-              "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
-              "lineNumber": 11
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 18,
-              "column": 4
-            },
-            "end": {
-              "line": 35,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 137,
-                "column": 4
-              },
-              "end": {
-                "line": 142,
-                "column": 5
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "credentials",
-              "lineNumber": 7,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The credentials object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 24,
-                            "offset": 23
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 24,
-                    "offset": 23
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "credentials.username",
-                  "lineNumber": 8,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The username including the application's domain.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 49,
-                                "offset": 48
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 49,
-                            "offset": 48
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 49,
-                        "offset": 48
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.password",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's password.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 21,
-                                "offset": 20
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 21,
-                            "offset": 20
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 21,
-                        "offset": 20
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.authname",
-                  "lineNumber": 10,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's authorization name.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 31,
-                                "offset": 30
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 31,
-                            "offset": 30
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 31,
-                        "offset": 30
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
-                  }
-                }
-              ]
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "api",
-          "kind": "function",
-          "name": "connect",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "api",
-              "kind": "module"
-            },
-            {
-              "name": "connect",
-              "kind": "function"
-            }
-          ],
-          "namespace": "apiconnect"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "Connect by providing a username and HMAC token. This connects to any backend services that the SDK instance deals with.\nAn HMAC token is used to verify a user via the user's authorization within an organization.\nHMAC tokens are generated by using the HmacSHA1 algorithm and a key on a data object\ncontaining an ",
                     "position": {
                       "start": {
@@ -11499,6 +11065,440 @@
                   "type": {
                     "type": "NameExpression",
                     "name": "string"
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "api",
+          "kind": "function",
+          "name": "connect",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "api",
+              "kind": "module"
+            },
+            {
+              "name": "connect",
+              "kind": "function"
+            }
+          ],
+          "namespace": "apiconnect"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Connect with user credentials to any backend services that the SDK instance deals with.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 88,
+                        "offset": 87
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 88,
+                    "offset": 87
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 88,
+                "offset": 87
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "api",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "userCredentialsAuth"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "connect"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username including the application's domain.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "The user's password.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.password"
+            },
+            {
+              "title": "param",
+              "description": "The user's authorization name.",
+              "lineNumber": 10,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "credentials.authname"
+            },
+            {
+              "title": "example",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
+              "lineNumber": 11
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 4
+            },
+            "end": {
+              "line": 35,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 137,
+                "column": 4
+              },
+              "end": {
+                "line": 142,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username including the application's domain.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 49,
+                                "offset": 48
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 49,
+                            "offset": 48
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 49,
+                        "offset": 48
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.password",
+                  "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's password.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 21,
+                                "offset": 20
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 21,
+                            "offset": 20
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 21,
+                        "offset": 20
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.authname",
+                  "lineNumber": 10,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's authorization name.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 31,
+                                "offset": 30
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 31,
+                            "offset": 30
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 31,
+                        "offset": 30
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
                   }
                 }
               ]
@@ -37017,6 +37017,293 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "A Message object represents an individual message. Messages have parts\nwhich represent pieces of a message, such as a text part or a file part. Once\nall the desired parts have been added, a message can be sent with the send()\nfunction.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 10,
+                        "offset": 235
+                      },
+                      "indent": [
+                        1,
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 10,
+                    "offset": 235
+                  },
+                  "indent": [
+                    1,
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 4,
+                "column": 10,
+                "offset": 235
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 5,
+              "type": null
+            },
+            {
+              "title": "module",
+              "description": null,
+              "lineNumber": 6,
+              "type": null,
+              "name": "Message"
+            },
+            {
+              "title": "typedef",
+              "description": null,
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "Message"
+            },
+            {
+              "title": "memberof",
+              "description": "conversation",
+              "lineNumber": 8
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 0
+            },
+            "end": {
+              "line": 37,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 39,
+                "column": 0
+              },
+              "end": {
+                "line": 39,
+                "column": 42
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "kind": "typedef",
+          "name": "Message",
+          "type": {
+            "type": "NameExpression",
+            "name": "Object"
+          },
+          "memberof": "conversation",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": [
+              {
+                "description": {
+                  "type": "root",
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "children": [
+                        {
+                          "type": "text",
+                          "value": "Sends the message.",
+                          "position": {
+                            "start": {
+                              "line": 1,
+                              "column": 1,
+                              "offset": 0
+                            },
+                            "end": {
+                              "line": 1,
+                              "column": 19,
+                              "offset": 18
+                            },
+                            "indent": []
+                          }
+                        }
+                      ],
+                      "position": {
+                        "start": {
+                          "line": 1,
+                          "column": 1,
+                          "offset": 0
+                        },
+                        "end": {
+                          "line": 1,
+                          "column": 19,
+                          "offset": 18
+                        },
+                        "indent": []
+                      }
+                    }
+                  ],
+                  "position": {
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 0
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 19,
+                      "offset": 18
+                    }
+                  }
+                },
+                "tags": [
+                  {
+                    "title": "public",
+                    "description": null,
+                    "lineNumber": 3,
+                    "type": null
+                  },
+                  {
+                    "title": "static",
+                    "description": null,
+                    "lineNumber": 4
+                  },
+                  {
+                    "title": "method",
+                    "description": null,
+                    "lineNumber": 5,
+                    "name": "send"
+                  },
+                  {
+                    "title": "memberof",
+                    "description": "conversation.Message",
+                    "lineNumber": 6
+                  }
+                ],
+                "loc": {
+                  "start": {
+                    "line": 367,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 374,
+                    "column": 7
+                  }
+                },
+                "context": {
+                  "loc": {
+                    "start": {
+                      "line": 375,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 380,
+                      "column": 5
+                    }
+                  },
+                  "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
+                },
+                "augments": [],
+                "examples": [],
+                "params": [],
+                "properties": [],
+                "returns": [],
+                "sees": [],
+                "throws": [],
+                "todos": [],
+                "access": "public",
+                "scope": "static",
+                "kind": "function",
+                "name": "send",
+                "memberof": "conversation.Message",
+                "members": {
+                  "global": [],
+                  "inner": [],
+                  "instance": [],
+                  "events": [],
+                  "static": []
+                },
+                "path": [
+                  {
+                    "name": "conversation",
+                    "kind": "namespace"
+                  },
+                  {
+                    "name": "Message",
+                    "kind": "typedef"
+                  },
+                  {
+                    "name": "send",
+                    "kind": "function",
+                    "scope": "static"
+                  }
+                ],
+                "namespace": "conversationMessage.send"
+              }
+            ]
+          },
+          "path": [
+            {
+              "name": "conversation",
+              "kind": "namespace"
+            },
+            {
+              "name": "Message",
+              "kind": "typedef"
+            }
+          ],
+          "namespace": "conversationMessage"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "A Conversation object represents a conversation between either two users, or a\nuser and a group. A Conversation can create messages via the conversation's\ncreateMessage() function.",
                     "position": {
                       "start": {
@@ -39511,293 +39798,6 @@
             }
           ],
           "namespace": "conversationConversation"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "A Message object represents an individual message. Messages have parts\nwhich represent pieces of a message, such as a text part or a file part. Once\nall the desired parts have been added, a message can be sent with the send()\nfunction.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 10,
-                        "offset": 235
-                      },
-                      "indent": [
-                        1,
-                        1,
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 10,
-                    "offset": 235
-                  },
-                  "indent": [
-                    1,
-                    1,
-                    1
-                  ]
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 4,
-                "column": 10,
-                "offset": 235
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 5,
-              "type": null
-            },
-            {
-              "title": "module",
-              "description": null,
-              "lineNumber": 6,
-              "type": null,
-              "name": "Message"
-            },
-            {
-              "title": "typedef",
-              "description": null,
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "Message"
-            },
-            {
-              "title": "memberof",
-              "description": "conversation",
-              "lineNumber": 8
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 28,
-              "column": 0
-            },
-            "end": {
-              "line": 37,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 39,
-                "column": 0
-              },
-              "end": {
-                "line": 39,
-                "column": 42
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
-          },
-          "augments": [],
-          "examples": [],
-          "params": [],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "kind": "typedef",
-          "name": "Message",
-          "type": {
-            "type": "NameExpression",
-            "name": "Object"
-          },
-          "memberof": "conversation",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": [
-              {
-                "description": {
-                  "type": "root",
-                  "children": [
-                    {
-                      "type": "paragraph",
-                      "children": [
-                        {
-                          "type": "text",
-                          "value": "Sends the message.",
-                          "position": {
-                            "start": {
-                              "line": 1,
-                              "column": 1,
-                              "offset": 0
-                            },
-                            "end": {
-                              "line": 1,
-                              "column": 19,
-                              "offset": 18
-                            },
-                            "indent": []
-                          }
-                        }
-                      ],
-                      "position": {
-                        "start": {
-                          "line": 1,
-                          "column": 1,
-                          "offset": 0
-                        },
-                        "end": {
-                          "line": 1,
-                          "column": 19,
-                          "offset": 18
-                        },
-                        "indent": []
-                      }
-                    }
-                  ],
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 1,
-                      "offset": 0
-                    },
-                    "end": {
-                      "line": 1,
-                      "column": 19,
-                      "offset": 18
-                    }
-                  }
-                },
-                "tags": [
-                  {
-                    "title": "public",
-                    "description": null,
-                    "lineNumber": 3,
-                    "type": null
-                  },
-                  {
-                    "title": "static",
-                    "description": null,
-                    "lineNumber": 4
-                  },
-                  {
-                    "title": "method",
-                    "description": null,
-                    "lineNumber": 5,
-                    "name": "send"
-                  },
-                  {
-                    "title": "memberof",
-                    "description": "conversation.Message",
-                    "lineNumber": 6
-                  }
-                ],
-                "loc": {
-                  "start": {
-                    "line": 367,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 374,
-                    "column": 7
-                  }
-                },
-                "context": {
-                  "loc": {
-                    "start": {
-                      "line": 375,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 380,
-                      "column": 5
-                    }
-                  },
-                  "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
-                },
-                "augments": [],
-                "examples": [],
-                "params": [],
-                "properties": [],
-                "returns": [],
-                "sees": [],
-                "throws": [],
-                "todos": [],
-                "access": "public",
-                "scope": "static",
-                "kind": "function",
-                "name": "send",
-                "memberof": "conversation.Message",
-                "members": {
-                  "global": [],
-                  "inner": [],
-                  "instance": [],
-                  "events": [],
-                  "static": []
-                },
-                "path": [
-                  {
-                    "name": "conversation",
-                    "kind": "namespace"
-                  },
-                  {
-                    "name": "Message",
-                    "kind": "typedef"
-                  },
-                  {
-                    "name": "send",
-                    "kind": "function",
-                    "scope": "static"
-                  }
-                ],
-                "namespace": "conversationMessage.send"
-              }
-            ]
-          },
-          "path": [
-            {
-              "name": "conversation",
-              "kind": "namespace"
-            },
-            {
-              "name": "Message",
-              "kind": "typedef"
-            }
-          ],
-          "namespace": "conversationMessage"
         }
       ]
     },
@@ -42720,7 +42720,7 @@
             },
             {
               "type": "link",
-              "url": "Presence.fetch",
+              "url": "#presencefetch",
               "title": null,
               "jsdoc": true,
               "children": [
@@ -42737,35 +42737,34 @@
                 },
                 "end": {
                   "line": 7,
-                  "column": 67,
-                  "offset": 380
+                  "column": 52,
+                  "offset": 365
                 },
                 "indent": []
               }
             },
             {
               "type": "text",
-              "value": " or\n   by subscribing for updates about other Users, using\n   ",
+              "value": " or by subscribing for\n   updates about other Users, using ",
               "position": {
                 "start": {
                   "line": 7,
-                  "column": 67,
-                  "offset": 380
+                  "column": 52,
+                  "offset": 365
                 },
                 "end": {
-                  "line": 9,
-                  "column": 4,
-                  "offset": 442
+                  "line": 8,
+                  "column": 37,
+                  "offset": 424
                 },
                 "indent": [
-                  1,
                   1
                 ]
               }
             },
             {
               "type": "link",
-              "url": "Presence.subscribe",
+              "url": "#presencesubscribe",
               "title": null,
               "jsdoc": true,
               "children": [
@@ -42776,14 +42775,14 @@
               ],
               "position": {
                 "start": {
-                  "line": 9,
-                  "column": 4,
-                  "offset": 442
+                  "line": 8,
+                  "column": 37,
+                  "offset": 424
                 },
                 "end": {
-                  "line": 9,
-                  "column": 49,
-                  "offset": 487
+                  "line": 8,
+                  "column": 63,
+                  "offset": 450
                 },
                 "indent": []
               }
@@ -42793,14 +42792,14 @@
               "value": ".",
               "position": {
                 "start": {
-                  "line": 9,
-                  "column": 49,
-                  "offset": 487
+                  "line": 8,
+                  "column": 63,
+                  "offset": 450
                 },
                 "end": {
-                  "line": 9,
-                  "column": 50,
-                  "offset": 488
+                  "line": 8,
+                  "column": 64,
+                  "offset": 451
                 },
                 "indent": []
               }
@@ -42813,12 +42812,11 @@
               "offset": 160
             },
             "end": {
-              "line": 9,
-              "column": 50,
-              "offset": 488
+              "line": 8,
+              "column": 64,
+              "offset": 451
             },
             "indent": [
-              1,
               1,
               1,
               1
@@ -42830,26 +42828,24 @@
           "children": [
             {
               "type": "text",
-              "value": "Available presence information can be retrieved using\n   ",
+              "value": "Available presence information can be retrieved using ",
               "position": {
                 "start": {
-                  "line": 11,
+                  "line": 10,
                   "column": 1,
-                  "offset": 490
+                  "offset": 453
                 },
                 "end": {
-                  "line": 12,
-                  "column": 4,
-                  "offset": 547
+                  "line": 10,
+                  "column": 55,
+                  "offset": 507
                 },
-                "indent": [
-                  1
-                ]
+                "indent": []
               }
             },
             {
               "type": "link",
-              "url": "Presence.get",
+              "url": "#presenceget",
               "title": null,
               "jsdoc": true,
               "children": [
@@ -42860,38 +42856,40 @@
               ],
               "position": {
                 "start": {
-                  "line": 12,
-                  "column": 4,
-                  "offset": 547
+                  "line": 10,
+                  "column": 55,
+                  "offset": 507
                 },
                 "end": {
-                  "line": 12,
-                  "column": 37,
-                  "offset": 580
+                  "line": 10,
+                  "column": 75,
+                  "offset": 527
                 },
                 "indent": []
               }
             },
             {
               "type": "text",
-              "value": " or ",
+              "value": " or\n   ",
               "position": {
                 "start": {
-                  "line": 12,
-                  "column": 37,
-                  "offset": 580
+                  "line": 10,
+                  "column": 75,
+                  "offset": 527
                 },
                 "end": {
-                  "line": 12,
-                  "column": 41,
-                  "offset": 584
+                  "line": 11,
+                  "column": 4,
+                  "offset": 534
                 },
-                "indent": []
+                "indent": [
+                  1
+                ]
               }
             },
             {
               "type": "link",
-              "url": "Presence.getAll",
+              "url": "#presencegetall",
               "title": null,
               "jsdoc": true,
               "children": [
@@ -42902,14 +42900,14 @@
               ],
               "position": {
                 "start": {
-                  "line": 12,
-                  "column": 41,
-                  "offset": 584
+                  "line": 11,
+                  "column": 4,
+                  "offset": 534
                 },
                 "end": {
-                  "line": 12,
-                  "column": 80,
-                  "offset": 623
+                  "line": 11,
+                  "column": 27,
+                  "offset": 557
                 },
                 "indent": []
               }
@@ -42919,14 +42917,14 @@
               "value": ".",
               "position": {
                 "start": {
-                  "line": 12,
-                  "column": 80,
-                  "offset": 623
+                  "line": 11,
+                  "column": 27,
+                  "offset": 557
                 },
                 "end": {
-                  "line": 12,
-                  "column": 81,
-                  "offset": 624
+                  "line": 11,
+                  "column": 28,
+                  "offset": 558
                 },
                 "indent": []
               }
@@ -42934,14 +42932,14 @@
           ],
           "position": {
             "start": {
-              "line": 11,
+              "line": 10,
               "column": 1,
-              "offset": 490
+              "offset": 453
             },
             "end": {
-              "line": 12,
-              "column": 81,
-              "offset": 624
+              "line": 11,
+              "column": 28,
+              "offset": 558
             },
             "indent": [
               1
@@ -42956,9 +42954,9 @@
           "offset": 0
         },
         "end": {
-          "line": 12,
-          "column": 81,
-          "offset": 624
+          "line": 11,
+          "column": 28,
+          "offset": 558
         }
       }
     },
@@ -42966,19 +42964,19 @@
       {
         "title": "public",
         "description": null,
-        "lineNumber": 14,
+        "lineNumber": 13,
         "type": null
       },
       {
         "title": "requires",
         "description": null,
-        "lineNumber": 15,
+        "lineNumber": 14,
         "name": "presence"
       },
       {
         "title": "namespace",
         "description": null,
-        "lineNumber": 16,
+        "lineNumber": 15,
         "type": null,
         "name": "presence"
       }
@@ -42989,18 +42987,18 @@
         "column": 0
       },
       "end": {
-        "line": 18,
+        "line": 17,
         "column": 3
       }
     },
     "context": {
       "loc": {
         "start": {
-          "line": 20,
+          "line": 19,
           "column": 0
         },
         "end": {
-          "line": 20,
+          "line": 19,
           "column": 36
         }
       },
@@ -43555,7 +43553,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "The changed information can be retrieved using the\n   ",
+                    "value": "The changed information can be retrieved using the ",
                     "position": {
                       "start": {
                         "line": 3,
@@ -43563,18 +43561,16 @@
                         "offset": 54
                       },
                       "end": {
-                        "line": 4,
-                        "column": 4,
-                        "offset": 108
+                        "line": 3,
+                        "column": 52,
+                        "offset": 105
                       },
-                      "indent": [
-                        1
-                      ]
+                      "indent": []
                     }
                   },
                   {
                     "type": "link",
-                    "url": "Presence.getSelf",
+                    "url": "#presencegetself",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -43585,33 +43581,35 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 4,
-                        "column": 4,
-                        "offset": 108
+                        "line": 3,
+                        "column": 52,
+                        "offset": 105
                       },
                       "end": {
-                        "line": 4,
-                        "column": 45,
-                        "offset": 149
+                        "line": 3,
+                        "column": 76,
+                        "offset": 129
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " API.",
+                    "value": "\n   API.",
                     "position": {
                       "start": {
-                        "line": 4,
-                        "column": 45,
-                        "offset": 149
+                        "line": 3,
+                        "column": 76,
+                        "offset": 129
                       },
                       "end": {
                         "line": 4,
-                        "column": 50,
-                        "offset": 154
+                        "column": 8,
+                        "offset": 137
                       },
-                      "indent": []
+                      "indent": [
+                        1
+                      ]
                     }
                   }
                 ],
@@ -43623,8 +43621,8 @@
                   },
                   "end": {
                     "line": 4,
-                    "column": 50,
-                    "offset": 154
+                    "column": 8,
+                    "offset": 137
                   },
                   "indent": [
                     1
@@ -43640,8 +43638,8 @@
               },
               "end": {
                 "line": 4,
-                "column": 50,
-                "offset": 154
+                "column": 8,
+                "offset": 137
               }
             }
           },
@@ -44479,7 +44477,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Presence.statuses",
+                    "url": "#presencestatuses",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -44496,34 +44494,32 @@
                       },
                       "end": {
                         "line": 3,
-                        "column": 48,
-                        "offset": 103
+                        "column": 30,
+                        "offset": 85
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " and\n   ",
+                    "value": " and ",
                     "position": {
                       "start": {
                         "line": 3,
-                        "column": 48,
-                        "offset": 103
+                        "column": 30,
+                        "offset": 85
                       },
                       "end": {
-                        "line": 4,
-                        "column": 4,
-                        "offset": 111
+                        "line": 3,
+                        "column": 35,
+                        "offset": 90
                       },
-                      "indent": [
-                        1
-                      ]
+                      "indent": []
                     }
                   },
                   {
                     "type": "link",
-                    "url": "Presence.activities",
+                    "url": "#presenceactivities",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -44534,33 +44530,35 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 4,
-                        "column": 4,
-                        "offset": 111
+                        "line": 3,
+                        "column": 35,
+                        "offset": 90
                       },
                       "end": {
-                        "line": 4,
-                        "column": 51,
-                        "offset": 158
+                        "line": 3,
+                        "column": 62,
+                        "offset": 117
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " for valid values.",
+                    "value": " for valid\n   values.",
                     "position": {
                       "start": {
-                        "line": 4,
-                        "column": 51,
-                        "offset": 158
+                        "line": 3,
+                        "column": 62,
+                        "offset": 117
                       },
                       "end": {
                         "line": 4,
-                        "column": 69,
-                        "offset": 176
+                        "column": 11,
+                        "offset": 138
                       },
-                      "indent": []
+                      "indent": [
+                        1
+                      ]
                     }
                   }
                 ],
@@ -44572,8 +44570,8 @@
                   },
                   "end": {
                     "line": 4,
-                    "column": 69,
-                    "offset": 176
+                    "column": 11,
+                    "offset": 138
                   },
                   "indent": [
                     1
@@ -44590,12 +44588,12 @@
                       "start": {
                         "line": 6,
                         "column": 1,
-                        "offset": 178
+                        "offset": 140
                       },
                       "end": {
                         "line": 7,
                         "column": 4,
-                        "offset": 201
+                        "offset": 163
                       },
                       "indent": [
                         1
@@ -44604,7 +44602,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Presence.event:presence:selfChange",
+                    "url": "#presenceeventpresenceselfchange",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -44617,32 +44615,31 @@
                       "start": {
                         "line": 7,
                         "column": 4,
-                        "offset": 201
+                        "offset": 163
                       },
                       "end": {
                         "line": 7,
                         "column": 66,
-                        "offset": 263
+                        "offset": 225
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " event\n   when the operation completes. The updated presence information is\n   available and can be retrieved with\n   ",
+                    "value": " event\n   when the operation completes. The updated presence information is\n   available and can be retrieved with ",
                     "position": {
                       "start": {
                         "line": 7,
                         "column": 66,
-                        "offset": 263
+                        "offset": 225
                       },
                       "end": {
-                        "line": 10,
-                        "column": 4,
-                        "offset": 381
+                        "line": 9,
+                        "column": 40,
+                        "offset": 340
                       },
                       "indent": [
-                        1,
                         1,
                         1
                       ]
@@ -44650,7 +44647,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Presence.getSelf",
+                    "url": "#presencegetself",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -44661,14 +44658,14 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 10,
-                        "column": 4,
-                        "offset": 381
+                        "line": 9,
+                        "column": 40,
+                        "offset": 340
                       },
                       "end": {
-                        "line": 10,
-                        "column": 45,
-                        "offset": 422
+                        "line": 9,
+                        "column": 64,
+                        "offset": 364
                       },
                       "indent": []
                     }
@@ -44678,14 +44675,14 @@
                     "value": ".",
                     "position": {
                       "start": {
-                        "line": 10,
-                        "column": 45,
-                        "offset": 422
+                        "line": 9,
+                        "column": 64,
+                        "offset": 364
                       },
                       "end": {
-                        "line": 10,
-                        "column": 46,
-                        "offset": 423
+                        "line": 9,
+                        "column": 65,
+                        "offset": 365
                       },
                       "indent": []
                     }
@@ -44695,15 +44692,14 @@
                   "start": {
                     "line": 6,
                     "column": 1,
-                    "offset": 178
+                    "offset": 140
                   },
                   "end": {
-                    "line": 10,
-                    "column": 46,
-                    "offset": 423
+                    "line": 9,
+                    "column": 65,
+                    "offset": 365
                   },
                   "indent": [
-                    1,
                     1,
                     1,
                     1
@@ -44718,14 +44714,14 @@
                     "value": "Other users subscribed for this user's presence will receive a\n   ",
                     "position": {
                       "start": {
-                        "line": 12,
+                        "line": 11,
                         "column": 1,
-                        "offset": 425
+                        "offset": 367
                       },
                       "end": {
-                        "line": 13,
+                        "line": 12,
                         "column": 4,
-                        "offset": 491
+                        "offset": 433
                       },
                       "indent": [
                         1
@@ -44734,7 +44730,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Presence.event:presence:change",
+                    "url": "#presenceeventpresencechange",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -44745,14 +44741,14 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 13,
+                        "line": 12,
                         "column": 4,
-                        "offset": 491
+                        "offset": 433
                       },
                       "end": {
-                        "line": 13,
+                        "line": 12,
                         "column": 58,
-                        "offset": 545
+                        "offset": 487
                       },
                       "indent": []
                     }
@@ -44762,14 +44758,14 @@
                     "value": " event.",
                     "position": {
                       "start": {
-                        "line": 13,
+                        "line": 12,
                         "column": 58,
-                        "offset": 545
+                        "offset": 487
                       },
                       "end": {
-                        "line": 13,
+                        "line": 12,
                         "column": 65,
-                        "offset": 552
+                        "offset": 494
                       },
                       "indent": []
                     }
@@ -44777,14 +44773,14 @@
                 ],
                 "position": {
                   "start": {
-                    "line": 12,
+                    "line": 11,
                     "column": 1,
-                    "offset": 425
+                    "offset": 367
                   },
                   "end": {
-                    "line": 13,
+                    "line": 12,
                     "column": 65,
-                    "offset": 552
+                    "offset": 494
                   },
                   "indent": [
                     1
@@ -44799,9 +44795,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 13,
+                "line": 12,
                 "column": 65,
-                "offset": 552
+                "offset": 494
               }
             }
           },
@@ -44809,35 +44805,35 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 15,
+              "lineNumber": 14,
               "type": null
             },
             {
               "title": "static",
               "description": null,
-              "lineNumber": 16
+              "lineNumber": 15
             },
             {
               "title": "memberof",
               "description": "presence",
-              "lineNumber": 17
+              "lineNumber": 16
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 18,
+              "lineNumber": 17,
               "name": "presence"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 19,
+              "lineNumber": 18,
               "name": "update"
             },
             {
               "title": "param",
               "description": "The status of the presence state.",
-              "lineNumber": 20,
+              "lineNumber": 19,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -44847,7 +44843,7 @@
             {
               "title": "param",
               "description": "The activity to be shown as presence state",
-              "lineNumber": 21,
+              "lineNumber": 20,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -44857,7 +44853,7 @@
             {
               "title": "param",
               "description": "An additional note to be provided when the activity is `presence.activities.ACTIVITIES_OTHER`.",
-              "lineNumber": 22,
+              "lineNumber": 21,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -44870,22 +44866,22 @@
           ],
           "loc": {
             "start": {
-              "line": 29,
+              "line": 28,
               "column": 4
             },
             "end": {
-              "line": 52,
+              "line": 50,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 53,
+                "line": 51,
                 "column": 4
               },
               "end": {
-                "line": 56,
+                "line": 54,
                 "column": 5
               }
             },
@@ -44897,7 +44893,7 @@
             {
               "title": "param",
               "name": "status",
-              "lineNumber": 20,
+              "lineNumber": 19,
               "description": {
                 "type": "root",
                 "children": [
@@ -44958,7 +44954,7 @@
             {
               "title": "param",
               "name": "activity",
-              "lineNumber": 21,
+              "lineNumber": 20,
               "description": {
                 "type": "root",
                 "children": [
@@ -45019,7 +45015,7 @@
             {
               "title": "param",
               "name": "note",
-              "lineNumber": 22,
+              "lineNumber": 21,
               "description": {
                 "type": "root",
                 "children": [
@@ -45285,22 +45281,22 @@
           ],
           "loc": {
             "start": {
-              "line": 58,
+              "line": 56,
               "column": 4
             },
             "end": {
-              "line": 68,
+              "line": 66,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 69,
+                "line": 67,
                 "column": 4
               },
               "end": {
-                "line": 81,
+                "line": 79,
                 "column": 5
               }
             },
@@ -45600,22 +45596,22 @@
           ],
           "loc": {
             "start": {
-              "line": 83,
+              "line": 81,
               "column": 4
             },
             "end": {
-              "line": 92,
+              "line": 90,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 93,
+                "line": 91,
                 "column": 4
               },
               "end": {
-                "line": 96,
+                "line": 94,
                 "column": 5
               }
             },
@@ -45784,13 +45780,13 @@
                   },
                   {
                     "type": "link",
-                    "url": "Presence.update",
+                    "url": "#presenceupdate",
                     "title": null,
                     "jsdoc": true,
                     "children": [
                       {
                         "type": "text",
-                        "value": "presnece.update"
+                        "value": "presence.update"
                       }
                     ],
                     "position": {
@@ -45801,29 +45797,27 @@
                       },
                       "end": {
                         "line": 3,
-                        "column": 74,
-                        "offset": 131
+                        "column": 58,
+                        "offset": 115
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": "\n   API.",
+                    "value": " API.",
                     "position": {
                       "start": {
                         "line": 3,
-                        "column": 74,
-                        "offset": 131
+                        "column": 58,
+                        "offset": 115
                       },
                       "end": {
-                        "line": 4,
-                        "column": 8,
-                        "offset": 139
+                        "line": 3,
+                        "column": 63,
+                        "offset": 120
                       },
-                      "indent": [
-                        1
-                      ]
+                      "indent": []
                     }
                   }
                 ],
@@ -45834,13 +45828,11 @@
                     "offset": 58
                   },
                   "end": {
-                    "line": 4,
-                    "column": 8,
-                    "offset": 139
+                    "line": 3,
+                    "column": 63,
+                    "offset": 120
                   },
-                  "indent": [
-                    1
-                  ]
+                  "indent": []
                 }
               }
             ],
@@ -45851,9 +45843,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 4,
-                "column": 8,
-                "offset": 139
+                "line": 3,
+                "column": 63,
+                "offset": 120
               }
             }
           },
@@ -45861,35 +45853,35 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 6,
+              "lineNumber": 5,
               "type": null
             },
             {
               "title": "static",
               "description": null,
-              "lineNumber": 7
+              "lineNumber": 6
             },
             {
               "title": "memberof",
               "description": "presence",
-              "lineNumber": 8
+              "lineNumber": 7
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 9,
+              "lineNumber": 8,
               "name": "presence"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 10,
+              "lineNumber": 9,
               "name": "getSelf"
             },
             {
               "title": "return",
               "description": "Presence information for the current user.",
-              "lineNumber": 11,
+              "lineNumber": 10,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -45898,22 +45890,22 @@
           ],
           "loc": {
             "start": {
-              "line": 98,
+              "line": 96,
               "column": 4
             },
             "end": {
-              "line": 110,
+              "line": 107,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 111,
+                "line": 108,
                 "column": 4
               },
               "end": {
-                "line": 114,
+                "line": 111,
                 "column": 5
               }
             },
@@ -46079,7 +46071,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Presence.get",
+                    "url": "#presenceget",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -46096,34 +46088,32 @@
                       },
                       "end": {
                         "line": 5,
-                        "column": 37,
-                        "offset": 233
+                        "column": 24,
+                        "offset": 220
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " or\n   ",
+                    "value": " or ",
                     "position": {
                       "start": {
                         "line": 5,
-                        "column": 37,
-                        "offset": 233
+                        "column": 24,
+                        "offset": 220
                       },
                       "end": {
-                        "line": 6,
-                        "column": 4,
-                        "offset": 240
+                        "line": 5,
+                        "column": 28,
+                        "offset": 224
                       },
-                      "indent": [
-                        1
-                      ]
+                      "indent": []
                     }
                   },
                   {
                     "type": "link",
-                    "url": "Presence.getAll",
+                    "url": "#presencegetall",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -46134,14 +46124,14 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 6,
-                        "column": 4,
-                        "offset": 240
+                        "line": 5,
+                        "column": 28,
+                        "offset": 224
                       },
                       "end": {
-                        "line": 6,
-                        "column": 43,
-                        "offset": 279
+                        "line": 5,
+                        "column": 51,
+                        "offset": 247
                       },
                       "indent": []
                     }
@@ -46151,14 +46141,14 @@
                     "value": " APIs.",
                     "position": {
                       "start": {
-                        "line": 6,
-                        "column": 43,
-                        "offset": 279
+                        "line": 5,
+                        "column": 51,
+                        "offset": 247
                       },
                       "end": {
-                        "line": 6,
-                        "column": 49,
-                        "offset": 285
+                        "line": 5,
+                        "column": 57,
+                        "offset": 253
                       },
                       "indent": []
                     }
@@ -46171,12 +46161,11 @@
                     "offset": 140
                   },
                   "end": {
-                    "line": 6,
-                    "column": 49,
-                    "offset": 285
+                    "line": 5,
+                    "column": 57,
+                    "offset": 253
                   },
                   "indent": [
-                    1,
                     1
                   ]
                 }
@@ -46189,9 +46178,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 6,
-                "column": 49,
-                "offset": 285
+                "line": 5,
+                "column": 57,
+                "offset": 253
               }
             }
           },
@@ -46199,35 +46188,35 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 8,
+              "lineNumber": 7,
               "type": null
             },
             {
               "title": "static",
               "description": null,
-              "lineNumber": 9
+              "lineNumber": 8
             },
             {
               "title": "memberof",
               "description": "presence",
-              "lineNumber": 10
+              "lineNumber": 9
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 11,
+              "lineNumber": 10,
               "name": "presence"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 12,
+              "lineNumber": 11,
               "name": "fetch"
             },
             {
               "title": "param",
               "description": "A User ID or an array of User IDs.",
-              "lineNumber": 13,
+              "lineNumber": 12,
               "type": {
                 "type": "UnionType",
                 "elements": [
@@ -46255,22 +46244,22 @@
           ],
           "loc": {
             "start": {
-              "line": 116,
+              "line": 113,
               "column": 4
             },
             "end": {
-              "line": 130,
+              "line": 126,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 131,
+                "line": 127,
                 "column": 4
               },
               "end": {
-                "line": 135,
+                "line": 131,
                 "column": 5
               }
             },
@@ -46282,7 +46271,7 @@
             {
               "title": "param",
               "name": "user",
-              "lineNumber": 13,
+              "lineNumber": 12,
               "description": {
                 "type": "root",
                 "children": [
@@ -46452,7 +46441,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Presence.event:presence:change",
+                    "url": "#presenceeventpresencechange",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -46583,22 +46572,22 @@
           ],
           "loc": {
             "start": {
-              "line": 137,
+              "line": 133,
               "column": 4
             },
             "end": {
-              "line": 149,
+              "line": 145,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 150,
+                "line": 146,
                 "column": 4
               },
               "end": {
-                "line": 153,
+                "line": 149,
                 "column": 5
               }
             },
@@ -46830,22 +46819,22 @@
           ],
           "loc": {
             "start": {
-              "line": 155,
+              "line": 151,
               "column": 4
             },
             "end": {
-              "line": 164,
+              "line": 160,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 165,
+                "line": 161,
                 "column": 4
               },
               "end": {
-                "line": 168,
+                "line": 164,
                 "column": 5
               }
             },
@@ -47310,7 +47299,7 @@
             },
             {
               "type": "link",
-              "url": "#sdphandlerfunction",
+              "url": "call.SdpHandlerFunction",
               "title": null,
               "jsdoc": true,
               "children": [
@@ -47327,8 +47316,8 @@
                 },
                 "end": {
                   "line": 1,
-                  "column": 56,
-                  "offset": 55
+                  "column": 60,
+                  "offset": 59
                 },
                 "indent": []
               }
@@ -47339,13 +47328,13 @@
               "position": {
                 "start": {
                   "line": 1,
-                  "column": 56,
-                  "offset": 55
+                  "column": 60,
+                  "offset": 59
                 },
                 "end": {
                   "line": 4,
                   "column": 26,
-                  "offset": 273
+                  "offset": 277
                 },
                 "indent": [
                   1,
@@ -47364,7 +47353,7 @@
             "end": {
               "line": 4,
               "column": 26,
-              "offset": 273
+              "offset": 277
             },
             "indent": [
               1,
@@ -47383,7 +47372,7 @@
         "end": {
           "line": 4,
           "column": 26,
-          "offset": 273
+          "offset": 277
         }
       }
     },
@@ -51230,7 +51219,7 @@
           "column": 2
         },
         "end": {
-          "line": 156,
+          "line": 154,
           "column": 3
         }
       },
@@ -51879,7 +51868,7 @@
                 "column": 2
               },
               "end": {
-                "line": 156,
+                "line": 154,
                 "column": 3
               }
             },
@@ -52348,7 +52337,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Users.event:directory:change",
+                    "url": "#usereventdirectorychange",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -52365,8 +52354,8 @@
                       },
                       "end": {
                         "line": 3,
-                        "column": 74,
-                        "offset": 108
+                        "column": 73,
+                        "offset": 107
                       },
                       "indent": []
                     }
@@ -52377,13 +52366,13 @@
                     "position": {
                       "start": {
                         "line": 3,
-                        "column": 74,
-                        "offset": 108
+                        "column": 73,
+                        "offset": 107
                       },
                       "end": {
                         "line": 5,
                         "column": 17,
-                        "offset": 198
+                        "offset": 197
                       },
                       "indent": [
                         1,
@@ -52401,7 +52390,7 @@
                   "end": {
                     "line": 5,
                     "column": 17,
-                    "offset": 198
+                    "offset": 197
                   },
                   "indent": [
                     1,
@@ -52419,12 +52408,12 @@
                       "start": {
                         "line": 7,
                         "column": 1,
-                        "offset": 200
+                        "offset": 199
                       },
                       "end": {
                         "line": 8,
                         "column": 4,
-                        "offset": 266
+                        "offset": 265
                       },
                       "indent": [
                         1
@@ -52433,7 +52422,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Users.get",
+                    "url": "user.get",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -52446,12 +52435,12 @@
                       "start": {
                         "line": 8,
                         "column": 4,
-                        "offset": 266
+                        "offset": 265
                       },
                       "end": {
                         "line": 8,
-                        "column": 30,
-                        "offset": 292
+                        "column": 20,
+                        "offset": 281
                       },
                       "indent": []
                     }
@@ -52462,13 +52451,13 @@
                     "position": {
                       "start": {
                         "line": 8,
-                        "column": 30,
-                        "offset": 292
+                        "column": 20,
+                        "offset": 281
                       },
                       "end": {
                         "line": 8,
-                        "column": 35,
-                        "offset": 297
+                        "column": 25,
+                        "offset": 286
                       },
                       "indent": []
                     }
@@ -52478,12 +52467,12 @@
                   "start": {
                     "line": 7,
                     "column": 1,
-                    "offset": 200
+                    "offset": 199
                   },
                   "end": {
                     "line": 8,
-                    "column": 35,
-                    "offset": 297
+                    "column": 25,
+                    "offset": 286
                   },
                   "indent": [
                     1
@@ -52499,8 +52488,8 @@
               },
               "end": {
                 "line": 8,
-                "column": 35,
-                "offset": 297
+                "column": 25,
+                "offset": 286
               }
             }
           },
@@ -52684,7 +52673,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Users.fetch",
+                    "url": "#userfetch",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -52701,8 +52690,8 @@
                       },
                       "end": {
                         "line": 2,
-                        "column": 43,
-                        "offset": 101
+                        "column": 31,
+                        "offset": 89
                       },
                       "indent": []
                     }
@@ -52713,13 +52702,13 @@
                     "position": {
                       "start": {
                         "line": 2,
-                        "column": 43,
-                        "offset": 101
+                        "column": 31,
+                        "offset": 89
                       },
                       "end": {
                         "line": 2,
-                        "column": 104,
-                        "offset": 162
+                        "column": 92,
+                        "offset": 150
                       },
                       "indent": []
                     }
@@ -52733,8 +52722,8 @@
                   },
                   "end": {
                     "line": 2,
-                    "column": 104,
-                    "offset": 162
+                    "column": 92,
+                    "offset": 150
                   },
                   "indent": [
                     1
@@ -52751,19 +52740,19 @@
                       "start": {
                         "line": 4,
                         "column": 1,
-                        "offset": 164
+                        "offset": 152
                       },
                       "end": {
                         "line": 4,
                         "column": 21,
-                        "offset": 184
+                        "offset": 172
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "link",
-                    "url": "Users.event:directory:change",
+                    "url": "#usereventdirectorychange",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -52776,12 +52765,12 @@
                       "start": {
                         "line": 4,
                         "column": 21,
-                        "offset": 184
+                        "offset": 172
                       },
                       "end": {
                         "line": 4,
-                        "column": 74,
-                        "offset": 237
+                        "column": 73,
+                        "offset": 224
                       },
                       "indent": []
                     }
@@ -52792,13 +52781,13 @@
                     "position": {
                       "start": {
                         "line": 4,
-                        "column": 74,
-                        "offset": 237
+                        "column": 73,
+                        "offset": 224
                       },
                       "end": {
                         "line": 6,
                         "column": 17,
-                        "offset": 327
+                        "offset": 314
                       },
                       "indent": [
                         1,
@@ -52811,12 +52800,12 @@
                   "start": {
                     "line": 4,
                     "column": 1,
-                    "offset": 164
+                    "offset": 152
                   },
                   "end": {
                     "line": 6,
                     "column": 17,
-                    "offset": 327
+                    "offset": 314
                   },
                   "indent": [
                     1,
@@ -52834,12 +52823,12 @@
                       "start": {
                         "line": 8,
                         "column": 1,
-                        "offset": 329
+                        "offset": 316
                       },
                       "end": {
                         "line": 9,
                         "column": 4,
-                        "offset": 395
+                        "offset": 382
                       },
                       "indent": [
                         1
@@ -52848,7 +52837,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Users.get",
+                    "url": "user.get",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -52861,12 +52850,12 @@
                       "start": {
                         "line": 9,
                         "column": 4,
-                        "offset": 395
+                        "offset": 382
                       },
                       "end": {
                         "line": 9,
-                        "column": 30,
-                        "offset": 421
+                        "column": 20,
+                        "offset": 398
                       },
                       "indent": []
                     }
@@ -52877,13 +52866,13 @@
                     "position": {
                       "start": {
                         "line": 9,
-                        "column": 30,
-                        "offset": 421
+                        "column": 20,
+                        "offset": 398
                       },
                       "end": {
                         "line": 9,
-                        "column": 35,
-                        "offset": 426
+                        "column": 25,
+                        "offset": 403
                       },
                       "indent": []
                     }
@@ -52893,12 +52882,12 @@
                   "start": {
                     "line": 8,
                     "column": 1,
-                    "offset": 329
+                    "offset": 316
                   },
                   "end": {
                     "line": 9,
-                    "column": 35,
-                    "offset": 426
+                    "column": 25,
+                    "offset": 403
                   },
                   "indent": [
                     1
@@ -52914,8 +52903,8 @@
               },
               "end": {
                 "line": 9,
-                "column": 35,
-                "offset": 426
+                "column": 25,
+                "offset": 403
               }
             }
           },
@@ -53066,7 +53055,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Users.fetch",
+                    "url": "#userfetch",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -53083,34 +53072,32 @@
                       },
                       "end": {
                         "line": 3,
-                        "column": 39,
-                        "offset": 89
+                        "column": 27,
+                        "offset": 77
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " and\n   ",
+                    "value": " and ",
                     "position": {
                       "start": {
                         "line": 3,
-                        "column": 39,
-                        "offset": 89
+                        "column": 27,
+                        "offset": 77
                       },
                       "end": {
-                        "line": 4,
-                        "column": 4,
-                        "offset": 97
+                        "line": 3,
+                        "column": 32,
+                        "offset": 82
                       },
-                      "indent": [
-                        1
-                      ]
+                      "indent": []
                     }
                   },
                   {
                     "type": "link",
-                    "url": "Users.search",
+                    "url": "#usersearch",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -53121,31 +53108,31 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 4,
-                        "column": 4,
-                        "offset": 97
+                        "line": 3,
+                        "column": 32,
+                        "offset": 82
                       },
                       "end": {
-                        "line": 4,
-                        "column": 36,
-                        "offset": 129
+                        "line": 3,
+                        "column": 51,
+                        "offset": 101
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " APIs for details about making Users'\n   information available.",
+                    "value": " APIs for details about\n   making Users' information available.",
                     "position": {
                       "start": {
-                        "line": 4,
-                        "column": 36,
-                        "offset": 129
+                        "line": 3,
+                        "column": 51,
+                        "offset": 101
                       },
                       "end": {
-                        "line": 5,
-                        "column": 26,
-                        "offset": 192
+                        "line": 4,
+                        "column": 40,
+                        "offset": 164
                       },
                       "indent": [
                         1
@@ -53160,12 +53147,11 @@
                     "offset": 51
                   },
                   "end": {
-                    "line": 5,
-                    "column": 26,
-                    "offset": 192
+                    "line": 4,
+                    "column": 40,
+                    "offset": 164
                   },
                   "indent": [
-                    1,
                     1
                   ]
                 }
@@ -53178,9 +53164,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 5,
-                "column": 26,
-                "offset": 192
+                "line": 4,
+                "column": 40,
+                "offset": 164
               }
             }
           },
@@ -53188,24 +53174,24 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 7,
+              "lineNumber": 6,
               "type": null
             },
             {
               "title": "memberof",
               "description": "user",
-              "lineNumber": 8
+              "lineNumber": 7
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 9,
+              "lineNumber": 8,
               "name": "get"
             },
             {
               "title": "param",
               "description": "The User ID of the user.",
-              "lineNumber": 10,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -53215,7 +53201,7 @@
             {
               "title": "returns",
               "description": "The User object for the specified user.",
-              "lineNumber": 11,
+              "lineNumber": 10,
               "type": {
                 "type": "NameExpression",
                 "name": "User"
@@ -53228,18 +53214,18 @@
               "column": 4
             },
             "end": {
-              "line": 104,
+              "line": 103,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 105,
+                "line": 104,
                 "column": 4
               },
               "end": {
-                "line": 108,
+                "line": 107,
                 "column": 5
               }
             },
@@ -53251,7 +53237,7 @@
             {
               "title": "param",
               "name": "userId",
-              "lineNumber": 10,
+              "lineNumber": 9,
               "description": {
                 "type": "root",
                 "children": [
@@ -53459,7 +53445,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Users.fetch",
+                    "url": "#userfetch",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -53476,34 +53462,32 @@
                       },
                       "end": {
                         "line": 3,
-                        "column": 39,
-                        "offset": 88
+                        "column": 27,
+                        "offset": 76
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " and\n   ",
+                    "value": " and ",
                     "position": {
                       "start": {
                         "line": 3,
-                        "column": 39,
-                        "offset": 88
+                        "column": 27,
+                        "offset": 76
                       },
                       "end": {
-                        "line": 4,
-                        "column": 4,
-                        "offset": 96
+                        "line": 3,
+                        "column": 32,
+                        "offset": 81
                       },
-                      "indent": [
-                        1
-                      ]
+                      "indent": []
                     }
                   },
                   {
                     "type": "link",
-                    "url": "Users.search",
+                    "url": "#usersearch",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -53514,31 +53498,31 @@
                     ],
                     "position": {
                       "start": {
-                        "line": 4,
-                        "column": 4,
-                        "offset": 96
+                        "line": 3,
+                        "column": 32,
+                        "offset": 81
                       },
                       "end": {
-                        "line": 4,
-                        "column": 36,
-                        "offset": 128
+                        "line": 3,
+                        "column": 51,
+                        "offset": 100
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "text",
-                    "value": " APIs for details about making Users'\n   information available.",
+                    "value": " APIs for details about\n   making Users' information available.",
                     "position": {
                       "start": {
-                        "line": 4,
-                        "column": 36,
-                        "offset": 128
+                        "line": 3,
+                        "column": 51,
+                        "offset": 100
                       },
                       "end": {
-                        "line": 5,
-                        "column": 26,
-                        "offset": 191
+                        "line": 4,
+                        "column": 40,
+                        "offset": 163
                       },
                       "indent": [
                         1
@@ -53553,12 +53537,11 @@
                     "offset": 50
                   },
                   "end": {
-                    "line": 5,
-                    "column": 26,
-                    "offset": 191
+                    "line": 4,
+                    "column": 40,
+                    "offset": 163
                   },
                   "indent": [
-                    1,
                     1
                   ]
                 }
@@ -53571,9 +53554,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 5,
-                "column": 26,
-                "offset": 191
+                "line": 4,
+                "column": 40,
+                "offset": 163
               }
             }
           },
@@ -53581,24 +53564,24 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 7,
+              "lineNumber": 6,
               "type": null
             },
             {
               "title": "memberof",
               "description": "user",
-              "lineNumber": 8
+              "lineNumber": 7
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 9,
+              "lineNumber": 8,
               "name": "getAll"
             },
             {
               "title": "returns",
               "description": "An array of all the User objects.",
-              "lineNumber": 10,
+              "lineNumber": 9,
               "type": {
                 "type": "TypeApplication",
                 "expression": {
@@ -53616,22 +53599,22 @@
           ],
           "loc": {
             "start": {
-              "line": 110,
+              "line": 109,
               "column": 4
             },
             "end": {
-              "line": 121,
+              "line": 119,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 122,
+                "line": 120,
                 "column": 4
               },
               "end": {
-                "line": 125,
+                "line": 123,
                 "column": 5
               }
             },
@@ -53798,7 +53781,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Users.event:directory:change",
+                    "url": "#usereventdirectorychange",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -53815,8 +53798,8 @@
                       },
                       "end": {
                         "line": 3,
-                        "column": 74,
-                        "offset": 117
+                        "column": 73,
+                        "offset": 116
                       },
                       "indent": []
                     }
@@ -53827,13 +53810,13 @@
                     "position": {
                       "start": {
                         "line": 3,
-                        "column": 74,
-                        "offset": 117
+                        "column": 73,
+                        "offset": 116
                       },
                       "end": {
                         "line": 6,
                         "column": 4,
-                        "offset": 259
+                        "offset": 258
                       },
                       "indent": [
                         1,
@@ -53844,7 +53827,7 @@
                   },
                   {
                     "type": "link",
-                    "url": "Users.get",
+                    "url": "user.get",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -53857,12 +53840,12 @@
                       "start": {
                         "line": 6,
                         "column": 4,
-                        "offset": 259
+                        "offset": 258
                       },
                       "end": {
                         "line": 6,
-                        "column": 30,
-                        "offset": 285
+                        "column": 20,
+                        "offset": 274
                       },
                       "indent": []
                     }
@@ -53873,20 +53856,20 @@
                     "position": {
                       "start": {
                         "line": 6,
-                        "column": 30,
-                        "offset": 285
+                        "column": 20,
+                        "offset": 274
                       },
                       "end": {
                         "line": 6,
-                        "column": 35,
-                        "offset": 290
+                        "column": 25,
+                        "offset": 279
                       },
                       "indent": []
                     }
                   },
                   {
                     "type": "link",
-                    "url": "Users.getAll",
+                    "url": "user.getAll",
                     "title": null,
                     "jsdoc": true,
                     "children": [
@@ -53898,13 +53881,13 @@
                     "position": {
                       "start": {
                         "line": 6,
-                        "column": 35,
-                        "offset": 290
+                        "column": 25,
+                        "offset": 279
                       },
                       "end": {
                         "line": 6,
-                        "column": 67,
-                        "offset": 322
+                        "column": 44,
+                        "offset": 298
                       },
                       "indent": []
                     }
@@ -53915,13 +53898,13 @@
                     "position": {
                       "start": {
                         "line": 6,
-                        "column": 67,
-                        "offset": 322
+                        "column": 44,
+                        "offset": 298
                       },
                       "end": {
                         "line": 6,
-                        "column": 73,
-                        "offset": 328
+                        "column": 50,
+                        "offset": 304
                       },
                       "indent": []
                     }
@@ -53935,8 +53918,8 @@
                   },
                   "end": {
                     "line": 6,
-                    "column": 73,
-                    "offset": 328
+                    "column": 50,
+                    "offset": 304
                   },
                   "indent": [
                     1,
@@ -53954,8 +53937,8 @@
               },
               "end": {
                 "line": 6,
-                "column": 73,
-                "offset": 328
+                "column": 50,
+                "offset": 304
               }
             }
           },
@@ -54138,22 +54121,22 @@
           ],
           "loc": {
             "start": {
-              "line": 127,
+              "line": 125,
               "column": 4
             },
             "end": {
-              "line": 151,
+              "line": 149,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 152,
+                "line": 150,
                 "column": 4
               },
               "end": {
-                "line": 155,
+                "line": 153,
                 "column": 5
               }
             },
