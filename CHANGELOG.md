@@ -7,13 +7,13 @@ Kandy.js change log.
 
 ## 3.9.0 - beta
 
-### Fixed
-
-- Fixed an issue where the SIP number normalization was unnecessarily removing an '@' symbol. `KAA-1793`
-
 ### Changed
 
 - Updated README to include a link to tutorials with Kandy-EMEA configuration. `KAA-2050`
+
+### Fixed
+
+- Fixed an issue where the SIP number normalization was unnecessarily removing an '@' symbol. `KAA-1793`
 
 ## 3.8.0 - 2019-09-27
 

@@ -1,10 +1,10 @@
 {
-    "name": "@kandy-io/link-sdk",
+    "name": "@kandy-io/link-sdk-3.x",
     "version": "3.9.0",
     "license": "SEE LICENSE IN LICENSE.md",
     "main":"./dist/kandy.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Kandy-IO/kandy-link-js-sdk"
+        "url": "https://github.com/Kandy-IO/kandy-link-js-sdk-3.x"
     }
 }
