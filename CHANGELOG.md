@@ -5,15 +5,18 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 3.9.0 - beta
+## 3.9.0 - 2019-11-01
 
 ### Changed
 
 - Updated README to include a link to tutorials with Kandy-EMEA configuration. `KAA-2050`
+- Improved error return when a session is created (or ended) so that it more accurately reflects the issue.
 
 ### Fixed
 
 - Fixed an issue where the SIP number normalization was unnecessarily removing an '@' symbol. `KAA-1793`
+- Fixed documentation to reflect the correct default value for checkConnectivity parameter. `KAA-1876`
+- Fixed public doc links for call and media.
 
 ## 3.8.0 - 2019-09-27
 
