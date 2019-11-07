@@ -7725,7 +7725,7 @@
         "lineNumber": 7,
         "type": {
           "type": "NameExpression",
-          "name": "BasicError"
+          "name": "api.BasicError"
         },
         "name": "params.error"
       }
@@ -7823,7 +7823,7 @@
             },
             "type": {
               "type": "NameExpression",
-              "name": "BasicError"
+              "name": "api.BasicError"
             }
           }
         ]
@@ -8350,7 +8350,7 @@
               "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
-                "name": "BasicError"
+                "name": "api.BasicError"
               },
               "name": "params.error"
             }
@@ -8448,7 +8448,7 @@
                   },
                   "type": {
                     "type": "NameExpression",
-                    "name": "BasicError"
+                    "name": "api.BasicError"
                   }
                 }
               ]
@@ -8637,7 +8637,7 @@
                 "type": "OptionalType",
                 "expression": {
                   "type": "NameExpression",
-                  "name": "BasicError"
+                  "name": "api.BasicError"
                 }
               },
               "name": "params.error"
@@ -8860,7 +8860,7 @@
                     "type": "OptionalType",
                     "expression": {
                       "type": "NameExpression",
-                      "name": "BasicError"
+                      "name": "api.BasicError"
                     }
                   }
                 }
@@ -14340,7 +14340,7 @@
               "lineNumber": 6,
               "type": {
                 "type": "NameExpression",
-                "name": "BasicError"
+                "name": "api.BasicError"
               },
               "name": "params.error"
             }
@@ -14438,7 +14438,7 @@
                   },
                   "type": {
                     "type": "NameExpression",
-                    "name": "BasicError"
+                    "name": "api.BasicError"
                   }
                 }
               ]
@@ -17060,7 +17060,7 @@
               "lineNumber": 6,
               "type": {
                 "type": "NameExpression",
-                "name": "BasicError"
+                "name": "api.BasicError"
               },
               "name": "params.error"
             }
@@ -17158,7 +17158,7 @@
                   },
                   "type": {
                     "type": "NameExpression",
-                    "name": "BasicError"
+                    "name": "api.BasicError"
                   }
                 }
               ]
@@ -29301,7 +29301,7 @@
               "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
-                "name": "BasicError"
+                "name": "api.BasicError"
               },
               "name": "params.error"
             }
@@ -29460,7 +29460,7 @@
                   },
                   "type": {
                     "type": "NameExpression",
-                    "name": "BasicError"
+                    "name": "api.BasicError"
                   }
                 }
               ]
@@ -36424,7 +36424,7 @@
               "lineNumber": 7,
               "type": {
                 "type": "NameExpression",
-                "name": "BasicError"
+                "name": "api.BasicError"
               },
               "name": "params.error"
             }
@@ -36522,7 +36522,7 @@
                   },
                   "type": {
                     "type": "NameExpression",
-                    "name": "BasicError"
+                    "name": "api.BasicError"
                   }
                 }
               ]
@@ -36683,7 +36683,7 @@
               "lineNumber": 14,
               "type": {
                 "type": "NameExpression",
-                "name": "Conversation"
+                "name": "conversation.Conversation"
               }
             }
           ],
@@ -36971,7 +36971,7 @@
               "title": "returns",
               "type": {
                 "type": "NameExpression",
-                "name": "Conversation"
+                "name": "conversation.Conversation"
               }
             }
           ],
@@ -37010,7 +37010,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "A Conversation object represents a conversation between either two users, or a\nuser and a group. A Conversation can create messages via the conversation's\ncreateMessage() function.",
+                    "value": "A Conversation object represents a conversation between either two users, or a\nuser and a group. A Conversation can create messages via the conversation's\n",
                     "position": {
                       "start": {
                         "line": 1,
@@ -37019,13 +37019,55 @@
                       },
                       "end": {
                         "line": 3,
-                        "column": 26,
-                        "offset": 180
+                        "column": 1,
+                        "offset": 155
                       },
                       "indent": [
                         1,
                         1
                       ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#conversationconversationcreatemessage",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "createMessage()"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1,
+                        "offset": 155
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 64,
+                        "offset": 218
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " function.",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 64,
+                        "offset": 218
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 74,
+                        "offset": 228
+                      },
+                      "indent": []
                     }
                   }
                 ],
@@ -37037,8 +37079,8 @@
                   },
                   "end": {
                     "line": 3,
-                    "column": 26,
-                    "offset": 180
+                    "column": 74,
+                    "offset": 228
                   },
                   "indent": [
                     1,
@@ -37055,8 +37097,8 @@
               },
               "end": {
                 "line": 3,
-                "column": 26,
-                "offset": 180
+                "column": 74,
+                "offset": 228
               }
             }
           },
@@ -37068,11 +37110,9 @@
               "type": null
             },
             {
-              "title": "module",
+              "title": "static",
               "description": null,
-              "lineNumber": 5,
-              "type": null,
-              "name": "Conversation"
+              "lineNumber": 5
             },
             {
               "title": "typedef",
@@ -37200,6 +37240,7 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "scope": "static",
           "kind": "typedef",
           "name": "Conversation",
           "type": {
@@ -37359,7 +37400,7 @@
                     "lineNumber": 10,
                     "type": {
                       "type": "NameExpression",
-                      "name": "Message"
+                      "name": "conversation.Message"
                     }
                   },
                   {
@@ -37642,7 +37683,7 @@
                     "title": "returns",
                     "type": {
                       "type": "NameExpression",
-                      "name": "Message"
+                      "name": "conversation.Message"
                     }
                   }
                 ],
@@ -37668,7 +37709,8 @@
                   },
                   {
                     "name": "Conversation",
-                    "kind": "typedef"
+                    "kind": "typedef",
+                    "scope": "static"
                   },
                   {
                     "name": "createMessage",
@@ -37676,7 +37718,7 @@
                     "scope": "static"
                   }
                 ],
-                "namespace": "conversationConversation.createMessage"
+                "namespace": "conversation.Conversation.createMessage"
               },
               {
                 "description": {
@@ -37805,7 +37847,8 @@
                   },
                   {
                     "name": "Conversation",
-                    "kind": "typedef"
+                    "kind": "typedef",
+                    "scope": "static"
                   },
                   {
                     "name": "clearMessages",
@@ -37813,7 +37856,7 @@
                     "scope": "static"
                   }
                 ],
-                "namespace": "conversationConversation.clearMessages"
+                "namespace": "conversation.Conversation.clearMessages"
               },
               {
                 "description": {
@@ -38567,7 +38610,8 @@
                   },
                   {
                     "name": "Conversation",
-                    "kind": "typedef"
+                    "kind": "typedef",
+                    "scope": "static"
                   },
                   {
                     "name": "getMessages",
@@ -38575,7 +38619,7 @@
                     "scope": "static"
                   }
                 ],
-                "namespace": "conversationConversation.getMessages"
+                "namespace": "conversation.Conversation.getMessages"
               },
               {
                 "description": {
@@ -38845,7 +38889,8 @@
                   },
                   {
                     "name": "Conversation",
-                    "kind": "typedef"
+                    "kind": "typedef",
+                    "scope": "static"
                   },
                   {
                     "name": "getMessage",
@@ -38853,7 +38898,7 @@
                     "scope": "static"
                   }
                 ],
-                "namespace": "conversationConversation.getMessage"
+                "namespace": "conversation.Conversation.getMessage"
               },
               {
                 "description": {
@@ -39261,7 +39306,8 @@
                   },
                   {
                     "name": "Conversation",
-                    "kind": "typedef"
+                    "kind": "typedef",
+                    "scope": "static"
                   },
                   {
                     "name": "subscribe",
@@ -39269,7 +39315,7 @@
                     "scope": "static"
                   }
                 ],
-                "namespace": "conversationConversation.subscribe"
+                "namespace": "conversation.Conversation.subscribe"
               },
               {
                 "description": {
@@ -39481,7 +39527,8 @@
                   },
                   {
                     "name": "Conversation",
-                    "kind": "typedef"
+                    "kind": "typedef",
+                    "scope": "static"
                   },
                   {
                     "name": "fetchMessages",
@@ -39489,7 +39536,7 @@
                     "scope": "static"
                   }
                 ],
-                "namespace": "conversationConversation.fetchMessages"
+                "namespace": "conversation.Conversation.fetchMessages"
               }
             ]
           },
@@ -39500,10 +39547,11 @@
             },
             {
               "name": "Conversation",
-              "kind": "typedef"
+              "kind": "typedef",
+              "scope": "static"
             }
           ],
-          "namespace": "conversationConversation"
+          "namespace": "conversation.Conversation"
         },
         {
           "description": {
@@ -39514,7 +39562,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "A Message object represents an individual message. Messages have parts\nwhich represent pieces of a message, such as a text part or a file part. Once\nall the desired parts have been added, a message can be sent with the send()\nfunction.",
+                    "value": "A Message object represents an individual message. Messages have parts\nwhich represent pieces of a message, such as a text part or a file part. Once\nall the desired parts have been added, a message can be sent with the ",
                     "position": {
                       "start": {
                         "line": 1,
@@ -39522,13 +39570,56 @@
                         "offset": 0
                       },
                       "end": {
-                        "line": 4,
-                        "column": 10,
-                        "offset": 235
+                        "line": 3,
+                        "column": 71,
+                        "offset": 219
                       },
                       "indent": [
                         1,
-                        1,
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#conversationmessagesend",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "send()"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 71,
+                        "offset": 219
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 111,
+                        "offset": 259
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "\nfunction.",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 111,
+                        "offset": 259
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 10,
+                        "offset": 269
+                      },
+                      "indent": [
                         1
                       ]
                     }
@@ -39543,7 +39634,7 @@
                   "end": {
                     "line": 4,
                     "column": 10,
-                    "offset": 235
+                    "offset": 269
                   },
                   "indent": [
                     1,
@@ -39562,7 +39653,7 @@
               "end": {
                 "line": 4,
                 "column": 10,
-                "offset": 235
+                "offset": 269
               }
             }
           },
@@ -39574,11 +39665,9 @@
               "type": null
             },
             {
-              "title": "module",
+              "title": "static",
               "description": null,
-              "lineNumber": 6,
-              "type": null,
-              "name": "Message"
+              "lineNumber": 6
             },
             {
               "title": "typedef",
@@ -39628,6 +39717,7 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "scope": "static",
           "kind": "typedef",
           "name": "Message",
           "type": {
@@ -39768,7 +39858,8 @@
                   },
                   {
                     "name": "Message",
-                    "kind": "typedef"
+                    "kind": "typedef",
+                    "scope": "static"
                   },
                   {
                     "name": "send",
@@ -39776,7 +39867,7 @@
                     "scope": "static"
                   }
                 ],
-                "namespace": "conversationMessage.send"
+                "namespace": "conversation.Message.send"
               }
             ]
           },
@@ -39787,10 +39878,11 @@
             },
             {
               "name": "Message",
-              "kind": "typedef"
+              "kind": "typedef",
+              "scope": "static"
             }
           ],
-          "namespace": "conversationMessage"
+          "namespace": "conversation.Message"
         }
       ]
     },
@@ -39895,7 +39987,7 @@
         "lineNumber": 7,
         "type": {
           "type": "NameExpression",
-          "name": "BasicError"
+          "name": "api.BasicError"
         },
         "name": "params.error"
       }
@@ -39993,7 +40085,7 @@
             },
             "type": {
               "type": "NameExpression",
-              "name": "BasicError"
+              "name": "api.BasicError"
             }
           }
         ]
@@ -41407,7 +41499,7 @@
               "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
-                "name": "BasicError"
+                "name": "api.BasicError"
               },
               "name": "params.error"
             },
@@ -41515,7 +41607,7 @@
                   },
                   "type": {
                     "type": "NameExpression",
-                    "name": "BasicError"
+                    "name": "api.BasicError"
                   }
                 },
                 {
@@ -43806,7 +43898,7 @@
               "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
-                "name": "BasicError"
+                "name": "api.BasicError"
               },
               "name": "params.error"
             }
@@ -43904,7 +43996,7 @@
                   },
                   "type": {
                     "type": "NameExpression",
-                    "name": "BasicError"
+                    "name": "api.BasicError"
                   }
                 }
               ]
@@ -47603,7 +47695,7 @@
               "lineNumber": 12,
               "type": {
                 "type": "NameExpression",
-                "name": "SdpHandlerFunction"
+                "name": "call.SdpHandlerFunction"
               }
             },
             {
@@ -47771,7 +47863,7 @@
               "title": "returns",
               "type": {
                 "type": "NameExpression",
-                "name": "SdpHandlerFunction"
+                "name": "call.SdpHandlerFunction"
               }
             }
           ],
@@ -48890,7 +48982,7 @@
               "lineNumber": 7,
               "type": {
                 "type": "NameExpression",
-                "name": "BasicError"
+                "name": "api.BasicError"
               },
               "name": "params.error"
             }
@@ -48988,7 +49080,7 @@
                   },
                   "type": {
                     "type": "NameExpression",
-                    "name": "BasicError"
+                    "name": "api.BasicError"
                   }
                 }
               ]
@@ -51332,7 +51424,7 @@
                 "applications": [
                   {
                     "type": "NameExpression",
-                    "name": "User"
+                    "name": "user.User"
                   }
                 ]
               },
@@ -51443,7 +51535,7 @@
                     "applications": [
                       {
                         "type": "NameExpression",
-                        "name": "User"
+                        "name": "user.User"
                       }
                     ]
                   }
@@ -51762,11 +51854,9 @@
               "type": null
             },
             {
-              "title": "module",
+              "title": "static",
               "description": null,
-              "lineNumber": 4,
-              "type": null,
-              "name": "User"
+              "lineNumber": 4
             },
             {
               "title": "typedef",
@@ -52243,6 +52333,7 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "scope": "static",
           "kind": "typedef",
           "name": "User",
           "type": {
@@ -52264,10 +52355,11 @@
             },
             {
               "name": "User",
-              "kind": "typedef"
+              "kind": "typedef",
+              "scope": "static"
             }
           ],
-          "namespace": "userUser"
+          "namespace": "user.User"
         },
         {
           "description": {
@@ -53197,7 +53289,7 @@
               "lineNumber": 10,
               "type": {
                 "type": "NameExpression",
-                "name": "User"
+                "name": "user.User"
               }
             }
           ],
@@ -53347,7 +53439,7 @@
               "title": "returns",
               "type": {
                 "type": "NameExpression",
-                "name": "User"
+                "name": "user.User"
               }
             }
           ],
@@ -53584,7 +53676,7 @@
                 "applications": [
                   {
                     "type": "NameExpression",
-                    "name": "User"
+                    "name": "user.User"
                   }
                 ]
               }
@@ -53681,7 +53773,7 @@
                 "applications": [
                   {
                     "type": "NameExpression",
-                    "name": "User"
+                    "name": "user.User"
                   }
                 ]
               }
@@ -55552,7 +55644,7 @@
               "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
-                "name": "BasicError"
+                "name": "api.BasicError"
               },
               "name": "params.error"
             }
@@ -55650,7 +55742,7 @@
                   },
                   "type": {
                     "type": "NameExpression",
-                    "name": "BasicError"
+                    "name": "api.BasicError"
                   }
                 }
               ]

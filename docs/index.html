@@ -3350,7 +3350,7 @@ values you can use when instantiating the SDK using the <a href="#create">create
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>Information about the error.
 </span></td>
@@ -4848,7 +4848,7 @@ It's not meant to be displayed to a user.
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -4953,7 +4953,7 @@ session expires.</p>
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError?</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a>?</code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -5789,7 +5789,7 @@ for a local three-way call.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -6345,7 +6345,7 @@ has been updated.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -9236,7 +9236,7 @@ client.call.setCustomParameters(
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -10567,7 +10567,7 @@ and its messages, and return conversation objects when requested.</p>
 
   <p>A Conversation object represents a conversation between either two users, or a
 user and a group. A Conversation can create messages via the conversation's
-createMessage() function.</p>
+<a href="#conversationconversationcreatemessage">createMessage()</a> function.</p>
 
 
   <div class='pre p1 fill-light mt0'>Conversation</div>
@@ -10637,7 +10637,7 @@ createMessage() function.</p>
   <p>Create and return a message object. You must provide a <code>text</code> part as demonstrated in the example.</p>
 
 
-  <div class='pre p1 fill-light mt0'>createMessage(part: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): Message</div>
+  <div class='pre p1 fill-light mt0'>createMessage(part: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="#conversationmessage">conversation.Message</a></div>
   
   
 
@@ -10704,7 +10704,7 @@ createMessage() function.</p>
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code>Message</code>:
+        <code><a href="#conversationmessage">conversation.Message</a></code>:
           The newly created Message object.
 
         
@@ -11154,7 +11154,7 @@ Messages can then be retrieved using getMessages.</p>
 
   <p>A Message object represents an individual message. Messages have parts
 which represent pieces of a message, such as a text part or a file part. Once
-all the desired parts have been added, a message can be sent with the send()
+all the desired parts have been added, a message can be sent with the <a href="#conversationmessagesend">send()</a>
 function.</p>
 
 
@@ -11274,7 +11274,7 @@ If successful, the event 'conversations:change' will be emitted.
 If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?): Conversation</div>
+  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?): <a href="#conversationconversation">conversation.Conversation</a></div>
   
   
 
@@ -11343,7 +11343,7 @@ If this object is not passed, the function will query for "im" conversation with
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code>Conversation</code>:
+        <code><a href="#conversationconversation">conversation.Conversation</a></code>:
           A Conversation object.
 
         
@@ -11681,7 +11681,7 @@ as part of the event argument.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -11779,7 +11779,7 @@ as part of the event argument.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -12570,7 +12570,7 @@ enabling/disabling the processing of websocket notifications.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -13579,7 +13579,7 @@ API.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -13791,7 +13791,7 @@ While creating an SDP handler would allow a user to perform this type of manipul
 <p>The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.</p>
 
 
-  <div class='pre p1 fill-light mt0'>createCodecRemover(codecs: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>): SdpHandlerFunction</div>
+  <div class='pre p1 fill-light mt0'>createCodecRemover(codecs: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>): call.SdpHandlerFunction</div>
   
   
 
@@ -13824,7 +13824,7 @@ While creating an SDP handler would allow a user to perform this type of manipul
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code>SdpHandlerFunction</code>:
+        <code>call.SdpHandlerFunction</code>:
           The resulting SDP handler that will remove the codec.
 
         
@@ -14529,7 +14529,7 @@ client.media.setDefaultDevices({
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -15120,7 +15120,7 @@ be available.</p>
 making Users' information available.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): User</div>
+  <div class='pre p1 fill-light mt0'>get(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="#useruser">user.User</a></div>
   
   
 
@@ -15153,7 +15153,7 @@ making Users' information available.</p>
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code>User</code>:
+        <code><a href="#useruser">user.User</a></code>:
           The User object for the specified user.
 
         
@@ -15192,7 +15192,7 @@ making Users' information available.</p>
 making Users' information available.</p>
 
 
-  <div class='pre p1 fill-light mt0'>getAll(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;User></div>
+  <div class='pre p1 fill-light mt0'>getAll(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#useruser">user.User</a>></div>
   
   
 
@@ -15211,7 +15211,7 @@ making Users' information available.</p>
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;User></code>:
+        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#useruser">user.User</a>></code>:
           An array of all the User objects.
 
         
@@ -15430,7 +15430,7 @@ provided as part of the event, and will also be available using the
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.results</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;User></code>
+  <td class='break-word'><span class='code bold'>params.results</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#useruser">user.User</a>></code>
   </td>
   <td class='break-word'><span>The Users' information returned by the
 operation.
@@ -15895,7 +15895,7 @@ A <code>voicemail:new</code> event is emitted upon completion.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>

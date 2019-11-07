@@ -10,7 +10,8 @@ Kandy.js change log.
 ### Fixed
 
 - Fixed an issue where searching the directory would fail even if a filter was provided. `KAA-1161`
-    - Fixed public documentation for directory `search` API.
+  - Fixed public documentation for directory `search` API.
+- Fixed public documentation hyperlinks for custom type definitions. `KAA-2011`
 
 ## 3.9.0 - 2019-11-01
 
