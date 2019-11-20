@@ -7,6 +7,14 @@ Kandy.js change log.
 
 ## 3.10.0 - beta
 
+### Added
+
+- Added new user event, `users:change`, to notify when we fetch information about a user. `KAA-1882`
+
+### Changed
+
+- Changed the event emitted when a user is fetched to `users:change`. `KAA-1882`
+
 ### Fixed
 
 - Fixed an issue where searching the directory would fail even if a filter was provided. `KAA-1161`

@@ -1620,6 +1620,18 @@
                           <span style="color:orange">ⓔ</span> directory:error
                         </a></li>
                       
+                        <li><a
+                          href='#usereventuserschange'
+                          class='regular pre-open'>
+                          <span style="color:orange">ⓔ</span> users:change
+                        </a></li>
+                      
+                        <li><a
+                          href='#usereventuserserror'
+                          class='regular pre-open'>
+                          <span style="color:orange">ⓔ</span> users:error
+                        </a></li>
+                      
                     </ul>
                   
                 </div>
@@ -14979,7 +14991,7 @@ client.media.setDefaultDevices({
         <div class='space-bottom0'>
           <span class='code bold'>userId</span> 
           <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+            (user.UserID)
           </code>
 
           
@@ -15106,11 +15118,11 @@ client.media.setDefaultDevices({
   
 
   <p>Fetches information about a User.</p>
-<p>The SDK will emit a <a href="#usereventdirectorychange">directory:change</a>
+<p>The SDK will emit a <a href="#usereventuserschange">users:change</a>
 event after the operation completes. The User's information will then
 be available.</p>
 <p>Information about an available User can be retrieved using the
-<a href="user.get">user.get</a> API.</p>
+<a href="#userget">user.get</a> API.</p>
 
 
   <div class='pre p1 fill-light mt0'>fetch(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
@@ -15172,11 +15184,11 @@ be available.</p>
 
   <p>Fetches information about the current User from directory.
 Compared to <a href="#userfetch">user.fetch</a> API, this API retrieves additional user related information.</p>
-<p>The SDK will emit a <a href="#usereventdirectorychange">directory:change</a>
+<p>The SDK will emit a <a href="#usereventuserschange">users:change</a>
 event after the operation completes. The User's information will then
 be available.</p>
 <p>Information about an available User can be retrieved using the
-<a href="user.get">user.get</a> API.</p>
+<a href="#userget">user.get</a> API.</p>
 
 
   <div class='pre p1 fill-light mt0'>fetchSelfInfo()</div>
@@ -15227,7 +15239,7 @@ be available.</p>
 making Users' information available.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="#useruser">user.User</a></div>
+  <div class='pre p1 fill-light mt0'>get(userId: user.UserID): <a href="#useruser">user.User</a></div>
   
   
 
@@ -15244,7 +15256,7 @@ making Users' information available.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>userId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+            <span class='code bold'>userId</span> <code class='quiet'>(user.UserID)</code>
 	    The User ID of the user.
 
           </div>
@@ -15358,7 +15370,7 @@ A search with no filters provided will return all users.</p>
 <p>The SDK will emit a <a href="#usereventdirectorychange">directory:change</a>
 event after the operation completes. The search results will be
 provided as part of the event, and will also be available using the
-<a href="user.get">user.get</a> and <a href="user.getAll">user.getAll</a> APIs.</p>
+<a href="#userget">user.get</a> and <a href="#usergetall">user.getAll</a> APIs.</p>
 
 
   <div class='pre p1 fill-light mt0'>search(filters: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
@@ -15397,7 +15409,7 @@ provided as part of the event, and will also be available using the
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>filters.userId</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  <td class='break-word'><span class='code bold'>filters.userId</span> <code class='quiet'>user.UserID?</code>
   </td>
   <td class='break-word'><span>Matches the User ID of the user.
 </span></td>
@@ -15625,6 +15637,175 @@ operation.
   <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='usereventuserschange'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>users:change</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>A change has occurred in the users list</p>
+
+
+  <div class='pre p1 fill-light mt0'>users:change</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>params.results</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#useruser">user.User</a>></code>
+  </td>
+  <td class='break-word'><span>The Users' information returned by the
+operation.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='usereventuserserror'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>users:error</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>An error occured while retrieving the user information</p>
+
+
+  <div class='pre p1 fill-light mt0'>users:error</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
+  </td>
+  <td class='break-word'><span>params.error The Basic error object.
 </span></td>
 </tr>
 

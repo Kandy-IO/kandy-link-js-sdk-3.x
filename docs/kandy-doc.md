@@ -1535,7 +1535,7 @@ Type: [Object][4]
 
 **Properties**
 
--   `userId` **[string][5]** The User ID of the user.
+-   `userId` **user.UserID** The User ID of the user.
 -   `emailAddress` **[string][5]** The email address of the user.
 -   `firstName` **[string][5]** The first name of the user.
 -   `lastName` **[string][5]** The last name of the user.
@@ -1546,7 +1546,7 @@ Type: [Object][4]
 
 Fetches information about a User.
 
-The SDK will emit a [directory:change][35]
+The SDK will emit a [users:change][35]
    event after the operation completes. The User's information will then
    be available.
 
@@ -1562,7 +1562,7 @@ Information about an available User can be retrieved using the
 Fetches information about the current User from directory.
 Compared to [user.fetch][37] API, this API retrieves additional user related information.
 
-The SDK will emit a [directory:change][35]
+The SDK will emit a [users:change][35]
    event after the operation completes. The User's information will then
    be available.
 
@@ -1578,7 +1578,7 @@ See the [user.fetch][37] and [user.search][38] APIs for details about
 
 **Parameters**
 
--   `userId` **[string][5]** The User ID of the user.
+-   `userId` **user.UserID** The User ID of the user.
 
 Returns **[user.User][39]** The User object for the specified user.
 
@@ -1598,15 +1598,15 @@ Searches the domain's directory for Users.
 Directory searching only supports one filter. If multiple filters are provided, only one of the filters will be used for the search.
 A search with no filters provided will return all users.
 
-The SDK will emit a [directory:change][35]
+The SDK will emit a [directory:change][40]
    event after the operation completes. The search results will be
    provided as part of the event, and will also be available using the
-   [user.get][36] and [user.getAll][40] APIs.
+   [user.get][36] and [user.getAll][41] APIs.
 
 **Parameters**
 
 -   `filters` **[Object][4]** The filter options for the search.
-    -   `filters.userId` **[string][5]?** Matches the User ID of the user.
+    -   `filters.userId` **user.UserID?** Matches the User ID of the user.
     -   `filters.name` **[string][5]?** Matches the firstName or lastName.
     -   `filters.firstName` **[string][5]?** Matches the firstName.
     -   `filters.lastName` **[string][5]?** Matches the lastName.
@@ -1697,9 +1697,9 @@ Returns voicemail data from the store.
 
 [34]: call.SdpHandlerFunction
 
-[35]: #usereventdirectorychange
+[35]: #usereventuserschange
 
-[36]: user.get
+[36]: #userget
 
 [37]: #userfetch
 
@@ -1707,4 +1707,6 @@ Returns voicemail data from the store.
 
 [39]: #useruser
 
-[40]: user.getAll
+[40]: #usereventdirectorychange
+
+[41]: #usergetall
