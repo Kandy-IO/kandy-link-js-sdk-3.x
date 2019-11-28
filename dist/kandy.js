@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.10.0-beta.205
+ * Version: 3.10.0-beta.206
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -63011,7 +63011,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.10.0-beta.205';
+  let version = '3.10.0-beta.206';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -63395,6 +63395,8 @@ const defaultPlugins = [..._basePlugins2.default, { name: 'authentication', fn: 
 
 
 function root(options = {}, plugins = []) {
+  console.info('%cKandy.js 3.x is deprecated and will stop being supported as of November 1, 2020. Please plan to upgrade to 4.x before then. More info: ' + 'https://github.com/Kandy-IO/kandy-link-js-sdk-3.x', 'font-weight:bold');
+
   return (0, _index2.default)(options, [...defaultPlugins, ...plugins]);
 }
 

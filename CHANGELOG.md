@@ -5,6 +5,10 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## Deprecated
+
+This 3.x version of the SDK is deprecated and will stop being supported as of November 1, 2020. [Please upgrade to 4.x](https://github.com/Kandy-IO/kandy-link-js-sdk). `KAA-2104`
+
 ## 3.10.0 - beta
 
 ### Added
