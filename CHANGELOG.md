@@ -5,6 +5,26 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## Deprecated
+
+This 3.x version of the SDK is deprecated and will stop being supported as of November 1, 2020. [Please upgrade to 4.x](https://github.com/Kandy-IO/kandy-link-js-sdk). `KAA-2104`
+
+## 3.10.0 - 2019-11-29
+
+### Added
+
+- Added new user event, `users:change`, to notify when we fetch information about a user. `KAA-1882`
+
+### Changed
+
+- Changed the event emitted when a user is fetched to `users:change`. `KAA-1882`
+
+### Fixed
+
+- Fixed an issue where searching the directory would fail even if a filter was provided. `KAA-1161`
+  - Fixed public documentation for directory `search` API.
+- Fixed public documentation hyperlinks for custom type definitions. `KAA-2011`
+
 ## 3.9.0 - 2019-11-01
 
 ### Changed

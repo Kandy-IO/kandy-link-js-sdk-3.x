@@ -183,7 +183,7 @@ An error has occurred when changing local video preview status.
 **Parameters**
 
 -   `params` **[Object][4]** 
-    -   `params.error` **BasicError** Information about the error.
+    -   `params.error` **[api.BasicError][10]** Information about the error.
 
 ## api
 
@@ -203,7 +203,7 @@ Update values in the global Config section of the store. The values pertain to t
 
 **Parameters**
 
--   `newConfigValues` **[Object][4]** Key-value pairs that will be placed into the store. See [config][10] for details on what key-value pairs are available for use.
+-   `newConfigValues` **[Object][4]** Key-value pairs that will be placed into the store. See [config][11] for details on what key-value pairs are available for use.
 
 ### on
 
@@ -212,7 +212,7 @@ Add an event listener for the specified event type. The event is emmited by the 
 **Parameters**
 
 -   `type` **[string][5]** The event type for which to add the listener.
--   `listener` **[Function][11]** The listener for the event type. The parameters of the listener depend on the event type.
+-   `listener` **[Function][12]** The listener for the event type. The parameters of the listener depend on the event type.
 
 **Examples**
 
@@ -223,7 +223,7 @@ client.on('dummy:event', function (params) {
 })
 ```
 
--   Throws **[Error][12]** Invalid event type
+-   Throws **[Error][13]** Invalid event type
 
 ### off
 
@@ -232,10 +232,10 @@ Removes an event listener for the specified event type. The event is emmited by 
 **Parameters**
 
 -   `type` **[string][5]** The event type for which to remote the listener.
--   `listener` **[Function][11]** The listener to remove.
+-   `listener` **[Function][12]** The listener to remove.
 
 
--   Throws **[Error][12]** Invalid event type
+-   Throws **[Error][13]** Invalid event type
 
 ### subscribe
 
@@ -243,10 +243,10 @@ Adds a global event listener to SDK instance.
 
 **Parameters**
 
--   `listener` **[Function][11]** The event listener to add. The parameters are (type, ...args), where args depend on the event type.
+-   `listener` **[Function][12]** The event listener to add. The parameters are (type, ...args), where args depend on the event type.
 
 
--   Throws **[Error][12]** Listener not a function
+-   Throws **[Error][13]** Listener not a function
 
 ### unsubscribe
 
@@ -254,31 +254,10 @@ Removes a global event listener from SDK instance.
 
 **Parameters**
 
--   `listener` **[Function][11]** The event listener to remove.
+-   `listener` **[Function][12]** The event listener to remove.
 
 
--   Throws **[Error][12]** Listener not a function
-
-### connect
-
-Connect with user credentials to any backend services that the SDK instance deals with.
-
-**Parameters**
-
--   `credentials` **[Object][4]** The credentials object.
-    -   `credentials.username` **[string][5]** The username including the application's domain.
-    -   `credentials.password` **[string][5]** The user's password.
-    -   `credentials.authname` **[string][5]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.connect({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-});
-```
+-   Throws **[Error][13]** Listener not a function
 
 ### connect
 
@@ -310,6 +289,27 @@ client.connect({
   username: 'alfred@example.com',
   hmacToken
 })
+```
+
+### connect
+
+Connect with user credentials to any backend services that the SDK instance deals with.
+
+**Parameters**
+
+-   `credentials` **[Object][4]** The credentials object.
+    -   `credentials.username` **[string][5]** The username including the application's domain.
+    -   `credentials.password` **[string][5]** The user's password.
+    -   `credentials.authname` **[string][5]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.connect({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
 ```
 
 ### disconnect
@@ -650,8 +650,8 @@ Start an outgoing call.
         -   `options.videoResolution.height` **[number][8]?** The height in pixels of the local video.
         -   `options.videoResolution.width` **[number][8]?** The width in pixels of the local video.
     -   `options.customParameters` **[Array][9]&lt;{name: [string][5], value: [string][5]}>?** Custom SIP header parameters for the SIP backend.
-    -   `options.remoteVideoContainer` **[HTMLElement][13]?** The HTML element to use as a container for the remote video.
-    -   `options.localVideoContainer` **[HTMLElement][13]?** The HTML element to use as a container for the local video.
+    -   `options.remoteVideoContainer` **[HTMLElement][14]?** The HTML element to use as a container for the remote video.
+    -   `options.localVideoContainer` **[HTMLElement][14]?** The HTML element to use as a container for the local video.
     -   `options.normalizeAddress` **[boolean][7]** Whether to enable normalization of callee address. (optional, default `false`)
 
 **Examples**
@@ -688,8 +688,8 @@ Answer an incoming call.
     -   `options.videoResolution` **[Object][4]?** The object to configure the local video resolution.
         -   `options.videoResolution.height` **[number][8]?** The height in pixels of the local video.
         -   `options.videoResolution.width` **[number][8]?** The width in pixels of the local video.
-    -   `options.localVideoContainer` **[HTMLElement][13]?** The HTML element to use as a container for the local video.
-    -   `options.remoteVideoContainer` **[HTMLElement][13]?** The HTML element to use as a container for the remote video.
+    -   `options.localVideoContainer` **[HTMLElement][14]?** The HTML element to use as a container for the local video.
+    -   `options.remoteVideoContainer` **[HTMLElement][14]?** The HTML element to use as a container for the remote video.
 
 ### ignore
 
@@ -1044,26 +1044,13 @@ If a conversation with the given user ID already exists in the store, it will be
     If this object is not passed, the function will query for "im" conversation with that recipient.
     -   `options.type` **[string][5]?** The type of conversation to retrieve. Can be one of "im", "sms" or "other".
 
-Returns **Conversation** A Conversation object.
-
-### Message
-
-A Message object represents an individual message. Messages have parts
-which represent pieces of a message, such as a text part or a file part. Once
-all the desired parts have been added, a message can be sent with the send()
-function.
-
-Type: [Object][4]
-
-#### send
-
-Sends the message.
+Returns **[conversation.Conversation][15]** A Conversation object.
 
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
 user and a group. A Conversation can create messages via the conversation's
-createMessage() function.
+[createMessage()][16] function.
 
 Type: [Object][4]
 
@@ -1087,7 +1074,7 @@ Create and return a message object. You must provide a `text` part as demonstrat
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **Message** The newly created Message object.
+Returns **[conversation.Message][17]** The newly created Message object.
 
 #### clearMessages
 
@@ -1099,9 +1086,9 @@ Get the messages associated with this conversation.
 
 Returns **[Array][9]&lt;[Object][4]>** messages An array containing the conversation's messages.
 
-Returns **[Function][11]** messages.markRead Marks the message as read.
+Returns **[Function][12]** messages.markRead Marks the message as read.
 
-Returns **[Function][11]** messages.forward Forward the message to another user.
+Returns **[Function][12]** messages.forward Forward the message to another user.
 
 Returns **[string][5]** messages.messageId The Id of the message.
 
@@ -1131,11 +1118,11 @@ Subscribe to this conversations messages array.
 
 **Parameters**
 
--   `subscriber` **[Function][11]** A subscriber function to be triggered when the messages array of this conversation is updated.
+-   `subscriber` **[Function][12]** A subscriber function to be triggered when the messages array of this conversation is updated.
     -   `subscriber.conversationId` **[string][5]** The conversation participant.
     -   `subscriber.messageId` **[string][5]** The ID of the message that caused the event.
 
-Returns **[Function][11]** The unsubscribe function.
+Returns **[Function][12]** The unsubscribe function.
 
 #### fetchMessages
 
@@ -1147,6 +1134,45 @@ Messages can then be retrieved using getMessages.
 
 -   `amount` **[number][8]** An amount of messages to fetch. (optional, default `50`)
 
+### Message
+
+A Message object is a means by which a sender can deliver information to a recipient.
+
+Creating and sending a message:
+
+A message object can be obtained through the [Conversation.createMessage][16] API on an existing conversation.
+
+Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
+Once all the desired parts have been added to the message using the [Message.addPart][18] function,
+the message can then be sent using the [Message.send][19] function.
+
+Once the sender sends a message, this message is saved in sender's state as an object.
+Similarly, once the recipient gets a message, this message is saved in recipient's state.
+
+Retrieving a delivered message:
+
+Once a message is delivered successfully, it can be
+obtained through the [Conversation.getMessages][20] or [Conversation.getMessage][21] API on an existing conversation.
+
+Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
+
+Type: [Object][4]
+
+**Properties**
+
+-   `timestamp` **[number][8]** A Unix timestamp in seconds marking the time when the message was created by sender.
+-   `parts` **[Array][9]&lt;conversation.Part>** An array of Part Objects.
+-   `sender` **[string][5]** The primary contact address of the sender.
+-   `destination` **[Array][9]&lt;[string][5]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
+-   `messageId` **[string][5]** The unique id of the message. The message object (stored in sender's state) has a different id
+    than the one associated with the message object stored in recipient's state.
+-   `type` **[string][5]** The type of message that was sent. See [conversation.chatTypes][22] for valid types.
+    This property applies only to message objects stored in sender's state.
+
+#### send
+
+Sends the message.
+
 ## DEVICE_ERROR
 
 An error occurred while performing a device operation.
@@ -1156,7 +1182,7 @@ Type: [string][5]
 **Parameters**
 
 -   `params` **[Object][4]** 
-    -   `params.error` **BasicError** The Basic error object.
+    -   `params.error` **[api.BasicError][10]** The Basic error object.
 
 ## getDevices
 
@@ -1170,7 +1196,7 @@ logs are simple lines of information about what the SDK is doing during operatio
 Action logs are complete information about a specific action that occurred
 within the SDK, providing debug information describing it.
 The amount of information logged can be configured as part of the SDK configuration.
-See [config.logs][14] .
+See [config.logs][23] .
 
 ### levels
 
@@ -1236,11 +1262,11 @@ The 'presence' namespace provides an interface for an application to set the
 
 Presence information is persisted by the server. When the SDK is initialized,
    there will be no information available. Presence information will become
-   available either by using [presence.fetch][15] or by subscribing for
-   updates about other Users, using [presence.subscribe][16].
+   available either by using [presence.fetch][24] or by subscribing for
+   updates about other Users, using [presence.subscribe][25].
 
-Available presence information can be retrieved using [presence.get][17] or
-   [presence.getAll][18].
+Available presence information can be retrieved using [presence.get][26] or
+   [presence.getAll][27].
 
 ### statuses
 
@@ -1278,16 +1304,16 @@ Possible activity values.
 
 Updates the presence information for the current user.
 
-See [presence.statuses][19] and [presence.activities][20] for valid
+See [presence.statuses][28] and [presence.activities][29] for valid
    values.
 
 The SDK will emit a
-   [presence:selfChange][21] event
+   [presence:selfChange][30] event
    when the operation completes. The updated presence information is
-   available and can be retrieved with [presence.getSelf][22].
+   available and can be retrieved with [presence.getSelf][31].
 
 Other users subscribed for this user's presence will receive a
-   [presence:change][23] event.
+   [presence:change][32] event.
 
 **Parameters**
 
@@ -1315,7 +1341,7 @@ Returns **[Array][9]&lt;[Object][4]>** List of user presence information.
 
 Retrieves the presence information for the current user.
 
-This information is set using the [presence.update][24] API.
+This information is set using the [presence.update][33] API.
 
 Returns **[Object][4]** Presence information for the current user.
 
@@ -1325,7 +1351,7 @@ Fetches presence information for the given users. This will refresh the
    available information with any new information from the server.
 
 Available presence information an be retrieved using the
-   [presence.get][17] or [presence.getAll][18] APIs.
+   [presence.get][26] or [presence.getAll][27] APIs.
 
 **Parameters**
 
@@ -1336,7 +1362,7 @@ Available presence information an be retrieved using the
 Subscribe to another User's presence updates.
 
 When the User updates their presence information, the SDK will emit a
-   [presence:change][23] event.
+   [presence:change][32] event.
 
 **Parameters**
 
@@ -1362,7 +1388,7 @@ Prompt the user for permission to use their audio and/or video devices.
 
 ## sdpHandlers
 
-A set of [SdpHandlerFunction][25]s for manipulating SDP information.
+A set of [SdpHandlerFunction][34]s for manipulating SDP information.
 These handlers are used to customize low-level call behaviour for very specific
 environments and/or scenarios. They can be provided during SDK instantiation
 to be used for all calls.
@@ -1404,7 +1430,7 @@ const client = create({
 })
 ```
 
-Returns **SdpHandlerFunction** The resulting SDP handler that will remove the codec.
+Returns **call.SdpHandlerFunction** The resulting SDP handler that will remove the codec.
 
 ## setDefaultDevices
 
@@ -1482,7 +1508,7 @@ Starts the local video stream and displays it to the user.
 
 **Parameters**
 
--   `videoContainer` **[HTMLElement][13]?** The container to use for local video.
+-   `videoContainer` **[HTMLElement][14]?** The container to use for local video.
 
 **Examples**
 
@@ -1509,7 +1535,7 @@ Type: [Object][4]
 
 **Properties**
 
--   `userId` **[string][5]** The User ID of the user.
+-   `userId` **user.UserID** The User ID of the user.
 -   `emailAddress` **[string][5]** The email address of the user.
 -   `firstName` **[string][5]** The first name of the user.
 -   `lastName` **[string][5]** The last name of the user.
@@ -1520,12 +1546,12 @@ Type: [Object][4]
 
 Fetches information about a User.
 
-The SDK will emit a [directory:change][26]
+The SDK will emit a [users:change][35]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][27] API.
+   [user.get][36] API.
 
 **Parameters**
 
@@ -1534,60 +1560,58 @@ Information about an available User can be retrieved using the
 ### fetchSelfInfo
 
 Fetches information about the current User from directory.
-Compared to [user.fetch][28] API, this API retrieves additional user related information.
+Compared to [user.fetch][37] API, this API retrieves additional user related information.
 
-The SDK will emit a [directory:change][26]
+The SDK will emit a [users:change][35]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][27] API.
+   [user.get][36] API.
 
 ### get
 
 Retrieves information about a User, if available.
 
-See the [user.fetch][28] and [user.search][29] APIs for details about
+See the [user.fetch][37] and [user.search][38] APIs for details about
    making Users' information available.
 
 **Parameters**
 
--   `userId` **[string][5]** The User ID of the user.
+-   `userId` **user.UserID** The User ID of the user.
 
-Returns **User** The User object for the specified user.
+Returns **[user.User][39]** The User object for the specified user.
 
 ### getAll
 
 Retrieves information about all available Users.
 
-See the [user.fetch][28] and [user.search][29] APIs for details about
+See the [user.fetch][37] and [user.search][38] APIs for details about
    making Users' information available.
 
-Returns **[Array][9]&lt;User>** An array of all the User objects.
+Returns **[Array][9]&lt;[user.User][39]>** An array of all the User objects.
 
 ### search
 
 Searches the domain's directory for Users.
 
-The SDK will emit a [directory:change][26]
+Directory searching only supports one filter. If multiple filters are provided, only one of the filters will be used for the search.
+A search with no filters provided will return all users.
+
+The SDK will emit a [directory:change][40]
    event after the operation completes. The search results will be
    provided as part of the event, and will also be available using the
-   [user.get][27] and [user.getAll][30] APIs.
+   [user.get][36] and [user.getAll][41] APIs.
 
 **Parameters**
 
 -   `filters` **[Object][4]** The filter options for the search.
-    -   `filters.userId` **[string][5]?** Matches the User ID of the user.
+    -   `filters.userId` **user.UserID?** Matches the User ID of the user.
     -   `filters.name` **[string][5]?** Matches the firstName or lastName.
     -   `filters.firstName` **[string][5]?** Matches the firstName.
     -   `filters.lastName` **[string][5]?** Matches the lastName.
     -   `filters.userName` **[string][5]?** Matches the userName.
     -   `filters.phoneNumber` **[string][5]?** Matches the phoneNumber.
--   `options` **[Object][4]?** Sorting options.
-    -   `options.sortBy` **[string][5]?** The User property to sort the results by. This can be any of the above listed filters.
-    -   `options.order` **[string][5]?** Order in which results are returned. Can be either "asc" or "desc".
-    -   `options.max` **[number][8]?** The maximum number of results to return.
-    -   `options.next` **[string][5]?** The pointer for a chunk of results, which may be returned from a previous query.
 
 ## voicemail
 
@@ -1623,44 +1647,66 @@ Returns voicemail data from the store.
 
 [9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[10]: #config
+[10]: #apibasicerror
 
-[11]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[11]: #config
 
-[12]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+[12]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
-[13]: https://developer.mozilla.org/docs/Web/HTML/Element
+[13]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 
-[14]: #configconfiglogs
+[14]: https://developer.mozilla.org/docs/Web/HTML/Element
 
-[15]: #presencefetch
+[15]: #conversationconversation
 
-[16]: #presencesubscribe
+[16]: #conversationconversationcreatemessage
 
-[17]: #presenceget
+[17]: #conversationmessage
 
-[18]: #presencegetall
+[18]: conversation.Message.addPart
 
-[19]: #presencestatuses
+[19]: #conversationmessagesend
 
-[20]: #presenceactivities
+[20]: #conversationconversationgetmessages
 
-[21]: #presenceeventpresenceselfchange
+[21]: #conversationconversationgetmessage
 
-[22]: #presencegetself
+[22]: conversation.chatTypes
 
-[23]: #presenceeventpresencechange
+[23]: #configconfiglogs
 
-[24]: #presenceupdate
+[24]: #presencefetch
 
-[25]: call.SdpHandlerFunction
+[25]: #presencesubscribe
 
-[26]: #usereventdirectorychange
+[26]: #presenceget
 
-[27]: user.get
+[27]: #presencegetall
 
-[28]: #userfetch
+[28]: #presencestatuses
 
-[29]: #usersearch
+[29]: #presenceactivities
 
-[30]: user.getAll
+[30]: #presenceeventpresenceselfchange
+
+[31]: #presencegetself
+
+[32]: #presenceeventpresencechange
+
+[33]: #presenceupdate
+
+[34]: call.SdpHandlerFunction
+
+[35]: #usereventuserschange
+
+[36]: #userget
+
+[37]: #userfetch
+
+[38]: #usersearch
+
+[39]: #useruser
+
+[40]: #usereventdirectorychange
+
+[41]: #usergetall

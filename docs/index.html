@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>kandy 3.9.0 | Documentation</title>
+  <title>kandy 3.10.0 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>kandy</h3>
-          <div class='mb1'><code>3.9.0</code></div>
+          <div class='mb1'><code>3.10.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -1025,15 +1025,15 @@
                     <li class='h5'><span>Types</span></li>
                     
                       <li><a
-                        href='#conversationmessage'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> Message
-                      </a></li>
-                    
-                      <li><a
                         href='#conversationconversation'
                         class='regular pre-open'>
                         <span style="color:blue">ⓣ</span> Conversation
+                      </a></li>
+                    
+                      <li><a
+                        href='#conversationmessage'
+                        class='regular pre-open'>
+                        <span style="color:blue">ⓣ</span> Message
                       </a></li>
                     
                     </ul>
@@ -1618,6 +1618,18 @@
                           href='#usereventdirectoryerror'
                           class='regular pre-open'>
                           <span style="color:orange">ⓔ</span> directory:error
+                        </a></li>
+                      
+                        <li><a
+                          href='#usereventuserschange'
+                          class='regular pre-open'>
+                          <span style="color:orange">ⓔ</span> users:change
+                        </a></li>
+                      
+                        <li><a
+                          href='#usereventuserserror'
+                          class='regular pre-open'>
+                          <span style="color:orange">ⓔ</span> users:error
                         </a></li>
                       
                     </ul>
@@ -3350,7 +3362,7 @@ values you can use when instantiating the SDK using the <a href="#create">create
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>Information about the error.
 </span></td>
@@ -3950,119 +3962,6 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
 
   
 
-  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
-
-
-  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The credentials object.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The username including the application's domain.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The user's password.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>The user's authorization name.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>client.connect({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
-  authname: <span class="hljs-string">'********'</span>
-});</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='apiconnect'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>connect(credentials)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
   <p>Connect by providing a username and HMAC token. This connects to any backend services that the SDK instance deals with.
 An HMAC token is used to verify a user via the user's authorization within an organization.
 HMAC tokens are generated by using the HmacSHA1 algorithm and a key on a data object
@@ -4155,6 +4054,119 @@ client.connect({
   <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
   hmacToken
 })</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='apiconnect'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>connect(credentials)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
+
+
+  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The credentials object.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The username including the application's domain.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The user's password.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The user's authorization name.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>client.connect({
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
+  authname: <span class="hljs-string">'********'</span>
+});</pre>
     
   
 
@@ -4848,7 +4860,7 @@ It's not meant to be displayed to a user.
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -4953,7 +4965,7 @@ session expires.</p>
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError?</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a>?</code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -5789,7 +5801,7 @@ for a local three-way call.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -6345,7 +6357,7 @@ has been updated.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -9236,7 +9248,7 @@ client.call.setCustomParameters(
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -10553,115 +10565,6 @@ and its messages, and return conversation objects when requested.</p>
       <div class='py1 quiet mt1 prose-big'>Types</div>
       <div class="clearfix">
   
-    <div class='border-bottom' id='conversationmessage'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>Message</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>A Message object represents an individual message. Messages have parts
-which represent pieces of a message, such as a text part or a file part. Once
-all the desired parts have been added, a message can be sent with the send()
-function.</p>
-
-
-  <div class='pre p1 fill-light mt0'>Message</div>
-  
-    <p>
-      Type:
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-    
-      <div class='py1 quiet mt1 prose-big'>Functions</div>
-      <div class="clearfix">
-  
-    <div class='border-bottom' id='conversationmessagesend'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>send()</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Sends the message.</p>
-
-
-  <div class='pre p1 fill-light mt0'>send()</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-</div>
-
-    
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
     <div class='border-bottom' id='conversationconversation'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
@@ -10676,7 +10579,7 @@ function.</p>
 
   <p>A Conversation object represents a conversation between either two users, or a
 user and a group. A Conversation can create messages via the conversation's
-createMessage() function.</p>
+<a href="#conversationconversationcreatemessage">createMessage()</a> function.</p>
 
 
   <div class='pre p1 fill-light mt0'>Conversation</div>
@@ -10746,7 +10649,7 @@ createMessage() function.</p>
   <p>Create and return a message object. You must provide a <code>text</code> part as demonstrated in the example.</p>
 
 
-  <div class='pre p1 fill-light mt0'>createMessage(part: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): Message</div>
+  <div class='pre p1 fill-light mt0'>createMessage(part: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="#conversationmessage">conversation.Message</a></div>
   
   
 
@@ -10813,7 +10716,7 @@ createMessage() function.</p>
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code>Message</code>:
+        <code><a href="#conversationmessage">conversation.Message</a></code>:
           The newly created Message object.
 
         
@@ -11249,6 +11152,222 @@ Messages can then be retrieved using getMessages.</p>
       </div>
     </div>
   
+    <div class='border-bottom' id='conversationmessage'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>Message</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>A Message object is a means by which a sender can deliver information to a recipient.</p>
+<p>Creating and sending a message:</p>
+<p>A message object can be obtained through the <a href="#conversationconversationcreatemessage">Conversation.createMessage</a> API on an existing conversation.</p>
+<p>Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
+Once all the desired parts have been added to the message using the <a href="conversation.Message.addPart">Message.addPart</a> function,
+the message can then be sent using the <a href="#conversationmessagesend">Message.send</a> function.</p>
+<p>Once the sender sends a message, this message is saved in sender's state as an object.
+Similarly, once the recipient gets a message, this message is saved in recipient's state.</p>
+<p>Retrieving a delivered message:</p>
+<p>Once a message is delivered successfully, it can be
+obtained through the <a href="#conversationconversationgetmessages">Conversation.getMessages</a> or <a href="#conversationconversationgetmessage">Conversation.getMessage</a> API on an existing conversation.</p>
+<p>Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.</p>
+
+
+  <div class='pre p1 fill-light mt0'>Message</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>timestamp</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)
+          </code>
+
+          
+
+          
+             : A Unix timestamp in seconds marking the time when the message was created by sender.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>parts</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;conversation.Part>)
+          </code>
+
+          
+
+          
+             : An array of Part Objects.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>sender</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The primary contact address of the sender.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>destination</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)
+          </code>
+
+          
+
+          
+             : An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>messageId</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The unique id of the message. The message object (stored in sender's state) has a different id
+than the one associated with the message object stored in recipient's state.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>type</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The type of message that was sent. See 
+<a href="conversation.chatTypes">conversation.chatTypes</a>
+ for valid types.
+This property applies only to message objects stored in sender's state.
+
+          
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+      <div class='py1 quiet mt1 prose-big'>Functions</div>
+      <div class="clearfix">
+  
+    <div class='border-bottom' id='conversationmessagesend'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>send()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Sends the message.</p>
+
+
+  <div class='pre p1 fill-light mt0'>send()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+    
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
 </div>
 
     
@@ -11274,7 +11393,7 @@ If successful, the event 'conversations:change' will be emitted.
 If a conversation with the given user ID already exists in the store, it will be returned; otherwise, a new conversation will be created.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?): Conversation</div>
+  <div class='pre p1 fill-light mt0'>get(destination: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?): <a href="#conversationconversation">conversation.Conversation</a></div>
   
   
 
@@ -11343,7 +11462,7 @@ If this object is not passed, the function will query for "im" conversation with
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code>Conversation</code>:
+        <code><a href="#conversationconversation">conversation.Conversation</a></code>:
           A Conversation object.
 
         
@@ -11681,7 +11800,7 @@ as part of the event argument.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -11779,7 +11898,7 @@ as part of the event argument.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -12570,7 +12689,7 @@ enabling/disabling the processing of websocket notifications.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -13579,7 +13698,7 @@ API.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -13791,7 +13910,7 @@ While creating an SDP handler would allow a user to perform this type of manipul
 <p>The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.</p>
 
 
-  <div class='pre p1 fill-light mt0'>createCodecRemover(codecs: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>): SdpHandlerFunction</div>
+  <div class='pre p1 fill-light mt0'>createCodecRemover(codecs: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>): call.SdpHandlerFunction</div>
   
   
 
@@ -13824,7 +13943,7 @@ While creating an SDP handler would allow a user to perform this type of manipul
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code>SdpHandlerFunction</code>:
+        <code>call.SdpHandlerFunction</code>:
           The resulting SDP handler that will remove the codec.
 
         
@@ -14529,7 +14648,7 @@ client.media.setDefaultDevices({
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
@@ -14872,7 +14991,7 @@ client.media.setDefaultDevices({
         <div class='space-bottom0'>
           <span class='code bold'>userId</span> 
           <code class='quiet'>
-            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+            (user.UserID)
           </code>
 
           
@@ -14999,11 +15118,11 @@ client.media.setDefaultDevices({
   
 
   <p>Fetches information about a User.</p>
-<p>The SDK will emit a <a href="#usereventdirectorychange">directory:change</a>
+<p>The SDK will emit a <a href="#usereventuserschange">users:change</a>
 event after the operation completes. The User's information will then
 be available.</p>
 <p>Information about an available User can be retrieved using the
-<a href="user.get">user.get</a> API.</p>
+<a href="#userget">user.get</a> API.</p>
 
 
   <div class='pre p1 fill-light mt0'>fetch(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
@@ -15065,11 +15184,11 @@ be available.</p>
 
   <p>Fetches information about the current User from directory.
 Compared to <a href="#userfetch">user.fetch</a> API, this API retrieves additional user related information.</p>
-<p>The SDK will emit a <a href="#usereventdirectorychange">directory:change</a>
+<p>The SDK will emit a <a href="#usereventuserschange">users:change</a>
 event after the operation completes. The User's information will then
 be available.</p>
 <p>Information about an available User can be retrieved using the
-<a href="user.get">user.get</a> API.</p>
+<a href="#userget">user.get</a> API.</p>
 
 
   <div class='pre p1 fill-light mt0'>fetchSelfInfo()</div>
@@ -15120,7 +15239,7 @@ be available.</p>
 making Users' information available.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get(userId: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): User</div>
+  <div class='pre p1 fill-light mt0'>get(userId: user.UserID): <a href="#useruser">user.User</a></div>
   
   
 
@@ -15137,7 +15256,7 @@ making Users' information available.</p>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>userId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+            <span class='code bold'>userId</span> <code class='quiet'>(user.UserID)</code>
 	    The User ID of the user.
 
           </div>
@@ -15153,7 +15272,7 @@ making Users' information available.</p>
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code>User</code>:
+        <code><a href="#useruser">user.User</a></code>:
           The User object for the specified user.
 
         
@@ -15192,7 +15311,7 @@ making Users' information available.</p>
 making Users' information available.</p>
 
 
-  <div class='pre p1 fill-light mt0'>getAll(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;User></div>
+  <div class='pre p1 fill-light mt0'>getAll(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#useruser">user.User</a>></div>
   
   
 
@@ -15211,7 +15330,7 @@ making Users' information available.</p>
     <div class='py1 quiet mt1 prose-big'>Returns</div>
     
       <div>
-        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;User></code>:
+        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#useruser">user.User</a>></code>:
           An array of all the User objects.
 
         
@@ -15237,7 +15356,7 @@ making Users' information available.</p>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>search(filters, options?)</span>
+            <span class='code strong strong truncate'>search(filters)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -15246,13 +15365,15 @@ making Users' information available.</p>
   
 
   <p>Searches the domain's directory for Users.</p>
+<p>Directory searching only supports one filter. If multiple filters are provided, only one of the filters will be used for the search.
+A search with no filters provided will return all users.</p>
 <p>The SDK will emit a <a href="#usereventdirectorychange">directory:change</a>
 event after the operation completes. The search results will be
 provided as part of the event, and will also be available using the
-<a href="user.get">user.get</a> and <a href="user.getAll">user.getAll</a> APIs.</p>
+<a href="#userget">user.get</a> and <a href="#usergetall">user.getAll</a> APIs.</p>
 
 
-  <div class='pre p1 fill-light mt0'>search(filters: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+  <div class='pre p1 fill-light mt0'>search(filters: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
   
   
 
@@ -15288,7 +15409,7 @@ provided as part of the event, and will also be available using the
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>filters.userId</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  <td class='break-word'><span class='code bold'>filters.userId</span> <code class='quiet'>user.UserID?</code>
   </td>
   <td class='break-word'><span>Matches the User ID of the user.
 </span></td>
@@ -15336,67 +15457,6 @@ provided as part of the event, and will also be available using the
   <td class='break-word'><span class='code bold'>filters.phoneNumber</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
   </td>
   <td class='break-word'><span>Matches the phoneNumber.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
-	    Sorting options.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.sortBy</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>The User property to sort the results by. This can be any of the above listed filters.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.order</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>Order in which results are returned. Can be either "asc" or "desc".
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.max</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?</code>
-  </td>
-  <td class='break-word'><span>The maximum number of results to return.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.next</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>The pointer for a chunk of results, which may be returned from a previous query.
 </span></td>
 </tr>
 
@@ -15489,7 +15549,7 @@ provided as part of the event, and will also be available using the
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.results</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;User></code>
+  <td class='break-word'><span class='code bold'>params.results</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#useruser">user.User</a>></code>
   </td>
   <td class='break-word'><span>The Users' information returned by the
 operation.
@@ -15577,6 +15637,175 @@ operation.
   <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='usereventuserschange'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>users:change</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>A change has occurred in the users list</p>
+
+
+  <div class='pre p1 fill-light mt0'>users:change</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>params.results</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="#useruser">user.User</a>></code>
+  </td>
+  <td class='break-word'><span>The Users' information returned by the
+operation.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='usereventuserserror'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>users:error</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>An error occured while retrieving the user information</p>
+
+
+  <div class='pre p1 fill-light mt0'>users:error</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
+  </td>
+  <td class='break-word'><span>params.error The Basic error object.
 </span></td>
 </tr>
 
@@ -15954,7 +16183,7 @@ A <code>voicemail:new</code> event is emitted upon completion.</p>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'>BasicError</code>
+  <td class='break-word'><span class='code bold'>params.error</span> <code class='quiet'><a href="#apibasicerror">api.BasicError</a></code>
   </td>
   <td class='break-word'><span>The Basic error object.
 </span></td>
