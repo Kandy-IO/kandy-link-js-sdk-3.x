@@ -10575,440 +10575,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect with user credentials to any backend services that the SDK instance deals with.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 88,
-                        "offset": 87
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 88,
-                    "offset": 87
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 88,
-                "offset": 87
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "api",
-              "lineNumber": 4
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 5,
-              "name": "userCredentialsAuth"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 6,
-              "name": "connect"
-            },
-            {
-              "title": "param",
-              "description": "The credentials object.",
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "credentials"
-            },
-            {
-              "title": "param",
-              "description": "The username including the application's domain.",
-              "lineNumber": 8,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.username"
-            },
-            {
-              "title": "param",
-              "description": "The user's password.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.password"
-            },
-            {
-              "title": "param",
-              "description": "The user's authorization name.",
-              "lineNumber": 10,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "credentials.authname"
-            },
-            {
-              "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
-              "lineNumber": 11
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 18,
-              "column": 4
-            },
-            "end": {
-              "line": 35,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 137,
-                "column": 4
-              },
-              "end": {
-                "line": 142,
-                "column": 5
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "credentials",
-              "lineNumber": 7,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The credentials object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 24,
-                            "offset": 23
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 24,
-                    "offset": 23
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "credentials.username",
-                  "lineNumber": 8,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The username including the application's domain.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 49,
-                                "offset": 48
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 49,
-                            "offset": 48
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 49,
-                        "offset": 48
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.password",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's password.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 21,
-                                "offset": 20
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 21,
-                            "offset": 20
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 21,
-                        "offset": 20
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.authname",
-                  "lineNumber": 10,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's authorization name.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 31,
-                                "offset": 30
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 31,
-                            "offset": 30
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 31,
-                        "offset": 30
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
-                  }
-                }
-              ]
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "api",
-          "kind": "function",
-          "name": "connect",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "api",
-              "kind": "module"
-            },
-            {
-              "name": "connect",
-              "kind": "function"
-            }
-          ],
-          "namespace": "apiconnect"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "Connect by providing a username and HMAC token. This connects to any backend services that the SDK instance deals with.\nAn HMAC token is used to verify a user via the user's authorization within an organization.\nHMAC tokens are generated by using the HmacSHA1 algorithm and a key on a data object\ncontaining an ",
                     "position": {
                       "start": {
@@ -11499,6 +11065,440 @@
                   "type": {
                     "type": "NameExpression",
                     "name": "string"
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "api",
+          "kind": "function",
+          "name": "connect",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "api",
+              "kind": "module"
+            },
+            {
+              "name": "connect",
+              "kind": "function"
+            }
+          ],
+          "namespace": "apiconnect"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Connect with user credentials to any backend services that the SDK instance deals with.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 88,
+                        "offset": 87
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 88,
+                    "offset": 87
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 88,
+                "offset": 87
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "api",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "userCredentialsAuth"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "connect"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username including the application's domain.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "The user's password.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.password"
+            },
+            {
+              "title": "param",
+              "description": "The user's authorization name.",
+              "lineNumber": 10,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "credentials.authname"
+            },
+            {
+              "title": "example",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
+              "lineNumber": 11
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 4
+            },
+            "end": {
+              "line": 35,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 137,
+                "column": 4
+              },
+              "end": {
+                "line": 142,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username including the application's domain.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 49,
+                                "offset": 48
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 49,
+                            "offset": 48
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 49,
+                        "offset": 48
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.password",
+                  "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's password.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 21,
+                                "offset": 20
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 21,
+                            "offset": 20
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 21,
+                        "offset": 20
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.authname",
+                  "lineNumber": 10,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's authorization name.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 31,
+                                "offset": 30
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 31,
+                            "offset": 30
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 31,
+                        "offset": 30
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
                   }
                 }
               ]
@@ -44011,11 +44011,11 @@
     "context": {
       "loc": {
         "start": {
-          "line": 19,
+          "line": 42,
           "column": 0
         },
         "end": {
-          "line": 19,
+          "line": 42,
           "column": 36
         }
       },
@@ -44075,6 +44075,241 @@
                   },
                   "indent": []
                 }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "This event is generated as a result of ",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1,
+                        "offset": 62
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 40,
+                        "offset": 101
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#presencefetch",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "presence.fetch"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 40,
+                        "offset": 101
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 62,
+                        "offset": 123
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " or ",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 62,
+                        "offset": 123
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 66,
+                        "offset": 127
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#presenceupdate",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "presence.update"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 66,
+                        "offset": 127
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 89,
+                        "offset": 150
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " operations.",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 89,
+                        "offset": 150
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 101,
+                        "offset": 162
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1,
+                    "offset": 62
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 101,
+                    "offset": 162
+                  },
+                  "indent": []
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "For the latter operation, the current user receives a presence update of another user that the current user is subscribed to.",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1,
+                        "offset": 164
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 126,
+                        "offset": 289
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1,
+                    "offset": 164
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 126,
+                    "offset": 289
+                  },
+                  "indent": []
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The changed information can be retrieved using the ",
+                    "position": {
+                      "start": {
+                        "line": 7,
+                        "column": 1,
+                        "offset": 291
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 52,
+                        "offset": 342
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#presenceget",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "presence.get"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 7,
+                        "column": 52,
+                        "offset": 342
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 72,
+                        "offset": 362
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "\n   API.",
+                    "position": {
+                      "start": {
+                        "line": 7,
+                        "column": 72,
+                        "offset": 362
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 8,
+                        "offset": 370
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 7,
+                    "column": 1,
+                    "offset": 291
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 8,
+                    "offset": 370
+                  },
+                  "indent": [
+                    1
+                  ]
+                }
               }
             ],
             "position": {
@@ -44084,9 +44319,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 1,
-                "column": 61,
-                "offset": 60
+                "line": 8,
+                "column": 8,
+                "offset": 370
               }
             }
           },
@@ -44094,29 +44329,29 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 3,
+              "lineNumber": 10,
               "type": null
             },
             {
               "title": "memberof",
               "description": "presence",
-              "lineNumber": 4
+              "lineNumber": 11
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 5,
+              "lineNumber": 12,
               "name": "presence"
             },
             {
               "title": "event",
               "description": "presence:change",
-              "lineNumber": 6
+              "lineNumber": 13
             },
             {
               "title": "param",
               "description": "A presence object containing data.",
-              "lineNumber": 7,
+              "lineNumber": 14,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -44126,7 +44361,7 @@
             {
               "title": "param",
               "description": "The ID of the user.",
-              "lineNumber": 8,
+              "lineNumber": 15,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -44136,7 +44371,7 @@
             {
               "title": "param",
               "description": "The presence status of the user.",
-              "lineNumber": 9,
+              "lineNumber": 16,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -44146,7 +44381,7 @@
             {
               "title": "param",
               "description": "The activity of the user.",
-              "lineNumber": 10,
+              "lineNumber": 17,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -44156,7 +44391,7 @@
             {
               "title": "param",
               "description": "A custom note provided by the user.",
-              "lineNumber": 11,
+              "lineNumber": 18,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -44170,18 +44405,18 @@
               "column": 0
             },
             "end": {
-              "line": 13,
+              "line": 20,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 14,
+                "line": 21,
                 "column": 0
               },
               "end": {
-                "line": 14,
+                "line": 21,
                 "column": 41
               }
             },
@@ -44193,7 +44428,7 @@
             {
               "title": "param",
               "name": "params",
-              "lineNumber": 7,
+              "lineNumber": 14,
               "description": {
                 "type": "root",
                 "children": [
@@ -44254,7 +44489,7 @@
                 {
                   "title": "param",
                   "name": "params.userId",
-                  "lineNumber": 8,
+                  "lineNumber": 15,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44315,7 +44550,7 @@
                 {
                   "title": "param",
                   "name": "params.status",
-                  "lineNumber": 9,
+                  "lineNumber": 16,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44376,7 +44611,7 @@
                 {
                   "title": "param",
                   "name": "params.activity",
-                  "lineNumber": 10,
+                  "lineNumber": 17,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44437,7 +44672,7 @@
                 {
                   "title": "param",
                   "name": "params.note",
-                  "lineNumber": 11,
+                  "lineNumber": 18,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44686,22 +44921,22 @@
           ],
           "loc": {
             "start": {
-              "line": 16,
+              "line": 23,
               "column": 0
             },
             "end": {
-              "line": 26,
+              "line": 33,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 27,
+                "line": 34,
                 "column": 0
               },
               "end": {
-                "line": 27,
+                "line": 34,
                 "column": 48
               }
             },
@@ -44737,6 +44972,594 @@
             }
           ],
           "namespace": "presence.event:presence:selfChange"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "An update (as a result of subscribing to a specific user's presence) has been received.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 88,
+                        "offset": 87
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 88,
+                    "offset": 87
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 88,
+                "offset": 87
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "presence",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "presence"
+            },
+            {
+              "title": "event",
+              "description": "presence:subscribe",
+              "lineNumber": 6
+            },
+            {
+              "title": "param",
+              "description": "A subscription object containing data.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "params"
+            },
+            {
+              "title": "param",
+              "description": "The ID(s) of the user(s) whose presence needs to be watched.",
+              "lineNumber": 8,
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              },
+              "name": "params.userIds"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 36,
+              "column": 0
+            },
+            "end": {
+              "line": 45,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 46,
+                "column": 0
+              },
+              "end": {
+                "line": 46,
+                "column": 45
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/eventTypes.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "params",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "A subscription object containing data.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 39,
+                            "offset": 38
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 39,
+                        "offset": 38
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 39,
+                    "offset": 38
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "params.userIds",
+                  "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The ID(s) of the user(s) whose presence needs to be watched.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 61,
+                                "offset": 60
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 61,
+                            "offset": 60
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 61,
+                        "offset": 60
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "TypeApplication",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "Array"
+                    },
+                    "applications": [
+                      {
+                        "type": "NameExpression",
+                        "name": "string"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "presence",
+          "kind": "event",
+          "name": "presence:subscribe",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "presence",
+              "kind": "namespace"
+            },
+            {
+              "name": "presence:subscribe",
+              "kind": "event"
+            }
+          ],
+          "namespace": "presence.event:presence:subscribe"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "An update (as a result of unsubscribing to a specific user's presence) has been received.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 90,
+                        "offset": 89
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 90,
+                    "offset": 89
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 90,
+                "offset": 89
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "presence",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "presence"
+            },
+            {
+              "title": "event",
+              "description": "presence:unsubscribe",
+              "lineNumber": 6
+            },
+            {
+              "title": "param",
+              "description": "A subscription object containing data.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "params"
+            },
+            {
+              "title": "param",
+              "description": "The ID(s) of the user(s) whose presence no longer requires to be watched.",
+              "lineNumber": 8,
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              },
+              "name": "params.userIds"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 48,
+              "column": 0
+            },
+            "end": {
+              "line": 57,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 58,
+                "column": 0
+              },
+              "end": {
+                "line": 58,
+                "column": 49
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/eventTypes.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "params",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "A subscription object containing data.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 39,
+                            "offset": 38
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 39,
+                        "offset": 38
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 39,
+                    "offset": 38
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "params.userIds",
+                  "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The ID(s) of the user(s) whose presence no longer requires to be watched.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 74,
+                                "offset": 73
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 74,
+                            "offset": 73
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "TypeApplication",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "Array"
+                    },
+                    "applications": [
+                      {
+                        "type": "NameExpression",
+                        "name": "string"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "presence",
+          "kind": "event",
+          "name": "presence:unsubscribe",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "presence",
+              "kind": "namespace"
+            },
+            {
+              "name": "presence:unsubscribe",
+              "kind": "event"
+            }
+          ],
+          "namespace": "presence.event:presence:unsubscribe"
         },
         {
           "description": {
@@ -44837,22 +45660,22 @@
           ],
           "loc": {
             "start": {
-              "line": 29,
+              "line": 60,
               "column": 0
             },
             "end": {
-              "line": 38,
+              "line": 69,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 39,
+                "line": 70,
                 "column": 0
               },
               "end": {
-                "line": 39,
+                "line": 70,
                 "column": 37
               }
             },
@@ -45442,6 +46265,757 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "The PresenceStatus type defines the user's current status in terms of the user's availability to\ncommunicate/respond to other users in the network.\nAn instance of this type can be obtained by invoking the ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 58,
+                        "offset": 205
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#presenceget",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "presence.get"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 58,
+                        "offset": 205
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 78,
+                        "offset": 225
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " function.",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 78,
+                        "offset": 225
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 88,
+                        "offset": 235
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 88,
+                    "offset": 235
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Reporting when a user is on the phone is enabled (by default), which means that presence update notifications\nwill be sent whenever a user is in a call, as well as when the call has ended.\nThis is a user preference enabled or disabled on server side, and it can only be changed on the server side.",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1,
+                        "offset": 237
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 109,
+                        "offset": 534
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1,
+                    "offset": 237
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 109,
+                    "offset": 534
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The status is set to ",
+                    "position": {
+                      "start": {
+                        "line": 9,
+                        "column": 1,
+                        "offset": 536
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 22,
+                        "offset": 557
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#presencestatuses",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "open"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 9,
+                        "column": 22,
+                        "offset": 557
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 52,
+                        "offset": 587
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " as soon as a user subscribes for the presence service.",
+                    "position": {
+                      "start": {
+                        "line": 9,
+                        "column": 52,
+                        "offset": 587
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 107,
+                        "offset": 642
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 9,
+                    "column": 1,
+                    "offset": 536
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 107,
+                    "offset": 642
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 107,
+                "offset": 642
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 11,
+              "type": null
+            },
+            {
+              "title": "static",
+              "description": null,
+              "lineNumber": 12
+            },
+            {
+              "title": "typedef",
+              "description": null,
+              "lineNumber": 13,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "PresenceStatus"
+            },
+            {
+              "title": "memberof",
+              "description": "presence",
+              "lineNumber": 14
+            },
+            {
+              "title": "property",
+              "description": "The unique identifier for the user associated with this presence status.",
+              "lineNumber": 15,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "userId"
+            },
+            {
+              "title": "property",
+              "description": "The current status the user has set for themselves. For supported values see {@link presence.statuses}.",
+              "lineNumber": 16,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "status"
+            },
+            {
+              "title": "property",
+              "description": "The current activity of the user.\n     For supported values see {@link presence.activities}.",
+              "lineNumber": 17,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "activity"
+            },
+            {
+              "title": "property",
+              "description": "Additional message acompanying the status & activity.",
+              "lineNumber": 19,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "note"
+            },
+            {
+              "title": "property",
+              "description": "Whether the presence information has been loaded or is in the process of loading.",
+              "lineNumber": 20,
+              "type": {
+                "type": "NameExpression",
+                "name": "boolean"
+              },
+              "name": "loading"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 0
+            },
+            "end": {
+              "line": 40,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 42,
+                "column": 0
+              },
+              "end": {
+                "line": 42,
+                "column": 36
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [
+            {
+              "title": "property",
+              "name": "userId",
+              "lineNumber": 15,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The unique identifier for the user associated with this presence status.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 73,
+                            "offset": 72
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 73,
+                        "offset": 72
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 73,
+                    "offset": 72
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            },
+            {
+              "title": "property",
+              "name": "status",
+              "lineNumber": 16,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The current status the user has set for themselves. For supported values see ",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 78,
+                            "offset": 77
+                          },
+                          "indent": []
+                        }
+                      },
+                      {
+                        "type": "link",
+                        "url": "#presencestatuses",
+                        "title": null,
+                        "jsdoc": true,
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "presence.statuses"
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 78,
+                            "offset": 77
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 103,
+                            "offset": 102
+                          },
+                          "indent": []
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": ".",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 103,
+                            "offset": 102
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 104,
+                            "offset": 103
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 104,
+                        "offset": 103
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 104,
+                    "offset": 103
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            },
+            {
+              "title": "property",
+              "name": "activity",
+              "lineNumber": 17,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The current activity of the user.\n     For supported values see ",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 31,
+                            "offset": 64
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      },
+                      {
+                        "type": "link",
+                        "url": "#presenceactivities",
+                        "title": null,
+                        "jsdoc": true,
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "presence.activities"
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 2,
+                            "column": 31,
+                            "offset": 64
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 58,
+                            "offset": 91
+                          },
+                          "indent": []
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": ".",
+                        "position": {
+                          "start": {
+                            "line": 2,
+                            "column": 58,
+                            "offset": 91
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 59,
+                            "offset": 92
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 59,
+                        "offset": 92
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 59,
+                    "offset": 92
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            },
+            {
+              "title": "property",
+              "name": "note",
+              "lineNumber": 19,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Additional message acompanying the status & activity.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 54,
+                            "offset": 53
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 54,
+                        "offset": 53
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 54,
+                    "offset": 53
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            },
+            {
+              "title": "property",
+              "name": "loading",
+              "lineNumber": 20,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Whether the presence information has been loaded or is in the process of loading.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 82,
+                            "offset": 81
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 82,
+                        "offset": 81
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 82,
+                    "offset": 81
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "boolean"
+              }
+            }
+          ],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "scope": "static",
+          "kind": "typedef",
+          "name": "PresenceStatus",
+          "type": {
+            "type": "NameExpression",
+            "name": "Object"
+          },
+          "memberof": "presence",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "presence",
+              "kind": "namespace"
+            },
+            {
+              "name": "PresenceStatus",
+              "kind": "typedef",
+              "scope": "static"
+            }
+          ],
+          "namespace": "presence.PresenceStatus"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "Updates the presence information for the current user.",
                     "position": {
                       "start": {
@@ -45883,22 +47457,22 @@
           ],
           "loc": {
             "start": {
-              "line": 28,
+              "line": 51,
               "column": 4
             },
             "end": {
-              "line": 50,
+              "line": 73,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 51,
+                "line": 74,
                 "column": 4
               },
               "end": {
-                "line": 54,
+                "line": 77,
                 "column": 5
               }
             },
@@ -46298,22 +47872,22 @@
           ],
           "loc": {
             "start": {
-              "line": 56,
+              "line": 79,
               "column": 4
             },
             "end": {
-              "line": 66,
+              "line": 89,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 67,
+                "line": 90,
                 "column": 4
               },
               "end": {
-                "line": 79,
+                "line": 102,
                 "column": 5
               }
             },
@@ -46613,22 +48187,22 @@
           ],
           "loc": {
             "start": {
-              "line": 81,
+              "line": 104,
               "column": 4
             },
             "end": {
-              "line": 90,
+              "line": 113,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 91,
+                "line": 114,
                 "column": 4
               },
               "end": {
-                "line": 94,
+                "line": 117,
                 "column": 5
               }
             },
@@ -46907,22 +48481,22 @@
           ],
           "loc": {
             "start": {
-              "line": 96,
+              "line": 119,
               "column": 4
             },
             "end": {
-              "line": 107,
+              "line": 130,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 108,
+                "line": 131,
                 "column": 4
               },
               "end": {
-                "line": 111,
+                "line": 134,
                 "column": 5
               }
             },
@@ -47261,22 +48835,22 @@
           ],
           "loc": {
             "start": {
-              "line": 113,
+              "line": 136,
               "column": 4
             },
             "end": {
-              "line": 126,
+              "line": 149,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 127,
+                "line": 150,
                 "column": 4
               },
               "end": {
-                "line": 131,
+                "line": 154,
                 "column": 5
               }
             },
@@ -47589,22 +49163,22 @@
           ],
           "loc": {
             "start": {
-              "line": 133,
+              "line": 156,
               "column": 4
             },
             "end": {
-              "line": 145,
+              "line": 168,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 146,
+                "line": 169,
                 "column": 4
               },
               "end": {
-                "line": 149,
+                "line": 172,
                 "column": 5
               }
             },
@@ -47836,22 +49410,22 @@
           ],
           "loc": {
             "start": {
-              "line": 151,
+              "line": 174,
               "column": 4
             },
             "end": {
-              "line": 160,
+              "line": 183,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 161,
+                "line": 184,
                 "column": 4
               },
               "end": {
-                "line": 164,
+                "line": 187,
                 "column": 5
               }
             },

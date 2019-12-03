@@ -1284,6 +1284,17 @@
                 <div class='toggle-target display-none'>
                   
                     <ul class='list-reset py1-ul pl1'>
+                    <li class='h5'><span>Types</span></li>
+                    
+                      <li><a
+                        href='#presencepresencestatus'
+                        class='regular pre-open'>
+                        <span style="color:blue">ⓣ</span> PresenceStatus
+                      </a></li>
+                    
+                    </ul>
+                  
+                    <ul class='list-reset py1-ul pl1'>
                     <li class='h5'><span>Functions</span></li>
                     
                       <li><a
@@ -1355,6 +1366,18 @@
                           href='#presenceeventpresenceselfchange'
                           class='regular pre-open'>
                           <span style="color:orange">ⓔ</span> presence:selfChange
+                        </a></li>
+                      
+                        <li><a
+                          href='#presenceeventpresencesubscribe'
+                          class='regular pre-open'>
+                          <span style="color:orange">ⓔ</span> presence:subscribe
+                        </a></li>
+                      
+                        <li><a
+                          href='#presenceeventpresenceunsubscribe'
+                          class='regular pre-open'>
+                          <span style="color:orange">ⓔ</span> presence:unsubscribe
                         </a></li>
                       
                         <li><a
@@ -3962,119 +3985,6 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
 
   
 
-  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
-
-
-  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The credentials object.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The username including the application's domain.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The user's password.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>The user's authorization name.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>client.connect({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
-  authname: <span class="hljs-string">'********'</span>
-});</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='apiconnect'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>connect(credentials)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
   <p>Connect by providing a username and HMAC token. This connects to any backend services that the SDK instance deals with.
 An HMAC token is used to verify a user via the user's authorization within an organization.
 HMAC tokens are generated by using the HmacSHA1 algorithm and a key on a data object
@@ -4167,6 +4077,119 @@ client.connect({
   <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
   hmacToken
 })</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='apiconnect'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>connect(credentials)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
+
+
+  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The credentials object.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The username including the application's domain.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The user's password.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The user's authorization name.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>client.connect({
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
+  authname: <span class="hljs-string">'********'</span>
+});</pre>
     
   
 
@@ -12786,6 +12809,154 @@ updates about other Users, using <a href="#presencesubscribe">presence.subscribe
   
 
   
+      <div class='py1 quiet mt1 prose-big'>Types</div>
+      <div class="clearfix">
+  
+    <div class='border-bottom' id='presencepresencestatus'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>PresenceStatus</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>The PresenceStatus type defines the user's current status in terms of the user's availability to
+communicate/respond to other users in the network.
+An instance of this type can be obtained by invoking the <a href="#presenceget">presence.get</a> function.</p>
+<p>Reporting when a user is on the phone is enabled (by default), which means that presence update notifications
+will be sent whenever a user is in a call, as well as when the call has ended.
+This is a user preference enabled or disabled on server side, and it can only be changed on the server side.</p>
+<p>The status is set to <a href="#presencestatuses">open</a> as soon as a user subscribes for the presence service.</p>
+
+
+  <div class='pre p1 fill-light mt0'>PresenceStatus</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>userId</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The unique identifier for the user associated with this presence status.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>status</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The current status the user has set for themselves. For supported values see 
+<a href="#presencestatuses">presence.statuses</a>
+.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>activity</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The current activity of the user.
+For supported values see 
+<a href="#presenceactivities">presence.activities</a>
+.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>note</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : Additional message acompanying the status &#x26; activity.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>loading</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)
+          </code>
+
+          
+
+          
+             : Whether the presence information has been loaded or is in the process of loading.
+
+          
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+    
 
     
       <div class='py1 quiet mt1 prose-big'>Functions</div>
@@ -13501,6 +13672,10 @@ available information with any new information from the server.</p>
   
 
   <p>A presence update about a subscribed user has been received.</p>
+<p>This event is generated as a result of <a href="#presencefetch">presence.fetch</a> or <a href="#presenceupdate">presence.update</a> operations.</p>
+<p>For the latter operation, the current user receives a presence update of another user that the current user is subscribed to.</p>
+<p>The changed information can be retrieved using the <a href="#presenceget">presence.get</a>
+API.</p>
 
 
   <div class='pre p1 fill-light mt0'>presence:change</div>
@@ -13628,6 +13803,176 @@ API.</p>
   
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='presenceeventpresencesubscribe'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>presence:subscribe</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>An update (as a result of subscribing to a specific user's presence) has been received.</p>
+
+
+  <div class='pre p1 fill-light mt0'>presence:subscribe</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    A subscription object containing data.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>params.userIds</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>
+  </td>
+  <td class='break-word'><span>The ID(s) of the user(s) whose presence needs to be watched.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='presenceeventpresenceunsubscribe'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>presence:unsubscribe</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>An update (as a result of unsubscribing to a specific user's presence) has been received.</p>
+
+
+  <div class='pre p1 fill-light mt0'>presence:unsubscribe</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>params</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    A subscription object containing data.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>params.userIds</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>
+  </td>
+  <td class='break-word'><span>The ID(s) of the user(s) whose presence no longer requires to be watched.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
   
 
   
