@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.10.0-beta.215
+ * Version: 3.11.0-beta.216
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -6564,263 +6564,6 @@ function toNumber(value) {
 }
 
 module.exports = toNumber;
-
-
-/***/ }),
-
-/***/ "../../node_modules/loglevel/lib/loglevel.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
-* loglevel - https://github.com/pimterry/loglevel
-*
-* Copyright (c) 2013 Tim Perry
-* Licensed under the MIT license.
-*/
-(function (root, definition) {
-    "use strict";
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_FACTORY__ = (definition),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {}
-}(this, function () {
-    "use strict";
-
-    // Slightly dubious tricks to cut down minimized file size
-    var noop = function() {};
-    var undefinedType = "undefined";
-
-    var logMethods = [
-        "trace",
-        "debug",
-        "info",
-        "warn",
-        "error"
-    ];
-
-    // Cross-browser bind equivalent that works at least back to IE6
-    function bindMethod(obj, methodName) {
-        var method = obj[methodName];
-        if (typeof method.bind === 'function') {
-            return method.bind(obj);
-        } else {
-            try {
-                return Function.prototype.bind.call(method, obj);
-            } catch (e) {
-                // Missing bind shim or IE8 + Modernizr, fallback to wrapping
-                return function() {
-                    return Function.prototype.apply.apply(method, [obj, arguments]);
-                };
-            }
-        }
-    }
-
-    // Build the best logging method possible for this env
-    // Wherever possible we want to bind, not wrap, to preserve stack traces
-    function realMethod(methodName) {
-        if (methodName === 'debug') {
-            methodName = 'log';
-        }
-
-        if (typeof console === undefinedType) {
-            return false; // No method possible, for now - fixed later by enableLoggingWhenConsoleArrives
-        } else if (console[methodName] !== undefined) {
-            return bindMethod(console, methodName);
-        } else if (console.log !== undefined) {
-            return bindMethod(console, 'log');
-        } else {
-            return noop;
-        }
-    }
-
-    // These private functions always need `this` to be set properly
-
-    function replaceLoggingMethods(level, loggerName) {
-        /*jshint validthis:true */
-        for (var i = 0; i < logMethods.length; i++) {
-            var methodName = logMethods[i];
-            this[methodName] = (i < level) ?
-                noop :
-                this.methodFactory(methodName, level, loggerName);
-        }
-
-        // Define log.log as an alias for log.debug
-        this.log = this.debug;
-    }
-
-    // In old IE versions, the console isn't present until you first open it.
-    // We build realMethod() replacements here that regenerate logging methods
-    function enableLoggingWhenConsoleArrives(methodName, level, loggerName) {
-        return function () {
-            if (typeof console !== undefinedType) {
-                replaceLoggingMethods.call(this, level, loggerName);
-                this[methodName].apply(this, arguments);
-            }
-        };
-    }
-
-    // By default, we use closely bound real methods wherever possible, and
-    // otherwise we wait for a console to appear, and then try again.
-    function defaultMethodFactory(methodName, level, loggerName) {
-        /*jshint validthis:true */
-        return realMethod(methodName) ||
-               enableLoggingWhenConsoleArrives.apply(this, arguments);
-    }
-
-    function Logger(name, defaultLevel, factory) {
-      var self = this;
-      var currentLevel;
-      var storageKey = "loglevel";
-      if (name) {
-        storageKey += ":" + name;
-      }
-
-      function persistLevelIfPossible(levelNum) {
-          var levelName = (logMethods[levelNum] || 'silent').toUpperCase();
-
-          if (typeof window === undefinedType) return;
-
-          // Use localStorage if available
-          try {
-              window.localStorage[storageKey] = levelName;
-              return;
-          } catch (ignore) {}
-
-          // Use session cookie as fallback
-          try {
-              window.document.cookie =
-                encodeURIComponent(storageKey) + "=" + levelName + ";";
-          } catch (ignore) {}
-      }
-
-      function getPersistedLevel() {
-          var storedLevel;
-
-          if (typeof window === undefinedType) return;
-
-          try {
-              storedLevel = window.localStorage[storageKey];
-          } catch (ignore) {}
-
-          // Fallback to cookies if local storage gives us nothing
-          if (typeof storedLevel === undefinedType) {
-              try {
-                  var cookie = window.document.cookie;
-                  var location = cookie.indexOf(
-                      encodeURIComponent(storageKey) + "=");
-                  if (location !== -1) {
-                      storedLevel = /^([^;]+)/.exec(cookie.slice(location))[1];
-                  }
-              } catch (ignore) {}
-          }
-
-          // If the stored level is not valid, treat it as if nothing was stored.
-          if (self.levels[storedLevel] === undefined) {
-              storedLevel = undefined;
-          }
-
-          return storedLevel;
-      }
-
-      /*
-       *
-       * Public logger API - see https://github.com/pimterry/loglevel for details
-       *
-       */
-
-      self.name = name;
-
-      self.levels = { "TRACE": 0, "DEBUG": 1, "INFO": 2, "WARN": 3,
-          "ERROR": 4, "SILENT": 5};
-
-      self.methodFactory = factory || defaultMethodFactory;
-
-      self.getLevel = function () {
-          return currentLevel;
-      };
-
-      self.setLevel = function (level, persist) {
-          if (typeof level === "string" && self.levels[level.toUpperCase()] !== undefined) {
-              level = self.levels[level.toUpperCase()];
-          }
-          if (typeof level === "number" && level >= 0 && level <= self.levels.SILENT) {
-              currentLevel = level;
-              if (persist !== false) {  // defaults to true
-                  persistLevelIfPossible(level);
-              }
-              replaceLoggingMethods.call(self, level, name);
-              if (typeof console === undefinedType && level < self.levels.SILENT) {
-                  return "No console available for logging";
-              }
-          } else {
-              throw "log.setLevel() called with invalid level: " + level;
-          }
-      };
-
-      self.setDefaultLevel = function (level) {
-          if (!getPersistedLevel()) {
-              self.setLevel(level, false);
-          }
-      };
-
-      self.enableAll = function(persist) {
-          self.setLevel(self.levels.TRACE, persist);
-      };
-
-      self.disableAll = function(persist) {
-          self.setLevel(self.levels.SILENT, persist);
-      };
-
-      // Initialize with the right level
-      var initialLevel = getPersistedLevel();
-      if (initialLevel == null) {
-          initialLevel = defaultLevel == null ? "WARN" : defaultLevel;
-      }
-      self.setLevel(initialLevel, false);
-    }
-
-    /*
-     *
-     * Top-level API
-     *
-     */
-
-    var defaultLogger = new Logger();
-
-    var _loggersByName = {};
-    defaultLogger.getLogger = function getLogger(name) {
-        if (typeof name !== "string" || name === "") {
-          throw new TypeError("You must supply a name when creating a logger.");
-        }
-
-        var logger = _loggersByName[name];
-        if (!logger) {
-          logger = _loggersByName[name] = new Logger(
-            name, defaultLogger.getLevel(), defaultLogger.methodFactory);
-        }
-        return logger;
-    };
-
-    // Grab the current global log variable in case of overwrite
-    var _log = (typeof window !== undefinedType) ? window.log : undefined;
-    defaultLogger.noConflict = function() {
-        if (typeof window !== undefinedType &&
-               window.log === defaultLogger) {
-            window.log = _log;
-        }
-
-        return defaultLogger;
-    };
-
-    defaultLogger.getLoggers = function getLoggers() {
-        return _loggersByName;
-    };
-
-    return defaultLogger;
-}));
 
 
 /***/ }),
@@ -49560,12 +49303,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  *
  * @method connect
  * @param {Object} credentials The credentials to pass to the connect action.
+ * @param {Object} [options] Any parameters that aren't credentials.
  * @return {Object} A flux standard action.
  */
-function connect(credentials) {
+function connect(credentials, options) {
   return {
     type: actionTypes.CONNECT,
-    payload: { credentials },
+    payload: { credentials, options },
     meta: {
       isSensitive: true
     }
@@ -49879,11 +49623,15 @@ function api({ dispatch, getState }) {
      * @param {string} credentials.username The username including the application's domain.
      * @param {string} credentials.password The user's password.
      * @param {string} [credentials.authname] The user's authorization name.
+     * @param {Object} [options] The options object for non-credential options.
+     * @param {boolean} [options.forceLogOut] Force the oldest connection to log out if too many simultaneous connections. Link only.
      * @example
      * client.connect({
      *   username: 'alfred@example.com',
      *   password: '********'
      *   authname: '********'
+     * }, {
+     *   forceLogOut: true
      * });
      */
     /**
@@ -49940,6 +49688,8 @@ function api({ dispatch, getState }) {
      * @param {Object} credentials The credentials object.
      * @param {string} credentials.username The username.
      * @param {string} credentials.hmacToken An HMAC token for the user with the provided user ID.
+     * @param {Object} [options] The options object for non-credential options.
+     * @param {boolean} [options.forceLogOut] Force the oldest connection to log out if too many simultaneous connections.
      * @example
      * const hmacToken = HmacSHA1Algorithm({
      *   authenticationTokenRequest: {
@@ -49951,7 +49701,9 @@ function api({ dispatch, getState }) {
      * client.connect({
      *   username: 'alfred@example.com',
      *   hmacToken
-     * })
+     * }, {
+     *   forceLogOut: true
+     * });
      */
     /**
      * Connect by providing a refresh token, to any backend services that the SDK instance deals with.
@@ -49987,11 +49739,11 @@ function api({ dispatch, getState }) {
      *   oauthToken: 'RTG9SV3QAoJaeUSEQCZAHqrhde1yT'
      * });
      */
-    connect(credentials) {
+    connect(credentials, options) {
       // We won't expose oauthToken because it essentially acts as a password being used in conjunction with username
       // ..and passwords should NOT be logged.
       log.debug(_logs.API_LOG_TAG + 'connect: ', credentials.username);
-      dispatch(actions.connect(credentials));
+      dispatch(actions.connect(credentials, options));
     },
 
     /**
@@ -50946,6 +50698,8 @@ var _utf = __webpack_require__("../../node_modules/utf8/utf8.js");
 
 var _utf2 = _interopRequireDefault(_utf);
 
+var _utils = __webpack_require__("../../packages/kandy/src/common/utils.js");
+
 var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -50953,21 +50707,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // This is an Link plugin.
-
-
-// Requests
-
-
-// Constants
-
-
-// Auth
-const platform = _constants2.platforms.LINK;
-
-// Get the logger
-
-
-// Logging
 
 
 // Libraries
@@ -50981,6 +50720,21 @@ const platform = _constants2.platforms.LINK;
 
 // State selectors
 // Redux-Saga
+const platform = _constants2.platforms.LINK;
+
+// Get the logger
+
+
+// Logging
+
+
+// Requests
+
+
+// Constants
+
+
+// Auth
 const log = (0, _logs.getLogManager)().getLogger('AUTH');
 
 /**
@@ -51040,7 +50794,7 @@ function* connect(action, config) {
     }
     // Determine what type of connect method to use. This determines what extra
     //      information needs to be added to the request.
-  };let { credentials } = action.payload;
+  };let { credentials, options } = action.payload;
   if (credentials) {
     let { username, password, authname, hmacToken } = credentials;
     if (hmacToken) {
@@ -51066,6 +50820,7 @@ function* connect(action, config) {
     }
   }
   try {
+    requestOptions = (0, _utils.mergeValues)(options, requestOptions);
     const response = yield (0, _effects.call)(_requests.subscribe, config.subscription, credentials, requestOptions);
 
     if (response.error) {
@@ -51393,7 +51148,8 @@ function* subscribe(connection, credentials, extras = {}) {
       localization: connection.localization || 'English_US',
       useTurn: connection.useTurn || true,
       notificationType: connection.notificationType || 'WebSocket',
-      supported: ['RingingFeedback']
+      supported: ['RingingFeedback'],
+      forceLogOut: (extras.forceLogOut || false).toString()
     }
   });
 
@@ -55645,9 +55401,11 @@ const SEND_CUSTOM_PARAMETERS_FINISH = exports.SEND_CUSTOM_PARAMETERS_FINISH = ca
 
 const ADD_MEDIA = exports.ADD_MEDIA = callPrefix + 'ADD_MEDIA';
 const ADD_MEDIA_FINISH = exports.ADD_MEDIA_FINISH = callPrefix + 'ADD_MEDIA_FINISH';
+const ADD_BASIC_MEDIA = exports.ADD_BASIC_MEDIA = callPrefix + 'ADD_BASIC_MEDIA';
 
 const REMOVE_MEDIA = exports.REMOVE_MEDIA = callPrefix + 'REMOVE_MEDIA';
 const REMOVE_MEDIA_FINISH = exports.REMOVE_MEDIA_FINISH = callPrefix + 'REMOVE_MEDIA_FINISH';
+const REMOVE_BASIC_MEDIA = exports.REMOVE_BASIC_MEDIA = callPrefix + 'REMOVE_BASIC_MEDIA';
 
 const MUSIC_ON_HOLD = exports.MUSIC_ON_HOLD = callPrefix + 'MUSIC_ON_HOLD';
 
@@ -57503,8 +57261,6 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
 var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
-var _logManager = __webpack_require__("../../packages/kandy/src/logs/logManager.js");
-
 var _interface = __webpack_require__("../../packages/kandy/src/call/interface/index.js");
 
 var _interface2 = _interopRequireDefault(_interface);
@@ -57531,16 +57287,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 // Import the interface to implement.
-// Import a call shim between FCS calls and Next version of SDK.
-// It is used to handle FCS' call object, since we cannot put it in sate.
-const logMgr = (0, _logs.getLogManager)();
-
-// Constants
 
 
 // Utilities.
+const logMgr = (0, _logs.getLogManager)();
+
+// Constants
+// Import a call shim between FCS calls and Next version of SDK.
+// It is used to handle FCS' call object, since we cannot put it in sate.
 
 const log = logMgr.getLogger('CALL');
+const fcsLog = logMgr.getLogger('FCS');
 
 /**
  * Configuration options for the call feature.
@@ -57646,12 +57403,12 @@ function middleware({ dispatch, getState }) {
 
   // FCS logger.
   function fcsLogger(loggerName, level, logObject) {
-    var msg = logObject.timestamp + ' - ' + loggerName + ' - ' + level + ' - ' + logObject.message;
+    const msg = logObject.timestamp + ' - ' + loggerName + ' - ' + level + ' - ' + logObject.message;
 
-    // Log _all_ FCS logs if we're at least at debug level.
-    if (logMgr.getLevel() <= _logManager.logLevels.DEBUG) {
-      log.log(msg, logObject.args);
-    }
+    // Protect against args being undefined.
+    const extras = logObject.args || [];
+
+    fcsLog.debug(msg, ...extras);
   }
 
   /*
@@ -57756,6 +57513,16 @@ function middleware({ dispatch, getState }) {
           //      where we use FCS.
           // TODO: Selector for logs state?
           if (getState().config.logs.enableFcsLogs) {
+            // Set the fcsLog handler to directly log to console. The fcsLogger
+            //    should have already formatted the messages. An application won't
+            //    have a chance to handle these logs directly, but that's v3.X ...
+            fcsLog.logHandler = entry => {
+              console.debug(...entry.messages);
+            };
+            // Set the fcsLog level to debug.
+            fcsLog.level = 'DEBUG';
+
+            // Provide the fcsLogger (which calls the above fcsLog) to FCS.
             callShim.initLogging(fcsLogger, true);
           }
 
@@ -63011,7 +62778,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.10.0-beta.215';
+  let version = '3.11.0-beta.216';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -63412,7 +63179,7 @@ root.sdpHandlers = {
 
 /***/ }),
 
-/***/ "../../packages/kandy/src/logs/index.js":
+/***/ "../../packages/kandy/src/logs/actions/actionHandler.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63421,186 +63188,129 @@ root.sdpHandlers = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.API_LOG_TAG = undefined;
+exports.default = defaultActionHandler;
+/**
+ * Default function for the SDK to use for logging actions.
+ * Action entries come in 4 different types:
+ *    1. start: Log the message directly and "open the group".
+ *    2. state: Log a prefix, state type, and state itself.
+ *      (prev state and next state)
+ *    3. payload: Log a prefix, action type, and payload.
+ *    4. end: Close the group.
+ * @method defaultActionHandler
+ * @param  {LogEntry} entry
+ */
+function defaultActionHandler(entry) {
+  // Handle the "start" and "stop" action log entries specifically.
+  if (['group', 'groupCollapsed'].includes(entry.method)) {
+    console[entry.method](...entry.messages);
+    return;
+  } else if (entry.method === 'groupEnd') {
+    console.groupEnd();
+    return;
+  }
+
+  const { timestamp, level } = entry;
+  const logInfo = `${timestamp} - ACTION - ${level}`;
+
+  const [logType, payload] = entry.messages;
+
+  let prefix;
+  if (logType.includes('state')) {
+    // If the log is for prev state / next state, display that in the prefix.
+    prefix = `${logInfo} - ${logType.toUpperCase()}`;
+  } else {
+    // Else the log is the action itself, so use the action type.
+    prefix = `${logInfo} - ${payload.type}`;
+  }
+
+  console[entry.method](prefix, payload);
+}
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/actions/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-exports.default = logger;
-exports.getLogManager = getLogManager;
+exports.default = createActionLogger;
 
-var _transformers = __webpack_require__("../../packages/kandy/src/logs/transformers.js");
+var _index = __webpack_require__("../../packages/kandy/src/logs/index.js");
+
+var _constants = __webpack_require__("../../packages/kandy/src/logs/constants.js");
+
+var _transformers = __webpack_require__("../../packages/kandy/src/logs/actions/transformers.js");
 
 var _transformers2 = _interopRequireDefault(_transformers);
 
-var _api = __webpack_require__("../../packages/kandy/src/logs/interface/api.js");
-
-var _api2 = _interopRequireDefault(_api);
-
-var _actions = __webpack_require__("../../packages/kandy/src/config/interface/actions.js");
-
-var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
-
-var _utils = __webpack_require__("../../packages/kandy/src/common/utils.js");
-
-var _logManager = __webpack_require__("../../packages/kandy/src/logs/logManager.js");
-
-var _logManager2 = _interopRequireDefault(_logManager);
-
-var _utils2 = __webpack_require__("../../packages/kandy/src/logs/utils.js");
+var _utils = __webpack_require__("../../packages/kandy/src/logs/actions/utils.js");
 
 var _reduxLogger = __webpack_require__("../../node_modules/redux-logger/dist/redux-logger.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Default logging options
-
-
-// Other plugins.
-// Logs plugin.
-const defaultOptions = {
-  // Possible levels: trace, debug, info, warn, error, silent.
-  logLevel: 'debug',
-  // Flatten the log entries into a string, rather than logging more complex data types.
-  flatten: false,
-  // Configuration options relevant to the logging of actions
-  logActions: {
-    // Only show action out of prevState, action, newState.
-    actionOnly: true,
-    // Collapse prevState, action, nextState objects by default.
-    collapsed: false,
-    // Log the diff for each action.
-    diff: false,
-    // set redux-logger's level to debug
-    level: 'debug',
-    // Allow action payloads to be exposed in the logs, potentially displaying sensitive information
-    exposePayloads: false
-  },
-  enableFcsLogs: true
-
-  // Logs generated as a result of invoking the public API will contain this tag
-};
-
-// Redux Logger middleware
-
-
-// Log manager, log levels and redux-logger options
-
-
-// Libraries.
-const API_LOG_TAG = exports.API_LOG_TAG = 'API invoked: ';
-
-// Instantiate the log manager
-const logMgr = getLogManager(defaultOptions);
-
 /**
- * Configuration options for the Logs feature.
- * @public
- * @static
- * @name config.logs
- * @memberof config
- * @requires logs
- * @instance
- * @param {Object} logs Logs configs.
- * @param  {string} [logs.logLevel='debug'] Log level to be set. See {@link logger.levels}.
- * @param  {boolean} [logs.flatten=false] Whether all logs should be output in a string-only format.
- * @param  {Object} [logs.logActions] Options specifically for action logs when logLevel is at DEBUG+ levels. Set this to false to not output action logs.
- * @param  {boolean} [logs.logActions.actionOnly=true] Only output information about the action itself. Omits the SDK context for when it occurred.
- * @param  {boolean} [logs.logActions.collapsed=false] Whether logs should be minimized when initially output. The full log is still output and can be inspected on the console.
- * @param  {boolean} [logs.logActions.diff=false] Include a diff of what SDK context was changed by the action.
- * @param {boolean} [logs.logActions.exposePayloads=false] Allow action payloads to be exposed in the logs, potentially displaying sensitive information
- * @param  {boolean} [logs.enableFcsLogs=true] Enable the detailed call logger.
- * @param  {boolean} [logs.enableGrouping=true] Whether to group information about an action log together in the console.
+ * Creates a redux middleware for logging actions.
+ * @method createActionLogger
+ * @param  {Object}     options
+ * @return {Middleware}
  */
+function createActionLogger(options) {
+  const logManager = (0, _index.getLogManager)();
+  // Create a Logger for handling the action logs.
+  const logger = logManager.getLogger('ACTION');
+  logger.logHandler = options.logActions.handler;
+  logger.level = options.logActions.level;
 
-/**
- * Logger Plugin.
- * @method logger
- * @param  {Object} [options] Plugin configurations. See above.
- * @return {Object} plugin A plugin object.
- */
-function logger(options = {}) {
-  const name = 'logs';
-  // Backwards compatibility: flatten replaced logActions.flattenActions
-  // TODO: Remove this after awhile.
-  if (options.logActions && options.logActions.flattenActions && options.flatten === undefined) {
-    logMgr.getLogger('LOGS').warn('The Logs plugin config "logActions.flattenActions" has been ' + 'deprecated in favour of "flatten", and will be removed in a future build.');
-    options.flatten = options.logActions.flattenActions;
-  }
-  options = (0, _utils.mergeValues)(defaultOptions, options);
-  // Now that plugins are being called, we can update the log manager with our desired configuration options
-  logMgr.updateManager(options);
+  const setLevel = _constants.logLevels[options.logLevel];
 
-  function* init() {
-    // Send the provided options to the store.
-    // This will be `state.config[name]`.
-    yield (0, _effects.put)((0, _actions.update)(options, name));
+  let actionOptions = {};
+  // Use different options for redux-logger depending on log level.
+  if (setLevel === _constants.logLevels.INFO) {
+    // At the INFO level, hide everything except the action name.
+    actionOptions.level = false;
+    actionOptions.diff = false;
+  } else {
+    // At the DEBUG+ levels, use the configs.
+    actionOptions = (0, _extends3.default)({}, options.logActions);
   }
 
-  var components = {
-    name,
-    capabilities: ['logs'],
-    init,
-    api: _api2.default
-    // Consider actions to be at the INFO log level.
-    // Only export a middleware (for actions) at the appropriate levels.
-  };if (logMgr.getLevel() <= _logManager.logLevels.INFO && options.logActions !== false) {
-    let actionOptions = {};
-    // Use different options for redux-logger depending on log level.
-    if (logMgr.getLevel() === _logManager.logLevels.INFO) {
-      // At the INFO level, hide everything except the action name.
-      actionOptions.level = false;
-      actionOptions.diff = false;
-    } else {
-      // At the DEBUG+ levels, use the configs.
-      actionOptions = (0, _extends3.default)({}, options.logActions);
-    }
-
-    if (options.logActions.actionOnly) {
-      // Hide prevState and nextState.
-      // Log action and error at info level, so the browser won't hide it by default.
-      actionOptions.level = {
-        prevState: false,
-        action: 'info',
-        error: 'info',
-        nextState: false
-      };
-    }
-
-    if (options.logActions.excludeActions) {
-      actionOptions.predicate = excludeActions(options.logActions.excludeActions);
-    }
-
-    // ALWAYS use our own logger
-    actionOptions.logger = logMgr.getLogger('ACTION');
-    // ALWAYS remove theming/styling from the action log messages
-    actionOptions.titleFormatter = _utils2.titleFormatter;
-    actionOptions.colors = false;
-    // Setup the transformers based on the options.
-    let transformers = (0, _transformers2.default)(options.logActions);
-    // Create the logger middleware.
-    components.middleware = (0, _reduxLogger.createLogger)((0, _extends3.default)({}, actionOptions, transformers));
+  if (options.logActions.actionOnly) {
+    // Hide prevState and nextState.
+    // Log action and error at info level, so the browser won't hide it by default.
+    actionOptions.level = {
+      prevState: false,
+      action: 'info',
+      error: 'info',
+      nextState: false
+    };
   }
-  return components;
-}
 
-/**
- * Getter checks to see if an instance of logManager exists, instantiates it if it does not, and returns
- * the instance of LogManager
- * @param {Object} [options]
- * @param {string} [options.logLevel] The logging level, as per options found in logManager.levels
- * @param {boolean} [options.flatten] Stringifies the output
- * @param {boolean} [options.enableGrouping] Group log messages together
- * @returns {LogManager} an instance of our LogManager
- *
- * TODO:Fix this ugly singleton.
- */
-function getLogManager(options) {
-  if (!getLogManager.instance) {
-    getLogManager.instance = new _logManager2.default(options);
+  if (options.logActions.excludeActions) {
+    actionOptions.predicate = excludeActions(options.logActions.excludeActions);
   }
-  return getLogManager.instance;
+
+  // ALWAYS use our own logger
+  actionOptions.logger = logger;
+  // ALWAYS remove theming/styling from the action log messages
+  actionOptions.titleFormatter = _utils.titleFormatter;
+  actionOptions.colors = false;
+
+  // Setup the transformers based on the options.
+  let transformers = (0, _transformers2.default)(options.logActions);
+  // Create the logger middleware.
+
+  return (0, _reduxLogger.createLogger)((0, _extends3.default)({}, actionOptions, transformers));
 }
 
 /**
@@ -63609,402 +63319,19 @@ function getLogManager(options) {
  * @param {Array} actions An array of action types to exclude from logs
  * @returns {function} A predicate function
  */
+
+
+// Libraries.
+
+// Action specific.
+// Logs plugin.
 function excludeActions(actions) {
   return (getState, action) => !actions.includes(action.type);
 }
 
 /***/ }),
 
-/***/ "../../packages/kandy/src/logs/interface/api.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = api;
-/**
- * The internal logger is used to provide information about the SDK's behaviour.
- * The logger can provide two types of logs: basic logs and action logs. Basic
- * logs are simple lines of information about what the SDK is doing during operations.
- * Action logs are complete information about a specific action that occurred
- * within the SDK, providing debug information describing it.
- * The amount of information logged can be configured as part of the SDK configuration.
- * See {@link #configconfiglogs config.logs} .
- *
- * @public
- * @namespace logger
- * @requires logs
- */
-
-function api() {
-  let api = {
-    /**
-     * Possible levels for the SDK logger.
-     * @public
-     * @static
-     * @memberof logger
-     * @property {string} SILENT Log nothing.
-     * @property {string} ERROR Log only unhandled errors.
-     * @property {string} WARN Log issues that may cause problems or unexpected behaviour.
-     * @property {string} INFO Log useful information and messages to indicate the SDK's internal operations.
-     * @property {string} DEBUG Log information to help diagnose problematic behaviour.
-     */
-    levels: {
-      SILENT: 'silent',
-      ERROR: 'error',
-      WARN: 'warn',
-      INFO: 'info',
-      DEBUG: 'debug'
-    }
-  };
-
-  return {
-    logger: api
-  };
-}
-
-/***/ }),
-
-/***/ "../../packages/kandy/src/logs/logManager.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.logLevels = undefined;
-
-var _stringify = __webpack_require__("../../node_modules/babel-runtime/core-js/json/stringify.js");
-
-var _stringify2 = _interopRequireDefault(_stringify);
-
-exports.default = LogManager;
-
-var _loglevel = __webpack_require__("../../node_modules/loglevel/lib/loglevel.js");
-
-var _loglevel2 = _interopRequireDefault(_loglevel);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Exposed logLevels object describes the level hierarchy
- *
- * @type {{TRACE: number, DEBUG: number, INFO: number, WARN: number, ERROR: number, SILENT: number}}
- */
-const logLevels = exports.logLevels = {
-  TRACE: 0,
-  DEBUG: 1,
-  INFO: 2,
-  WARN: 3,
-  ERROR: 4,
-  SILENT: 5
-
-  /**
-   * Creates a log manager to provision loggers and coordinate processing of log entries
-   * @method LogManager
-   * @param {Object} [options]
-   * @param {string} [options.logLevel='INFO']
-   * @param {boolean} [options.flatten=false]
-   * @param {boolean} [options.enableGrouping=true]
-   */
-};function LogManager({ logLevel = 'INFO', flatten = false, enableGrouping = true }) {
-  // Create a property to reference the master logger
-  this._log = _loglevel2.default;
-  // Always convert the logLevel string to upper case for consistency
-  this.level = logLevels[logLevel.toUpperCase()];
-  this._log.setLevel(this.level, false);
-  // Setting flatten to true will result in stringified output
-  this.flatten = flatten;
-
-  const loggers = {};
-  const _logMgr = this;
-
-  _logMgr._log.info('Creating Log Manager');
-
-  /**
-   * Logger getter function to be used to retrieve all loggers in the SDK
-   * @method getLogger
-   * @param {string} name, The name of the logger to be created/retrieved
-   * @returns {Logger}
-   */
-  this.getLogger = function getLogger(name) {
-    var logger;
-
-    if (loggers[name]) {
-      logger = loggers[name];
-    } else {
-      logger = new Logger(name);
-      loggers[logger.getName()] = logger;
-    }
-
-    return logger;
-  };
-
-  /**
-   * Log handler to compose a log message and determine the appropriate console logging function to
-   * print log entry
-   * @method logHandler
-   * @param {string} name Name of the logger.
-   * @param {LogItem} logItem
-   */
-  this.logHandler = function logHandler(name, logItem) {
-    const msg = parseLogMessage(name, logItem);
-
-    if (logLevels[logItem.level] >= _logMgr.level) {
-      switch (logLevels[logItem.level]) {
-        case logLevels.TRACE:
-          _logMgr._log.trace(msg, ...logItem.args);
-          break;
-        case logLevels.DEBUG:
-          _logMgr._log.debug(msg, ...logItem.args);
-          break;
-        case logLevels.INFO:
-          _logMgr._log.info(msg, ...logItem.args);
-          break;
-        case logLevels.WARN:
-          _logMgr._log.warn(msg, ...logItem.args);
-          break;
-        case logLevels.ERROR:
-          _logMgr._log.error(msg, ...logItem.args);
-          break;
-        case logLevels.SILENT:
-          /* TODO we should implement a secondary logging mechanism, which would save the logs on a private server this secondary mechanism would also include messages that were created while logging level was set to SILENT */
-          break;
-        default:
-          _logMgr._log.info(msg, ...logItem.args);
-          break;
-      }
-    } else {
-      /* Log level is not sufficiently Low to allow message to be visible */
-    }
-  };
-
-  /**
-   * Creates a new logger which can be identified by name for subsequent retrieval
-   * @param name
-   * @constructor
-   */
-  function Logger(name) {
-    this.name = name;
-    /**
-     * Logger name getter function
-     * @returns {string} name - The name of the logger
-     */
-    this.getName = () => {
-      return this.name;
-    };
-
-    /**
-     * Log function to instantiate a log item and send to handler
-     * for processing
-     * @param {string} level - The log function level which was used to create the log message
-     * @param {string} message - The unparsed log message
-     * @param {*} args - The arguments provided along the message
-     */
-    function log(level, message, args) {
-      const logItem = new LogItem(level, message, args);
-      if (_logMgr) {
-        _logMgr.logHandler(name, logItem);
-      }
-    }
-
-    this.error = (msg, ...args) => {
-      return log('ERROR', msg, args);
-    };
-
-    this.warn = (msg, ...args) => {
-      return log('WARN', msg, args);
-    };
-
-    this.info = (msg, ...args) => {
-      return log('INFO', msg, args);
-    };
-
-    this.debug = (msg, ...args) => {
-      return log('DEBUG', msg, args);
-    };
-
-    this.trace = (msg, ...args) => {
-      return log('TRACE', msg, args);
-    };
-
-    // Treat `logger.log` as a special case for now. Pass it straight through
-    //   to the logger (without parsing/formatting). Prevents logs that aren't
-    //   setup to work with the logger from being double-formatted (eg. FCS).
-    // TODO: Remove `logger.log` when FCS logs work well with this log manager.
-    this.log = (msg, ...args) => {
-      _logMgr._log.log(msg, ...args);
-    };
-
-    /**
-     * Handle group-related console functions
-     * @param data
-     */
-    this.group = data => {
-      if (_logMgr.enableGrouping === false) {
-        return;
-      }
-      window.console.group(data);
-    };
-
-    this.groupCollapsed = data => {
-      if (_logMgr.enableGrouping === false) {
-        return;
-      }
-      window.console.groupCollapsed(data);
-    };
-
-    this.groupEnd = () => {
-      if (_logMgr.enableGrouping === false) {
-        return;
-      }
-      window.console.groupEnd();
-    };
-  }
-
-  /**
-   * Update the configuration of the log manager after it has been instantiated
-   *
-   * This is necessary as the log manager needs to be created prior to initializing each
-   * of the plugins in the SDK.
-   * @method updateManager
-   * @param {Object} [options]
-   * @param {string} [options.logLevel] the logging level, as per options found in logManager.levels
-   * @param {Boolean} [options.flatten]
-   */
-  this.updateManager = ({ logLevel, flatten, enableGrouping }) => {
-    // Update the manager's options _if_ they were provided.
-    _logMgr.level = logLevel ? logLevels[logLevel.toUpperCase()] : _logMgr.level;
-    _logMgr._log.setLevel(this.level, false);
-    _logMgr.flatten = flatten || _logMgr.flatten;
-    _logMgr.enableGrouping = enableGrouping;
-  };
-
-  /**
-   * Getter to return the current level set in the log manager
-   * @method getLevel
-   * @returns {string}
-   */
-  this.getLevel = () => {
-    return _logMgr.level;
-  };
-
-  /**
-   * Helper function to check if verbose mode is enabled
-   * @returns {boolean}
-   */
-  function isVerboseEnabled() {
-    return _logMgr.flatten;
-  }
-
-  /**
-   * Determines type of log entry being recorded and composes an appropriate message
-   * @param {string} name - The name of the logger for which this message is being parsed
-   * @param {Object} logItem - The log entry
-   * @returns {string} logMessage - The fully composed log message
-   */
-  function parseLogMessage(name, logItem) {
-    let logMessage;
-    switch (name) {
-      case 'ACTION':
-        logMessage = parseActionMessage(name, logItem);
-        break;
-
-      case 'GENERAL':
-        logMessage = parseMessage(name, logItem);
-        break;
-
-      default:
-        logMessage = parseMessage(name, logItem);
-        break;
-    }
-    return logMessage;
-  }
-
-  /**
-   * Determines the specific type of action if the log entry is of messageTypes.ACTION
-   * @param actionArgs
-   * @param message
-   * @returns {*}
-   */
-  function getActionType(actionArgs, message) {
-    if (actionArgs.length > 0 && 'type' in actionArgs[0]) {
-      return actionArgs[0].type;
-    }
-    return message.indexOf('prev') !== -1 ? 'PREV STATE' : 'NEXT STATE';
-  }
-
-  /**
-   * Parses a general purpose log message
-   * @param {string} name
-   * @param {Object} logItem
-   * @returns {string}
-   */
-  function parseMessage(name, logItem) {
-    if (typeof logItem !== 'undefined' && logItem.hasOwnProperty('message')) {
-      if (isVerboseEnabled()) {
-        // TODO: Improve the stringification process to mitigate circular JSON errors
-        return `${logItem.timestamp} - ${name} - ${logItem.level} - MESSAGE - ${(0, _stringify2.default)(logItem.message)} - ARGS - ${(0, _stringify2.default)(logItem.args)}`;
-      }
-      return `${logItem.timestamp} - ${name} - ${logItem.level} - ${logItem.message}`;
-    }
-  }
-
-  /**
-   * Parses log items containing actions and composes an informative log message
-   * @param name
-   * @param logItem
-   * @returns {string}
-   */
-  function parseActionMessage(name, logItem) {
-    var actionType = getActionType(logItem.args, logItem.message);
-
-    if (isVerboseEnabled()) {
-      return `${logItem.timestamp} - ${name} - ${logItem.level} - MESSAGE - ${(0, _stringify2.default)(logItem.message)} - ARGS - ${(0, _stringify2.default)(logItem.args)}`;
-    }
-
-    return `${logItem.timestamp} - ${name} - ${logItem.level} - ${actionType}`;
-  }
-}
-
-/**
- * Base structure for a log entry
- *
- * @constructor
- *
- * @property {string} message - The visible message being displayed by the log entry, undefined at instantiation
- * @property {string} level - The logging level
- * @property {*} args - The arguments supplied with the log entry, if supplied
- * @property {string} timestamp - The time of the log entry
- *
- * @param level
- * @param msg
- * @param [args]
-
- * @returns {LogItem}
- */
-function LogItem(level, msg, args) {
-  this.level = level;
-  this.timestamp = Date.now();
-  this.message = msg;
-
-  if (typeof args !== 'undefined') {
-    // Always return args as an array, as this produces a consistent behaviour wherein we maintain the option to add a stack trace to the log message
-    this.args = typeof args !== 'undefined' ? args : [];
-  } else {
-    delete this.args;
-  }
-  return this;
-}
-
-/***/ }),
-
-/***/ "../../packages/kandy/src/logs/transformers.js":
+/***/ "../../packages/kandy/src/logs/actions/transformers.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64072,7 +63399,7 @@ function removePayloads(action) {
 
 /***/ }),
 
-/***/ "../../packages/kandy/src/logs/utils.js":
+/***/ "../../packages/kandy/src/logs/actions/utils.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64099,6 +63426,555 @@ function titleFormatter(action, time, took) {
   parts.push('(in ' + took.toFixed(2) + ' ms)');
 
   return parts.join(' ');
+}
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/config.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _logHandler = __webpack_require__("../../packages/kandy/src/logs/logHandler.js");
+
+var _logHandler2 = _interopRequireDefault(_logHandler);
+
+var _actionHandler = __webpack_require__("../../packages/kandy/src/logs/actions/actionHandler.js");
+
+var _actionHandler2 = _interopRequireDefault(_actionHandler);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Configuration options for the Logs feature.
+ *
+ * The SDK will log information about the operations it is performing. The
+ *    amount of information will depend on how the Logs feature is configured.
+ *
+ * The format of logs can also be customized by providing a
+ *    {@link logger.LogHandler LogHandler}. This function will receive a
+ *    {@link logger.LogEntry LogEntry} which it can handle as it sees fit. By
+ *    default, the SDK will log information to the console.
+ *
+ * @public
+ * @static
+ * @name config.logs
+ * @memberof config
+ * @requires logs
+ * @instance
+ * @param {Object} logs Logs configs.
+ * @param {string} [logs.logLevel='debug'] Log level to be set. See {@link logger.levels}.
+ * @param {logger.LogHandler} [logs.handler] The function to receive log entries from the
+ *    SDK. If not provided, a default handler will be used that logs entries
+ *    to the console.
+ * @param  {boolean} [logs.enableFcsLogs=true] Enable the detailed call logger
+ *    for v3.X. Requires log level debug.
+ * @param {Object} [logs.logActions] Options specifically for action logs when
+ *    logLevel is at DEBUG+ levels. Set this to false to not output action logs.
+ * @param {logger.LogHandler} [logs.logActions.handler] The function to receive action
+ *    log entries from the SDK. If not provided, a default handler will be used
+ *    that logs actions to the console.
+ * @param {boolean} [logs.logActions.actionOnly=true] Only output information
+ *    about the action itself. Omits the SDK context for when it occurred.
+ * @param {boolean} [logs.logActions.collapsed=false] Whether logs should be
+ *    minimized when initially output. The full log is still output and can be
+ *    inspected on the console.
+ * @param {boolean} [logs.logActions.diff=false] Include a diff of what SDK
+ *    context was changed by the action.
+ * @param {boolean} [logs.logActions.exposePayloads=false] Allow action payloads
+ *    to be exposed in the logs, potentially displaying sensitive information.
+ */
+exports.default = {
+  logLevel: 'debug',
+  handler: _logHandler2.default,
+  enableFcsLogs: true,
+
+  // Action-specific configs.
+  logActions: {
+    handler: _actionHandler2.default,
+    actionOnly: true,
+    collapsed: false,
+    diff: false,
+    level: 'debug',
+    exposePayloads: false
+  }
+};
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/constants.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Log levels used by the SDK.
+ * When a level is set, all logs of that level and higher will be logged.
+ */
+const logLevels = exports.logLevels = {
+  TRACE: 0,
+  DEBUG: 1,
+  INFO: 2,
+  WARN: 3,
+  ERROR: 4,
+  SILENT: 5
+};
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.API_LOG_TAG = undefined;
+
+var _values = __webpack_require__("../../node_modules/babel-runtime/core-js/object/values.js");
+
+var _values2 = _interopRequireDefault(_values);
+
+exports.getLogManager = getLogManager;
+exports.default = logPlugin;
+
+var _api = __webpack_require__("../../packages/kandy/src/logs/interface/api.js");
+
+var _api2 = _interopRequireDefault(_api);
+
+var _config = __webpack_require__("../../packages/kandy/src/logs/config.js");
+
+var _config2 = _interopRequireDefault(_config);
+
+var _constants = __webpack_require__("../../packages/kandy/src/logs/constants.js");
+
+var _actions = __webpack_require__("../../packages/kandy/src/logs/actions/index.js");
+
+var _actions2 = _interopRequireDefault(_actions);
+
+var _logManager = __webpack_require__("../../packages/kandy/src/logs/logManager.js");
+
+var _logManager2 = _interopRequireDefault(_logManager);
+
+var _actions3 = __webpack_require__("../../packages/kandy/src/config/interface/actions.js");
+
+var _utils = __webpack_require__("../../packages/kandy/src/common/utils.js");
+
+var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Create the LogManager right away so that it is available. The SDK has not
+ *    been instantiated yet, so we have to use the default options until we get
+ *    the application's configs.
+ */
+// Logs plugin.
+const logManager = (0, _logManager2.default)('SDK', _config2.default);
+
+// Libraries.
+
+
+// Other plugins.
+function getLogManager() {
+  return logManager;
+}
+
+// Logs generated as a result of invoking the public API will contain this tag
+const API_LOG_TAG = exports.API_LOG_TAG = 'API invoked: ';
+
+function logPlugin(options = {}) {
+  const name = 'logs';
+
+  options = (0, _utils.mergeValues)(_config2.default, options);
+  options.logLevel = options.logLevel.toUpperCase();
+
+  // Now that we have the application's log configs, update everything to
+  //    use those values instead of default values.
+  logManager.level = options.logLevel;
+  logManager.logHandler = options.handler;
+
+  (0, _values2.default)(logManager.getLoggers()).forEach(logger => {
+    logger.level = options.logLevel;
+    logger.logHandler = options.handler;
+  });
+
+  function* init() {
+    // Send the provided options to the store.
+    // This will be `state.config[name]`.
+    yield (0, _effects.put)((0, _actions3.update)(options, name));
+  }
+
+  const components = {
+    name,
+    capabilities: ['logs'],
+    init,
+    api: _api2.default
+  };
+
+  const setLevel = _constants.logLevels[options.logLevel];
+  // Consider actions to be at the INFO log level.
+  // Only export a middleware (for actions) at the appropriate levels.
+  if (setLevel <= _constants.logLevels.INFO && options.logActions !== false) {
+    components.middleware = (0, _actions2.default)(options);
+  }
+
+  return components;
+}
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/interface/api.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = api;
+/**
+ * The internal logger is used to provide information about the SDK's behaviour.
+ * The logger can provide two types of logs: basic logs and action logs. Basic
+ * logs are simple lines of information about what the SDK is doing during operations.
+ * Action logs are complete information about a specific action that occurred
+ * within the SDK, providing debug information describing it.
+ * The amount of information logged can be configured as part of the SDK configuration.
+ * See {@link #configconfiglogs config.logs} .
+ *
+ * @public
+ * @namespace logger
+ * @requires logs
+ */
+
+function api() {
+  let api = {
+    /**
+     * Possible levels for the SDK logger.
+     * @public
+     * @static
+     * @memberof logger
+     * @property {string} SILENT Log nothing.
+     * @property {string} ERROR Log only unhandled errors.
+     * @property {string} WARN Log issues that may cause problems or unexpected behaviour.
+     * @property {string} INFO Log useful information and messages to indicate the SDK's internal operations.
+     * @property {string} DEBUG Log information to help diagnose problematic behaviour.
+     */
+    levels: {
+      SILENT: 'silent',
+      ERROR: 'error',
+      WARN: 'warn',
+      INFO: 'info',
+      DEBUG: 'debug'
+    }
+  };
+
+  return {
+    logger: api
+  };
+}
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/logHandler.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = defaultLogHandler;
+/**
+ * A LogHandler can be used to customize how the SDK should log information. By
+ *    default, the SDK will log information to the console, but a LogHandler can
+ *    be configured to change this behaviour.
+ *
+ * A LogHandler can be provided to the SDK as part of its configuration (see
+ *    {@link #configconfiglogs config.logs}). The SDK will then provide this
+ *    function with the logged information.
+ *
+ * @public
+ * @static
+ * @typedef {Function} LogHandler
+ * @memberof logger
+ * @requires logs
+ * @param {Object} LogEntry The LogEntry to be logged.
+ * @example
+ * // Define a custom function to handle logs.
+ * function logHandler (logEntry) {
+ *   // Compile the meta info of the log for a prefix.
+ *   const { timestamp, level, method, target } = logEntry
+ *   const logInfo = `${timestamp} - ${target.name} - ${level}`
+ *
+ *   // Assume that the first message parameter is a string.
+ *   const [log, ...extra] = logEntry.messages
+ *
+ *   console[method](`${logInfo} - ${log}`, ...extra)
+ * }
+ *
+ * // Provide the LogHandler as part of the SDK configurations.
+ * const configs = { ... }
+ * configs.logs.handler = logHandler
+ * const client = create(configs)
+ */
+
+/**
+ * Default function for the SDK to use for logging.
+ *    Uses entry information to form a prefix, then logs to console.
+ * @method defaultLogHandler
+ * @param  {LogEntry} entry
+ */
+function defaultLogHandler(entry) {
+  // Compile the meta info of the log for a prefix.
+  const { timestamp, level, method, target } = entry;
+  const logInfo = `${timestamp} - ${target.name} - ${level}`;
+
+  // Assume that the first message parameter is a string.
+  const [log, ...extra] = entry.messages;
+
+  console[method](`${logInfo} - ${log}`, ...extra);
+}
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/logManager.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createManager;
+
+var _logger = __webpack_require__("../../packages/kandy/src/logs/logger.js");
+
+var _logger2 = _interopRequireDefault(_logger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Creates a Log Manager.
+ * @method createManager
+ * @param  {string}     managerName
+ * @param  {Object}     [options={}]
+ * @return {LogManager}
+ */
+function createManager(managerName, options = {}) {
+  /*
+   * This log is pointless, but is here to workaround a weird issue in Chrome.
+   * The Chrome console will lag when it is loading the sourcemap for a file.
+   *    Logging from the SDK will force Chrome to load its sourcemap (if its
+   *    not already loaded). So this ensures that /something/ is logged from the
+   *    SDK file as early as possible, to help avoid this lag being visible to
+   *    a developer.
+   */
+  console.debug(`Creating LogManager ${managerName}.`);
+
+  let logHandler = options.handler;
+  let level = options.logLevel;
+  const loggers = {};
+
+  /**
+   * Gets a specific logger. If the logger doesn't exist, a new one will be
+   *    created.
+   * @method getLogger
+   * @param  {string} name Human-readable name for the logger.
+   * @param  {string} [id] A unique identifier for the logger.
+   * @return {Logger}
+   */
+  function getLogger(name, id) {
+    // Combine the name and ID to create the "full" logger name.
+    const loggerName = id ? `${name}-${id}` : name;
+
+    let logger = loggers[loggerName];
+    // If the logger does not exist, create a new one.
+    if (!logger) {
+      // This logger logs items from a specific "target".
+      const target = { name, id };
+      logger = (0, _logger2.default)(target, logHandler, { level });
+
+      // Save the new logger to be returned by future getter cals.
+      loggers[loggerName] = logger;
+    }
+
+    return logger;
+  }
+
+  /**
+   * Gets all created loggers.
+   * @method getLoggers
+   * @return {Object} Object of loggers, keyed by logger name-id.
+   */
+  function getLoggers() {
+    return loggers;
+  }
+
+  return {
+    getLogger,
+    getLoggers,
+    get logHandler() {
+      return logHandler;
+    },
+    set logHandler(handler) {
+      logHandler = handler;
+    },
+    set level(newLevel) {
+      level = newLevel.toUpperCase();
+    }
+  };
+}
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/logger.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createLogger;
+
+var _constants = __webpack_require__("../../packages/kandy/src/logs/constants.js");
+
+/**
+ * A LogEntry object is the data that the SDK compiles when information is
+ *    logged. It contains both the logged information and meta-info about when
+ *    and who logged it.
+ *
+ * A {@link logger.LogHandler LogHandler} provided to the SDK (see
+ *    {@link #configconfiglogs config.logs}) will need to handle LogEntry
+ *    objects.
+ *
+ * @public
+ * @static
+ * @typedef {Object} LogEntry
+ * @memberof logger
+ * @requires logs
+ * @property {number} timestamp When the log was created, based on UNIX epoch.
+ * @property {string} method The log function that was used to create the log.
+ * @property {string} level The level of severity the log.
+ * @property {Object} target The subject that the log is about.
+ * @property {string} target.name The name of the target. This is also
+ *    used as the name of the Logger.
+ * @property {string} [target.id] A unique identifer for the target.
+ * @property {Array} messages The logged information, given to the Logger
+ *    method as parameters.
+ * @example
+ * function defaultLogHandler (logEntry) {
+ *   // Compile the meta info of the log for a prefix.
+ *   const { timestamp, level, method, target } = logEntry
+ *   const logInfo = `${timestamp} - ${target.name} - ${level}`
+ *
+ *   // Assume that the first message parameter is a string.
+ *   const [log, ...extra] = logEntry.messages
+ *
+ *   console[method](`${logInfo} - ${log}`, ...extra)
+ * }
+ */
+
+/**
+ * Creates a Logger.
+ * @method createLogger
+ * @param  {Object}   target       The subject of the logs from this logger.
+ * @param  {Function} handler      The function to receive/handle log entries.
+ * @param  {Object}   [options={}]
+ * @return {Logger}
+ */
+function createLogger(target, handler, options = {}) {
+  /**
+   * Currying function to dynamically create the Logger's logging methods.
+   * @method logFunc
+   * @param  {string} method Name of the logger method to create.
+   * @return {Function} A log method.
+   */
+  function logFunc(method) {
+    // The level that this function logs at.
+    let logLevel;
+    // Consider non-standard log levels to be debug.
+    if (['group', 'groupEnd', 'groupCollapsed', 'log'].includes(method)) {
+      logLevel = 'DEBUG';
+    } else {
+      // Otherwise, the method and log level match directly.
+      logLevel = method.toUpperCase();
+    }
+
+    /*
+     * Return the function that will be used as `log.<method>`.
+     */
+    return function (...args) {
+      // Compare the logged level and the configured level.
+      const setLevel = logger.level.toUpperCase();
+      const shouldLog = _constants.logLevels[logLevel] >= _constants.logLevels[setLevel];
+      // If this entry shouldn't be logged, don't do anything.
+      if (!shouldLog) {
+        return;
+      }
+
+      // Create the Log Entry to be handed off to the handler.
+
+      const entry = {
+        // Meta-info about the log.
+        method,
+        timestamp: Date.now(),
+        level: logLevel,
+        target: logger.target,
+        // The actual arguments logged.
+        messages: [...args]
+      };
+
+      logger.logHandler(entry);
+    };
+  }
+
+  const logger = {
+    target,
+    level: options.level,
+    logHandler: handler,
+    name: target.name
+
+    // Supported console methods.
+  };const consoleMethods = ['trace', 'debug', 'warn', 'info', 'error', 'log', 'group', 'groupEnd', 'groupCollapsed'];
+
+  const api = {
+    get logHandler() {
+      return logger.logHandler;
+    },
+    set logHandler(handler) {
+      logger.logHandler = handler;
+    },
+    get level() {
+      return logger.level;
+    },
+    set level(newLevel) {
+      logger.level = newLevel;
+    }
+  };
+
+  // For all supported log methods, create a function on the Logger for it.
+  consoleMethods.forEach(method => {
+    api[method] = logFunc(method);
+  });
+
+  return api;
 }
 
 /***/ }),
@@ -64625,6 +64501,7 @@ function api(context) {
      */
     fetch: function (options = {}) {
       log.debug(_logs.API_LOG_TAG + 'conversation.fetch: ', options);
+
       context.dispatch(_actions.convoActions.fetchConversations(options));
     },
     /**
