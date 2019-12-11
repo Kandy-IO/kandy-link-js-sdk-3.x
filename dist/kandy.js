@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.11.0-beta.223
+ * Version: 3.11.0-beta.224
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -58488,7 +58488,13 @@ function processAddress(addressString) {
  * @returns {string} The domain with "@" symbol at the beginning if it doesn't exist.
  */
 function processDomain(domainString) {
-  return (domainString.indexOf('@') === 0 ? '' : '@') + domainString;
+  if (domainString === '' || domainString === undefined) {
+    return '';
+  } else if (domainString.indexOf('@') === 0) {
+    return domainString;
+  } else {
+    return '@' + domainString;
+  }
 }
 
 /**
@@ -62778,7 +62784,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.11.0-beta.223';
+  let version = '3.11.0-beta.224';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];

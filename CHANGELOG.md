@@ -14,6 +14,10 @@ Kandy.js change log.
   - See `config.logs.handler`, `config.logs.logActions.handler`, `logger.LogHandler`, and `logger.LogEntry`.
   - An application can now provide a `LogHandler` function to the SDK via configuration. The SDK will use this function for logging information. By default, the SDK will continue to log information to the console.
 
+### Fixed
+
+- Fixed an issue where call was failing when the user(caller) has no user@domain format. `KAA-2131`
+
 ## Deprecated
 
 This 3.x version of the SDK is deprecated and will stop being supported as of November 1, 2020. [Please upgrade to 4.x](https://github.com/Kandy-IO/kandy-link-js-sdk). `KAA-2104`
