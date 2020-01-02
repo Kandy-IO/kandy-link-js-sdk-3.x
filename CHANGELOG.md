@@ -5,6 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.11.1 - 2020-01-02
+
+### Fixed
+
+- Fixed documentation issue, introduced in 3.11.0, where portions of the documentation were missing. `KAA-2151`
+
 ## 3.11.0 - 2019-12-20
 
 ### Added
