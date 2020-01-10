@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.12.0 - beta
 
+### Fixed
+
+- Fixed an issue where PUSH notification channel was closed by default. `KAA-719`
+
 ## 3.11.1 - 2020-01-02
 
 ### Fixed
