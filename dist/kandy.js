@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.11.1
+ * Version: 3.12.0
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -55318,6 +55318,7 @@ const SESSION_CREATED = exports.SESSION_CREATED = callPrefix + 'SESSION_CREATED'
 const MAKE_CALL_FINISH = exports.MAKE_CALL_FINISH = callPrefix + 'MAKE_FINISH';
 
 const MAKE_ANONYMOUS_CALL = exports.MAKE_ANONYMOUS_CALL = callPrefix + 'MAKE_ANONYMOUS_CALL';
+const MAKE_ANONYMOUS_CALL_FINISH = exports.MAKE_ANONYMOUS_CALL_FINISH = callPrefix + 'MAKE_ANONYMOUS_CALL_FINISH';
 
 const CALL_INCOMING = exports.CALL_INCOMING = callPrefix + 'INCOMING';
 
@@ -55395,6 +55396,11 @@ const JOIN_FINISH = exports.JOIN_FINISH = callPrefix + 'JOIN_FINISH';
 
 const REPLACE_TRACK = exports.REPLACE_TRACK = callPrefix + 'REPLACE_TRACK';
 const REPLACE_TRACK_FINISH = exports.REPLACE_TRACK_FINISH = callPrefix + 'REPLACE_TRACK_FINISH';
+
+/**
+ * Miscellaneous call actions
+ */
+const CUSTOM_PARAMETERS_RECEIVED = exports.CUSTOM_PARAMETERS_RECEIVED = callPrefix + 'CUSTOM_PARAMETERS_RECEIVED';
 
 /**
  * Remote operation actions.
@@ -59439,21 +59445,29 @@ function* retrieveCallLogs(action) {
   if (response.error) {
     let error;
     if (response.payload.body) {
-      // Handle errors from the server.
-      let { statusCode } = response.payload.body.logHistory;
-      log.debug(`Failed to retrieve call logs with status code ${statusCode}.`);
+      if (response.payload.body.logHistory) {
+        // Handle errors from the server.
+        let { statusCode } = response.payload.body.logHistory;
+        log.debug(`Failed to retrieve call logs with status code ${statusCode}.`);
 
-      error = new _errors2.default({
-        code: statusCode === 37 ? _errors.callHistoryCodes.BAD_REQUEST : _errors.callHistoryCodes.UNKNOWN_ERROR,
-        message: `Failed to retrieve call logs. Code: ${statusCode}.`
-      });
+        error = new _errors2.default({
+          code: statusCode === 37 ? _errors.callHistoryCodes.BAD_REQUEST : _errors.callHistoryCodes.UNKNOWN_ERROR,
+          message: `Failed to retrieve call logs. Code: ${statusCode}.`
+        });
+      } else {
+        log.debug(`Failed to retrieve call logs, user not authenticated`);
+        error = new _errors2.default({
+          code: _errors.callHistoryCodes.NOT_AUTHENTICATED,
+          message: 'User not authenticated'
+        });
+      }
     } else {
-      // Handle errrs from the request helper.
-      let { message } = response.payload.result;
+      // Handle errors from the request helper.
+      let { code, message } = response.payload.result;
       log.debug('Failed call log retrieval', message);
 
       error = new _errors2.default({
-        code: _errors.callHistoryCodes.UNKNOWN_ERROR,
+        code: code === 403 ? _errors.callHistoryCodes.FORBIDDEN : _errors.callHistoryCodes.UNKNOWN_ERROR,
         message: `Call log fetch failed: ${message}.`
       });
     }
@@ -61836,7 +61850,9 @@ const authCodes = exports.authCodes = {
 };const callHistoryCodes = exports.callHistoryCodes = {
   UNKNOWN_ERROR: 'callHistory:1',
   BAD_REQUEST: 'callHistory:2',
-  NOT_FOUND: 'callHistory:3'
+  NOT_FOUND: 'callHistory:3',
+  NOT_AUTHENTICATED: 'callHistory:4',
+  FORBIDDEN: 'callHistory:5'
   /**
    * @name clickToCallCodes
    */
@@ -62460,7 +62476,7 @@ function unsubscribe(listener) {
 
 /* Internal actions */
 
-/*
+/**
  * Emits an event of the specified type.
  *
  * @method emitEvent
@@ -62479,12 +62495,12 @@ function emitEvent(type, ...args) {
   };
 }
 
-/*
+/**
  * Define an alias for an event type.
  *
  * @method alias
- * @param {String} type The event type for which to add an alias.
- * @param {String} alias The alias name for the event type.
+ * @param {string} type The event type for which to add an alias.
+ * @param {string} alias The alias name for the event type.
  */
 function aliasEvent(type, alias) {
   if (type === undefined || alias === undefined) {
@@ -62751,7 +62767,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.11.1';
+  let version = '3.12.0';
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -66814,7 +66830,7 @@ const defaultState = {
     channelEnabled: false
   },
   PUSH: {
-    channelEnabled: false
+    channelEnabled: true
   },
   EXTERNAL: {
     channelEnabled: true
