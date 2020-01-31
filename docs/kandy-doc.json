@@ -430,6 +430,1159 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "Configuration options for the Logs feature.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 44,
+                        "offset": 43
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 44,
+                    "offset": 43
+                  },
+                  "indent": []
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The SDK will log information about the operations it is performing. The\n   amount of information will depend on how the Logs feature is configured.",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1,
+                        "offset": 45
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 76,
+                        "offset": 192
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1,
+                    "offset": 45
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 76,
+                    "offset": 192
+                  },
+                  "indent": [
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The format of logs can also be customized by providing a\n   ",
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 1,
+                        "offset": 194
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 4,
+                        "offset": 254
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#loggerloghandler",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "LogHandler"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 7,
+                        "column": 4,
+                        "offset": 254
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 40,
+                        "offset": 290
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": ". This function will receive a\n   ",
+                    "position": {
+                      "start": {
+                        "line": 7,
+                        "column": 40,
+                        "offset": 290
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 4,
+                        "offset": 324
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#loggerlogentry",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "LogEntry"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 8,
+                        "column": 4,
+                        "offset": 324
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 36,
+                        "offset": 356
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " which it can handle as it sees fit. By\n   default, the SDK will log information to the console.",
+                    "position": {
+                      "start": {
+                        "line": 8,
+                        "column": 36,
+                        "offset": 356
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 57,
+                        "offset": 452
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 6,
+                    "column": 1,
+                    "offset": 194
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 57,
+                    "offset": 452
+                  },
+                  "indent": [
+                    1,
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 57,
+                "offset": 452
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 11,
+              "type": null
+            },
+            {
+              "title": "static",
+              "description": null,
+              "lineNumber": 12
+            },
+            {
+              "title": "name",
+              "description": null,
+              "lineNumber": 13,
+              "name": "config.logs"
+            },
+            {
+              "title": "memberof",
+              "description": "config",
+              "lineNumber": 14
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 15,
+              "name": "logs"
+            },
+            {
+              "title": "instance",
+              "description": null,
+              "lineNumber": 16
+            },
+            {
+              "title": "param",
+              "description": "Logs configs.",
+              "lineNumber": 17,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "logs"
+            },
+            {
+              "title": "param",
+              "description": "Log level to be set. See {@link logger.levels}.",
+              "lineNumber": 18,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "logs.logLevel",
+              "default": "'debug'"
+            },
+            {
+              "title": "param",
+              "description": "The function to receive log entries from the\n   SDK. If not provided, a default handler will be used that logs entries\n   to the console.",
+              "lineNumber": 19,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "logger.LogHandler"
+                }
+              },
+              "name": "logs.handler"
+            },
+            {
+              "title": "param",
+              "description": "Enable the detailed call logger\n   for v3.X. Requires log level debug.",
+              "lineNumber": 22,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "boolean"
+                }
+              },
+              "name": "logs.enableFcsLogs",
+              "default": "true"
+            },
+            {
+              "title": "param",
+              "description": "Options specifically for action logs when\n   logLevel is at DEBUG+ levels. Set this to false to not output action logs.",
+              "lineNumber": 24,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Object"
+                }
+              },
+              "name": "logs.logActions"
+            },
+            {
+              "title": "param",
+              "description": "The function to receive action\n   log entries from the SDK. If not provided, a default handler will be used\n   that logs actions to the console.",
+              "lineNumber": 26,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "logger.LogHandler"
+                }
+              },
+              "name": "logs.logActions.handler"
+            },
+            {
+              "title": "param",
+              "description": "Only output information\n   about the action itself. Omits the SDK context for when it occurred.",
+              "lineNumber": 29,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "boolean"
+                }
+              },
+              "name": "logs.logActions.actionOnly",
+              "default": "true"
+            },
+            {
+              "title": "param",
+              "description": "Whether logs should be\n   minimized when initially output. The full log is still output and can be\n   inspected on the console.",
+              "lineNumber": 31,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "boolean"
+                }
+              },
+              "name": "logs.logActions.collapsed",
+              "default": "false"
+            },
+            {
+              "title": "param",
+              "description": "Include a diff of what SDK\n   context was changed by the action.",
+              "lineNumber": 34,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "boolean"
+                }
+              },
+              "name": "logs.logActions.diff",
+              "default": "false"
+            },
+            {
+              "title": "param",
+              "description": "Allow action payloads\n   to be exposed in the logs, potentially displaying sensitive information.",
+              "lineNumber": 36,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "boolean"
+                }
+              },
+              "name": "logs.logActions.exposePayloads",
+              "default": "false"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 42,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 43,
+                "column": 0
+              },
+              "end": {
+                "line": 57,
+                "column": 1
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/config.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "logs",
+              "lineNumber": 17,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Logs configs.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 14,
+                            "offset": 13
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 14,
+                        "offset": 13
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 14,
+                    "offset": 13
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "logs.logLevel",
+                  "lineNumber": 18,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Log level to be set. See ",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 26,
+                                "offset": 25
+                              },
+                              "indent": []
+                            }
+                          },
+                          {
+                            "type": "link",
+                            "url": "#loggerlevels",
+                            "title": null,
+                            "jsdoc": true,
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "logger.levels"
+                              }
+                            ],
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 26,
+                                "offset": 25
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 47,
+                                "offset": 46
+                              },
+                              "indent": []
+                            }
+                          },
+                          {
+                            "type": "text",
+                            "value": ".",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 47,
+                                "offset": 46
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 48,
+                                "offset": 47
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 48,
+                            "offset": 47
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 48,
+                        "offset": 47
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  },
+                  "default": "'debug'"
+                },
+                {
+                  "title": "param",
+                  "name": "logs.handler",
+                  "lineNumber": 19,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The function to receive log entries from the\n   SDK. If not provided, a default handler will be used that logs entries\n   to the console.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 3,
+                                "column": 19,
+                                "offset": 137
+                              },
+                              "indent": [
+                                1,
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 19,
+                            "offset": 137
+                          },
+                          "indent": [
+                            1,
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 19,
+                        "offset": 137
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "logger.LogHandler"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "logs.enableFcsLogs",
+                  "lineNumber": 22,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Enable the detailed call logger\n   for v3.X. Requires log level debug.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 39,
+                                "offset": 70
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 39,
+                            "offset": 70
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 39,
+                        "offset": 70
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "boolean"
+                  },
+                  "default": "true"
+                },
+                {
+                  "title": "param",
+                  "name": "logs.logActions",
+                  "lineNumber": 24,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Options specifically for action logs when\n   logLevel is at DEBUG+ levels. Set this to false to not output action logs.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 78,
+                                "offset": 119
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 78,
+                            "offset": 119
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 78,
+                        "offset": 119
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "Object"
+                    }
+                  },
+                  "properties": [
+                    {
+                      "title": "param",
+                      "name": "logs.logActions.handler",
+                      "lineNumber": 26,
+                      "description": {
+                        "type": "root",
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "The function to receive action\n   log entries from the SDK. If not provided, a default handler will be used\n   that logs actions to the console.",
+                                "position": {
+                                  "start": {
+                                    "line": 1,
+                                    "column": 1,
+                                    "offset": 0
+                                  },
+                                  "end": {
+                                    "line": 3,
+                                    "column": 37,
+                                    "offset": 144
+                                  },
+                                  "indent": [
+                                    1,
+                                    1
+                                  ]
+                                }
+                              }
+                            ],
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 3,
+                                "column": 37,
+                                "offset": 144
+                              },
+                              "indent": [
+                                1,
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 37,
+                            "offset": 144
+                          }
+                        }
+                      },
+                      "type": {
+                        "type": "OptionalType",
+                        "expression": {
+                          "type": "NameExpression",
+                          "name": "logger.LogHandler"
+                        }
+                      }
+                    },
+                    {
+                      "title": "param",
+                      "name": "logs.logActions.actionOnly",
+                      "lineNumber": 29,
+                      "description": {
+                        "type": "root",
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Only output information\n   about the action itself. Omits the SDK context for when it occurred.",
+                                "position": {
+                                  "start": {
+                                    "line": 1,
+                                    "column": 1,
+                                    "offset": 0
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 72,
+                                    "offset": 95
+                                  },
+                                  "indent": [
+                                    1
+                                  ]
+                                }
+                              }
+                            ],
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 72,
+                                "offset": 95
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 72,
+                            "offset": 95
+                          }
+                        }
+                      },
+                      "type": {
+                        "type": "NameExpression",
+                        "name": "boolean"
+                      },
+                      "default": "true"
+                    },
+                    {
+                      "title": "param",
+                      "name": "logs.logActions.collapsed",
+                      "lineNumber": 31,
+                      "description": {
+                        "type": "root",
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Whether logs should be\n   minimized when initially output. The full log is still output and can be\n   inspected on the console.",
+                                "position": {
+                                  "start": {
+                                    "line": 1,
+                                    "column": 1,
+                                    "offset": 0
+                                  },
+                                  "end": {
+                                    "line": 3,
+                                    "column": 29,
+                                    "offset": 127
+                                  },
+                                  "indent": [
+                                    1,
+                                    1
+                                  ]
+                                }
+                              }
+                            ],
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 3,
+                                "column": 29,
+                                "offset": 127
+                              },
+                              "indent": [
+                                1,
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 29,
+                            "offset": 127
+                          }
+                        }
+                      },
+                      "type": {
+                        "type": "NameExpression",
+                        "name": "boolean"
+                      },
+                      "default": "false"
+                    },
+                    {
+                      "title": "param",
+                      "name": "logs.logActions.diff",
+                      "lineNumber": 34,
+                      "description": {
+                        "type": "root",
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Include a diff of what SDK\n   context was changed by the action.",
+                                "position": {
+                                  "start": {
+                                    "line": 1,
+                                    "column": 1,
+                                    "offset": 0
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 38,
+                                    "offset": 64
+                                  },
+                                  "indent": [
+                                    1
+                                  ]
+                                }
+                              }
+                            ],
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 38,
+                                "offset": 64
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 38,
+                            "offset": 64
+                          }
+                        }
+                      },
+                      "type": {
+                        "type": "NameExpression",
+                        "name": "boolean"
+                      },
+                      "default": "false"
+                    },
+                    {
+                      "title": "param",
+                      "name": "logs.logActions.exposePayloads",
+                      "lineNumber": 36,
+                      "description": {
+                        "type": "root",
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Allow action payloads\n   to be exposed in the logs, potentially displaying sensitive information.",
+                                "position": {
+                                  "start": {
+                                    "line": 1,
+                                    "column": 1,
+                                    "offset": 0
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 76,
+                                    "offset": 97
+                                  },
+                                  "indent": [
+                                    1
+                                  ]
+                                }
+                              }
+                            ],
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 76,
+                                "offset": 97
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 76,
+                            "offset": 97
+                          }
+                        }
+                      },
+                      "type": {
+                        "type": "NameExpression",
+                        "name": "boolean"
+                      },
+                      "default": "false"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "scope": "instance",
+          "name": "config.logs",
+          "memberof": "config",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "config",
+              "kind": "module"
+            },
+            {
+              "name": "config.logs",
+              "scope": "instance"
+            }
+          ],
+          "namespace": "config#config.logs"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "Configuration options for the Authentication feature.",
                     "position": {
                       "start": {
@@ -5562,1159 +6715,6 @@
             }
           ],
           "namespace": "config#config.notifications"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "Configuration options for the Logs feature.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 44,
-                        "offset": 43
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 44,
-                    "offset": 43
-                  },
-                  "indent": []
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "The SDK will log information about the operations it is performing. The\n   amount of information will depend on how the Logs feature is configured.",
-                    "position": {
-                      "start": {
-                        "line": 3,
-                        "column": 1,
-                        "offset": 45
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 76,
-                        "offset": 192
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 3,
-                    "column": 1,
-                    "offset": 45
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 76,
-                    "offset": 192
-                  },
-                  "indent": [
-                    1
-                  ]
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "The format of logs can also be customized by providing a\n   ",
-                    "position": {
-                      "start": {
-                        "line": 6,
-                        "column": 1,
-                        "offset": 194
-                      },
-                      "end": {
-                        "line": 7,
-                        "column": 4,
-                        "offset": 254
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#loggerloghandler",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "LogHandler"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 7,
-                        "column": 4,
-                        "offset": 254
-                      },
-                      "end": {
-                        "line": 7,
-                        "column": 40,
-                        "offset": 290
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": ". This function will receive a\n   ",
-                    "position": {
-                      "start": {
-                        "line": 7,
-                        "column": 40,
-                        "offset": 290
-                      },
-                      "end": {
-                        "line": 8,
-                        "column": 4,
-                        "offset": 324
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#loggerlogentry",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "LogEntry"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 8,
-                        "column": 4,
-                        "offset": 324
-                      },
-                      "end": {
-                        "line": 8,
-                        "column": 36,
-                        "offset": 356
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " which it can handle as it sees fit. By\n   default, the SDK will log information to the console.",
-                    "position": {
-                      "start": {
-                        "line": 8,
-                        "column": 36,
-                        "offset": 356
-                      },
-                      "end": {
-                        "line": 9,
-                        "column": 57,
-                        "offset": 452
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 6,
-                    "column": 1,
-                    "offset": 194
-                  },
-                  "end": {
-                    "line": 9,
-                    "column": 57,
-                    "offset": 452
-                  },
-                  "indent": [
-                    1,
-                    1,
-                    1
-                  ]
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 9,
-                "column": 57,
-                "offset": 452
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 11,
-              "type": null
-            },
-            {
-              "title": "static",
-              "description": null,
-              "lineNumber": 12
-            },
-            {
-              "title": "name",
-              "description": null,
-              "lineNumber": 13,
-              "name": "config.logs"
-            },
-            {
-              "title": "memberof",
-              "description": "config",
-              "lineNumber": 14
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 15,
-              "name": "logs"
-            },
-            {
-              "title": "instance",
-              "description": null,
-              "lineNumber": 16
-            },
-            {
-              "title": "param",
-              "description": "Logs configs.",
-              "lineNumber": 17,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "logs"
-            },
-            {
-              "title": "param",
-              "description": "Log level to be set. See {@link logger.levels}.",
-              "lineNumber": 18,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "logs.logLevel",
-              "default": "'debug'"
-            },
-            {
-              "title": "param",
-              "description": "The function to receive log entries from the\n   SDK. If not provided, a default handler will be used that logs entries\n   to the console.",
-              "lineNumber": 19,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "logger.LogHandler"
-                }
-              },
-              "name": "logs.handler"
-            },
-            {
-              "title": "param",
-              "description": "Enable the detailed call logger\n   for v3.X. Requires log level debug.",
-              "lineNumber": 22,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "boolean"
-                }
-              },
-              "name": "logs.enableFcsLogs",
-              "default": "true"
-            },
-            {
-              "title": "param",
-              "description": "Options specifically for action logs when\n   logLevel is at DEBUG+ levels. Set this to false to not output action logs.",
-              "lineNumber": 24,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Object"
-                }
-              },
-              "name": "logs.logActions"
-            },
-            {
-              "title": "param",
-              "description": "The function to receive action\n   log entries from the SDK. If not provided, a default handler will be used\n   that logs actions to the console.",
-              "lineNumber": 26,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "logger.LogHandler"
-                }
-              },
-              "name": "logs.logActions.handler"
-            },
-            {
-              "title": "param",
-              "description": "Only output information\n   about the action itself. Omits the SDK context for when it occurred.",
-              "lineNumber": 29,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "boolean"
-                }
-              },
-              "name": "logs.logActions.actionOnly",
-              "default": "true"
-            },
-            {
-              "title": "param",
-              "description": "Whether logs should be\n   minimized when initially output. The full log is still output and can be\n   inspected on the console.",
-              "lineNumber": 31,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "boolean"
-                }
-              },
-              "name": "logs.logActions.collapsed",
-              "default": "false"
-            },
-            {
-              "title": "param",
-              "description": "Include a diff of what SDK\n   context was changed by the action.",
-              "lineNumber": 34,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "boolean"
-                }
-              },
-              "name": "logs.logActions.diff",
-              "default": "false"
-            },
-            {
-              "title": "param",
-              "description": "Allow action payloads\n   to be exposed in the logs, potentially displaying sensitive information.",
-              "lineNumber": 36,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "boolean"
-                }
-              },
-              "name": "logs.logActions.exposePayloads",
-              "default": "false"
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 4,
-              "column": 0
-            },
-            "end": {
-              "line": 42,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 43,
-                "column": 0
-              },
-              "end": {
-                "line": 57,
-                "column": 1
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/config.js"
-          },
-          "augments": [],
-          "examples": [],
-          "params": [
-            {
-              "title": "param",
-              "name": "logs",
-              "lineNumber": 17,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "Logs configs.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 14,
-                            "offset": 13
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 14,
-                        "offset": 13
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 14,
-                    "offset": 13
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "logs.logLevel",
-                  "lineNumber": 18,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "Log level to be set. See ",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 26,
-                                "offset": 25
-                              },
-                              "indent": []
-                            }
-                          },
-                          {
-                            "type": "link",
-                            "url": "#loggerlevels",
-                            "title": null,
-                            "jsdoc": true,
-                            "children": [
-                              {
-                                "type": "text",
-                                "value": "logger.levels"
-                              }
-                            ],
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 26,
-                                "offset": 25
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 47,
-                                "offset": 46
-                              },
-                              "indent": []
-                            }
-                          },
-                          {
-                            "type": "text",
-                            "value": ".",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 47,
-                                "offset": 46
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 48,
-                                "offset": 47
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 48,
-                            "offset": 47
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 48,
-                        "offset": 47
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  },
-                  "default": "'debug'"
-                },
-                {
-                  "title": "param",
-                  "name": "logs.handler",
-                  "lineNumber": 19,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The function to receive log entries from the\n   SDK. If not provided, a default handler will be used that logs entries\n   to the console.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 3,
-                                "column": 19,
-                                "offset": 137
-                              },
-                              "indent": [
-                                1,
-                                1
-                              ]
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 3,
-                            "column": 19,
-                            "offset": 137
-                          },
-                          "indent": [
-                            1,
-                            1
-                          ]
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 19,
-                        "offset": 137
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "logger.LogHandler"
-                    }
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "logs.enableFcsLogs",
-                  "lineNumber": 22,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "Enable the detailed call logger\n   for v3.X. Requires log level debug.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 2,
-                                "column": 39,
-                                "offset": 70
-                              },
-                              "indent": [
-                                1
-                              ]
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 39,
-                            "offset": 70
-                          },
-                          "indent": [
-                            1
-                          ]
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 39,
-                        "offset": 70
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "boolean"
-                  },
-                  "default": "true"
-                },
-                {
-                  "title": "param",
-                  "name": "logs.logActions",
-                  "lineNumber": 24,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "Options specifically for action logs when\n   logLevel is at DEBUG+ levels. Set this to false to not output action logs.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 2,
-                                "column": 78,
-                                "offset": 119
-                              },
-                              "indent": [
-                                1
-                              ]
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 78,
-                            "offset": 119
-                          },
-                          "indent": [
-                            1
-                          ]
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 78,
-                        "offset": 119
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "Object"
-                    }
-                  },
-                  "properties": [
-                    {
-                      "title": "param",
-                      "name": "logs.logActions.handler",
-                      "lineNumber": 26,
-                      "description": {
-                        "type": "root",
-                        "children": [
-                          {
-                            "type": "paragraph",
-                            "children": [
-                              {
-                                "type": "text",
-                                "value": "The function to receive action\n   log entries from the SDK. If not provided, a default handler will be used\n   that logs actions to the console.",
-                                "position": {
-                                  "start": {
-                                    "line": 1,
-                                    "column": 1,
-                                    "offset": 0
-                                  },
-                                  "end": {
-                                    "line": 3,
-                                    "column": 37,
-                                    "offset": 144
-                                  },
-                                  "indent": [
-                                    1,
-                                    1
-                                  ]
-                                }
-                              }
-                            ],
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 3,
-                                "column": 37,
-                                "offset": 144
-                              },
-                              "indent": [
-                                1,
-                                1
-                              ]
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 3,
-                            "column": 37,
-                            "offset": 144
-                          }
-                        }
-                      },
-                      "type": {
-                        "type": "OptionalType",
-                        "expression": {
-                          "type": "NameExpression",
-                          "name": "logger.LogHandler"
-                        }
-                      }
-                    },
-                    {
-                      "title": "param",
-                      "name": "logs.logActions.actionOnly",
-                      "lineNumber": 29,
-                      "description": {
-                        "type": "root",
-                        "children": [
-                          {
-                            "type": "paragraph",
-                            "children": [
-                              {
-                                "type": "text",
-                                "value": "Only output information\n   about the action itself. Omits the SDK context for when it occurred.",
-                                "position": {
-                                  "start": {
-                                    "line": 1,
-                                    "column": 1,
-                                    "offset": 0
-                                  },
-                                  "end": {
-                                    "line": 2,
-                                    "column": 72,
-                                    "offset": 95
-                                  },
-                                  "indent": [
-                                    1
-                                  ]
-                                }
-                              }
-                            ],
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 2,
-                                "column": 72,
-                                "offset": 95
-                              },
-                              "indent": [
-                                1
-                              ]
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 72,
-                            "offset": 95
-                          }
-                        }
-                      },
-                      "type": {
-                        "type": "NameExpression",
-                        "name": "boolean"
-                      },
-                      "default": "true"
-                    },
-                    {
-                      "title": "param",
-                      "name": "logs.logActions.collapsed",
-                      "lineNumber": 31,
-                      "description": {
-                        "type": "root",
-                        "children": [
-                          {
-                            "type": "paragraph",
-                            "children": [
-                              {
-                                "type": "text",
-                                "value": "Whether logs should be\n   minimized when initially output. The full log is still output and can be\n   inspected on the console.",
-                                "position": {
-                                  "start": {
-                                    "line": 1,
-                                    "column": 1,
-                                    "offset": 0
-                                  },
-                                  "end": {
-                                    "line": 3,
-                                    "column": 29,
-                                    "offset": 127
-                                  },
-                                  "indent": [
-                                    1,
-                                    1
-                                  ]
-                                }
-                              }
-                            ],
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 3,
-                                "column": 29,
-                                "offset": 127
-                              },
-                              "indent": [
-                                1,
-                                1
-                              ]
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 3,
-                            "column": 29,
-                            "offset": 127
-                          }
-                        }
-                      },
-                      "type": {
-                        "type": "NameExpression",
-                        "name": "boolean"
-                      },
-                      "default": "false"
-                    },
-                    {
-                      "title": "param",
-                      "name": "logs.logActions.diff",
-                      "lineNumber": 34,
-                      "description": {
-                        "type": "root",
-                        "children": [
-                          {
-                            "type": "paragraph",
-                            "children": [
-                              {
-                                "type": "text",
-                                "value": "Include a diff of what SDK\n   context was changed by the action.",
-                                "position": {
-                                  "start": {
-                                    "line": 1,
-                                    "column": 1,
-                                    "offset": 0
-                                  },
-                                  "end": {
-                                    "line": 2,
-                                    "column": 38,
-                                    "offset": 64
-                                  },
-                                  "indent": [
-                                    1
-                                  ]
-                                }
-                              }
-                            ],
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 2,
-                                "column": 38,
-                                "offset": 64
-                              },
-                              "indent": [
-                                1
-                              ]
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 38,
-                            "offset": 64
-                          }
-                        }
-                      },
-                      "type": {
-                        "type": "NameExpression",
-                        "name": "boolean"
-                      },
-                      "default": "false"
-                    },
-                    {
-                      "title": "param",
-                      "name": "logs.logActions.exposePayloads",
-                      "lineNumber": 36,
-                      "description": {
-                        "type": "root",
-                        "children": [
-                          {
-                            "type": "paragraph",
-                            "children": [
-                              {
-                                "type": "text",
-                                "value": "Allow action payloads\n   to be exposed in the logs, potentially displaying sensitive information.",
-                                "position": {
-                                  "start": {
-                                    "line": 1,
-                                    "column": 1,
-                                    "offset": 0
-                                  },
-                                  "end": {
-                                    "line": 2,
-                                    "column": 76,
-                                    "offset": 97
-                                  },
-                                  "indent": [
-                                    1
-                                  ]
-                                }
-                              }
-                            ],
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 2,
-                                "column": 76,
-                                "offset": 97
-                              },
-                              "indent": [
-                                1
-                              ]
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 76,
-                            "offset": 97
-                          }
-                        }
-                      },
-                      "type": {
-                        "type": "NameExpression",
-                        "name": "boolean"
-                      },
-                      "default": "false"
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "scope": "instance",
-          "name": "config.logs",
-          "memberof": "config",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "config",
-              "kind": "module"
-            },
-            {
-              "name": "config.logs",
-              "scope": "instance"
-            }
-          ],
-          "namespace": "config#config.logs"
         }
       ],
       "events": [],

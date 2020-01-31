@@ -5,11 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 3.12.0 - beta
+## 3.12.0 - 2020-01-31
 
 ### Fixed
 
 - Fixed an issue where PUSH notification channel was closed by default. `KAA-719`
+- Fixed issue where fetching users call log with incorrect credentials throws an error. `KAA-1077`
 
 ## 3.11.1 - 2020-01-02
 
