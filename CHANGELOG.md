@@ -5,6 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.13.0 - beta
+
+### Added 
+
+- Added the wrtcsSessionId to the call state. `KAA-2172`
+
 ## 3.12.0 - 2020-01-31
 
 ### Fixed
