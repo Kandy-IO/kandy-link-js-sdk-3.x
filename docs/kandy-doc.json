@@ -112,7 +112,7 @@
         },
         "end": {
           "line": 87,
-          "column": 43
+          "column": 58
         }
       },
       "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
@@ -401,7 +401,7 @@
         },
         "end": {
           "line": 87,
-          "column": 43
+          "column": 58
         }
       },
       "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
@@ -812,22 +812,22 @@
           ],
           "loc": {
             "start": {
-              "line": 4,
+              "line": 3,
               "column": 0
             },
             "end": {
-              "line": 42,
+              "line": 41,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 43,
+                "line": 42,
                 "column": 0
               },
               "end": {
-                "line": 57,
+                "line": 56,
                 "column": 1
               }
             },
@@ -3014,26 +3014,40 @@
               },
               "name": "call.continuity",
               "default": "false"
+            },
+            {
+              "title": "param",
+              "description": "Whether all active calls should be resynched upon connecting or reconnecting to the websocket (requires Kandy Link 4.7.1+).",
+              "lineNumber": 39,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "boolean"
+                }
+              },
+              "name": "call.resyncOnConnect",
+              "default": "false"
             }
           ],
           "loc": {
             "start": {
-              "line": 34,
+              "line": 36,
               "column": 0
             },
             "end": {
-              "line": 73,
+              "line": 76,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 81,
+                "line": 84,
                 "column": 0
               },
               "end": {
-                "line": 123,
+                "line": 126,
                 "column": 1
               }
             },
@@ -5122,6 +5136,68 @@
                     "name": "boolean"
                   },
                   "default": "false"
+                },
+                {
+                  "title": "param",
+                  "name": "call.resyncOnConnect",
+                  "lineNumber": 39,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Whether all active calls should be resynched upon connecting or reconnecting to the websocket (requires Kandy Link 4.7.1+).",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 124,
+                                "offset": 123
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 124,
+                            "offset": 123
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 124,
+                        "offset": 123
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "boolean"
+                  },
+                  "default": "false"
                 }
               ]
             }
@@ -5996,8 +6072,22 @@
             },
             {
               "title": "param",
-              "description": "Object describing the server to use for push services.",
+              "description": "Communication channel mode used for incoming call notifications. Supported values are 'any-channel' or 'push-channel-only'.",
               "lineNumber": 8,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "notifications.incomingCallNotificationMode",
+              "default": "'any-channel'"
+            },
+            {
+              "title": "param",
+              "description": "Object describing the server to use for push services.",
+              "lineNumber": 9,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -6010,7 +6100,7 @@
             {
               "title": "param",
               "description": "Hostname for the push registration server.",
-              "lineNumber": 9,
+              "lineNumber": 10,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -6023,7 +6113,7 @@
             {
               "title": "param",
               "description": "Port for the push registration server.",
-              "lineNumber": 10,
+              "lineNumber": 11,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -6036,7 +6126,7 @@
             {
               "title": "param",
               "description": "Protocol for the push registration server.",
-              "lineNumber": 11,
+              "lineNumber": 12,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -6049,19 +6139,6 @@
             {
               "title": "param",
               "description": "Version for the push registration server.",
-              "lineNumber": 12,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "notifications.pushRegistration.version"
-            },
-            {
-              "title": "param",
-              "description": "The realm used for push notifications",
               "lineNumber": 13,
               "type": {
                 "type": "OptionalType",
@@ -6070,25 +6147,12 @@
                   "name": "string"
                 }
               },
-              "name": "notifications.realm"
-            },
-            {
-              "title": "param",
-              "description": "The bundle id used for push notifications",
-              "lineNumber": 14,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "notifications.bundleId"
+              "name": "notifications.pushRegistration.version"
             }
           ],
           "loc": {
             "start": {
-              "line": 14,
+              "line": 15,
               "column": 0
             },
             "end": {
@@ -6103,7 +6167,7 @@
                 "column": 0
               },
               "end": {
-                "line": 61,
+                "line": 59,
                 "column": 1
               }
             },
@@ -6237,8 +6301,70 @@
                 },
                 {
                   "title": "param",
-                  "name": "notifications.pushRegistration",
+                  "name": "notifications.incomingCallNotificationMode",
                   "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Communication channel mode used for incoming call notifications. Supported values are 'any-channel' or 'push-channel-only'.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 124,
+                                "offset": 123
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 124,
+                            "offset": 123
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 124,
+                        "offset": 123
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  },
+                  "default": "'any-channel'"
+                },
+                {
+                  "title": "param",
+                  "name": "notifications.pushRegistration",
+                  "lineNumber": 9,
                   "description": {
                     "type": "root",
                     "children": [
@@ -6302,7 +6428,7 @@
                     {
                       "title": "param",
                       "name": "notifications.pushRegistration.server",
-                      "lineNumber": 9,
+                      "lineNumber": 10,
                       "description": {
                         "type": "root",
                         "children": [
@@ -6366,7 +6492,7 @@
                     {
                       "title": "param",
                       "name": "notifications.pushRegistration.port",
-                      "lineNumber": 10,
+                      "lineNumber": 11,
                       "description": {
                         "type": "root",
                         "children": [
@@ -6430,7 +6556,7 @@
                     {
                       "title": "param",
                       "name": "notifications.pushRegistration.protocol",
-                      "lineNumber": 11,
+                      "lineNumber": 12,
                       "description": {
                         "type": "root",
                         "children": [
@@ -6494,7 +6620,7 @@
                     {
                       "title": "param",
                       "name": "notifications.pushRegistration.version",
-                      "lineNumber": 12,
+                      "lineNumber": 13,
                       "description": {
                         "type": "root",
                         "children": [
@@ -6556,134 +6682,6 @@
                       }
                     }
                   ]
-                },
-                {
-                  "title": "param",
-                  "name": "notifications.realm",
-                  "lineNumber": 13,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The realm used for push notifications",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 38,
-                                "offset": 37
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 38,
-                            "offset": 37
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 38,
-                        "offset": 37
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "notifications.bundleId",
-                  "lineNumber": 14,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The bundle id used for push notifications",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 42,
-                                "offset": 41
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 42,
-                            "offset": 41
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 42,
-                        "offset": 41
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
-                  }
                 }
               ]
             }
@@ -8153,7 +8151,7 @@
         },
         "end": {
           "line": 87,
-          "column": 43
+          "column": 58
         }
       },
       "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
@@ -9105,6 +9103,273 @@
         }
       ],
       "static": [
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Returns the current version of the API.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 40,
+                        "offset": 39
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 40,
+                    "offset": 39
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 40,
+                "offset": 39
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "api",
+              "lineNumber": 4
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 5,
+              "name": "getVersion"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 247,
+              "column": 4
+            },
+            "end": {
+              "line": 253,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 254,
+                "column": 4
+              },
+              "end": {
+                "line": 256,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/factory.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "api",
+          "kind": "function",
+          "name": "getVersion",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "api",
+              "kind": "module"
+            },
+            {
+              "name": "getVersion",
+              "kind": "function"
+            }
+          ],
+          "namespace": "apigetVersion"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Destroys the SDK, and removes its state, rendering the SDK unusable.\nUseful when a user logs out and their call data needs to be destroyed.\nThe SDK must be recreated to be usable again.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 46,
+                        "offset": 185
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 46,
+                    "offset": 185
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 3,
+                "column": 46,
+                "offset": 185
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 5,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "api",
+              "lineNumber": 6
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 7,
+              "name": "destroy"
+            },
+            {
+              "title": "example",
+              "description": "// Instantiate the SDK.\nimport { create } from 'kandy'\nconst config = {\n    authentication: { ... },\n    logs: { ... },\n    ...\n}\nlet client = create(config);\nclient.on( ... )\n// Use the SDK\n...\n// Destroy the SDK, then recreate on the next step\nclient.destroy()\nclient = create(config)\nclient.on( ... )",
+              "lineNumber": 8
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 259,
+              "column": 4
+            },
+            "end": {
+              "line": 283,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 284,
+                "column": 4
+              },
+              "end": {
+                "line": 299,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/factory.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "// Instantiate the SDK.\nimport { create } from 'kandy'\nconst config = {\n    authentication: { ... },\n    logs: { ... },\n    ...\n}\nlet client = create(config);\nclient.on( ... )\n// Use the SDK\n...\n// Destroy the SDK, then recreate on the next step\nclient.destroy()\nclient = create(config)\nclient.on( ... )"
+            }
+          ],
+          "params": [],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "api",
+          "kind": "function",
+          "name": "destroy",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "api",
+              "kind": "module"
+            },
+            {
+              "name": "destroy",
+              "kind": "function"
+            }
+          ],
+          "namespace": "apidestroy"
+        },
         {
           "description": {
             "type": "root",
@@ -42365,324 +42630,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "A LogHandler can be used to customize how the SDK should log information. By\n   default, the SDK will log information to the console, but a LogHandler can\n   be configured to change this behaviour.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 43,
-                        "offset": 197
-                      },
-                      "indent": [
-                        1,
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 43,
-                    "offset": 197
-                  },
-                  "indent": [
-                    1,
-                    1
-                  ]
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "A LogHandler can be provided to the SDK as part of its configuration (see\n   ",
-                    "position": {
-                      "start": {
-                        "line": 5,
-                        "column": 1,
-                        "offset": 199
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 4,
-                        "offset": 276
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#configconfiglogs",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "config.logs"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 6,
-                        "column": 4,
-                        "offset": 276
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 41,
-                        "offset": 313
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": "). The SDK will then provide this\n   function with the logged information.",
-                    "position": {
-                      "start": {
-                        "line": 6,
-                        "column": 41,
-                        "offset": 313
-                      },
-                      "end": {
-                        "line": 7,
-                        "column": 41,
-                        "offset": 387
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 5,
-                    "column": 1,
-                    "offset": 199
-                  },
-                  "end": {
-                    "line": 7,
-                    "column": 41,
-                    "offset": 387
-                  },
-                  "indent": [
-                    1,
-                    1
-                  ]
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 7,
-                "column": 41,
-                "offset": 387
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 9,
-              "type": null
-            },
-            {
-              "title": "static",
-              "description": null,
-              "lineNumber": 10
-            },
-            {
-              "title": "typedef",
-              "description": null,
-              "lineNumber": 11,
-              "type": {
-                "type": "NameExpression",
-                "name": "Function"
-              },
-              "name": "LogHandler"
-            },
-            {
-              "title": "memberof",
-              "description": "logger",
-              "lineNumber": 12
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 13,
-              "name": "logs"
-            },
-            {
-              "title": "param",
-              "description": "The LogEntry to be logged.",
-              "lineNumber": 14,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "LogEntry"
-            },
-            {
-              "title": "example",
-              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, method, target } = logEntry\n  const logInfo = `${timestamp} - ${target.name} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)",
-              "lineNumber": 15
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 0
-            },
-            "end": {
-              "line": 33,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 41,
-                "column": 0
-              },
-              "end": {
-                "line": 50,
-                "column": 1
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/logHandler.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, method, target } = logEntry\n  const logInfo = `${timestamp} - ${target.name} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "LogEntry",
-              "lineNumber": 14,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The LogEntry to be logged.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 27,
-                            "offset": 26
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 27,
-                        "offset": 26
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 27,
-                    "offset": 26
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              }
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "scope": "static",
-          "kind": "typedef",
-          "name": "LogHandler",
-          "type": {
-            "type": "NameExpression",
-            "name": "Function"
-          },
-          "memberof": "logger",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "logger",
-              "kind": "namespace"
-            },
-            {
-              "name": "LogHandler",
-              "kind": "typedef",
-              "scope": "static"
-            }
-          ],
-          "namespace": "logger.LogHandler"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "A LogEntry object is the data that the SDK compiles when information is\n   logged. It contains both the logged information and meta-info about when\n   and who logged it.",
                     "position": {
                       "start": {
@@ -42934,13 +42881,13 @@
             },
             {
               "title": "property",
-              "description": "The name of the target. This is also\n   used as the name of the Logger.",
+              "description": "The type of the target. This is also\n   used as part of the name of the Logger.",
               "lineNumber": 18,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
               },
-              "name": "target.name"
+              "name": "target.type"
             },
             {
               "title": "property",
@@ -42957,8 +42904,18 @@
             },
             {
               "title": "property",
-              "description": "The logged information, given to the Logger\n   method as parameters.",
+              "description": "A combination of the target type and ID. If no\n   id was provided, this will be the same as the type.",
               "lineNumber": 21,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "target.name"
+            },
+            {
+              "title": "property",
+              "description": "The logged information, given to the Logger\n   method as parameters.",
+              "lineNumber": 23,
               "type": {
                 "type": "NameExpression",
                 "name": "Array"
@@ -42967,37 +42924,37 @@
             },
             {
               "title": "example",
-              "description": "function defaultLogHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, method, target } = logEntry\n  const logInfo = `${timestamp} - ${target.name} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}",
-              "lineNumber": 23
+              "description": "function defaultLogHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, method, target } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}",
+              "lineNumber": 25
             }
           ],
           "loc": {
             "start": {
-              "line": 3,
+              "line": 8,
               "column": 0
             },
             "end": {
-              "line": 37,
+              "line": 44,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 47,
+                "line": 1,
                 "column": 0
               },
               "end": {
-                "line": 124,
-                "column": 1
+                "line": 79,
+                "column": 0
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/logger.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/docs.js"
           },
           "augments": [],
           "examples": [
             {
-              "description": "function defaultLogHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, method, target } = logEntry\n  const logInfo = `${timestamp} - ${target.name} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}"
+              "description": "function defaultLogHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, method, target } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}"
             }
           ],
           "params": [],
@@ -43248,7 +43205,7 @@
               "properties": [
                 {
                   "title": "property",
-                  "name": "target.name",
+                  "name": "target.type",
                   "lineNumber": 18,
                   "description": {
                     "type": "root",
@@ -43258,7 +43215,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The name of the target. This is also\n   used as the name of the Logger.",
+                            "value": "The type of the target. This is also\n   used as part of the name of the Logger.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -43267,8 +43224,8 @@
                               },
                               "end": {
                                 "line": 2,
-                                "column": 35,
-                                "offset": 71
+                                "column": 43,
+                                "offset": 79
                               },
                               "indent": [
                                 1
@@ -43284,8 +43241,8 @@
                           },
                           "end": {
                             "line": 2,
-                            "column": 35,
-                            "offset": 71
+                            "column": 43,
+                            "offset": 79
                           },
                           "indent": [
                             1
@@ -43301,8 +43258,8 @@
                       },
                       "end": {
                         "line": 2,
-                        "column": 35,
-                        "offset": 71
+                        "column": 43,
+                        "offset": 79
                       }
                     }
                   },
@@ -43374,13 +43331,78 @@
                       "name": "string"
                     }
                   }
+                },
+                {
+                  "title": "property",
+                  "name": "target.name",
+                  "lineNumber": 21,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "A combination of the target type and ID. If no\n   id was provided, this will be the same as the type.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 55,
+                                "offset": 101
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 55,
+                            "offset": 101
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 55,
+                        "offset": 101
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
                 }
               ]
             },
             {
               "title": "property",
               "name": "messages",
-              "lineNumber": 21,
+              "lineNumber": 23,
               "description": {
                 "type": "root",
                 "children": [
@@ -43475,6 +43497,324 @@
             }
           ],
           "namespace": "logger.LogEntry"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A LogHandler can be used to customize how the SDK should log information. By\n   default, the SDK will log information to the console, but a LogHandler can\n   be configured to change this behaviour.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 43,
+                        "offset": 197
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 43,
+                    "offset": 197
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A LogHandler can be provided to the SDK as part of its configuration (see\n   ",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1,
+                        "offset": 199
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 4,
+                        "offset": 276
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#configconfiglogs",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "config.logs"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 4,
+                        "offset": 276
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 41,
+                        "offset": 313
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "). The SDK will then provide this\n   function with the logged information.",
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 41,
+                        "offset": 313
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 41,
+                        "offset": 387
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1,
+                    "offset": 199
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 41,
+                    "offset": 387
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 41,
+                "offset": 387
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 9,
+              "type": null
+            },
+            {
+              "title": "static",
+              "description": null,
+              "lineNumber": 10
+            },
+            {
+              "title": "typedef",
+              "description": null,
+              "lineNumber": 11,
+              "type": {
+                "type": "NameExpression",
+                "name": "Function"
+              },
+              "name": "LogHandler"
+            },
+            {
+              "title": "memberof",
+              "description": "logger",
+              "lineNumber": 12
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 13,
+              "name": "logs"
+            },
+            {
+              "title": "param",
+              "description": "The LogEntry to be logged.",
+              "lineNumber": 14,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "LogEntry"
+            },
+            {
+              "title": "example",
+              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, method, target } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)",
+              "lineNumber": 15
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 46,
+              "column": 0
+            },
+            "end": {
+              "line": 78,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 79,
+                "column": 0
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/docs.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, method, target } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "LogEntry",
+              "lineNumber": 14,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The LogEntry to be logged.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 27,
+                            "offset": 26
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 27,
+                        "offset": 26
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 27,
+                    "offset": 26
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "scope": "static",
+          "kind": "typedef",
+          "name": "LogHandler",
+          "type": {
+            "type": "NameExpression",
+            "name": "Function"
+          },
+          "memberof": "logger",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "logger",
+              "kind": "namespace"
+            },
+            {
+              "name": "LogHandler",
+              "kind": "typedef",
+              "scope": "static"
+            }
+          ],
+          "namespace": "logger.LogHandler"
         }
       ]
     },
@@ -44379,22 +44719,22 @@
           ],
           "loc": {
             "start": {
-              "line": 25,
+              "line": 26,
               "column": 4
             },
             "end": {
-              "line": 34,
+              "line": 35,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 35,
+                "line": 36,
                 "column": 4
               },
               "end": {
-                "line": 38,
+                "line": 39,
                 "column": 5
               }
             },
@@ -44514,7 +44854,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Registers a device token for push notifications.",
+                    "value": "Registers with Apple push notification service. Once registration is successful, the application will be able to receive\nstandard and/or voip push notifications. It can then send these notifications to the SDK with ",
                     "position": {
                       "start": {
                         "line": 1,
@@ -44522,11 +44862,57 @@
                         "offset": 0
                       },
                       "end": {
-                        "line": 1,
-                        "column": 49,
-                        "offset": 48
+                        "line": 2,
+                        "column": 95,
+                        "offset": 215
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "api.notifications.process",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "api.notifications.process"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 2,
+                        "column": 95,
+                        "offset": 215
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 128,
+                        "offset": 248
                       },
                       "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "\nin order for the SDK to process them.",
+                    "position": {
+                      "start": {
+                        "line": 2,
+                        "column": 128,
+                        "offset": 248
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 38,
+                        "offset": 286
+                      },
+                      "indent": [
+                        1
+                      ]
                     }
                   }
                 ],
@@ -44537,11 +44923,14 @@
                     "offset": 0
                   },
                   "end": {
-                    "line": 1,
-                    "column": 49,
-                    "offset": 48
+                    "line": 3,
+                    "column": 38,
+                    "offset": 286
                   },
-                  "indent": []
+                  "indent": [
+                    1,
+                    1
+                  ]
                 }
               }
             ],
@@ -44552,9 +44941,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 1,
-                "column": 49,
-                "offset": 48
+                "line": 3,
+                "column": 38,
+                "offset": 286
               }
             }
           },
@@ -44562,30 +44951,30 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 3,
+              "lineNumber": 5,
               "type": null
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 4,
+              "lineNumber": 6,
               "name": "push"
             },
             {
               "title": "memberof",
               "description": "notification",
-              "lineNumber": 5
+              "lineNumber": 7
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 6,
-              "name": "registerPush"
+              "lineNumber": 8,
+              "name": "registerApplePush"
             },
             {
               "title": "param",
               "description": null,
-              "lineNumber": 7,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -44594,18 +44983,8 @@
             },
             {
               "title": "param",
-              "description": "The device token to be registered.",
-              "lineNumber": 8,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "params.deviceToken"
-            },
-            {
-              "title": "param",
-              "description": "Array of services to register for.",
-              "lineNumber": 9,
+              "description": "Array of services for which we wish to receive notifications.",
+              "lineNumber": 10,
               "type": {
                 "type": "TypeApplication",
                 "expression": {
@@ -44623,43 +45002,92 @@
             },
             {
               "title": "param",
-              "description": "The push provider, can be either 'apple' or 'google'.",
-              "lineNumber": 10,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "params.pushProvider"
-            },
-            {
-              "title": "param",
-              "description": "Unique identifier for a client device.",
+              "description": "The voip device token used for voip push on iOS.\n                                         This token is required if registering for call service notifications on iOS.",
               "lineNumber": 11,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
               },
+              "name": "params.voipDeviceToken"
+            },
+            {
+              "title": "param",
+              "description": "The standardDevice token used for standard push on iOS .\n                                             This token is required when registering for non-call service notifications.",
+              "lineNumber": 13,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "params.standardDeviceToken"
+            },
+            {
+              "title": "param",
+              "description": "The bundleId to identify the application receiving the push notification.",
+              "lineNumber": 15,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "params.bundleId"
+            },
+            {
+              "title": "param",
+              "description": "Unique identifier for a client device.",
+              "lineNumber": 16,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
               "name": "params.clientCorrelator"
+            },
+            {
+              "title": "param",
+              "description": "The realm used by the push registration service to identify and\n                               establish a connection with the service gateway.",
+              "lineNumber": 17,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "params.realm"
+            },
+            {
+              "title": "param",
+              "description": "If true, push notification will be sent to production.\n                                       If false, push notification will be sent to sandbox.",
+              "lineNumber": 19,
+              "type": {
+                "type": "NameExpression",
+                "name": "boolean"
+              },
+              "name": "params.isProduction"
+            },
+            {
+              "title": "return",
+              "description": "When successful,  the information of the registration.\n                  Promise will reject with error object otherwise.",
+              "lineNumber": 21,
+              "type": {
+                "type": "NameExpression",
+                "name": "Promise"
+              }
             }
           ],
           "loc": {
             "start": {
-              "line": 40,
+              "line": 41,
               "column": 4
             },
             "end": {
-              "line": 52,
+              "line": 64,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 53,
+                "line": 65,
                 "column": 4
               },
               "end": {
-                "line": 61,
+                "line": 93,
                 "column": 5
               }
             },
@@ -44671,7 +45099,7 @@
             {
               "title": "param",
               "name": "params",
-              "lineNumber": 7,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -44679,8 +45107,8 @@
               "properties": [
                 {
                   "title": "param",
-                  "name": "params.deviceToken",
-                  "lineNumber": 8,
+                  "name": "params.services",
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44689,7 +45117,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The device token to be registered.",
+                            "value": "Array of services for which we wish to receive notifications.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -44698,8 +45126,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 35,
-                                "offset": 34
+                                "column": 62,
+                                "offset": 61
                               },
                               "indent": []
                             }
@@ -44713,8 +45141,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 35,
-                            "offset": 34
+                            "column": 62,
+                            "offset": 61
                           },
                           "indent": []
                         }
@@ -44728,8 +45156,82 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 35,
-                        "offset": 34
+                        "column": 62,
+                        "offset": 61
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "TypeApplication",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "Array"
+                    },
+                    "applications": [
+                      {
+                        "type": "NameExpression",
+                        "name": "string"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "params.voipDeviceToken",
+                  "lineNumber": 11,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The voip device token used for voip push on iOS.\n                                         This token is required if registering for call service notifications on iOS.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 118,
+                                "offset": 166
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 118,
+                            "offset": 166
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 118,
+                        "offset": 166
                       }
                     }
                   },
@@ -44740,8 +45242,660 @@
                 },
                 {
                   "title": "param",
+                  "name": "params.standardDeviceToken",
+                  "lineNumber": 13,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The standardDevice token used for standard push on iOS .\n                                             This token is required when registering for non-call service notifications.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 121,
+                                "offset": 177
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 121,
+                            "offset": 177
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 121,
+                        "offset": 177
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "params.bundleId",
+                  "lineNumber": 15,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The bundleId to identify the application receiving the push notification.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 74,
+                                "offset": 73
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 74,
+                            "offset": 73
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "params.clientCorrelator",
+                  "lineNumber": 16,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Unique identifier for a client device.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 39,
+                                "offset": 38
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 39,
+                            "offset": 38
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 39,
+                        "offset": 38
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "params.realm",
+                  "lineNumber": 17,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The realm used by the push registration service to identify and\n                               establish a connection with the service gateway.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 80,
+                                "offset": 143
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 80,
+                            "offset": 143
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 80,
+                        "offset": 143
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "params.isProduction",
+                  "lineNumber": 19,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "If true, push notification will be sent to production.\n                                       If false, push notification will be sent to sandbox.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 92,
+                                "offset": 146
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 92,
+                            "offset": 146
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 92,
+                        "offset": 146
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "boolean"
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "When successful,  the information of the registration.\n                  Promise will reject with error object otherwise.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 67,
+                            "offset": 121
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 67,
+                        "offset": 121
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 67,
+                    "offset": 121
+                  }
+                }
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Promise"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "notification",
+          "kind": "function",
+          "name": "registerApplePush",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "notification",
+              "kind": "namespace"
+            },
+            {
+              "name": "registerApplePush",
+              "kind": "function"
+            }
+          ],
+          "namespace": "notificationregisterApplePush"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Registers with Google push notification service. Once registration is successful, the application will be able to receive\nstandard and/or voip push notifications. It can then send these notifications to the SDK with ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 95,
+                        "offset": 216
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "api.notifications.process",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "api.notifications.process"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 2,
+                        "column": 95,
+                        "offset": 216
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 128,
+                        "offset": 249
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "\nin order for the SDK to process them.",
+                    "position": {
+                      "start": {
+                        "line": 2,
+                        "column": 128,
+                        "offset": 249
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 38,
+                        "offset": 287
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 38,
+                    "offset": 287
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 3,
+                "column": 38,
+                "offset": 287
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 5,
+              "type": null
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 6,
+              "name": "push"
+            },
+            {
+              "title": "memberof",
+              "description": "notification",
+              "lineNumber": 7
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 8,
+              "name": "registerAndroidPush"
+            },
+            {
+              "title": "param",
+              "description": null,
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "params"
+            },
+            {
+              "title": "param",
+              "description": "Array of services to register for.",
+              "lineNumber": 10,
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              },
+              "name": "params.services"
+            },
+            {
+              "title": "param",
+              "description": "The device token used for standard push on Android. This token is required\n                                     when registering for all related services notifications.",
+              "lineNumber": 11,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "params.deviceToken"
+            },
+            {
+              "title": "param",
+              "description": "The bundleId to identify the application receiving the push notification.",
+              "lineNumber": 13,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "params.bundleId"
+            },
+            {
+              "title": "param",
+              "description": "Unique identifier for a client device.",
+              "lineNumber": 14,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "params.clientCorrelator"
+            },
+            {
+              "title": "param",
+              "description": "The realm used by the push registration service to identify\n                               and establish a connection with the service gateway.",
+              "lineNumber": 15,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "params.realm"
+            },
+            {
+              "title": "return",
+              "description": "When successful,  the information of the registration.\n                  Promise will reject with error object otherwise.",
+              "lineNumber": 17,
+              "type": {
+                "type": "NameExpression",
+                "name": "Promise"
+              }
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 95,
+              "column": 4
+            },
+            "end": {
+              "line": 114,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 115,
+                "column": 4
+              },
+              "end": {
+                "line": 132,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "params",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
                   "name": "params.services",
-                  "lineNumber": 9,
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44810,8 +45964,8 @@
                 },
                 {
                   "title": "param",
-                  "name": "params.pushProvider",
-                  "lineNumber": 10,
+                  "name": "params.deviceToken",
+                  "lineNumber": 11,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44820,7 +45974,72 @@
                         "children": [
                           {
                             "type": "text",
-                            "value": "The push provider, can be either 'apple' or 'google'.",
+                            "value": "The device token used for standard push on Android. This token is required\n                                     when registering for all related services notifications.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 94,
+                                "offset": 168
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 94,
+                            "offset": 168
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 94,
+                        "offset": 168
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "params.bundleId",
+                  "lineNumber": 13,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The bundleId to identify the application receiving the push notification.",
                             "position": {
                               "start": {
                                 "line": 1,
@@ -44829,8 +46048,8 @@
                               },
                               "end": {
                                 "line": 1,
-                                "column": 54,
-                                "offset": 53
+                                "column": 74,
+                                "offset": 73
                               },
                               "indent": []
                             }
@@ -44844,8 +46063,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 54,
-                            "offset": 53
+                            "column": 74,
+                            "offset": 73
                           },
                           "indent": []
                         }
@@ -44859,8 +46078,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 54,
-                        "offset": 53
+                        "column": 74,
+                        "offset": 73
                       }
                     }
                   },
@@ -44872,7 +46091,7 @@
                 {
                   "title": "param",
                   "name": "params.clientCorrelator",
-                  "lineNumber": 11,
+                  "lineNumber": 14,
                   "description": {
                     "type": "root",
                     "children": [
@@ -44929,19 +46148,148 @@
                     "type": "NameExpression",
                     "name": "string"
                   }
+                },
+                {
+                  "title": "param",
+                  "name": "params.realm",
+                  "lineNumber": 15,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The realm used by the push registration service to identify\n                               and establish a connection with the service gateway.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 84,
+                                "offset": 143
+                              },
+                              "indent": [
+                                1
+                              ]
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 84,
+                            "offset": 143
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 84,
+                        "offset": 143
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
                 }
               ]
             }
           ],
           "properties": [],
-          "returns": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "When successful,  the information of the registration.\n                  Promise will reject with error object otherwise.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 67,
+                            "offset": 121
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 67,
+                        "offset": 121
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 67,
+                    "offset": 121
+                  }
+                }
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Promise"
+              }
+            }
+          ],
           "sees": [],
           "throws": [],
           "todos": [],
           "access": "public",
           "memberof": "notification",
           "kind": "function",
-          "name": "registerPush",
+          "name": "registerAndroidPush",
           "members": {
             "global": [],
             "inner": [],
@@ -44955,11 +46303,11 @@
               "kind": "namespace"
             },
             {
-              "name": "registerPush",
+              "name": "registerAndroidPush",
               "kind": "function"
             }
           ],
-          "namespace": "notificationregisterPush"
+          "namespace": "notificationregisterAndroidPush"
         },
         {
           "description": {
@@ -44970,7 +46318,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Deregisters for push notifications.",
+                    "value": "Unregister Apple push notifications.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -44979,8 +46327,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 36,
-                        "offset": 35
+                        "column": 37,
+                        "offset": 36
                       },
                       "indent": []
                     }
@@ -44994,8 +46342,8 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 36,
-                    "offset": 35
+                    "column": 37,
+                    "offset": 36
                   },
                   "indent": []
                 }
@@ -45009,8 +46357,8 @@
               },
               "end": {
                 "line": 1,
-                "column": 36,
-                "offset": 35
+                "column": 37,
+                "offset": 36
               }
             }
           },
@@ -45036,27 +46384,46 @@
               "title": "method",
               "description": null,
               "lineNumber": 6,
-              "name": "deregisterPush"
+              "name": "unregisterApplePush"
+            },
+            {
+              "title": "param",
+              "description": "The data returned from the push registration",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "registrationInfo"
+            },
+            {
+              "title": "return",
+              "description": "When successful, the promise will resolve with undefined.\n                  Promise will reject with error object otherwise.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "Promise"
+              }
             }
           ],
           "loc": {
             "start": {
-              "line": 63,
+              "line": 134,
               "column": 4
             },
             "end": {
-              "line": 70,
+              "line": 144,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 71,
+                "line": 145,
                 "column": 4
               },
               "end": {
-                "line": 78,
+                "line": 151,
                 "column": 5
               }
             },
@@ -45064,16 +46431,142 @@
           },
           "augments": [],
           "examples": [],
-          "params": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "registrationInfo",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The data returned from the push registration",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 45,
+                            "offset": 44
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 45,
+                        "offset": 44
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 45,
+                    "offset": 44
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            }
+          ],
           "properties": [],
-          "returns": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "When successful, the promise will resolve with undefined.\n                  Promise will reject with error object otherwise.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 67,
+                            "offset": 124
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 67,
+                        "offset": 124
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 67,
+                    "offset": 124
+                  }
+                }
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Promise"
+              }
+            }
+          ],
           "sees": [],
           "throws": [],
           "todos": [],
           "access": "public",
           "memberof": "notification",
           "kind": "function",
-          "name": "deregisterPush",
+          "name": "unregisterApplePush",
           "members": {
             "global": [],
             "inner": [],
@@ -45087,11 +46580,288 @@
               "kind": "namespace"
             },
             {
-              "name": "deregisterPush",
+              "name": "unregisterApplePush",
               "kind": "function"
             }
           ],
-          "namespace": "notificationderegisterPush"
+          "namespace": "notificationunregisterApplePush"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Unregister Android push notifications.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 39,
+                        "offset": 38
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 39,
+                    "offset": 38
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 39,
+                "offset": 38
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 4,
+              "name": "push"
+            },
+            {
+              "title": "memberof",
+              "description": "notification",
+              "lineNumber": 5
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "unregisterAndroidPush"
+            },
+            {
+              "title": "param",
+              "description": "The data returned from the push registration",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "registrationInfo"
+            },
+            {
+              "title": "return",
+              "description": "When successful, the promise will resolve with undefined.\n                  Promise will reject with error object otherwise.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "Promise"
+              }
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 153,
+              "column": 4
+            },
+            "end": {
+              "line": 163,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 164,
+                "column": 4
+              },
+              "end": {
+                "line": 170,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [
+            {
+              "title": "param",
+              "name": "registrationInfo",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The data returned from the push registration",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 45,
+                            "offset": 44
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 45,
+                        "offset": 44
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 45,
+                    "offset": 44
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [
+            {
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "When successful, the promise will resolve with undefined.\n                  Promise will reject with error object otherwise.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 67,
+                            "offset": 124
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 67,
+                        "offset": 124
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 67,
+                    "offset": 124
+                  }
+                }
+              },
+              "title": "returns",
+              "type": {
+                "type": "NameExpression",
+                "name": "Promise"
+              }
+            }
+          ],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "notification",
+          "kind": "function",
+          "name": "unregisterAndroidPush",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "notification",
+              "kind": "namespace"
+            },
+            {
+              "name": "unregisterAndroidPush",
+              "kind": "function"
+            }
+          ],
+          "namespace": "notificationunregisterAndroidPush"
         },
         {
           "description": {
@@ -45183,22 +46953,22 @@
           ],
           "loc": {
             "start": {
-              "line": 80,
+              "line": 172,
               "column": 4
             },
             "end": {
-              "line": 88,
+              "line": 180,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 89,
+                "line": 181,
                 "column": 4
               },
               "end": {
-                "line": 96,
+                "line": 188,
                 "column": 5
               }
             },
@@ -51645,7 +53415,7 @@
         },
         "end": {
           "line": 87,
-          "column": 43
+          "column": 58
         }
       },
       "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
@@ -51868,7 +53638,7 @@
               },
               "end": {
                 "line": 87,
-                "column": 43
+                "column": 58
               }
             },
             "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
