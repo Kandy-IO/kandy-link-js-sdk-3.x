@@ -23,6 +23,10 @@ Kandy.js change log.
   - See `config.notifications.incomingCallNotificationMode`
 - Added the wrtcsSessionId to the call state. `KAA-2172`
 
+### Fixed
+
+- Fixed the ICE servers documentation for the Link SDK. `KAA-2197`
+
 ## 3.12.0 - 2020-01-31
 
 ### Fixed
