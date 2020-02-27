@@ -26,6 +26,7 @@ Kandy.js change log.
 ### Fixed
 
 - Fixed the ICE servers documentation for the Link SDK. `KAA-2197`
+- Fixed an issue where the `conversation.subscribe` listener not being triggered. `KAA-2200`
 
 ## 3.12.0 - 2020-01-31
 
