@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.12.0
+ * Version: 3.13.0
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -6564,6 +6564,25 @@ function toNumber(value) {
 }
 
 module.exports = toNumber;
+
+
+/***/ }),
+
+/***/ "../../node_modules/p-defer/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = () => {
+	const ret = {};
+
+	ret.promise = new Promise((resolve, reject) => {
+		ret.resolve = resolve;
+		ret.reject = reject;
+	});
+
+	return ret;
+};
 
 
 /***/ }),
@@ -21508,6 +21527,7 @@ function createFcs() {
 
     // Convenience access to these.
     fcs.NotificationCallbacks = container.NotificationCallbacks;
+    fcs.GlobalBroadcaster = container.GlobalBroadcaster;
 
     // Run any initialization code setup by the modules.
     bottle.resolve(container);
@@ -29759,6 +29779,55 @@ function CallManagerImpl(_ref) {
                 }
             }
         }
+        /*
+        * For all internal calls, GET the status of the calls and update their state accordignly if required
+        * Assumptions:
+        *  1. Signalling server supports Kandy Link 4.7.1+
+        * Responsibilities:
+        *  1. Update the call state if the call is out of sync (call's status does not match response from server)
+        */
+        if (!_config.callResyncOnConnect) {
+            return;
+        }
+        for (id in calls) {
+            if (calls.hasOwnProperty(id) && calls[id]) {
+                internalCall = calls[id];
+                var callStateOnConnect = _callFSM.getCurrentState(internalCall);
+                // Only need to proceed if the call is active (i.e., not ended) and there is no ongoing operation.
+                if (internalCall.notificationState !== NOTIFICATION_STATE.BUSY && callStateOnConnect !== fsmState.ENDED && callStateOnConnect !== fsmState.REJECTED) {
+                    _callControlService.getSession(id, function (response) {
+                        /*
+                            * If the current call state is ringing OR if the state of the call was connected/on hold before we
+                            * did the GET, look at the response of the GET request.
+                            * If call is ringing and GET session returns ringing, we don't need to do anything
+                            * Also, if we were previously connected, but GET returns ringing, this could be due to an operation that was resolved
+                            * between the GET request and response. In any case, no need to look at GET response for this scenario.
+                            */
+                        if (internalCall.notificationState !== NOTIFICATION_STATE.BUSY && _callFSM.getCurrentState(internalCall) === fsmState.RINGING && response.callControlResponse.state === 'ANSWERED') {
+                            internalCall.localStatusCode = LOCAL_STATUS_CODES.RESPONDED_FROM_ANOTHER_DEVICE;
+                            internalCall.localReasonText = LOCAL_REASON_TEXTS.RESPONDED_FROM_ANOTHER_DEVICE;
+                            internalCall.call.onStateChange(CALL_STATES.ENDED, 0);
+                            clearResources(internalCall);
+                        }
+                    }, function (response) {
+                        var currentCallState = _callFSM.getCurrentState(internalCall);
+                        if (currentCallState !== fsmState.ENDED && currentCallState !== fsmState.REJECTED && response.statusCode === 47) {
+                            // Call not found on server, end call.
+                            if (!internalCall.localStatusCode) {
+                                internalCall.localStatusCode = LOCAL_STATUS_CODES.STATUS_CODE_NOT_PROVIDED;
+                            }
+                            if (!internalCall.localReasonText) {
+                                internalCall.localReasonText = LOCAL_REASON_TEXTS.STATUS_CODE_NOT_PROVIDED;
+                            }
+                            internalCall.call.onStateChange(CALL_STATES.ENDED, 0);
+                            clearResources(internalCall);
+                        } else {
+                            logger.info('Unable to sync call ' + internalCall);
+                        }
+                    });
+                }
+            }
+        }
     }
 
     self.CALL_STATES = CALL_STATES;
@@ -32619,6 +32688,12 @@ function CallControlServiceImpl(_ref) {
             }
         }, onSuccess, onFailure, null, errorParser);
     };
+
+    this.getSession = function (callid, onSuccess, onFailure) {
+        _server.sendGetRequest({
+            'url': _server.getWAMUrl(1, (_config.anonymous ? '/callMe/callSessions/' : '/callControl/callSessions/') + callid)
+        }, onSuccess, onFailure, null, errorParser);
+    };
 }
 
 /***/ }),
@@ -33518,6 +33593,7 @@ function CoreImpl(_ref) {
      * @property {Object} [callConstraints.chrome] Custom constraints to be used on Google Chrome.
      * @property {Object} [callConstraints.firefox] Custom constraints to be used on Mozilla Firefox.
      * @property {Object} [callConstraints.plugin] Custom constraints to be used with the WebRTC Plugin.
+     * @property {boolean} [callResyncOnConnect=false] Resync all active call states upon connecting (requires Kandy Link 4.7.1+).
      */
 
     /**
@@ -33663,6 +33739,15 @@ function CoreImpl(_ref) {
         _config.expires = handleValidSubscriptionExpiryTimerValue(configParams ? configParams.expires : undefined);
         if (!delayInitMedia) {
             _globalBroadcaster.publish(_constants2.default.EVENT.FCS_SETUP_COMPLETED, _config);
+        }
+    };
+
+    // This function can be used to set conenction info parameters into the config
+    this.setConnectionInfo = function (connectionParams) {
+        for (var param in connectionParams) {
+            if (connectionParams.hasOwnProperty(param)) {
+                _config[param] = connectionParams[param];
+            }
         }
     };
 
@@ -49252,6 +49337,7 @@ Object.defineProperty(exports, "__esModule", {
 const prefix = '@@KANDY/';
 
 const CONNECT = exports.CONNECT = prefix + 'CONNECT';
+const SET_CONNECTION_INFO = exports.SET_CONNECTION_INFO = prefix + 'SET_CONNECTION_INFO';
 const CONNECTION_OCCURRED = exports.CONNECTION_OCCURRED = prefix + 'CONNECTION_OCCURRED';
 const CONNECT_FINISHED = exports.CONNECT_FINISHED = prefix + 'CONNECT_FINISHED';
 const GET_USER_DETAILS = exports.GET_USER_DETAILS = prefix + 'GET_USER_DETAILS';
@@ -49279,6 +49365,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.connect = connect;
+exports.setConnectionInfo = setConnectionInfo;
 exports.connectionOccured = connectionOccured;
 exports.connectFinished = connectFinished;
 exports.getUserDetails = getUserDetails;
@@ -49311,6 +49398,26 @@ function connect(credentials, options) {
     type: actionTypes.CONNECT,
     payload: { credentials, options },
     meta: {
+      isSensitive: true
+    }
+  };
+}
+
+/**
+ * Create a set connection info action that takes a connection and user info object
+ *
+ * @method connectFinished
+ * @param {Object} $0
+ * @param {Object} $0.userInfo An object representing the user information.
+ * @param {Object} $0.connection A connection object. Information about how to connect to the backend services.
+ * @return {Object} A flux standard action.
+ */
+function setConnectionInfo({ userInfo, connection }, platform) {
+  return {
+    type: actionTypes.SET_CONNECTION_INFO,
+    payload: { userInfo, connection },
+    meta: {
+      platform,
       isSensitive: true
     }
   };
@@ -49597,6 +49704,12 @@ var _selectors = __webpack_require__("../../packages/kandy/src/auth/interface/se
 var _constants = __webpack_require__("../../packages/kandy/src/auth/constants.js");
 
 var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
+
+var _jwtDecode = __webpack_require__("../../node_modules/jwt-decode/lib/index.js");
+
+var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -49914,7 +50027,13 @@ function api({ dispatch, getState }) {
     setTokens({ accessToken, idToken }) {
       // We won't log both tokens, just the id one, so that we can still be able to debug.
       log.debug(_logs.API_LOG_TAG + 'setTokens: ', idToken);
-      dispatch(actions.setTokens({ accessToken, idToken }));
+      // validate token
+      try {
+        const jwt = (0, _jwtDecode2.default)(idToken);
+        dispatch(actions.setTokens({ accessToken, idToken: jwt }));
+      } catch (error) {
+        log.error(`${idToken} is not a valid JWT`);
+      }
     }
   };
 }
@@ -50107,10 +50226,6 @@ var actionTypes = _interopRequireWildcard(_actionTypes);
 
 var _reduxActions = __webpack_require__("../../node_modules/redux-actions/es/index.js");
 
-var _jwtDecode = __webpack_require__("../../node_modules/jwt-decode/lib/index.js");
-
-var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
-
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -50124,6 +50239,18 @@ reducers[actionTypes.CONNECT] = {
     return (0, _extends3.default)({}, state, {
       isPending: true,
       error: undefined
+    });
+  }
+};
+
+reducers[actionTypes.SET_CONNECTION_INFO] = {
+  next(state, action) {
+    return (0, _extends3.default)({}, state, {
+      platform: action.meta.platform,
+      connection: (0, _extends3.default)({}, state.connection, {
+        [action.meta.platform]: action.payload.connection
+      }),
+      userInfo: action.payload.userInfo
     });
   }
 };
@@ -50240,9 +50367,7 @@ reducers[actionTypes.SET_TOKEN] = {
     // We received an idToken which is a JWT token that represents the identity of
     // the user. This token contains information about the user. For now we only need
     // the username. In the future we might use more from this token.
-
-    const idTokenPayload = (0, _jwtDecode2.default)(action.payload.idToken);
-
+    const idTokenPayload = action.payload.idToken;
     return (0, _extends3.default)({}, state, {
       userInfo: (0, _extends3.default)({}, state.userInfo, {
         accessToken: action.payload.accessToken,
@@ -50805,10 +50930,10 @@ function* connect(action, config) {
       requestOptions.headers['x-token'] = hmacToken;
     } else if (authname && password) {
       log.info('Connecting with authname/password scenario.');
-      requestOptions.headers['Authorization'] = 'basic ' + _base2.default.encode(_utf2.default.encode(authname + ':' + password));
+      requestOptions.headers['Authorization'] = 'Basic ' + _base2.default.encode(_utf2.default.encode(authname + ':' + password));
     } else if (username && password) {
       log.info('Connecting with username/password scenario.');
-      requestOptions.headers['Authorization'] = 'basic ' + _base2.default.encode(_utf2.default.encode(username + ':' + password));
+      requestOptions.headers['Authorization'] = 'Basic ' + _base2.default.encode(_utf2.default.encode(username + ':' + password));
     } else {
       log.info('Unexpected connect scenario.');
       const error = new _errors2.default({
@@ -50821,6 +50946,27 @@ function* connect(action, config) {
   }
   try {
     requestOptions = (0, _utils.mergeValues)(options, requestOptions);
+
+    // Gather information to provide externally.
+    const userInfo = {
+      username: action.payload.credentials.username
+      // Gather information to provide internally, to other plugins.
+    };const connection = {
+      server: {
+        protocol: config.subscription.protocol,
+        server: config.subscription.server,
+        port: config.subscription.port,
+        version: config.subscription.version
+      },
+      username: action.payload.credentials.username,
+      // Request options that all other (Link) plugins will use.
+      requestOptions
+    };
+    yield (0, _effects.put)(actions.setConnectionInfo({
+      userInfo,
+      connection
+    }, platform));
+
     const response = yield (0, _effects.call)(_requests.subscribe, config.subscription, credentials, requestOptions);
 
     if (response.error) {
@@ -50837,23 +50983,10 @@ function* connect(action, config) {
       requestOptions.headers['x-session'] = response.subscriptionParams.sessionId;
     }
 
-    // Gather information to provide externally.
-    const userInfo = {
-      username: action.payload.credentials.username
-      // Gather information to provide internally, to other plugins.
-    };const connection = {
-      server: {
-        protocol: config.subscription.protocol,
-        server: config.subscription.server,
-        port: config.subscription.port,
-        version: config.subscription.version
-      },
-      username: action.payload.credentials.username,
-      token: response.token,
-      // Request options that all other (Link) plugins will use.
-      requestOptions
-      // Keep track of service subscription information.
-    };const subscription = (0, _extends3.default)({}, response.subscriptionParams, {
+    // Add token to connection info
+    connection.token = response.token;
+    // Keep track of service subscription information.
+    const subscription = (0, _extends3.default)({}, response.subscriptionParams, {
       servicesInfo: response.servicesInfo,
       url: response.subscription
 
@@ -54772,7 +54905,8 @@ reducers[actionTypes.CALL_INCOMING] = {
       silenced: false,
       direction: 'incoming',
       isScreensharing: false,
-      id: action.payload.callId
+      id: action.payload.callId,
+      wrtcsSessionId: action.payload.callInfo.wrtcsSessionId
     }, action.payload.callInfo);
     return (0, _fp.concat)(state, newCall);
   }
@@ -55801,11 +55935,13 @@ function shim(context) {
           code: statusCode,
           reasonText: reasonText
         };
-      } else {
+      } else if (localStatusAndReason) {
         transition = {
           code: localStatusAndReason.localStatusCode,
           reasonText: localStatusAndReason.localReasonText
         };
+      } else {
+        transition = {};
       }
 
       // If the state change was an end, remove the call internally.
@@ -55847,7 +55983,6 @@ function shim(context) {
         }
       }
       log.debug(`Call state change. ID: ${callId}, state: ${_constants.FCS_CALL_STATES[state]}, context: ${transition}`);
-
       // Go to the redux level.
       api.onCallStateChange(callId, _constants.FCS_CALL_STATES[state], transition, callInfo);
     };
@@ -55886,7 +56021,8 @@ function shim(context) {
       callerName: call.callerName,
       to: getUsername(),
       remoteVideoState: call.getRemoteVideoState(),
-      remoteParticipant: call.remoteParticipant
+      remoteParticipant: call.remoteParticipant,
+      wrtcsSessionId: call.getId()
       // TODO: Get more info from the call.
       // TODO: Make call info consistent between
       //      making call and receiving call.
@@ -55943,6 +56079,13 @@ function shim(context) {
     getNotificationCallbacks() {
       return fcs.NotificationCallbacks;
     },
+    getGlobalBroadcaster() {
+      return fcs.GlobalBroadcaster;
+    },
+
+    setConnectionInfo(connectionInfo) {
+      fcs.setConnectionInfo(connectionInfo);
+    },
 
     setup(fcsConfig) {
       // true = delayInitMedia, because FCS doesn't provide an initMedia
@@ -55975,6 +56118,7 @@ function shim(context) {
           // Register for state changes.
           fcsCall.onStateChange = onStateChange(callId);
           fcsCall.onMediaStateChange = onMediaStateChange(callId);
+          options.wrtcsSessionId = fcsCall.getId();
           // Go back to the redux level.
           resolve({ callId, options });
         }
@@ -57218,6 +57362,10 @@ var _actionTypes2 = __webpack_require__("../../packages/kandy/src/notifications/
 
 var notiActionTypes = _interopRequireWildcard(_actionTypes2);
 
+var _actionTypes3 = __webpack_require__("../../packages/kandy/src/connectivity/interface/actionTypes.js");
+
+var connActionTypes = _interopRequireWildcard(_actionTypes3);
+
 var _selectors = __webpack_require__("../../packages/kandy/src/auth/interface/selectors.js");
 
 var _actions = __webpack_require__("../../packages/kandy/src/config/interface/actions.js");
@@ -57240,9 +57388,9 @@ var _interface2 = _interopRequireDefault(_interface);
 
 var _actions3 = __webpack_require__("../../packages/kandy/src/call/interface/actions/index.js");
 
-var _actionTypes3 = __webpack_require__("../../packages/kandy/src/call/interface/actionTypes.js");
+var _actionTypes4 = __webpack_require__("../../packages/kandy/src/call/interface/actionTypes.js");
 
-var actionTypes = _interopRequireWildcard(_actionTypes3);
+var actionTypes = _interopRequireWildcard(_actionTypes4);
 
 var _selectors2 = __webpack_require__("../../packages/kandy/src/call/interface/selectors.js");
 
@@ -57263,15 +57411,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 // Utilities.
+// Import a call shim between FCS calls and Next version of SDK.
+// It is used to handle FCS' call object, since we cannot put it in sate.
 const logMgr = (0, _logs.getLogManager)();
 
 // Constants
-// Import a call shim between FCS calls and Next version of SDK.
-// It is used to handle FCS' call object, since we cannot put it in sate.
 
 const log = logMgr.getLogger('CALL');
 const fcsLog = logMgr.getLogger('FCS');
 
+// eslint-disable-next-line no-warning-comments
 /**
  * Configuration options for the call feature.
  * @public
@@ -57311,6 +57460,7 @@ const fcsLog = logMgr.getLogger('FCS');
  * @param {boolean} [call.useRelay=false] Whether we should force connection through the relay candidates (i.e. TURN server). Mostly used for testing.
  * @param {string} [call.trickleIceSupport='none'] Whether we should advertise and use Trickle ICE. Accepted value is one of: 'none', 'half' or 'full'.
  * @param {boolean} [call.continuity=false] Whether an existing voice call can be persisted, as a mobile phone moves between circuit switched and packet switched domains (e.g. GSM to WiFi).
+ * @param {boolean} [call.resyncOnConnect=false] Whether all active calls should be resynched upon connecting or reconnecting to the websocket (requires Kandy Link 4.7.1+).
  */
 
 /**
@@ -57508,6 +57658,18 @@ function middleware({ dispatch, getState }) {
           //      needed once, so not at the base of the middleware scope.
           config = (0, _selectors2.getCallConfig)(getState());
 
+          // Set connection info in FCS
+          const authConfig = (0, _selectors.getAuthConfig)(getState());
+          var connectionInfo = {
+            protocol: authConfig.subscription.protocol,
+            restUrl: authConfig.subscription.server,
+            // TODO: Auth plugin default is 80, but that doesn't work?
+            restPort: '443',
+            // Workaround... need to set callResyncOnConnect into FCS config here
+            callResyncOnConnect: config.resyncOnConnect
+          };
+          log.debug(`Setting connection info in FCS: ${connectionInfo}`);
+          callShim.setConnectionInfo(connectionInfo);
           break;
         }
 
@@ -58146,6 +58308,13 @@ function middleware({ dispatch, getState }) {
               callbacks[data.eventType](data);
             }
           }
+          break;
+        }
+
+      case connActionTypes.WS_CONNECT_FINISHED:
+        {
+          const globalBroadcaster = callShim.getGlobalBroadcaster();
+          globalBroadcaster.publish('DEVICE_SUBSCRIPTION_STARTED', {});
           break;
         }
 
@@ -60231,6 +60400,29 @@ function autoRestart(saga) {
       }
     } while (shouldRestart);
   };
+}
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/common/version.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getVersion = getVersion;
+/**
+ * Returns the version of the currently running SDK.
+ *
+ * It must be used by any plugins (including the factory) as the unique source of truth when it comes to determine the current SDK version.
+ * The actual version value is provided by the build process scripts (aka webpack.config.***.js) which simply do a string substitution
+ * for the @@ tag below with actual version value.
+ */
+function getVersion() {
+  return '3.13.0';
 }
 
 /***/ }),
@@ -62742,15 +62934,19 @@ var _compose2 = _interopRequireDefault(_compose);
 
 var _utils = __webpack_require__("../../packages/kandy/src/common/utils.js");
 
+var _version = __webpack_require__("../../packages/kandy/src/common/version.js");
+
 var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Helpers.
-// Libraries.
 const log = (0, _logs.getLogManager)().getLogger('FACTORY');
 
 // Plugins.
+
+
+// Helpers.
+// Libraries.
 
 
 const factoryDefaults = {
@@ -62767,7 +62963,7 @@ const factoryDefaults = {
    */
 };function factory(plugins, options = factoryDefaults) {
   // Log the SDK's version (templated by webpack) on initialization.
-  let version = '3.12.0';
+  let version = (0, _version.getVersion)();
   log.info(`SDK version: ${version}`);
 
   var sagas = [];
@@ -62776,6 +62972,7 @@ const factoryDefaults = {
   var middlewares = [];
   var reducers = {};
   var initSagas = [];
+  var taskDescriptor;
   const shared = {};
   var context = {
     capabilities: [],
@@ -62784,6 +62981,9 @@ const factoryDefaults = {
     getState() {
       if (!store) {
         throw Error('Store is not available during factory creation');
+      }
+      if (destroyedSDK) {
+        throw Error('State is not available if the SDK has been destroyed');
       }
       return store.getState();
     },
@@ -62803,6 +63003,15 @@ const factoryDefaults = {
 
   // Special case middleware for logging.
   var loggerMiddleware;
+
+  var destroyedSDK = false;
+  var destroyedSDKMiddleware = store => next => action => {
+    if (destroyedSDK) {
+      return null;
+    } else {
+      return next(action);
+    }
+  };
 
   // Run all the plugins to build the context.
   // Set up each plugin component individually.
@@ -62913,12 +63122,12 @@ const factoryDefaults = {
     var sagaMiddleware = (0, _reduxSaga2.default)();
 
     // Create the store with the plugins (incl. sagas) and with the configuration as the initial state.
-    store = (0, _redux.createStore)((0, _redux.combineReducers)(reducers), composeMiddleware((0, _redux.applyMiddleware)(sagaMiddleware, ...middlewares)));
+    store = (0, _redux.createStore)((0, _redux.combineReducers)(reducers), composeMiddleware((0, _redux.applyMiddleware)(destroyedSDKMiddleware, sagaMiddleware, ...middlewares)));
 
-    sagaMiddleware.run(rootSaga);
+    taskDescriptor = sagaMiddleware.run(rootSaga);
   } else {
     // Create the store with the plugins (excl. sagas) and with the configuration as the initial state.
-    store = (0, _redux.createStore)((0, _redux.combineReducers)(reducers), composeMiddleware((0, _redux.applyMiddleware)(...middlewares)));
+    store = (0, _redux.createStore)((0, _redux.combineReducers)(reducers), composeMiddleware((0, _redux.applyMiddleware)(destroyedSDKMiddleware, ...middlewares)));
   }
 
   // setup the API
@@ -62928,7 +63137,7 @@ const factoryDefaults = {
     // Determine what state should be exposed to an application.
     plugins.forEach(function (plugin) {
       let name = plugin.name;
-      // If the plugin designates a selector to filter publuc state, use it.
+      // If the plugin designates a selector to filter public state, use it.
       if (selectors[name]) {
         exposedState[name] = selectors[name](state[name]);
       } else if (state[name]) {
@@ -62950,11 +63159,67 @@ const factoryDefaults = {
         return store.subscribe(...args);
       }
     },
+    /**
+     * Return all the capabilities currently available to the plugin system.
+     *
+     * @memberof api
+     * @method getCapabilities
+     */
     getCapabilities() {
       return context.capabilities;
     },
+    /**
+     * Returns the current version of the API.
+     *
+     * @public
+     * @memberof api
+     * @method getVersion
+     */
     getVersion() {
       return version;
+    },
+    // Disabling eslint for the next comment as we want to be able to use a disallowed word
+    // eslint-disable-next-line no-warning-comments
+    /**
+     * Destroys the SDK, and removes its state, rendering the SDK unusable.
+     * Useful when a user logs out and their call data needs to be destroyed.
+     * The SDK must be recreated to be usable again.
+     *
+     * @public
+     * @memberof api
+     * @method destroy
+     * @example
+     * // Instantiate the SDK.
+     * import { create } from 'kandy'
+     * const config = {
+     *     authentication: { ... },
+     *     logs: { ... },
+     *     ...
+     * }
+     * let client = create(config);
+     * client.on( ... )
+     * // Use the SDK
+     * ...
+     * // Destroy the SDK, then recreate on the next step
+     * client.destroy()
+     * client = create(config)
+     * client.on( ... )
+     */
+    destroy() {
+      // TODO: Give plugins a chance to clean up, disconnect from WS, etc
+      // Needs to happen before the sagas are cancelled
+
+      // Cancel all the sagas
+      if (taskDescriptor) taskDescriptor.cancel();
+
+      // Clear the state
+      function destroyStateReducer(state, action) {
+        return null;
+      }
+      store.replaceReducer(destroyStateReducer);
+
+      // Neuter all actions
+      destroyedSDK = true;
     }
   });
 
@@ -63032,7 +63297,7 @@ exports.default = createActionLogger;
 
 var _index = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
-var _constants = __webpack_require__("../../packages/kandy/src/logs/constants.js");
+var _constants = __webpack_require__("../../packages/logger/src/constants.js");
 
 var _transformers = __webpack_require__("../../packages/kandy/src/logs/actions/transformers.js");
 
@@ -63225,10 +63490,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _logHandler = __webpack_require__("../../packages/kandy/src/logs/logHandler.js");
-
-var _logHandler2 = _interopRequireDefault(_logHandler);
-
 var _actionHandler = __webpack_require__("../../packages/kandy/src/logs/actions/actionHandler.js");
 
 var _actionHandler2 = _interopRequireDefault(_actionHandler);
@@ -63276,7 +63537,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 exports.default = {
   logLevel: 'debug',
-  handler: _logHandler2.default,
+  handler: undefined,
   enableFcsLogs: true,
 
   // Action-specific configs.
@@ -63292,27 +63553,89 @@ exports.default = {
 
 /***/ }),
 
-/***/ "../../packages/kandy/src/logs/constants.js":
+/***/ "../../packages/kandy/src/logs/docs.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * Log levels used by the SDK.
- * When a level is set, all logs of that level and higher will be logged.
+/*
+ * This file contains SDK documentation for stuff defined by the Logger package.
+ * They are here to 1) ensure they are picked up by our documentation tool and
+ *    2) ensure they are written from the perspective of the SDK (not the Logger
+ *    library).
  */
-const logLevels = exports.logLevels = {
-  TRACE: 0,
-  DEBUG: 1,
-  INFO: 2,
-  WARN: 3,
-  ERROR: 4,
-  SILENT: 5
-};
+
+/**
+ * A LogEntry object is the data that the SDK compiles when information is
+ *    logged. It contains both the logged information and meta-info about when
+ *    and who logged it.
+ *
+ * A {@link logger.LogHandler LogHandler} provided to the SDK (see
+ *    {@link #configconfiglogs config.logs}) will need to handle LogEntry
+ *    objects.
+ *
+ * @public
+ * @static
+ * @typedef {Object} LogEntry
+ * @memberof logger
+ * @requires logs
+ * @property {number} timestamp When the log was created, based on UNIX epoch.
+ * @property {string} method The log function that was used to create the log.
+ * @property {string} level The level of severity the log.
+ * @property {Object} target The subject that the log is about.
+ * @property {string} target.type The type of the target. This is also
+ *    used as part of the name of the Logger.
+ * @property {string} [target.id] A unique identifer for the target.
+ * @property {string} target.name A combination of the target type and ID. If no
+ *    id was provided, this will be the same as the type.
+ * @property {Array} messages The logged information, given to the Logger
+ *    method as parameters.
+ * @example
+ * function defaultLogHandler (logEntry) {
+ *   // Compile the meta info of the log for a prefix.
+ *   const { timestamp, level, method, target } = logEntry
+ *   const logInfo = `${timestamp} - ${target.type} - ${level}`
+ *
+ *   // Assume that the first message parameter is a string.
+ *   const [log, ...extra] = logEntry.messages
+ *
+ *   console[method](`${logInfo} - ${log}`, ...extra)
+ * }
+ */
+
+/**
+ * A LogHandler can be used to customize how the SDK should log information. By
+ *    default, the SDK will log information to the console, but a LogHandler can
+ *    be configured to change this behaviour.
+ *
+ * A LogHandler can be provided to the SDK as part of its configuration (see
+ *    {@link #configconfiglogs config.logs}). The SDK will then provide this
+ *    function with the logged information.
+ *
+ * @public
+ * @static
+ * @typedef {Function} LogHandler
+ * @memberof logger
+ * @requires logs
+ * @param {Object} LogEntry The LogEntry to be logged.
+ * @example
+ * // Define a custom function to handle logs.
+ * function logHandler (logEntry) {
+ *   // Compile the meta info of the log for a prefix.
+ *   const { timestamp, level, method, target } = logEntry
+ *   const logInfo = `${timestamp} - ${target.type} - ${level}`
+ *
+ *   // Assume that the first message parameter is a string.
+ *   const [log, ...extra] = logEntry.messages
+ *
+ *   console[method](`${logInfo} - ${log}`, ...extra)
+ * }
+ *
+ * // Provide the LogHandler as part of the SDK configurations.
+ * const configs = { ... }
+ * configs.logs.handler = logHandler
+ * const client = create(configs)
+ */
+
 
 /***/ }),
 
@@ -63331,6 +63654,10 @@ var _values = __webpack_require__("../../node_modules/babel-runtime/core-js/obje
 
 var _values2 = _interopRequireDefault(_values);
 
+var _keys = __webpack_require__("../../node_modules/babel-runtime/core-js/object/keys.js");
+
+var _keys2 = _interopRequireDefault(_keys);
+
 exports.getLogManager = getLogManager;
 exports.default = logPlugin;
 
@@ -63342,21 +63669,21 @@ var _config = __webpack_require__("../../packages/kandy/src/logs/config.js");
 
 var _config2 = _interopRequireDefault(_config);
 
-var _constants = __webpack_require__("../../packages/kandy/src/logs/constants.js");
-
 var _actions = __webpack_require__("../../packages/kandy/src/logs/actions/index.js");
 
 var _actions2 = _interopRequireDefault(_actions);
-
-var _logManager = __webpack_require__("../../packages/kandy/src/logs/logManager.js");
-
-var _logManager2 = _interopRequireDefault(_logManager);
 
 var _actions3 = __webpack_require__("../../packages/kandy/src/config/interface/actions.js");
 
 var _utils = __webpack_require__("../../packages/kandy/src/common/utils.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
+
+var _kandyLogger = __webpack_require__("../../packages/logger/src/index.js");
+
+var _kandyLogger2 = _interopRequireDefault(_kandyLogger);
+
+__webpack_require__("../../packages/kandy/src/logs/docs.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63366,7 +63693,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *    the application's configs.
  */
 // Logs plugin.
-const logManager = (0, _logManager2.default)('SDK', _config2.default);
+const logManager = (0, _kandyLogger2.default)(_config2.default);
+
+// Include the extra JSDoc items.
+
 
 // Libraries.
 
@@ -63382,17 +63712,32 @@ const API_LOG_TAG = exports.API_LOG_TAG = 'API invoked: ';
 function logPlugin(options = {}) {
   const name = 'logs';
 
-  options = (0, _utils.mergeValues)(_config2.default, options);
-  options.logLevel = options.logLevel.toUpperCase();
+  const logger = logManager.getLogger('LOGS');
+  // Make sure the configured log handler was a function.
+  if (typeof options.handler !== 'function') {
+    delete options.handler;
+    logger.warn('Invalid log handler configuration provided; using default instead.');
+  }
 
+  // Make sure configured log level is supported.
+  if (options.logLevel && !(0, _keys2.default)(_kandyLogger.logLevels).includes(options.logLevel.toUpperCase())) {
+    delete options.logLevel;
+    logger.warn('Invalid log level configuration provided; using default instead.');
+  }
+
+  options = (0, _utils.mergeValues)(_config2.default, options);
   // Now that we have the application's log configs, update everything to
   //    use those values instead of default values.
   logManager.level = options.logLevel;
-  logManager.logHandler = options.handler;
+  if (options.handler) {
+    logManager.handler = options.handler;
+  }
 
   (0, _values2.default)(logManager.getLoggers()).forEach(logger => {
     logger.level = options.logLevel;
-    logger.logHandler = options.handler;
+    if (options.handler) {
+      logger.handler = options.handler;
+    }
   });
 
   function* init() {
@@ -63408,10 +63753,11 @@ function logPlugin(options = {}) {
     api: _api2.default
   };
 
-  const setLevel = _constants.logLevels[options.logLevel];
+  options.logLevel = options.logLevel.toUpperCase();
+  const setLevel = _kandyLogger.logLevels[options.logLevel];
   // Consider actions to be at the INFO log level.
   // Only export a middleware (for actions) at the appropriate levels.
-  if (setLevel <= _constants.logLevels.INFO && options.logActions !== false) {
+  if (setLevel <= _kandyLogger.logLevels.INFO && options.logActions !== false) {
     components.middleware = (0, _actions2.default)(options);
   }
 
@@ -63469,297 +63815,6 @@ function api() {
   return {
     logger: api
   };
-}
-
-/***/ }),
-
-/***/ "../../packages/kandy/src/logs/logHandler.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = defaultLogHandler;
-/**
- * A LogHandler can be used to customize how the SDK should log information. By
- *    default, the SDK will log information to the console, but a LogHandler can
- *    be configured to change this behaviour.
- *
- * A LogHandler can be provided to the SDK as part of its configuration (see
- *    {@link #configconfiglogs config.logs}). The SDK will then provide this
- *    function with the logged information.
- *
- * @public
- * @static
- * @typedef {Function} LogHandler
- * @memberof logger
- * @requires logs
- * @param {Object} LogEntry The LogEntry to be logged.
- * @example
- * // Define a custom function to handle logs.
- * function logHandler (logEntry) {
- *   // Compile the meta info of the log for a prefix.
- *   const { timestamp, level, method, target } = logEntry
- *   const logInfo = `${timestamp} - ${target.name} - ${level}`
- *
- *   // Assume that the first message parameter is a string.
- *   const [log, ...extra] = logEntry.messages
- *
- *   console[method](`${logInfo} - ${log}`, ...extra)
- * }
- *
- * // Provide the LogHandler as part of the SDK configurations.
- * const configs = { ... }
- * configs.logs.handler = logHandler
- * const client = create(configs)
- */
-
-/**
- * Default function for the SDK to use for logging.
- *    Uses entry information to form a prefix, then logs to console.
- * @method defaultLogHandler
- * @param  {LogEntry} entry
- */
-function defaultLogHandler(entry) {
-  // Compile the meta info of the log for a prefix.
-  const { timestamp, level, method, target } = entry;
-  const logInfo = `${timestamp} - ${target.name} - ${level}`;
-
-  // Assume that the first message parameter is a string.
-  const [log, ...extra] = entry.messages;
-
-  console[method](`${logInfo} - ${log}`, ...extra);
-}
-
-/***/ }),
-
-/***/ "../../packages/kandy/src/logs/logManager.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = createManager;
-
-var _logger = __webpack_require__("../../packages/kandy/src/logs/logger.js");
-
-var _logger2 = _interopRequireDefault(_logger);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Creates a Log Manager.
- * @method createManager
- * @param  {string}     managerName
- * @param  {Object}     [options={}]
- * @return {LogManager}
- */
-function createManager(managerName, options = {}) {
-  /*
-   * This log is pointless, but is here to workaround a weird issue in Chrome.
-   * The Chrome console will lag when it is loading the sourcemap for a file.
-   *    Logging from the SDK will force Chrome to load its sourcemap (if its
-   *    not already loaded). So this ensures that /something/ is logged from the
-   *    SDK file as early as possible, to help avoid this lag being visible to
-   *    a developer.
-   */
-  console.debug(`Creating LogManager ${managerName}.`);
-
-  let logHandler = options.handler;
-  let level = options.logLevel;
-  const loggers = {};
-
-  /**
-   * Gets a specific logger. If the logger doesn't exist, a new one will be
-   *    created.
-   * @method getLogger
-   * @param  {string} name Human-readable name for the logger.
-   * @param  {string} [id] A unique identifier for the logger.
-   * @return {Logger}
-   */
-  function getLogger(name, id) {
-    // Combine the name and ID to create the "full" logger name.
-    const loggerName = id ? `${name}-${id}` : name;
-
-    let logger = loggers[loggerName];
-    // If the logger does not exist, create a new one.
-    if (!logger) {
-      // This logger logs items from a specific "target".
-      const target = { name, id };
-      logger = (0, _logger2.default)(target, logHandler, { level });
-
-      // Save the new logger to be returned by future getter cals.
-      loggers[loggerName] = logger;
-    }
-
-    return logger;
-  }
-
-  /**
-   * Gets all created loggers.
-   * @method getLoggers
-   * @return {Object} Object of loggers, keyed by logger name-id.
-   */
-  function getLoggers() {
-    return loggers;
-  }
-
-  return {
-    getLogger,
-    getLoggers,
-    get logHandler() {
-      return logHandler;
-    },
-    set logHandler(handler) {
-      logHandler = handler;
-    },
-    set level(newLevel) {
-      level = newLevel.toUpperCase();
-    }
-  };
-}
-
-/***/ }),
-
-/***/ "../../packages/kandy/src/logs/logger.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = createLogger;
-
-var _constants = __webpack_require__("../../packages/kandy/src/logs/constants.js");
-
-/**
- * A LogEntry object is the data that the SDK compiles when information is
- *    logged. It contains both the logged information and meta-info about when
- *    and who logged it.
- *
- * A {@link logger.LogHandler LogHandler} provided to the SDK (see
- *    {@link #configconfiglogs config.logs}) will need to handle LogEntry
- *    objects.
- *
- * @public
- * @static
- * @typedef {Object} LogEntry
- * @memberof logger
- * @requires logs
- * @property {number} timestamp When the log was created, based on UNIX epoch.
- * @property {string} method The log function that was used to create the log.
- * @property {string} level The level of severity the log.
- * @property {Object} target The subject that the log is about.
- * @property {string} target.name The name of the target. This is also
- *    used as the name of the Logger.
- * @property {string} [target.id] A unique identifer for the target.
- * @property {Array} messages The logged information, given to the Logger
- *    method as parameters.
- * @example
- * function defaultLogHandler (logEntry) {
- *   // Compile the meta info of the log for a prefix.
- *   const { timestamp, level, method, target } = logEntry
- *   const logInfo = `${timestamp} - ${target.name} - ${level}`
- *
- *   // Assume that the first message parameter is a string.
- *   const [log, ...extra] = logEntry.messages
- *
- *   console[method](`${logInfo} - ${log}`, ...extra)
- * }
- */
-
-/**
- * Creates a Logger.
- * @method createLogger
- * @param  {Object}   target       The subject of the logs from this logger.
- * @param  {Function} handler      The function to receive/handle log entries.
- * @param  {Object}   [options={}]
- * @return {Logger}
- */
-function createLogger(target, handler, options = {}) {
-  /**
-   * Currying function to dynamically create the Logger's logging methods.
-   * @method logFunc
-   * @param  {string} method Name of the logger method to create.
-   * @return {Function} A log method.
-   */
-  function logFunc(method) {
-    // The level that this function logs at.
-    let logLevel;
-    // Consider non-standard log levels to be debug.
-    if (['group', 'groupEnd', 'groupCollapsed', 'log'].includes(method)) {
-      logLevel = 'DEBUG';
-    } else {
-      // Otherwise, the method and log level match directly.
-      logLevel = method.toUpperCase();
-    }
-
-    /*
-     * Return the function that will be used as `log.<method>`.
-     */
-    return function (...args) {
-      // Compare the logged level and the configured level.
-      const setLevel = logger.level.toUpperCase();
-      const shouldLog = _constants.logLevels[logLevel] >= _constants.logLevels[setLevel];
-      // If this entry shouldn't be logged, don't do anything.
-      if (!shouldLog) {
-        return;
-      }
-
-      // Create the Log Entry to be handed off to the handler.
-
-      const entry = {
-        // Meta-info about the log.
-        method,
-        timestamp: Date.now(),
-        level: logLevel,
-        target: logger.target,
-        // The actual arguments logged.
-        messages: [...args]
-      };
-
-      logger.logHandler(entry);
-    };
-  }
-
-  const logger = {
-    target,
-    level: options.level,
-    logHandler: handler,
-    name: target.name
-
-    // Supported console methods.
-  };const consoleMethods = ['trace', 'debug', 'warn', 'info', 'error', 'log', 'group', 'groupEnd', 'groupCollapsed'];
-
-  const api = {
-    get logHandler() {
-      return logger.logHandler;
-    },
-    set logHandler(handler) {
-      logger.logHandler = handler;
-    },
-    get level() {
-      return logger.level;
-    },
-    set level(newLevel) {
-      logger.level = newLevel;
-    }
-  };
-
-  // For all supported log methods, create a function on the Logger for it.
-  consoleMethods.forEach(method => {
-    api[method] = logFunc(method);
-  });
-
-  return api;
 }
 
 /***/ }),
@@ -66356,6 +66411,12 @@ const NOTIFICATION_RECEIVED = exports.NOTIFICATION_RECEIVED = prefix + 'NOTIFICA
 const ENABLE_NOTIFICATION_CHANNEL = exports.ENABLE_NOTIFICATION_CHANNEL = prefix + 'ENABLE_NOTIFICATION_CHANNEL';
 const ENABLE_NOTIFICATION_CHANNEL_FINISH = exports.ENABLE_NOTIFICATION_CHANNEL_FINISH = prefix + 'ENABLE_NOTIFICATION_CHANNEL_FINISH';
 
+const REGISTER_APPLE_PUSH_NOTIFICATION = exports.REGISTER_APPLE_PUSH_NOTIFICATION = prefix + 'REGISTER_APPLE_PUSH_NOTIFICATION';
+const REGISTER_ANDROID_PUSH_NOTIFICATION = exports.REGISTER_ANDROID_PUSH_NOTIFICATION = prefix + 'REGISTER_ANDROID_PUSH_NOTIFICATION';
+
+const UNREGISTER_APPLE_PUSH_NOTIFICATION = exports.UNREGISTER_APPLE_PUSH_NOTIFICATION = prefix + 'UNREGISTER_APPLE_PUSH_NOTIFICATION';
+const UNREGISTER_ANDROID_PUSH_NOTIFICATION = exports.UNREGISTER_ANDROID_PUSH_NOTIFICATION = prefix + 'UNREGISTER_ANDROID_PUSH_NOTIFICATION';
+
 /***/ }),
 
 /***/ "../../packages/kandy/src/notifications/interface/actions.js":
@@ -66377,6 +66438,10 @@ exports.externalNotification = externalNotification;
 exports.notificationReceived = notificationReceived;
 exports.processNotificationFinish = processNotificationFinish;
 exports.enableNotificationChannel = enableNotificationChannel;
+exports.registerApplePushNotification = registerApplePushNotification;
+exports.registerAndroidPushNotification = registerAndroidPushNotification;
+exports.unregisterApplePushNotification = unregisterApplePushNotification;
+exports.unregisterAndroidPushNotification = unregisterAndroidPushNotification;
 exports.enableNotificationChannelFinish = enableNotificationChannelFinish;
 
 var _actionTypes = __webpack_require__("../../packages/kandy/src/notifications/interface/actionTypes.js");
@@ -66425,10 +66490,10 @@ function websocketNotification(notification, platform = _constants.platforms.LIN
  * Represents an application request to process an external notification.
  * @method externalNotification
  * @param  {Object} notification
- * @param  {string} [channel='EXTERNAL'] - The channel that the notification came from.
+ * @param  {string} [channel='PUSH'] - The channel that the notification came from.
  * @return {Object} A flux standard action.
  */
-function externalNotification(notification, channel = 'EXTERNAL', platform) {
+function externalNotification(notification, channel = 'PUSH', platform) {
   // TODO: Are external notifications _only_ for Link?
   return notificationHelper(channel.toUpperCase(), notification, platform);
 }
@@ -66488,6 +66553,78 @@ function enableNotificationChannel(channel, params = {}) {
 }
 
 /**
+ * Represents a request to change a notification channel status.
+ * @method registerApplePushNotification
+ * @param  {Object} params
+ * @return {Object} A flux standard action.
+ */
+function registerApplePushNotification(params, deferred) {
+  return {
+    type: actionTypes.REGISTER_APPLE_PUSH_NOTIFICATION,
+    payload: (0, _extends3.default)({}, params, {
+      pushProvider: 'apple'
+    }),
+    meta: {
+      deferred
+    }
+  };
+}
+
+/**
+ * Represents a request to change a notification channel status.
+ * @method registerAndroidPushNotification
+ * @param  {Object} params
+ * @return {Object} A flux standard action.
+ */
+function registerAndroidPushNotification(params, deferred) {
+  return {
+    type: actionTypes.REGISTER_ANDROID_PUSH_NOTIFICATION,
+    payload: (0, _extends3.default)({}, params, {
+      pushProvider: 'google'
+    }),
+    meta: {
+      deferred
+    }
+  };
+}
+
+/**
+ * Represents a request to change a notification channel status.
+ * @method unregisterApplePushNotification
+ * @param  {string} registration
+ * @return {Object} A flux standard action.
+ */
+function unregisterApplePushNotification(registration, deferred) {
+  return {
+    type: actionTypes.UNREGISTER_APPLE_PUSH_NOTIFICATION,
+    payload: {
+      registration
+    },
+    meta: {
+      deferred
+    }
+  };
+}
+
+/**
+ * Represents a request to change a notification channel status.
+ * @method unregisterAndroidPushNotification
+ * @param  {string} registration
+ * @return {Object} A flux standard action.
+ */
+function unregisterAndroidPushNotification(registration, deferred) {
+  return {
+    type: actionTypes.UNREGISTER_ANDROID_PUSH_NOTIFICATION,
+    payload: {
+      registration
+    },
+    meta: {
+      deferred
+    }
+  };
+}
+
+/**
  * Represents the response of a change in a notification channel status.
  * @method enableNotificationChannelFinish
  * @param  {string} channel - The notification channel being affected.
@@ -66527,11 +66664,6 @@ function enableNotificationChannelFinish(channel, { params, error } = {}) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
-
-var _extends3 = _interopRequireDefault(_extends2);
-
 exports.default = api;
 
 var _actions = __webpack_require__("../../packages/kandy/src/notifications/interface/actions.js");
@@ -66544,7 +66676,14 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const pDefer = __webpack_require__("../../node_modules/p-defer/index.js"); /**
+                                    * The 'notification' namespace allows user to register/deregister for/from push notifications as well as
+                                    * enabling/disabling the processing of websocket notifications.
+                                    *
+                                    * @public
+                                    * @requires externalNotifications
+                                    * @namespace notification
+                                    */
 
 const log = (0, _logs.getLogManager)().getLogger('NOTIFICATION');
 
@@ -66554,15 +66693,6 @@ const log = (0, _logs.getLogManager)().getLogger('NOTIFICATION');
  * @param {Function} dispatch The redux store's dispatch function.
  * @return {Object} api  The notifications API object.
  */
-/**
- * The 'notification' namespace allows user to register/deregister for/from push notifications as well as
- * enabling/disabling the processing of websocket notifications.
- *
- * @public
- * @requires externalNotifications
- * @namespace notification
- */
-
 function api({ dispatch }) {
   const notificationApi = {
     /**
@@ -66581,38 +66711,124 @@ function api({ dispatch }) {
     },
 
     /**
-     * Registers a device token for push notifications.
+     * Registers with Apple push notification service. Once registration is successful, the application will be able to receive
+     * standard and/or voip push notifications. It can then send these notifications to the SDK with {@link api.notifications.process}
+     * in order for the SDK to process them.
      *
      * @public
      * @requires push
      * @memberof notification
-     * @method registerPush
+     * @method registerApplePush
      * @param {Object} params
-     * @param {string} params.deviceToken - The device token to be registered.
-     * @param {string[]} params.services - Array of services to register for.
-     * @param {string} params.pushProvider - The push provider, can be either 'apple' or 'google'.
+     * @param {string[]} params.services - Array of services for which we wish to receive notifications.
+     * @param {string} params.voipDeviceToken - The voip device token used for voip push on iOS.
+     *                                          This token is required if registering for call service notifications on iOS.
+     * @param {string} params.standardDeviceToken - The standardDevice token used for standard push on iOS .
+     *                                              This token is required when registering for non-call service notifications.
+     * @param {string} params.bundleId - The bundleId to identify the application receiving the push notification.
      * @param {string} params.clientCorrelator - Unique identifier for a client device.
+     * @param {string} params.realm - The realm used by the push registration service to identify and
+     *                                establish a connection with the service gateway.
+     * @param {boolean} params.isProduction - If true, push notification will be sent to production.
+     *                                        If false, push notification will be sent to sandbox.
+     * @return {Promise} When successful,  the information of the registration.
+     *                   Promise will reject with error object otherwise.
      */
-    registerPush(params) {
-      log.debug(_logs.API_LOG_TAG + 'notification.registerPush', params);
-      dispatch(actions.enableNotificationChannel('PUSH', (0, _extends3.default)({}, params, {
-        channelEnabled: true
-      })));
+    registerApplePush({
+      services,
+      voipDeviceToken,
+      standardDeviceToken,
+      bundleId,
+      clientCorrelator,
+      realm,
+      isProduction
+    }) {
+      const deferredResult = pDefer();
+      log.debug(_logs.API_LOG_TAG + 'notification.registerApplePush', arguments);
+
+      dispatch(actions.registerApplePushNotification({
+        services,
+        voipDeviceToken,
+        standardDeviceToken,
+        bundleId,
+        clientCorrelator,
+        realm,
+        isProduction
+      }, deferredResult));
+
+      return deferredResult.promise;
     },
 
     /**
-     * Deregisters for push notifications.
+     * Registers with Google push notification service. Once registration is successful, the application will be able to receive
+     * standard and/or voip push notifications. It can then send these notifications to the SDK with {@link api.notifications.process}
+     * in order for the SDK to process them.
      *
      * @public
      * @requires push
      * @memberof notification
-     * @method deregisterPush
+     * @method registerAndroidPush
+     * @param {Object} params
+     * @param {string[]} params.services - Array of services to register for.
+     * @param {string} params.deviceToken - The device token used for standard push on Android. This token is required
+     *                                      when registering for all related services notifications.
+     * @param {string} params.bundleId - The bundleId to identify the application receiving the push notification.
+     * @param {string} params.clientCorrelator - Unique identifier for a client device.
+     * @param {string} params.realm - The realm used by the push registration service to identify
+     *                                and establish a connection with the service gateway.
+     * @return {Promise} When successful,  the information of the registration.
+     *                   Promise will reject with error object otherwise.
      */
-    deregisterPush() {
-      log.debug(_logs.API_LOG_TAG + 'notification.deregisterPush');
-      dispatch(actions.enableNotificationChannel('PUSH', {
-        channelEnabled: false
-      }));
+    registerAndroidPush({ services, deviceToken, bundleId, clientCorrelator, realm }) {
+      const deferredResult = pDefer();
+      log.debug(_logs.API_LOG_TAG + 'notification.registerAndroidPush', arguments);
+
+      dispatch(actions.registerAndroidPushNotification({
+        services,
+        deviceToken,
+        bundleId,
+        clientCorrelator,
+        realm
+      }, deferredResult));
+      return deferredResult.promise;
+    },
+
+    /**
+     * Unregister Apple push notifications.
+     *
+     * @public
+     * @requires push
+     * @memberof notification
+     * @method unregisterApplePush
+     * @param {string} registrationInfo - The data returned from the push registration
+     * @return {Promise} When successful, the promise will resolve with undefined.
+     *                   Promise will reject with error object otherwise.
+     */
+    unregisterApplePush(registrationInfo) {
+      const deferredResult = pDefer();
+      log.debug(_logs.API_LOG_TAG + 'notification.unregisterPush');
+      dispatch(actions.unregisterApplePushNotification(registrationInfo, deferredResult));
+
+      return deferredResult.promise;
+    },
+
+    /**
+     * Unregister Android push notifications.
+     *
+     * @public
+     * @requires push
+     * @memberof notification
+     * @method unregisterAndroidPush
+     * @param {string} registrationInfo - The data returned from the push registration
+     * @return {Promise} When successful, the promise will resolve with undefined.
+     *                   Promise will reject with error object otherwise.
+     */
+    unregisterAndroidPush(registrationInfo) {
+      const deferredResult = pDefer();
+      log.debug(_logs.API_LOG_TAG + 'notification.unregisterPush');
+      dispatch(actions.unregisterAndroidPushNotification(registrationInfo, deferredResult));
+
+      return deferredResult.promise;
     },
 
     /**
@@ -66831,9 +67047,6 @@ const defaultState = {
   },
   PUSH: {
     channelEnabled: true
-  },
-  EXTERNAL: {
-    channelEnabled: true
   }
 
   /**
@@ -66904,9 +67117,13 @@ var _events = __webpack_require__("../../packages/kandy/src/notifications/interf
 
 var _events2 = _interopRequireDefault(_events);
 
-var _sagas = __webpack_require__("../../packages/kandy/src/notifications/link/sagas.js");
+var _pushRegistration = __webpack_require__("../../packages/kandy/src/notifications/link/sagas/pushRegistration.js");
 
-var sagas = _interopRequireWildcard(_sagas);
+var pushRegistrationSagas = _interopRequireWildcard(_pushRegistration);
+
+var _notification = __webpack_require__("../../packages/kandy/src/notifications/link/sagas/notification.js");
+
+var notificationSagas = _interopRequireWildcard(_notification);
 
 var _actions = __webpack_require__("../../packages/kandy/src/events/interface/actions.js");
 
@@ -66928,13 +67145,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @instance
  * @param {Object} notifications - The notifications configuration object.
  * @param {number} [notifications.idCacheLength=100] - Default amount of event ids to remember for de-duplication purposes.
+ * @param {string} [notifications.incomingCallNotificationMode='any-channel'] - Communication channel mode used for incoming call notifications. Supported values are 'any-channel' or 'push-channel-only'.
  * @param {Object} [notifications.pushRegistration] - Object describing the server to use for push services.
  * @param {string} [notifications.pushRegistration.server] - Hostname for the push registration server.
  * @param {string} [notifications.pushRegistration.port] - Port for the push registration server.
  * @param {string} [notifications.pushRegistration.protocol] - Protocol for the push registration server.
  * @param {string} [notifications.pushRegistration.version] - Version for the push registration server.
- * @param {string} [notifications.realm] - The realm used for push notifications
- * @param {string} [notifications.bundleId] - The bundle id used for push notifications
  */
 
 /**
@@ -66949,12 +67165,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 // Other plugins.
+// Notification plugin.
 function notifications(options = {}) {
   const defaultOptions = {
     idCacheLength: 100,
-    pushRegistration: undefined,
-    realm: undefined,
-    bundleId: undefined
+    incomingCallNotificationMode: 'any-channel'
   };
   const pluginOptions = (0, _fp.defaultsDeep)(defaultOptions, options);
 
@@ -66971,9 +67186,9 @@ function notifications(options = {}) {
     init,
     api: _interface.api,
     reducer: _interface.reducer,
-    sagas: (0, _fp.values)(sagas)
+    sagas: [...(0, _fp.values)(notificationSagas), ...(0, _fp.values)(pushRegistrationSagas)]
   };
-} // Notification plugin.
+}
 
 /***/ }),
 
@@ -67015,37 +67230,62 @@ const log = (0, _logs.getLogManager)().getLogger('NOTIFICATIONS');
  * @method pushNotificationsRegistration
  * @param  {Object} connection - Information for formatting the request.
  * @param  {Object} options
- * @param  {string} options.deviceToken
  * @param  {string[]} options.services - Push service to register to; either 'google' or 'apple'.
  * @param {string} options.pushProvider - The push provider, can be either 'apple' or 'google'.
  * @param  {string} options.bundleId - The bundle id to use for registration.
+ * @param  {string} options.deviceToken
+ * @param {string} options.voipDeviceToken - Token for call related service.
+ * @param {string} options.standardDeviceToken - Token for non-call related service.
  * @param  {string} options.clientCorrelator - Unique identifier for a client device.
+ * @param {string} options.realm - The realm used by the push registration service to identify
+ *                                and establish a connection with the service gateway.
+ * @param {boolean} options.isProduction - If true, push notification will be sent to production. If false, push notification will be sent to sandbox.
  * @return {Object} response
  */
 
 // Logs
-function* pushNotificationsRegistration(connection, options) {
+function* pushNotificationsRegistration(connection, {
+  services,
+  pushProvider,
+  bundleId,
+  deviceToken,
+  voipDeviceToken,
+  standardDeviceToken,
+  clientCorrelator,
+  realm,
+  isProduction
+}) {
   const { server, requestOptions } = connection;
-  let url = `${server.protocol}://${server.server}:${server.port}/` + `rest/version/${server.version}/` + `user/${connection.username}/` + 'push/' + options.pushProvider.toLowerCase() + '/devices/';
+  pushProvider = pushProvider.toLowerCase();
+  let url = `${server.protocol}://${server.server}:${server.port}/` + `rest/version/${server.version}/` + `user/${connection.username}/` + 'push/' + pushProvider + '/devices/';
   const method = 'POST';
-  const body = (0, _stringify2.default)({
-    deviceToken: options.deviceToken,
-    bundleID: options.bundleId,
-    service: options.services,
-    clientCorrelator: options.clientCorrelator,
-    realm: connection.realm
-  });
+  let body = {
+    bundleID: bundleId,
+    service: services,
+    clientCorrelator: clientCorrelator,
+    realm: realm,
+    isProduction: isProduction
+  };
+
+  if (pushProvider === 'apple') {
+    body.voipDeviceToken = voipDeviceToken;
+    body.standardDeviceToken = standardDeviceToken;
+  } else {
+    body.deviceToken = deviceToken;
+  }
+
+  body = (0, _stringify2.default)(body);
 
   const response = yield (0, _effects2.default)({ url, method, body }, requestOptions);
 
   let registrationResponse;
-  let responseName = options.pushProvider.toLowerCase() + 'DeviceRegistrationResponse';
+  const responseName = pushProvider + 'DeviceRegistrationResponse';
   if (response.payload.body && response.payload.body[responseName]) {
     registrationResponse = response.payload.body[responseName];
   }
 
   if (response.error) {
-    if (response.payload.body) {
+    if (registrationResponse) {
       // Handle errors from the server.
       let statusCode = registrationResponse.statusCode;
       log.debug(`Failed to register device token for push notifications. Status: ${statusCode}`);
@@ -67053,7 +67293,7 @@ function* pushNotificationsRegistration(connection, options) {
       return {
         error: true,
         status: statusCode,
-        text: `Failed to register device token. Error: ${response.payload.statusCode}`
+        text: `Failed to register device token. Error: ${statusCode}`
       };
     } else {
       // Handle errors from the request helper.
@@ -67089,9 +67329,9 @@ function* pushNotificationsRegistration(connection, options) {
  * @param  {string} options.registration
  * @return {Object} response
  */
-function* pushNotificationsDeRegistration(connection, options) {
+function* pushNotificationsDeRegistration(connection, { registration }) {
   const { server, requestOptions } = connection;
-  let url = `${server.protocol}://${server.server}:${server.port}${options.registration}`;
+  let url = `${server.protocol}://${server.server}:${server.port}${registration}`;
   const method = 'DELETE';
   const responseType = 'none';
 
@@ -67101,17 +67341,17 @@ function* pushNotificationsDeRegistration(connection, options) {
     if (response.payload.body) {
       // Handle errors from the server.
       let { statusCode } = response.payload.body;
-      log.debug(`Failed to deregister device token for push. Status: ${statusCode}.`);
+      log.debug(`Failed to unregister device token for push. Status: ${statusCode}.`);
       // TODO: Proper errors.
       return {
         error: true,
         status: statusCode,
-        text: `Failed to deregister device token. Code: ${statusCode}.`
+        text: `Failed to unregister device token. Code: ${statusCode}.`
       };
     } else {
       // Handle errors from the request helper.
       let { message } = response.payload.result;
-      log.debug(`Device token deregistration request failed: ${message}`);
+      log.debug(`Device token unregistration request failed: ${message}`);
       // TODO: Proper error.
       return {
         error: true,
@@ -67120,7 +67360,7 @@ function* pushNotificationsDeRegistration(connection, options) {
       };
     }
   } else {
-    log.debug('Successfully de-registered device token for push notifications.');
+    log.debug('Successfully un-registered device token for push notifications.');
     // Successful de-register has no response.
     return {
       error: false
@@ -67149,7 +67389,7 @@ function* fetchSDP(connection, partialUrl) {
 
 /***/ }),
 
-/***/ "../../packages/kandy/src/notifications/link/sagas.js":
+/***/ "../../packages/kandy/src/notifications/link/sagas/notification.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67167,10 +67407,22 @@ var _keys = __webpack_require__("../../node_modules/babel-runtime/core-js/object
 
 var _keys2 = _interopRequireDefault(_keys);
 
+exports.enableWebsocketChannelEntry = enableWebsocketChannelEntry;
 exports.processNotification = processNotification;
-exports.registerPushDeviceToken = registerPushDeviceToken;
-exports.deregisterPushDeviceToken = deregisterPushDeviceToken;
-exports.enableWebsocketChannel = enableWebsocketChannel;
+
+var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
+
+var _pako = __webpack_require__("../../node_modules/pako/index.js");
+
+var _reduxSaga = __webpack_require__("../../node_modules/redux-saga/es/index.js");
+
+var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
+
+var _selectors = __webpack_require__("../../packages/kandy/src/auth/interface/selectors.js");
+
+var _constants = __webpack_require__("../../packages/kandy/src/constants.js");
+
+var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 var _actions = __webpack_require__("../../packages/kandy/src/notifications/interface/actions.js");
 
@@ -67180,47 +67432,43 @@ var _actionTypes = __webpack_require__("../../packages/kandy/src/notifications/i
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
-var _selectors = __webpack_require__("../../packages/kandy/src/notifications/interface/selectors.js");
+var _selectors2 = __webpack_require__("../../packages/kandy/src/notifications/interface/selectors.js");
 
 var _requests = __webpack_require__("../../packages/kandy/src/notifications/link/requests.js");
 
 var requests = _interopRequireWildcard(_requests);
 
-var _selectors2 = __webpack_require__("../../packages/kandy/src/auth/interface/selectors.js");
-
-var _pako = __webpack_require__("../../node_modules/pako/index.js");
-
-var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
-
-var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
-
-var _reduxSaga = __webpack_require__("../../node_modules/redux-saga/es/index.js");
-
-var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
-
-var _constants = __webpack_require__("../../packages/kandy/src/constants.js");
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Logs
-
-
-// Libraries.
-const INITIAL_BUFFER_SIZE = 10;
 // Get the logger
-
-
-// Constants
-
-
-// Other plugins.
-// Notification plugin.
 const log = (0, _logs.getLogManager)().getLogger('NOTIFICATION');
 
+/**
+ * Unregister for android push notification.
+ * @method enableWebsocketChannelEntry
+ */
+function* enableWebsocketChannelEntry() {
+  yield (0, _effects.takeEvery)(actionTypes.ENABLE_NOTIFICATION_CHANNEL, enableWebsocketChannel);
+}
+
+function* enableWebsocketChannel(action) {
+  if (action.payload.enable) {}
+  // TODO: If websockets are not connected, connect them here.
+
+
+  // TODO: Handle possible error case when connecting websockets.
+  //      Otherwise, plain dispatch to update state.
+  yield (0, _effects.put)(actions.enableNotificationChannelFinish(action.meta.channel, {
+    params: action.payload
+  }));
+}
+
+const INITIAL_BUFFER_SIZE = 10;
+
 function* processNotification() {
-  const config = yield (0, _effects.select)(_selectors.getNotificationConfig);
+  const config = yield (0, _effects.select)(_selectors2.getNotificationConfig);
   var idCache = [];
   /**
    * Checks whether a notification has already been received,
@@ -67248,7 +67496,7 @@ function* processNotification() {
     const action = yield (0, _effects.take)(externalNotifications);
 
     // Only process notifications from enabled channels, ie. "silence" the channel.
-    let channel = yield (0, _effects.select)(_selectors.getNotificationsInfo, action.meta.channel);
+    let channel = yield (0, _effects.select)(_selectors2.getNotificationsInfo, action.meta.channel);
     if (!channel.channelEnabled) {
       log.debug('Notification received on disabled channel. Ignoring it.', action.meta.channel);
       continue;
@@ -67290,6 +67538,15 @@ function* processNotification() {
     }
 
     if (!isDuplicate(notificationId)) {
+      // If we're in the PUSH-only notification mode and
+      // this incoming notification is coming through a channel other than PUSH channel (e.g. WEBSOCKET) and
+      // this notification is for an incoming call
+      if (config.incomingCallNotificationMode === 'push-channel-only' && action.meta.channel !== 'PUSH' && formattedPayload.notificationMessage.eventType === 'call') {
+        // Ignore this call-related notification, but at a minimum generate a log so that user is aware.
+        log.warn('Dropped incoming call notification with id: ' + notificationId + ' received through channel: ' + action.meta.channel + ' because current mode for handling notifications is set to: push-channel-only.');
+        continue;
+      }
+
       yield (0, _effects.put)(actions.notificationReceived(formattedPayload, action.meta.platform));
     } else {
       const error = new Error(`Notification id ${notificationId} is duplicate.`);
@@ -67301,6 +67558,7 @@ function* processNotification() {
     }
   }
 }
+
 /**
  * This function accepts a notification payload. If the payload is a spidr payload
  * and contains an sdpFormat that needs manipulating, it is done here.
@@ -67324,8 +67582,8 @@ function* normalizeSDP(payload) {
     return payload;
   } else if (payload.notificationMessage.sessionParams.sdpFormat === 'url') {
     log.debug('sdpFormat: url. Fetching SDP...');
-    const connection = yield (0, _effects.select)(_selectors2.getConnectionInfo);
-    const { pushRegistration } = yield (0, _effects.select)(_selectors.getNotificationConfig);
+    const connection = yield (0, _effects.select)(_selectors.getConnectionInfo);
+    const { pushRegistration } = yield (0, _effects.select)(_selectors2.getNotificationConfig);
 
     // If a push registration endpoint was configured, use that instead of default.
     if (pushRegistration) {
@@ -67344,122 +67602,146 @@ function* normalizeSDP(payload) {
   }
 }
 
+/***/ }),
+
+/***/ "../../packages/kandy/src/notifications/link/sagas/pushRegistration.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.applePushRegistrationEntry = applePushRegistrationEntry;
+exports.androidPushRegistrationEntry = androidPushRegistrationEntry;
+exports.applePushUnregisterEntry = applePushUnregisterEntry;
+exports.androidPushUnregisterEntry = androidPushUnregisterEntry;
+
+var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
+
+var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
+
+var _selectors = __webpack_require__("../../packages/kandy/src/auth/interface/selectors.js");
+
+var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
+
+var _actionTypes = __webpack_require__("../../packages/kandy/src/notifications/interface/actionTypes.js");
+
+var actionTypes = _interopRequireWildcard(_actionTypes);
+
+var _selectors2 = __webpack_require__("../../packages/kandy/src/notifications/interface/selectors.js");
+
+var _requests = __webpack_require__("../../packages/kandy/src/notifications/link/requests.js");
+
+var requests = _interopRequireWildcard(_requests);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Get the logger
+
+// Logs
+const log = (0, _logs.getLogManager)().getLogger('NOTIFICATION');
+
+/**
+ * Register for apple push notification
+ * @method applePushRegistrationEntry
+ */
+
+// Other plugins.
+// Libraries.
+function* applePushRegistrationEntry() {
+  yield (0, _effects.takeEvery)(actionTypes.REGISTER_APPLE_PUSH_NOTIFICATION, registerPushDeviceToken);
+}
+
+/**
+ * Register for android push notification
+ * @method androidPushRegistrationEntry
+ */
+function* androidPushRegistrationEntry() {
+  yield (0, _effects.takeEvery)(actionTypes.REGISTER_ANDROID_PUSH_NOTIFICATION, registerPushDeviceToken);
+}
+
 /**
  * Saga for registering a device token for push notifications.
  * @method registerPushDeviceToken
  */
-function* registerPushDeviceToken() {
-  // Redux-saga take() pattern.
-  // Take 'enable PUSH channel' actions.
-  function takePushRegistrations(action) {
-    return action.type === actionTypes.ENABLE_NOTIFICATION_CHANNEL && action.meta.channel === 'PUSH' && action.payload.channelEnabled;
+function* registerPushDeviceToken(action) {
+  // Wait for a registration action.
+  const connection = yield (0, _effects.select)(_selectors.getConnectionInfo);
+  const { pushRegistration } = yield (0, _effects.select)(_selectors2.getNotificationConfig);
+
+  // If a push registration endpoint was configured, use that instead of default.
+  if (pushRegistration) {
+    connection.server = (0, _fp.defaults)(connection.server, pushRegistration);
+    connection.protocol = (0, _fp.defaults)(connection.protocol, pushRegistration);
+    connection.port = (0, _fp.defaults)(connection.port, pushRegistration);
+    connection.version = (0, _fp.defaults)(connection.version, pushRegistration);
   }
 
-  while (true) {
-    // Wait for a registration action.
-    const action = yield (0, _effects.take)(takePushRegistrations);
+  log.debug('Registering device token for push notifications.');
+  const response = yield (0, _effects.call)(requests.pushNotificationsRegistration, connection, (0, _extends3.default)({}, action.payload));
 
-    // TODO: This saga's request won't work using Link. Link requires the token
-    //      as a query string parameter.
-    const connection = yield (0, _effects.select)(_selectors2.getConnectionInfo);
-    const { pushRegistration, realm, bundleId } = yield (0, _effects.select)(_selectors.getNotificationConfig);
-
-    // If a push registration endpoint was configured, use that instead of default.
-    if (pushRegistration) {
-      connection.server = (0, _fp.defaults)(connection.server, pushRegistration);
-      connection.protocol = (0, _fp.defaults)(connection.protocol, pushRegistration);
-      connection.port = (0, _fp.defaults)(connection.port, pushRegistration);
-      connection.version = (0, _fp.defaults)(connection.version, pushRegistration);
-    }
-
-    connection.realm = realm;
-
-    log.debug('Registering device token for push notifications.');
-    const response = yield (0, _effects.call)(requests.pushNotificationsRegistration, connection, (0, _extends3.default)({}, action.payload, {
-      bundleId
-    }));
-
-    if (response.error) {
-      yield (0, _effects.put)(actions.enableNotificationChannelFinish(action.meta.channel, {
-        params: action.payload,
-        error: response.text
-      }));
-    } else {
-      yield (0, _effects.put)(actions.enableNotificationChannelFinish(action.meta.channel, {
-        params: {
-          channelEnabled: action.payload.channelEnabled,
-          registration: response.registration,
-          services: response.subscriptionParams.service
-        }
-      }));
-    }
+  if (response.error) {
+    // Failed to create registration, reject the deferred result.
+    yield (0, _effects.call)([action.meta.deferred, 'reject'], {
+      error: response.text
+    });
+  } else {
+    // Successfully created registration, resolve the deferred result and respond with the registration.
+    yield (0, _effects.call)([action.meta.deferred, 'resolve'], response.registration);
   }
+}
+
+/**
+ * Unregister for apple push notification
+ * @method applePushUnregisterEntry
+ */
+function* applePushUnregisterEntry() {
+  yield (0, _effects.takeEvery)(actionTypes.UNREGISTER_APPLE_PUSH_NOTIFICATION, unregisterPushDeviceToken);
+}
+
+/**
+ * Unregister for android push notification.
+ * @method androidPushUnregisterEntry
+ */
+function* androidPushUnregisterEntry() {
+  yield (0, _effects.takeEvery)(actionTypes.UNREGISTER_ANDROID_PUSH_NOTIFICATION, unregisterPushDeviceToken);
 }
 
 /**
  * Saga for deregistering a device token for push notifications.
  * @method deregisterPushDeviceToken
  */
-function* deregisterPushDeviceToken() {
-  // Redux-saga take() pattern.
-  // Take 'disable PUSH channel' actions.
-  function takePushDeregistrations(action) {
-    return action.type === actionTypes.ENABLE_NOTIFICATION_CHANNEL && action.meta.channel === 'PUSH' && !action.payload.channelEnabled;
+function* unregisterPushDeviceToken(action) {
+  const connection = yield (0, _effects.select)(_selectors.getConnectionInfo);
+  const { pushRegistration } = yield (0, _effects.select)(_selectors2.getNotificationConfig);
+
+  // If a push registration endpoint was configured, use that instead of default.
+  if (pushRegistration) {
+    connection.server = (0, _fp.defaults)(connection.server, pushRegistration);
+    connection.protocol = (0, _fp.defaults)(connection.protocol, pushRegistration);
+    connection.port = (0, _fp.defaults)(connection.port, pushRegistration);
+    connection.version = (0, _fp.defaults)(connection.version, pushRegistration);
   }
 
-  while (true) {
-    // Wait for a deregistration action.
-    const action = yield (0, _effects.take)(takePushDeregistrations);
-
-    // TODO: This saga's request won't work using Link. Link requires the token
-    //      as a query string parameter.
-    const connection = yield (0, _effects.select)(_selectors2.getConnectionInfo);
-    const { pushRegistration, realm } = yield (0, _effects.select)(_selectors.getNotificationConfig);
-
-    // If a push registration endpoint was configured, use that instead of default.
-    if (pushRegistration) {
-      connection.server = (0, _fp.defaults)(connection.server, pushRegistration);
-      connection.protocol = (0, _fp.defaults)(connection.protocol, pushRegistration);
-      connection.port = (0, _fp.defaults)(connection.port, pushRegistration);
-      connection.version = (0, _fp.defaults)(connection.version, pushRegistration);
-    }
-    connection.realm = realm;
-
-    const pushInfo = yield (0, _effects.select)(_selectors.getNotificationsInfo, action.meta.channel);
-    log.debug('De-registering device token for push notifications.');
-    const response = yield (0, _effects.call)(requests.pushNotificationsDeRegistration, connection, pushInfo);
-    if (response.error) {
-      yield (0, _effects.put)(actions.enableNotificationChannelFinish(action.meta.channel, {
-        params: action.payload,
-        error: response.text
-      }));
-    } else {
-      yield (0, _effects.put)(actions.enableNotificationChannelFinish(action.meta.channel, {
-        params: action.payload
-      }));
-    }
-  }
-}
-
-function* enableWebsocketChannel() {
-  // Redux-saga take() pattern.
-  // Take 'WEBSOCKET channel' actions.
-  function takeWebsocketChannel(action) {
-    return action.type === actionTypes.ENABLE_NOTIFICATION_CHANNEL && action.meta.channel === 'WEBSOCKET';
-  }
-
-  while (true) {
-    const action = yield (0, _effects.take)(takeWebsocketChannel);
-
-    if (action.payload.enable) {}
-    // TODO: If websockets are not connected, connect them here.
-
-
-    // TODO: Handle possible error case when connecting websockets.
-    //      Otherwise, plain dispatch to update state.
-    yield (0, _effects.put)(actions.enableNotificationChannelFinish(action.meta.channel, {
-      params: action.payload
-    }));
+  log.debug('Un-registering device token for push notifications.');
+  const response = yield (0, _effects.call)(requests.pushNotificationsDeRegistration, connection, {
+    registration: action.payload.registration
+  });
+  if (response.error) {
+    yield (0, _effects.call)([action.meta.deferred, 'reject'], {
+      error: response.text
+    });
+  } else {
+    yield (0, _effects.call)([action.meta.deferred, 'resolve'], undefined);
   }
 }
 
@@ -68735,6 +69017,10 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
 
+var _selectors = __webpack_require__("../../packages/kandy/src/request/interface/selectors.js");
+
+var _version = __webpack_require__("../../packages/kandy/src/common/version.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 /**
@@ -68765,6 +69051,15 @@ function* requestSaga(options, commonOptions) {
   // Merge any extra request options into the provided options
   //      for this request. Priority is for the passed-in options.
   options = (0, _utils.mergeValues)(commonOptions, options);
+
+  const useCustomHeader = yield (0, _effects.select)(_selectors.injectAgentVersionHeader);
+  if (useCustomHeader) {
+    options = (0, _utils.mergeValues)(options, {
+      headers: {
+        'X-Cpaas-Agent': `cpaas-js-sdk/${(0, _version.getVersion)()}`
+      }
+    });
+  }
 
   const requestAction = yield (0, _effects.put)(actions.request(options));
   const responseAction = yield (0, _effects.take)(action => action.type === _actionTypes.RESPONSE && (0, _fp.get)('meta.requestId', action) === requestAction.meta.requestId);
@@ -68817,11 +69112,16 @@ var _utils = __webpack_require__("../../packages/kandy/src/common/utils.js");
 
 var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
+var _actions2 = __webpack_require__("../../packages/kandy/src/config/interface/actions.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const { fetch } = (0, _fetchPonyfill2.default)({ Promise: _promise2.default });
+
+// State setters.
+
 const log = (0, _logs.getLogManager)().getLogger('REQUEST');
 
 /**
@@ -68842,13 +69142,32 @@ const contentTypes = (0, _freeze2.default)({
   octetStream: 'application/octet-stream'
 });
 
-/*
- * HTTP request plugin.
+const pluginName = 'requests';
+
+/**
+ * Configurable properties 'published' by this "Request" plugin.
+ *
+ * @property {boolean} injectAgentVersionHeader Option to automatically inject an agent version header to every REST request.
+ *            This header is used to help with diagnostics and analytics in a completely anonymous fashion.
+ *            TODO: Set it to 'true' after server side whitelists that actual custom header.
  */
-function request() {
+const defaultOptions = {
+  injectAgentVersionHeader: false
+
+  /*
+   * HTTP request plugin.
+   */
+};function request(options = {}) {
+  options = (0, _utils.mergeValues)(defaultOptions, options);
+
+  function* init() {
+    yield (0, _effects.put)((0, _actions2.update)(options, pluginName));
+  }
+
   return {
     sagas: [watchRequests],
-    name: 'requests'
+    name: pluginName,
+    init
   };
 }
 
@@ -69118,6 +69437,28 @@ function response(requestId, result, error = false) {
       requestId: requestId
     }
   };
+}
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/request/interface/selectors.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.injectAgentVersionHeader = injectAgentVersionHeader;
+/**
+ * Retrieves the flag which specifies wether or not this SDK should use a custom header as part of any requests being sent to server.
+ * This custom header refers to the current agent version.
+ * @param {Object} state  The current Redux state object.
+ * @return {boolean} True if custom header should be used, false otherwise.
+ */
+function injectAgentVersionHeader(state) {
+  return state.config.requests.injectAgentVersionHeader;
 }
 
 /***/ }),
@@ -72179,6 +72520,384 @@ function getMediaByCallId(state, callId) {
  */
 function getBrowserDetails(state) {
   return state.webrtc.browser;
+}
+
+/***/ }),
+
+/***/ "../../packages/logger/src/constants.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Log levels supported by Loggers.
+ * When a level is set, all logs of that level and higher will be logged.
+ * @type {Object}
+ */
+const logLevels = exports.logLevels = {
+  TRACE: 'TRACE',
+  DEBUG: 'DEBUG',
+  INFO: 'INFO',
+  WARN: 'WARN',
+  ERROR: 'ERROR',
+  SILENT: 'SILENT'
+
+  /**
+   * Numeric values for each log level.
+   * When a level is set, all logs of that level and higher will be logged.
+   * @type {Object}
+   */
+};const levelValues = exports.levelValues = {
+  TRACE: 0,
+  DEBUG: 1,
+  INFO: 2,
+  WARN: 3,
+  ERROR: 4,
+  SILENT: 5
+};
+
+/***/ }),
+
+/***/ "../../packages/logger/src/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.logLevels = undefined;
+
+var _logManager = __webpack_require__("../../packages/logger/src/logManager.js");
+
+var _logManager2 = _interopRequireDefault(_logManager);
+
+var _constants = __webpack_require__("../../packages/logger/src/constants.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Package main.
+ */
+
+// Main export is the manager's factory function.
+exports.default = _logManager2.default;
+
+// Named export for the log level constants the package uses / expects.
+
+const logLevels = exports.logLevels = _constants.logLevels;
+
+/***/ }),
+
+/***/ "../../packages/logger/src/logHandler.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = defaultLogHandler;
+/**
+ * Default function for the SDK to use for logging.
+ *    Uses entry information to form a prefix, then logs to console.
+ * @method defaultLogHandler
+ * @param  {LogEntry} entry
+ */
+function defaultLogHandler(entry) {
+  // Compile the meta info of the log for a prefix.
+  const { timestamp, level, method, target } = entry;
+  const logInfo = `${timestamp} - ${target.type} - ${level}`;
+
+  // Assume that the first message parameter is a string.
+  const [log, ...extra] = entry.messages;
+
+  console[method](`${logInfo} - ${log}`, ...extra);
+}
+
+/***/ }),
+
+/***/ "../../packages/logger/src/logManager.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _values = __webpack_require__("../../node_modules/babel-runtime/core-js/object/values.js");
+
+var _values2 = _interopRequireDefault(_values);
+
+exports.default = createManager;
+
+var _logger = __webpack_require__("../../packages/logger/src/logger.js");
+
+var _logger2 = _interopRequireDefault(_logger);
+
+var _logHandler = __webpack_require__("../../packages/logger/src/logHandler.js");
+
+var _logHandler2 = _interopRequireDefault(_logHandler);
+
+var _constants = __webpack_require__("../../packages/logger/src/constants.js");
+
+var _validation = __webpack_require__("../../packages/logger/src/validation.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Creates a Log Manager.
+ * @method createManager
+ * @param  {Object}     [options={}]
+ * @param  {Function}   [options.handler] The function to receive/handle log entries.
+ * @param  {string}     [options.level='INFO'] The log level to be set.
+ * @return {LogManager}
+ */
+function createManager(options = {}) {
+  /*
+   * This log is pointless, but is here to workaround a weird issue in Chrome.
+   * The Chrome console will lag when it is loading the sourcemap for a file.
+   *    Logging from the SDK will force Chrome to load its sourcemap (if its
+   *    not already loaded). So this ensures that /something/ is logged from the
+   *    SDK file as early as possible, to help avoid this lag being visible to
+   *    a developer.
+   */
+  console.debug(`Creating LogManager.`);
+
+  let handler = options.handler ? (0, _validation.checkHandler)(options.handler) : _logHandler2.default;
+  let level = options.level ? (0, _validation.checkLevel)(options.level) : _constants.logLevels.INFO;
+  const loggers = {};
+
+  /**
+   * Gets a specific logger. If the logger doesn't exist, a new one will be
+   *    created.
+   * @method getLogger
+   * @param  {string} type Human-readable type/name for the logger.
+   * @param  {string} [id] A unique identifier for the logger.
+   * @return {Logger}
+   */
+  function getLogger(type, id) {
+    // Combine the name and ID to create the "full" logger name.
+    const loggerName = id ? `${type}-${id}` : type;
+
+    let logger = loggers[loggerName];
+    // If the logger does not exist, create a new one.
+    if (!logger) {
+      // This logger logs items from a specific "target".
+      const target = { type, id, name: loggerName };
+      logger = (0, _logger2.default)(target, { level, handler });
+
+      // Save the new logger to be returned by future getter cals.
+      loggers[loggerName] = logger;
+    }
+
+    return logger;
+  }
+
+  /**
+   * Gets all created loggers, or Loggers of a specific type.
+   * @method getLoggers
+   * @param {string} [type] The type of Loggers to retrieve.
+   * @return {Array<Logger>} List of Loggers.
+   */
+  function getLoggers(type) {
+    if (type) {
+      return (0, _values2.default)(loggers).filter(logger => logger.type === type);
+    } else {
+      return (0, _values2.default)(loggers);
+    }
+  }
+
+  return {
+    getLogger,
+    getLoggers,
+    get handler() {
+      return handler;
+    },
+    set handler(newHandler) {
+      handler = (0, _validation.checkHandler)(newHandler);
+    },
+    set level(newLevel) {
+      level = (0, _validation.checkLevel)(newLevel);
+    },
+    get level() {
+      return level;
+    }
+  };
+}
+
+/***/ }),
+
+/***/ "../../packages/logger/src/logger.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createLogger;
+
+var _constants = __webpack_require__("../../packages/logger/src/constants.js");
+
+var _validation = __webpack_require__("../../packages/logger/src/validation.js");
+
+/**
+ * Creates a Logger.
+ * @method createLogger
+ * @param  {Object}   target          The subject of the logs from this logger.
+ * @param  {Object}   options
+ * @param  {Function} options.handler The function to receive/handle log entries.
+ * @param  {string}   options.level   The log level to be set.
+ * @return {Logger}
+ */
+function createLogger(target, options = {}) {
+  // Validate provided options. Do not let invalid options be set.
+  const level = (0, _validation.checkLevel)(options.level);
+  const handler = (0, _validation.checkHandler)(options.handler);
+
+  /**
+   * Currying function to dynamically create the Logger's logging methods.
+   * @method logFunc
+   * @param  {string} method Name of the logger method to create.
+   * @return {Function} A log method.
+   */
+  function logFunc(method) {
+    // The level that this function logs at.
+    let logLevel;
+    // Consider non-standard log levels to be debug.
+    if (['group', 'groupEnd', 'groupCollapsed', 'log'].includes(method)) {
+      logLevel = _constants.logLevels.DEBUG;
+    } else {
+      // Otherwise, the method and log level match directly.
+      logLevel = _constants.logLevels[method.toUpperCase()];
+    }
+
+    /*
+     * Return the function that will be used as `log.<method>`.
+     */
+    return function (...args) {
+      // Compare the logged level and the configured level.
+      const setLevel = _constants.levelValues[logger.level];
+      const shouldLog = _constants.levelValues[logLevel] >= setLevel;
+      // If this entry shouldn't be logged, don't do anything.
+      if (!shouldLog) {
+        return;
+      }
+
+      // Create the Log Entry to be handed off to the handler.
+      const entry = {
+        // Meta-info about the log.
+        method,
+        timestamp: Date.now(),
+        level: logLevel,
+        target: logger.target,
+        // The actual arguments logged.
+        messages: [...args]
+      };
+
+      logger.handler(entry);
+    };
+  }
+
+  const logger = {
+    target,
+    level,
+    handler
+
+    // Supported console methods.
+  };const consoleMethods = ['trace', 'debug', 'warn', 'info', 'error', 'log', 'group', 'groupEnd', 'groupCollapsed'];
+
+  const api = {
+    get handler() {
+      return logger.handler;
+    },
+    set handler(handler) {
+      logger.handler = (0, _validation.checkHandler)(handler);
+    },
+    get level() {
+      return logger.level;
+    },
+    set level(newLevel) {
+      logger.level = (0, _validation.checkLevel)(newLevel);
+    },
+    get type() {
+      return logger.target.type;
+    },
+    get id() {
+      return logger.target.id;
+    },
+    get name() {
+      return logger.target.name;
+    }
+  };
+
+  // For all supported log methods, create a function on the Logger for it.
+  consoleMethods.forEach(method => {
+    api[method] = logFunc(method);
+  });
+
+  return api;
+}
+
+/***/ }),
+
+/***/ "../../packages/logger/src/validation.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.checkLevel = checkLevel;
+exports.checkHandler = checkHandler;
+
+var _constants = __webpack_require__("../../packages/logger/src/constants.js");
+
+/**
+ * Helper function to validate a "log level" string before its used in the library.
+ * @method checkLevel
+ * @param  {string} level A log level provided by a user.
+ * @return {string}       The log level as expected by the library.
+ * @throws Will throw an error if the `level` parameter is invalid.
+ */
+function checkLevel(level) {
+  // Ensure: is defined and is a string.
+  const upperLevel = level && level.toUpperCase && level.toUpperCase();
+
+  // Ensure: is a supported log level.
+  if (upperLevel && _constants.logLevels[upperLevel]) {
+    return _constants.logLevels[upperLevel];
+  } else {
+    throw new Error('Provided level is not a valid log level.');
+  }
+}
+
+/**
+ * Helper function to validate a "log handler".
+ * Basically just "is function" that throws an error if false.
+ * @method checkHandler
+ * @param  {Function} handler A log handler function, ideally.
+ * @return {Function}         The same log handler function, ideally.
+ * @throws Will throw an error if the `handler` provided is not a function.
+ */
+function checkHandler(handler) {
+  if (handler && typeof handler === 'function') {
+    return handler;
+  } else {
+    throw new Error('Provided log handler is not a function.');
+  }
 }
 
 /***/ }),

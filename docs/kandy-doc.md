@@ -124,6 +124,7 @@ Configuration options for the call feature.
     -   `call.useRelay` **[boolean][10]** Whether we should force connection through the relay candidates (i.e. TURN server). Mostly used for testing. (optional, default `false`)
     -   `call.trickleIceSupport` **[string][7]** Whether we should advertise and use Trickle ICE. Accepted value is one of: 'none', 'half' or 'full'. (optional, default `'none'`)
     -   `call.continuity` **[boolean][10]** Whether an existing voice call can be persisted, as a mobile phone moves between circuit switched and packet switched domains (e.g. GSM to WiFi). (optional, default `false`)
+    -   `call.resyncOnConnect` **[boolean][10]** Whether all active calls should be resynched upon connecting or reconnecting to the websocket (requires Kandy Link 4.7.1+). (optional, default `false`)
 
 ### config.connectivity
 
@@ -148,13 +149,12 @@ Configuration options for the notification feature.
 
 -   `notifications` **[Object][6]** The notifications configuration object.
     -   `notifications.idCacheLength` **[number][11]** Default amount of event ids to remember for de-duplication purposes. (optional, default `100`)
+    -   `notifications.incomingCallNotificationMode` **[string][7]** Communication channel mode used for incoming call notifications. Supported values are 'any-channel' or 'push-channel-only'. (optional, default `'any-channel'`)
     -   `notifications.pushRegistration` **[Object][6]?** Object describing the server to use for push services.
         -   `notifications.pushRegistration.server` **[string][7]?** Hostname for the push registration server.
         -   `notifications.pushRegistration.port` **[string][7]?** Port for the push registration server.
         -   `notifications.pushRegistration.protocol` **[string][7]?** Protocol for the push registration server.
         -   `notifications.pushRegistration.version` **[string][7]?** Version for the push registration server.
-    -   `notifications.realm` **[string][7]?** The realm used for push notifications
-    -   `notifications.bundleId` **[string][7]?** The bundle id used for push notifications
 
 ## devices:change
 
@@ -209,6 +209,36 @@ An error has occurred when changing local video preview status.
 The 'api' is the type returned by the create function.
 It contains various top-level functions that pertain to SDK global instance
 as well as several nested namespaces that pertain to various features (e.g. call, contacts, presence, etc).
+
+### getVersion
+
+Returns the current version of the API.
+
+### destroy
+
+Destroys the SDK, and removes its state, rendering the SDK unusable.
+Useful when a user logs out and their call data needs to be destroyed.
+The SDK must be recreated to be usable again.
+
+**Examples**
+
+```javascript
+// Instantiate the SDK.
+import { create } from 'kandy'
+const config = {
+    authentication: { ... },
+    logs: { ... },
+    ...
+}
+let client = create(config);
+client.on( ... )
+// Use the SDK
+...
+// Destroy the SDK, then recreate on the next step
+client.destroy()
+client = create(config)
+client.on( ... )
+```
 
 ### getConfig
 
@@ -1073,6 +1103,45 @@ If a conversation with the given user ID already exists in the store, it will be
 
 Returns **[conversation.Conversation][18]** A Conversation object.
 
+### Message
+
+A Message object is a means by which a sender can deliver information to a recipient.
+
+Creating and sending a message:
+
+A message object can be obtained through the [Conversation.createMessage][19] API on an existing conversation.
+
+Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
+Once all the desired parts have been added to the message using the [Message.addPart][20] function,
+the message can then be sent using the [Message.send][21] function.
+
+Once the sender sends a message, this message is saved in sender's state as an object.
+Similarly, once the recipient gets a message, this message is saved in recipient's state.
+
+Retrieving a delivered message:
+
+Once a message is delivered successfully, it can be
+obtained through the [Conversation.getMessages][22] or [Conversation.getMessage][23] API on an existing conversation.
+
+Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
+
+Type: [Object][6]
+
+**Properties**
+
+-   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
+-   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
+-   `sender` **[string][7]** The primary contact address of the sender.
+-   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
+-   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
+    than the one associated with the message object stored in recipient's state.
+-   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][24] for valid types.
+    This property applies only to message objects stored in sender's state.
+
+#### send
+
+Sends the message.
+
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
@@ -1101,7 +1170,7 @@ Create and return a message object. You must provide a `text` part as demonstrat
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[conversation.Message][20]** The newly created Message object.
+Returns **[conversation.Message][25]** The newly created Message object.
 
 #### clearMessages
 
@@ -1161,45 +1230,6 @@ Messages can then be retrieved using getMessages.
 
 -   `amount` **[number][11]** An amount of messages to fetch. (optional, default `50`)
 
-### Message
-
-A Message object is a means by which a sender can deliver information to a recipient.
-
-Creating and sending a message:
-
-A message object can be obtained through the [Conversation.createMessage][19] API on an existing conversation.
-
-Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
-Once all the desired parts have been added to the message using the [Message.addPart][21] function,
-the message can then be sent using the [Message.send][22] function.
-
-Once the sender sends a message, this message is saved in sender's state as an object.
-Similarly, once the recipient gets a message, this message is saved in recipient's state.
-
-Retrieving a delivered message:
-
-Once a message is delivered successfully, it can be
-obtained through the [Conversation.getMessages][23] or [Conversation.getMessage][24] API on an existing conversation.
-
-Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
-
-Type: [Object][6]
-
-**Properties**
-
--   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
--   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
--   `sender` **[string][7]** The primary contact address of the sender.
--   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
--   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
-    than the one associated with the message object stored in recipient's state.
--   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][25] for valid types.
-    This property applies only to message objects stored in sender's state.
-
-#### send
-
-Sends the message.
-
 ## DEVICE_ERROR
 
 An error occurred while performing a device operation.
@@ -1237,6 +1267,47 @@ Possible levels for the SDK logger.
 -   `INFO` **[string][7]** Log useful information and messages to indicate the SDK's internal operations.
 -   `DEBUG` **[string][7]** Log information to help diagnose problematic behaviour.
 
+### LogEntry
+
+A LogEntry object is the data that the SDK compiles when information is
+   logged. It contains both the logged information and meta-info about when
+   and who logged it.
+
+A [LogHandler][4] provided to the SDK (see
+   [config.logs][26]) will need to handle LogEntry
+   objects.
+
+Type: [Object][6]
+
+**Properties**
+
+-   `timestamp` **[number][11]** When the log was created, based on UNIX epoch.
+-   `method` **[string][7]** The log function that was used to create the log.
+-   `level` **[string][7]** The level of severity the log.
+-   `target` **[Object][6]** The subject that the log is about.
+    -   `target.type` **[string][7]** The type of the target. This is also
+           used as part of the name of the Logger.
+    -   `target.id` **[string][7]?** A unique identifer for the target.
+    -   `target.name` **[string][7]** A combination of the target type and ID. If no
+           id was provided, this will be the same as the type.
+-   `messages` **[Array][12]** The logged information, given to the Logger
+       method as parameters.
+
+**Examples**
+
+```javascript
+function defaultLogHandler (logEntry) {
+  // Compile the meta info of the log for a prefix.
+  const { timestamp, level, method, target } = logEntry
+  const logInfo = `${timestamp} - ${target.type} - ${level}`
+
+  // Assume that the first message parameter is a string.
+  const [log, ...extra] = logEntry.messages
+
+  console[method](`${logInfo} - ${log}`, ...extra)
+}
+```
+
 ### LogHandler
 
 A LogHandler can be used to customize how the SDK should log information. By
@@ -1260,7 +1331,7 @@ Type: [Function][15]
 function logHandler (logEntry) {
   // Compile the meta info of the log for a prefix.
   const { timestamp, level, method, target } = logEntry
-  const logInfo = `${timestamp} - ${target.name} - ${level}`
+  const logInfo = `${timestamp} - ${target.type} - ${level}`
 
   // Assume that the first message parameter is a string.
   const [log, ...extra] = logEntry.messages
@@ -1272,45 +1343,6 @@ function logHandler (logEntry) {
 const configs = { ... }
 configs.logs.handler = logHandler
 const client = create(configs)
-```
-
-### LogEntry
-
-A LogEntry object is the data that the SDK compiles when information is
-   logged. It contains both the logged information and meta-info about when
-   and who logged it.
-
-A [LogHandler][4] provided to the SDK (see
-   [config.logs][26]) will need to handle LogEntry
-   objects.
-
-Type: [Object][6]
-
-**Properties**
-
--   `timestamp` **[number][11]** When the log was created, based on UNIX epoch.
--   `method` **[string][7]** The log function that was used to create the log.
--   `level` **[string][7]** The level of severity the log.
--   `target` **[Object][6]** The subject that the log is about.
-    -   `target.name` **[string][7]** The name of the target. This is also
-           used as the name of the Logger.
-    -   `target.id` **[string][7]?** A unique identifer for the target.
--   `messages` **[Array][12]** The logged information, given to the Logger
-       method as parameters.
-
-**Examples**
-
-```javascript
-function defaultLogHandler (logEntry) {
-  // Compile the meta info of the log for a prefix.
-  const { timestamp, level, method, target } = logEntry
-  const logInfo = `${timestamp} - ${target.name} - ${level}`
-
-  // Assume that the first message parameter is a string.
-  const [log, ...extra] = logEntry.messages
-
-  console[method](`${logInfo} - ${log}`, ...extra)
-}
 ```
 
 ## Media
@@ -1333,21 +1365,71 @@ Provides an external notification to the system for processing.
 -   `notification` **[Object][6]** 
 -   `channel` **[string][7]?** The channel that the notification came from.
 
-### registerPush
+### registerApplePush
 
-Registers a device token for push notifications.
+Registers with Apple push notification service. Once registration is successful, the application will be able to receive
+standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][27]
+in order for the SDK to process them.
 
 **Parameters**
 
 -   `params` **[Object][6]** 
-    -   `params.deviceToken` **[string][7]** The device token to be registered.
-    -   `params.services` **[Array][12]&lt;[string][7]>** Array of services to register for.
-    -   `params.pushProvider` **[string][7]** The push provider, can be either 'apple' or 'google'.
+    -   `params.services` **[Array][12]&lt;[string][7]>** Array of services for which we wish to receive notifications.
+    -   `params.voipDeviceToken` **[string][7]** The voip device token used for voip push on iOS.
+                                                 This token is required if registering for call service notifications on iOS.
+    -   `params.standardDeviceToken` **[string][7]** The standardDevice token used for standard push on iOS .
+                                                     This token is required when registering for non-call service notifications.
+    -   `params.bundleId` **[string][7]** The bundleId to identify the application receiving the push notification.
     -   `params.clientCorrelator` **[string][7]** Unique identifier for a client device.
+    -   `params.realm` **[string][7]** The realm used by the push registration service to identify and
+                                       establish a connection with the service gateway.
+    -   `params.isProduction` **[boolean][10]** If true, push notification will be sent to production.
+                                               If false, push notification will be sent to sandbox.
 
-### deregisterPush
+Returns **[Promise][28]** When successful,  the information of the registration.
+                  Promise will reject with error object otherwise.
 
-Deregisters for push notifications.
+### registerAndroidPush
+
+Registers with Google push notification service. Once registration is successful, the application will be able to receive
+standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][27]
+in order for the SDK to process them.
+
+**Parameters**
+
+-   `params` **[Object][6]** 
+    -   `params.services` **[Array][12]&lt;[string][7]>** Array of services to register for.
+    -   `params.deviceToken` **[string][7]** The device token used for standard push on Android. This token is required
+                                             when registering for all related services notifications.
+    -   `params.bundleId` **[string][7]** The bundleId to identify the application receiving the push notification.
+    -   `params.clientCorrelator` **[string][7]** Unique identifier for a client device.
+    -   `params.realm` **[string][7]** The realm used by the push registration service to identify
+                                       and establish a connection with the service gateway.
+
+Returns **[Promise][28]** When successful,  the information of the registration.
+                  Promise will reject with error object otherwise.
+
+### unregisterApplePush
+
+Unregister Apple push notifications.
+
+**Parameters**
+
+-   `registrationInfo` **[string][7]** The data returned from the push registration
+
+Returns **[Promise][28]** When successful, the promise will resolve with undefined.
+                  Promise will reject with error object otherwise.
+
+### unregisterAndroidPush
+
+Unregister Android push notifications.
+
+**Parameters**
+
+-   `registrationInfo` **[string][7]** The data returned from the push registration
+
+Returns **[Promise][28]** When successful, the promise will resolve with undefined.
+                  Promise will reject with error object otherwise.
 
 ### enableWebsocket
 
@@ -1365,11 +1447,11 @@ The 'presence' namespace provides an interface for an application to set the
 
 Presence information is persisted by the server. When the SDK is initialized,
    there will be no information available. Presence information will become
-   available either by using [presence.fetch][27] or by subscribing for
-   updates about other Users, using [presence.subscribe][28].
+   available either by using [presence.fetch][29] or by subscribing for
+   updates about other Users, using [presence.subscribe][30].
 
-Available presence information can be retrieved using [presence.get][29] or
-   [presence.getAll][30].
+Available presence information can be retrieved using [presence.get][31] or
+   [presence.getAll][32].
 
 ### statuses
 
@@ -1407,22 +1489,22 @@ Possible activity values.
 
 The PresenceStatus type defines the user's current status in terms of the user's availability to
 communicate/respond to other users in the network.
-An instance of this type can be obtained by invoking the [presence.get][29] function.
+An instance of this type can be obtained by invoking the [presence.get][31] function.
 
 Reporting when a user is on the phone is enabled (by default), which means that presence update notifications
 will be sent whenever a user is in a call, as well as when the call has ended.
 This is a user preference enabled or disabled on server side, and it can only be changed on the server side.
 
-The status is set to [open][31] as soon as a user subscribes for the presence service.
+The status is set to [open][33] as soon as a user subscribes for the presence service.
 
 Type: [Object][6]
 
 **Properties**
 
 -   `userId` **[string][7]** The unique identifier for the user associated with this presence status.
--   `status` **[string][7]** The current status the user has set for themselves. For supported values see [presence.statuses][31].
+-   `status` **[string][7]** The current status the user has set for themselves. For supported values see [presence.statuses][33].
 -   `activity` **[string][7]** The current activity of the user.
-         For supported values see [presence.activities][32].
+         For supported values see [presence.activities][34].
 -   `note` **[string][7]** Additional message acompanying the status & activity.
 -   `loading` **[boolean][10]** Whether the presence information has been loaded or is in the process of loading.
 
@@ -1430,16 +1512,16 @@ Type: [Object][6]
 
 Updates the presence information for the current user.
 
-See [presence.statuses][31] and [presence.activities][32] for valid
+See [presence.statuses][33] and [presence.activities][34] for valid
    values.
 
 The SDK will emit a
-   [presence:selfChange][33] event
+   [presence:selfChange][35] event
    when the operation completes. The updated presence information is
-   available and can be retrieved with [presence.getSelf][34].
+   available and can be retrieved with [presence.getSelf][36].
 
 Other users subscribed for this user's presence will receive a
-   [presence:change][35] event.
+   [presence:change][37] event.
 
 **Parameters**
 
@@ -1467,7 +1549,7 @@ Returns **[Array][12]&lt;[Object][6]>** List of user presence information.
 
 Retrieves the presence information for the current user.
 
-This information is set using the [presence.update][36] API.
+This information is set using the [presence.update][38] API.
 
 Returns **[Object][6]** Presence information for the current user.
 
@@ -1477,7 +1559,7 @@ Fetches presence information for the given users. This will refresh the
    available information with any new information from the server.
 
 Available presence information an be retrieved using the
-   [presence.get][29] or [presence.getAll][30] APIs.
+   [presence.get][31] or [presence.getAll][32] APIs.
 
 **Parameters**
 
@@ -1488,7 +1570,7 @@ Available presence information an be retrieved using the
 Subscribe to another User's presence updates.
 
 When the User updates their presence information, the SDK will emit a
-   [presence:change][35] event.
+   [presence:change][37] event.
 
 **Parameters**
 
@@ -1514,7 +1596,7 @@ Prompt the user for permission to use their audio and/or video devices.
 
 ## sdpHandlers
 
-A set of [SdpHandlerFunction][37]s for manipulating SDP information.
+A set of [SdpHandlerFunction][39]s for manipulating SDP information.
 These handlers are used to customize low-level call behaviour for very specific
 environments and/or scenarios. They can be provided during SDK instantiation
 to be used for all calls.
@@ -1672,12 +1754,12 @@ Type: [Object][6]
 
 Fetches information about a User.
 
-The SDK will emit a [users:change][38]
+The SDK will emit a [users:change][40]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][39] API.
+   [user.get][41] API.
 
 **Parameters**
 
@@ -1686,36 +1768,36 @@ Information about an available User can be retrieved using the
 ### fetchSelfInfo
 
 Fetches information about the current User from directory.
-Compared to [user.fetch][40] API, this API retrieves additional user related information.
+Compared to [user.fetch][42] API, this API retrieves additional user related information.
 
-The SDK will emit a [users:change][38]
+The SDK will emit a [users:change][40]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][39] API.
+   [user.get][41] API.
 
 ### get
 
 Retrieves information about a User, if available.
 
-See the [user.fetch][40] and [user.search][41] APIs for details about
+See the [user.fetch][42] and [user.search][43] APIs for details about
    making Users' information available.
 
 **Parameters**
 
 -   `userId` **user.UserID** The User ID of the user.
 
-Returns **[user.User][42]** The User object for the specified user.
+Returns **[user.User][44]** The User object for the specified user.
 
 ### getAll
 
 Retrieves information about all available Users.
 
-See the [user.fetch][40] and [user.search][41] APIs for details about
+See the [user.fetch][42] and [user.search][43] APIs for details about
    making Users' information available.
 
-Returns **[Array][12]&lt;[user.User][42]>** An array of all the User objects.
+Returns **[Array][12]&lt;[user.User][44]>** An array of all the User objects.
 
 ### search
 
@@ -1724,10 +1806,10 @@ Searches the domain's directory for Users.
 Directory searching only supports one filter. If multiple filters are provided, only one of the filters will be used for the search.
 A search with no filters provided will return all users.
 
-The SDK will emit a [directory:change][43]
+The SDK will emit a [directory:change][45]
    event after the operation completes. The search results will be
    provided as part of the event, and will also be available using the
-   [user.get][39] and [user.getAll][44] APIs.
+   [user.get][41] and [user.getAll][46] APIs.
 
 **Parameters**
 
@@ -1793,52 +1875,56 @@ Returns voicemail data from the store.
 
 [19]: #conversationconversationcreatemessage
 
-[20]: #conversationmessage
+[20]: conversation.Message.addPart
 
-[21]: conversation.Message.addPart
+[21]: #conversationmessagesend
 
-[22]: #conversationmessagesend
+[22]: #conversationconversationgetmessages
 
-[23]: #conversationconversationgetmessages
+[23]: #conversationconversationgetmessage
 
-[24]: #conversationconversationgetmessage
+[24]: conversation.chatTypes
 
-[25]: conversation.chatTypes
+[25]: #conversationmessage
 
 [26]: #configconfiglogs
 
-[27]: #presencefetch
+[27]: api.notifications.process
 
-[28]: #presencesubscribe
+[28]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[29]: #presenceget
+[29]: #presencefetch
 
-[30]: #presencegetall
+[30]: #presencesubscribe
 
-[31]: #presencestatuses
+[31]: #presenceget
 
-[32]: #presenceactivities
+[32]: #presencegetall
 
-[33]: #presenceeventpresenceselfchange
+[33]: #presencestatuses
 
-[34]: #presencegetself
+[34]: #presenceactivities
 
-[35]: #presenceeventpresencechange
+[35]: #presenceeventpresenceselfchange
 
-[36]: #presenceupdate
+[36]: #presencegetself
 
-[37]: call.SdpHandlerFunction
+[37]: #presenceeventpresencechange
 
-[38]: #usereventuserschange
+[38]: #presenceupdate
 
-[39]: #userget
+[39]: call.SdpHandlerFunction
 
-[40]: #userfetch
+[40]: #usereventuserschange
 
-[41]: #usersearch
+[41]: #userget
 
-[42]: #useruser
+[42]: #userfetch
 
-[43]: #usereventdirectorychange
+[43]: #usersearch
 
-[44]: #usergetall
+[44]: #useruser
+
+[45]: #usereventdirectorychange
+
+[46]: #usergetall

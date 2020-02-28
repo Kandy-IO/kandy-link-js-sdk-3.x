@@ -14,8 +14,8 @@ To install a particular build branch or beta branch with the Github URL, run:
 
 ### In the browser :
 ```html
-<script src="https://unpkg.com/@kandy-io/link-sdk-3.x@3.12.0/dist/kandy.js"
-  integrity="sha384-J8c6lZAc7+w/34fy7TeM9eLZZmAUiH5S8HxuZbvX2pgjs8wLLygE85F6zl5JBlte"
+<script src="https://unpkg.com/@kandy-io/link-sdk-3.x@3.13.0/dist/kandy.js"
+  integrity="sha384-dvMbKYOEE1tDyOwfm6hARg1aEJCrhidS9Ui1jOpTnY4xgEt9Hzjuuy1v2FS+kV30"
   crossorigin="anonymous">
 </script>
 ```
@@ -25,4 +25,4 @@ The information about tutorials and documents can be found in the links below
 
 * `Documents`: [docs](https://kandy-io.github.io/kandy-link-js-sdk-3.x/docs)
 
-* `Tutorials`: Choose your configuration ( [Kandy-US](https://kandy-io.github.io/kandy-link-js-sdk-3.x/tutorials/?SUBSCRIPTIONFQDN=spidr-ucc.genband.com&WEBSOCKETFQDN=spidr-ucc.genband.com&ICESERVER1=turns:turn-ucc-2.genband.com:443?transport=tcp&ICESERVER2=turns:turn-ucc-1.genband.com:443?transport=tcp#/Configurations) | [Kandy-EMEA](https://kandy-io.github.io/kandy-link-js-sdk-3.x/tutorials/?SUBSCRIPTIONFQDN=spidr-em.genband.com&WEBSOCKETFQDN=spidr-em.genband.com&ICESERVER1=turns:turn-em-2.genband.com:443?transport=tcp&ICESERVER2=turns:turn-em-1.genband.com:443?transport=tcp#/Configurations) )
+* `Tutorials`: Choose your configuration ( [Kandy-US](https://kandy-io.github.io/kandy-link-js-sdk-3.x/tutorials/?SUBSCRIPTIONFQDN=spidr-ucc.genband.com&WEBSOCKETFQDN=spidr-ucc.genband.com&KANDYTURN2=turns:turn-ucc-2.genband.com:443?transport=tcp&KANDYTURN1=turns:turn-ucc-1.genband.com:443?transport=tcp&KANDYSTUN1=stun:turn-ucc-1.genband.com:3478?transport=udp&KANDYSTUN2=stun:turn-ucc-2.genband.com:3478?transport=udp#/Configurations) | [Kandy-EMEA](https://kandy-io.github.io/kandy-link-js-sdk-3.x/tutorials/?SUBSCRIPTIONFQDN=spidr-em.genband.com&WEBSOCKETFQDN=spidr-em.genband.com&KANDYTURN2=turns:turn-em-2.genband.com:443?transport=tcp&KANDYTURN1=turns:turn-em-1.genband.com:443?transport=tcp&KANDYSTUN1=stun:turn-em-1.genband.com:3478?transport=udp&KANDYSTUN2=stun:turn-em-2.genband.com:3478?transport=udp#/Configurations) )
