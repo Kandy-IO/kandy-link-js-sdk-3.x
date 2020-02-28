@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.13.0-beta.319
+ * Version: 3.14.0-beta.320
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -189,6 +189,13 @@ module.exports = { "default": __webpack_require__("../../node_modules/core-js/li
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = { "default": __webpack_require__("../../node_modules/core-js/library/fn/promise.js"), __esModule: true };
+
+/***/ }),
+
+/***/ "../../node_modules/babel-runtime/core-js/set.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__("../../node_modules/core-js/library/fn/set.js"), __esModule: true };
 
 /***/ }),
 
@@ -1315,6 +1322,21 @@ module.exports = __webpack_require__("../../node_modules/core-js/library/modules
 
 /***/ }),
 
+/***/ "../../node_modules/core-js/library/fn/set.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("../../node_modules/core-js/library/modules/es6.object.to-string.js");
+__webpack_require__("../../node_modules/core-js/library/modules/es6.string.iterator.js");
+__webpack_require__("../../node_modules/core-js/library/modules/web.dom.iterable.js");
+__webpack_require__("../../node_modules/core-js/library/modules/es6.set.js");
+__webpack_require__("../../node_modules/core-js/library/modules/es7.set.to-json.js");
+__webpack_require__("../../node_modules/core-js/library/modules/es7.set.of.js");
+__webpack_require__("../../node_modules/core-js/library/modules/es7.set.from.js");
+module.exports = __webpack_require__("../../node_modules/core-js/library/modules/_core.js").Set;
+
+
+/***/ }),
+
 /***/ "../../node_modules/core-js/library/fn/symbol/for.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1389,6 +1411,20 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "../../node_modules/core-js/library/modules/_array-from-iterable.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var forOf = __webpack_require__("../../node_modules/core-js/library/modules/_for-of.js");
+
+module.exports = function (iter, ITERATOR) {
+  var result = [];
+  forOf(iter, false, result.push, result, ITERATOR);
+  return result;
+};
+
+
+/***/ }),
+
 /***/ "../../node_modules/core-js/library/modules/_array-includes.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1414,6 +1450,93 @@ module.exports = function (IS_INCLUDES) {
       if (O[index] === el) return IS_INCLUDES || index || 0;
     } return !IS_INCLUDES && -1;
   };
+};
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/_array-methods.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 0 -> Array#forEach
+// 1 -> Array#map
+// 2 -> Array#filter
+// 3 -> Array#some
+// 4 -> Array#every
+// 5 -> Array#find
+// 6 -> Array#findIndex
+var ctx = __webpack_require__("../../node_modules/core-js/library/modules/_ctx.js");
+var IObject = __webpack_require__("../../node_modules/core-js/library/modules/_iobject.js");
+var toObject = __webpack_require__("../../node_modules/core-js/library/modules/_to-object.js");
+var toLength = __webpack_require__("../../node_modules/core-js/library/modules/_to-length.js");
+var asc = __webpack_require__("../../node_modules/core-js/library/modules/_array-species-create.js");
+module.exports = function (TYPE, $create) {
+  var IS_MAP = TYPE == 1;
+  var IS_FILTER = TYPE == 2;
+  var IS_SOME = TYPE == 3;
+  var IS_EVERY = TYPE == 4;
+  var IS_FIND_INDEX = TYPE == 6;
+  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
+  var create = $create || asc;
+  return function ($this, callbackfn, that) {
+    var O = toObject($this);
+    var self = IObject(O);
+    var f = ctx(callbackfn, that, 3);
+    var length = toLength(self.length);
+    var index = 0;
+    var result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
+    var val, res;
+    for (;length > index; index++) if (NO_HOLES || index in self) {
+      val = self[index];
+      res = f(val, index, O);
+      if (TYPE) {
+        if (IS_MAP) result[index] = res;   // map
+        else if (res) switch (TYPE) {
+          case 3: return true;             // some
+          case 5: return val;              // find
+          case 6: return index;            // findIndex
+          case 2: result.push(val);        // filter
+        } else if (IS_EVERY) return false; // every
+      }
+    }
+    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
+  };
+};
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/_array-species-constructor.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("../../node_modules/core-js/library/modules/_is-object.js");
+var isArray = __webpack_require__("../../node_modules/core-js/library/modules/_is-array.js");
+var SPECIES = __webpack_require__("../../node_modules/core-js/library/modules/_wks.js")('species');
+
+module.exports = function (original) {
+  var C;
+  if (isArray(original)) {
+    C = original.constructor;
+    // cross-realm fallback
+    if (typeof C == 'function' && (C === Array || isArray(C.prototype))) C = undefined;
+    if (isObject(C)) {
+      C = C[SPECIES];
+      if (C === null) C = undefined;
+    }
+  } return C === undefined ? Array : C;
+};
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/_array-species-create.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
+var speciesConstructor = __webpack_require__("../../node_modules/core-js/library/modules/_array-species-constructor.js");
+
+module.exports = function (original, length) {
+  return new (speciesConstructor(original))(length);
 };
 
 
@@ -1456,6 +1579,241 @@ var toString = {}.toString;
 
 module.exports = function (it) {
   return toString.call(it).slice(8, -1);
+};
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/_collection-strong.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var dP = __webpack_require__("../../node_modules/core-js/library/modules/_object-dp.js").f;
+var create = __webpack_require__("../../node_modules/core-js/library/modules/_object-create.js");
+var redefineAll = __webpack_require__("../../node_modules/core-js/library/modules/_redefine-all.js");
+var ctx = __webpack_require__("../../node_modules/core-js/library/modules/_ctx.js");
+var anInstance = __webpack_require__("../../node_modules/core-js/library/modules/_an-instance.js");
+var forOf = __webpack_require__("../../node_modules/core-js/library/modules/_for-of.js");
+var $iterDefine = __webpack_require__("../../node_modules/core-js/library/modules/_iter-define.js");
+var step = __webpack_require__("../../node_modules/core-js/library/modules/_iter-step.js");
+var setSpecies = __webpack_require__("../../node_modules/core-js/library/modules/_set-species.js");
+var DESCRIPTORS = __webpack_require__("../../node_modules/core-js/library/modules/_descriptors.js");
+var fastKey = __webpack_require__("../../node_modules/core-js/library/modules/_meta.js").fastKey;
+var validate = __webpack_require__("../../node_modules/core-js/library/modules/_validate-collection.js");
+var SIZE = DESCRIPTORS ? '_s' : 'size';
+
+var getEntry = function (that, key) {
+  // fast case
+  var index = fastKey(key);
+  var entry;
+  if (index !== 'F') return that._i[index];
+  // frozen object case
+  for (entry = that._f; entry; entry = entry.n) {
+    if (entry.k == key) return entry;
+  }
+};
+
+module.exports = {
+  getConstructor: function (wrapper, NAME, IS_MAP, ADDER) {
+    var C = wrapper(function (that, iterable) {
+      anInstance(that, C, NAME, '_i');
+      that._t = NAME;         // collection type
+      that._i = create(null); // index
+      that._f = undefined;    // first entry
+      that._l = undefined;    // last entry
+      that[SIZE] = 0;         // size
+      if (iterable != undefined) forOf(iterable, IS_MAP, that[ADDER], that);
+    });
+    redefineAll(C.prototype, {
+      // 23.1.3.1 Map.prototype.clear()
+      // 23.2.3.2 Set.prototype.clear()
+      clear: function clear() {
+        for (var that = validate(this, NAME), data = that._i, entry = that._f; entry; entry = entry.n) {
+          entry.r = true;
+          if (entry.p) entry.p = entry.p.n = undefined;
+          delete data[entry.i];
+        }
+        that._f = that._l = undefined;
+        that[SIZE] = 0;
+      },
+      // 23.1.3.3 Map.prototype.delete(key)
+      // 23.2.3.4 Set.prototype.delete(value)
+      'delete': function (key) {
+        var that = validate(this, NAME);
+        var entry = getEntry(that, key);
+        if (entry) {
+          var next = entry.n;
+          var prev = entry.p;
+          delete that._i[entry.i];
+          entry.r = true;
+          if (prev) prev.n = next;
+          if (next) next.p = prev;
+          if (that._f == entry) that._f = next;
+          if (that._l == entry) that._l = prev;
+          that[SIZE]--;
+        } return !!entry;
+      },
+      // 23.2.3.6 Set.prototype.forEach(callbackfn, thisArg = undefined)
+      // 23.1.3.5 Map.prototype.forEach(callbackfn, thisArg = undefined)
+      forEach: function forEach(callbackfn /* , that = undefined */) {
+        validate(this, NAME);
+        var f = ctx(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        var entry;
+        while (entry = entry ? entry.n : this._f) {
+          f(entry.v, entry.k, this);
+          // revert to the last existing entry
+          while (entry && entry.r) entry = entry.p;
+        }
+      },
+      // 23.1.3.7 Map.prototype.has(key)
+      // 23.2.3.7 Set.prototype.has(value)
+      has: function has(key) {
+        return !!getEntry(validate(this, NAME), key);
+      }
+    });
+    if (DESCRIPTORS) dP(C.prototype, 'size', {
+      get: function () {
+        return validate(this, NAME)[SIZE];
+      }
+    });
+    return C;
+  },
+  def: function (that, key, value) {
+    var entry = getEntry(that, key);
+    var prev, index;
+    // change existing entry
+    if (entry) {
+      entry.v = value;
+    // create new entry
+    } else {
+      that._l = entry = {
+        i: index = fastKey(key, true), // <- index
+        k: key,                        // <- key
+        v: value,                      // <- value
+        p: prev = that._l,             // <- previous entry
+        n: undefined,                  // <- next entry
+        r: false                       // <- removed
+      };
+      if (!that._f) that._f = entry;
+      if (prev) prev.n = entry;
+      that[SIZE]++;
+      // add to index
+      if (index !== 'F') that._i[index] = entry;
+    } return that;
+  },
+  getEntry: getEntry,
+  setStrong: function (C, NAME, IS_MAP) {
+    // add .keys, .values, .entries, [@@iterator]
+    // 23.1.3.4, 23.1.3.8, 23.1.3.11, 23.1.3.12, 23.2.3.5, 23.2.3.8, 23.2.3.10, 23.2.3.11
+    $iterDefine(C, NAME, function (iterated, kind) {
+      this._t = validate(iterated, NAME); // target
+      this._k = kind;                     // kind
+      this._l = undefined;                // previous
+    }, function () {
+      var that = this;
+      var kind = that._k;
+      var entry = that._l;
+      // revert to the last existing entry
+      while (entry && entry.r) entry = entry.p;
+      // get next entry
+      if (!that._t || !(that._l = entry = entry ? entry.n : that._t._f)) {
+        // or finish the iteration
+        that._t = undefined;
+        return step(1);
+      }
+      // return step by kind
+      if (kind == 'keys') return step(0, entry.k);
+      if (kind == 'values') return step(0, entry.v);
+      return step(0, [entry.k, entry.v]);
+    }, IS_MAP ? 'entries' : 'values', !IS_MAP, true);
+
+    // add [@@species], 23.1.2.2, 23.2.2.2
+    setSpecies(NAME);
+  }
+};
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/_collection-to-json.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://github.com/DavidBruant/Map-Set.prototype.toJSON
+var classof = __webpack_require__("../../node_modules/core-js/library/modules/_classof.js");
+var from = __webpack_require__("../../node_modules/core-js/library/modules/_array-from-iterable.js");
+module.exports = function (NAME) {
+  return function toJSON() {
+    if (classof(this) != NAME) throw TypeError(NAME + "#toJSON isn't generic");
+    return from(this);
+  };
+};
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/_collection.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var global = __webpack_require__("../../node_modules/core-js/library/modules/_global.js");
+var $export = __webpack_require__("../../node_modules/core-js/library/modules/_export.js");
+var meta = __webpack_require__("../../node_modules/core-js/library/modules/_meta.js");
+var fails = __webpack_require__("../../node_modules/core-js/library/modules/_fails.js");
+var hide = __webpack_require__("../../node_modules/core-js/library/modules/_hide.js");
+var redefineAll = __webpack_require__("../../node_modules/core-js/library/modules/_redefine-all.js");
+var forOf = __webpack_require__("../../node_modules/core-js/library/modules/_for-of.js");
+var anInstance = __webpack_require__("../../node_modules/core-js/library/modules/_an-instance.js");
+var isObject = __webpack_require__("../../node_modules/core-js/library/modules/_is-object.js");
+var setToStringTag = __webpack_require__("../../node_modules/core-js/library/modules/_set-to-string-tag.js");
+var dP = __webpack_require__("../../node_modules/core-js/library/modules/_object-dp.js").f;
+var each = __webpack_require__("../../node_modules/core-js/library/modules/_array-methods.js")(0);
+var DESCRIPTORS = __webpack_require__("../../node_modules/core-js/library/modules/_descriptors.js");
+
+module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
+  var Base = global[NAME];
+  var C = Base;
+  var ADDER = IS_MAP ? 'set' : 'add';
+  var proto = C && C.prototype;
+  var O = {};
+  if (!DESCRIPTORS || typeof C != 'function' || !(IS_WEAK || proto.forEach && !fails(function () {
+    new C().entries().next();
+  }))) {
+    // create collection constructor
+    C = common.getConstructor(wrapper, NAME, IS_MAP, ADDER);
+    redefineAll(C.prototype, methods);
+    meta.NEED = true;
+  } else {
+    C = wrapper(function (target, iterable) {
+      anInstance(target, C, NAME, '_c');
+      target._c = new Base();
+      if (iterable != undefined) forOf(iterable, IS_MAP, target[ADDER], target);
+    });
+    each('add,clear,delete,forEach,get,has,set,keys,values,entries,toJSON'.split(','), function (KEY) {
+      var IS_ADDER = KEY == 'add' || KEY == 'set';
+      if (KEY in proto && !(IS_WEAK && KEY == 'clear')) hide(C.prototype, KEY, function (a, b) {
+        anInstance(this, C, KEY);
+        if (!IS_ADDER && IS_WEAK && !isObject(a)) return KEY == 'get' ? undefined : false;
+        var result = this._c[KEY](a === 0 ? 0 : a, b);
+        return IS_ADDER ? this : result;
+      });
+    });
+    IS_WEAK || dP(C.prototype, 'size', {
+      get: function () {
+        return this._c.size;
+      }
+    });
+  }
+
+  setToStringTag(C, NAME);
+
+  O[NAME] = C;
+  $export($export.G + $export.W + $export.F, O);
+
+  if (!IS_WEAK) common.setStrong(C, NAME, IS_MAP);
+
+  return C;
 };
 
 
@@ -2552,6 +2910,62 @@ module.exports = __webpack_require__("../../node_modules/core-js/library/modules
 
 /***/ }),
 
+/***/ "../../node_modules/core-js/library/modules/_set-collection-from.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// https://tc39.github.io/proposal-setmap-offrom/
+var $export = __webpack_require__("../../node_modules/core-js/library/modules/_export.js");
+var aFunction = __webpack_require__("../../node_modules/core-js/library/modules/_a-function.js");
+var ctx = __webpack_require__("../../node_modules/core-js/library/modules/_ctx.js");
+var forOf = __webpack_require__("../../node_modules/core-js/library/modules/_for-of.js");
+
+module.exports = function (COLLECTION) {
+  $export($export.S, COLLECTION, { from: function from(source /* , mapFn, thisArg */) {
+    var mapFn = arguments[1];
+    var mapping, A, n, cb;
+    aFunction(this);
+    mapping = mapFn !== undefined;
+    if (mapping) aFunction(mapFn);
+    if (source == undefined) return new this();
+    A = [];
+    if (mapping) {
+      n = 0;
+      cb = ctx(mapFn, arguments[2], 2);
+      forOf(source, false, function (nextItem) {
+        A.push(cb(nextItem, n++));
+      });
+    } else {
+      forOf(source, false, A.push, A);
+    }
+    return new this(A);
+  } });
+};
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/_set-collection-of.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// https://tc39.github.io/proposal-setmap-offrom/
+var $export = __webpack_require__("../../node_modules/core-js/library/modules/_export.js");
+
+module.exports = function (COLLECTION) {
+  $export($export.S, COLLECTION, { of: function of() {
+    var length = arguments.length;
+    var A = new Array(length);
+    while (length--) A[length] = arguments[length];
+    return new this(A);
+  } });
+};
+
+
+/***/ }),
+
 /***/ "../../node_modules/core-js/library/modules/_set-species.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2853,6 +3267,18 @@ var global = __webpack_require__("../../node_modules/core-js/library/modules/_gl
 var navigator = global.navigator;
 
 module.exports = navigator && navigator.userAgent || '';
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/_validate-collection.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("../../node_modules/core-js/library/modules/_is-object.js");
+module.exports = function (it, TYPE) {
+  if (!isObject(it) || it._t !== TYPE) throw TypeError('Incompatible receiver, ' + TYPE + ' required!');
+  return it;
+};
 
 
 /***/ }),
@@ -3407,6 +3833,28 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__("../../node_
 
 /***/ }),
 
+/***/ "../../node_modules/core-js/library/modules/es6.set.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var strong = __webpack_require__("../../node_modules/core-js/library/modules/_collection-strong.js");
+var validate = __webpack_require__("../../node_modules/core-js/library/modules/_validate-collection.js");
+var SET = 'Set';
+
+// 23.2 Set Objects
+module.exports = __webpack_require__("../../node_modules/core-js/library/modules/_collection.js")(SET, function (get) {
+  return function Set() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
+}, {
+  // 23.2.3.1 Set.prototype.add(value)
+  add: function add(value) {
+    return strong.def(validate(this, SET), value = value === 0 ? 0 : value, value);
+  }
+}, strong);
+
+
+/***/ }),
+
 /***/ "../../node_modules/core-js/library/modules/es6.string.iterator.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3746,6 +4194,35 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
   (result.e ? promiseCapability.reject : promiseCapability.resolve)(result.v);
   return promiseCapability.promise;
 } });
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/es7.set.from.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://tc39.github.io/proposal-setmap-offrom/#sec-set.from
+__webpack_require__("../../node_modules/core-js/library/modules/_set-collection-from.js")('Set');
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/es7.set.of.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://tc39.github.io/proposal-setmap-offrom/#sec-set.of
+__webpack_require__("../../node_modules/core-js/library/modules/_set-collection-of.js")('Set');
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/library/modules/es7.set.to-json.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://github.com/DavidBruant/Map-Set.prototype.toJSON
+var $export = __webpack_require__("../../node_modules/core-js/library/modules/_export.js");
+
+$export($export.P + $export.R, 'Set', { toJSON: __webpack_require__("../../node_modules/core-js/library/modules/_collection-to-json.js")('Set') });
 
 
 /***/ }),
@@ -49713,7 +50190,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-const log = (0, _logs.getLogManager)().getLogger('AUTH');
+const log = _logs.logManager.getLogger('AUTH');
 
 /**
  * Authentication API.
@@ -50685,7 +51162,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // The interface to follow.
 
 // Events
-const log = (0, _logs.getLogManager)().getLogger('AUTH');
+const log = _logs.logManager.getLogger('AUTH');
 
 /**
  * Configuration options for the Authentication feature.
@@ -50860,7 +51337,7 @@ const platform = _constants2.platforms.LINK;
 
 
 // Auth
-const log = (0, _logs.getLogManager)().getLogger('AUTH');
+const log = _logs.logManager.getLogger('AUTH');
 
 /**
  * Link connect saga. This Saga is in charge of the flow for connecting and disconnecting.
@@ -51252,7 +51729,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Other plugins.
 // Authentication plugin.
-const log = (0, _logs.getLogManager)().getLogger('AUTH');
+const log = _logs.logManager.getLogger('AUTH');
 
 /**
  * Subscribe to SPiDR with the provided information.
@@ -53235,7 +53712,7 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Get the logger
-const log = (0, _logs.getLogManager)().getLogger('CALL');
+const log = _logs.logManager.getLogger('CALL');
 
 /**
  * Call API.
@@ -55731,7 +56208,7 @@ var _v2 = _interopRequireDefault(_v);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Get the logger
-const log = (0, _logs.getLogManager)().getLogger('CALL');
+const log = _logs.logManager.getLogger('CALL');
 
 /**
  * Shim for interactions between FCS calls and Redux middleware.
@@ -57413,12 +57890,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Utilities.
 // Import a call shim between FCS calls and Next version of SDK.
 // It is used to handle FCS' call object, since we cannot put it in sate.
-const logMgr = (0, _logs.getLogManager)();
+const log = _logs.logManager.getLogger('CALL');
 
 // Constants
 
-const log = logMgr.getLogger('CALL');
-const fcsLog = logMgr.getLogger('FCS');
+const fcsLog = _logs.logManager.getLogger('FCS');
 
 // eslint-disable-next-line no-warning-comments
 /**
@@ -58364,7 +58840,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Get the logger
-const log = (0, _logs.getLogManager)().getLogger('CALL');
+const log = _logs.logManager.getLogger('CALL');
 
 /**
  * Naively checks whether navigator.mediaDevices is supported in this environment.
@@ -58891,7 +59367,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const log = (0, _logs.getLogManager)().getLogger('CALLHISTORY');
+const log = _logs.logManager.getLogger('CALLHISTORY');
 
 /**
  * Call History API.
@@ -59298,7 +59774,7 @@ var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js"
  */
 
 // Call History plugin.
-const log = (0, _logs.getLogManager)().getLogger('CALLHISTORY');
+const log = _logs.logManager.getLogger('CALLHISTORY');
 
 /**
  * Constructs a local call log from a "call ended" action.
@@ -59563,7 +60039,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  */
 
 // Call History plugin.
-const log = (0, _logs.getLogManager)().getLogger('CALLHISTORY');
+const log = _logs.logManager.getLogger('CALLHISTORY');
 
 /**
  * Saga for fetching call log records.
@@ -59943,7 +60419,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  * @namespace clickToCall
  * @requires clickToCall
  */
-const log = (0, _logs.getLogManager)().getLogger('CLICKTOCALL');
+const log = _logs.logManager.getLogger('CLICKTOCALL');
 
 function api(context) {
   const clickToCallApi = {
@@ -60236,7 +60712,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Error handling
 // clickToCall plugin.
-const log = (0, _logs.getLogManager)().getLogger('CLICKTOCALL');
+const log = _logs.logManager.getLogger('CLICKTOCALL');
 
 // Other plugins.
 
@@ -60422,7 +60898,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.13.0-beta.319';
+  return '3.14.0-beta.320';
 }
 
 /***/ }),
@@ -60549,7 +61025,7 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-const log = (0, _logs.getLogManager)().getLogger('CONFIG');
+const log = _logs.logManager.getLogger('CONFIG');
 
 function api(context) {
   const configApi = {
@@ -60800,7 +61276,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Other plugins.
 // Connectivity plugin.
-const log = (0, _logs.getLogManager)().getLogger('CONNECTIVITY');
+const log = _logs.logManager.getLogger('CONNECTIVITY');
 
 // Constants
 
@@ -61405,7 +61881,7 @@ var _selectors = __webpack_require__("../../packages/kandy/src/connectivity/inte
 var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 // Constants
-const log = (0, _logs.getLogManager)().getLogger('CONNECTIVITY');
+const log = _logs.logManager.getLogger('CONNECTIVITY');
 
 /**
  * The 'connection' namespace is used to connect and maintain connections between
@@ -62723,7 +63199,7 @@ var _actions = __webpack_require__("../../packages/kandy/src/events/interface/ac
 var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 // Actions the interface uses.
-const log = (0, _logs.getLogManager)().getLogger('EVENTS');
+const log = _logs.logManager.getLogger('EVENTS');
 
 /**
  * API for Event Emitter plugin.
@@ -62940,7 +63416,7 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const log = (0, _logs.getLogManager)().getLogger('FACTORY');
+const log = _logs.logManager.getLogger('FACTORY');
 
 // Plugins.
 
@@ -63316,11 +63792,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @return {Middleware}
  */
 function createActionLogger(options) {
-  const logManager = (0, _index.getLogManager)();
   // Create a Logger for handling the action logs.
-  const logger = logManager.getLogger('ACTION');
-  logger.logHandler = options.logActions.handler;
-  logger.level = options.logActions.level;
+  const logger = _index.logManager.getLogger('ACTION');
+  logger.setHandler(options.logActions.handler);
+  logger.setLevel(options.logActions.level);
 
   const setLevel = _constants.logLevels[options.logLevel];
 
@@ -63589,14 +64064,22 @@ exports.default = {
  *    id was provided, this will be the same as the type.
  * @property {Array} messages The logged information, given to the Logger
  *    method as parameters.
+ * @property {Object} [timer] Timing data, if the log method was a timer method.
  * @example
  * function defaultLogHandler (logEntry) {
  *   // Compile the meta info of the log for a prefix.
- *   const { timestamp, level, method, target } = logEntry
+ *   const { timestamp, level, target } = logEntry
+ *   let { method } = logEntry
  *   const logInfo = `${timestamp} - ${target.type} - ${level}`
  *
  *   // Assume that the first message parameter is a string.
  *   const [log, ...extra] = logEntry.messages
+ *
+ *   // For the timer methods, don't actually use the console methods.
+ *   //    The Logger already did the timing, so simply log out the info.
+ *   if (['time', 'timeLog', 'timeEnd'].includes(method)) {
+ *     method = 'debug'
+ *   }
  *
  *   console[method](`${logInfo} - ${log}`, ...extra)
  * }
@@ -63621,11 +64104,18 @@ exports.default = {
  * // Define a custom function to handle logs.
  * function logHandler (logEntry) {
  *   // Compile the meta info of the log for a prefix.
- *   const { timestamp, level, method, target } = logEntry
+ *   const { timestamp, level, target } = logEntry
+ *   let { method } = logEntry
  *   const logInfo = `${timestamp} - ${target.type} - ${level}`
  *
  *   // Assume that the first message parameter is a string.
  *   const [log, ...extra] = logEntry.messages
+ *
+ *   // For the timer methods, don't actually use the console methods.
+ *   //    The Logger already did the timing, so simply log out the info.
+ *   if (['time', 'timeLog', 'timeEnd'].includes(method)) {
+ *     method = 'debug'
+ *   }
  *
  *   console[method](`${logInfo} - ${log}`, ...extra)
  * }
@@ -63648,7 +64138,7 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.API_LOG_TAG = undefined;
+exports.API_LOG_TAG = exports.logManager = undefined;
 
 var _values = __webpack_require__("../../node_modules/babel-runtime/core-js/object/values.js");
 
@@ -63658,22 +64148,31 @@ var _keys = __webpack_require__("../../node_modules/babel-runtime/core-js/object
 
 var _keys2 = _interopRequireDefault(_keys);
 
-exports.getLogManager = getLogManager;
 exports.default = logPlugin;
 
 var _api = __webpack_require__("../../packages/kandy/src/logs/interface/api.js");
 
 var _api2 = _interopRequireDefault(_api);
 
+var _reducers = __webpack_require__("../../packages/kandy/src/logs/interface/reducers.js");
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
+var _actions = __webpack_require__("../../packages/kandy/src/logs/interface/actions.js");
+
+var actions = _interopRequireWildcard(_actions);
+
 var _config = __webpack_require__("../../packages/kandy/src/logs/config.js");
 
 var _config2 = _interopRequireDefault(_config);
 
-var _actions = __webpack_require__("../../packages/kandy/src/logs/actions/index.js");
+var _sagas = __webpack_require__("../../packages/kandy/src/logs/sagas.js");
 
-var _actions2 = _interopRequireDefault(_actions);
+var _actions2 = __webpack_require__("../../packages/kandy/src/logs/actions/index.js");
 
-var _actions3 = __webpack_require__("../../packages/kandy/src/config/interface/actions.js");
+var _actions3 = _interopRequireDefault(_actions2);
+
+var _actions4 = __webpack_require__("../../packages/kandy/src/config/interface/actions.js");
 
 var _utils = __webpack_require__("../../packages/kandy/src/common/utils.js");
 
@@ -63685,6 +64184,8 @@ var _kandyLogger2 = _interopRequireDefault(_kandyLogger);
 
 __webpack_require__("../../packages/kandy/src/logs/docs.js");
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -63692,8 +64193,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *    been instantiated yet, so we have to use the default options until we get
  *    the application's configs.
  */
-// Logs plugin.
-const logManager = (0, _kandyLogger2.default)(_config2.default);
+const manager = (0, _kandyLogger2.default)(_config2.default);
 
 // Include the extra JSDoc items.
 
@@ -63702,9 +64202,8 @@ const logManager = (0, _kandyLogger2.default)(_config2.default);
 
 
 // Other plugins.
-function getLogManager() {
-  return logManager;
-}
+// Logs plugin.
+const logManager = exports.logManager = manager;
 
 // Logs generated as a result of invoking the public API will contain this tag
 const API_LOG_TAG = exports.API_LOG_TAG = 'API invoked: ';
@@ -63728,29 +64227,33 @@ function logPlugin(options = {}) {
   options = (0, _utils.mergeValues)(_config2.default, options);
   // Now that we have the application's log configs, update everything to
   //    use those values instead of default values.
-  logManager.level = options.logLevel;
+  logManager.setLevel(options.logLevel);
   if (options.handler) {
-    logManager.handler = options.handler;
+    logManager.setHandler(options.handler);
   }
 
   (0, _values2.default)(logManager.getLoggers()).forEach(logger => {
-    logger.level = options.logLevel;
+    logger.setLevel(options.logLevel);
     if (options.handler) {
-      logger.handler = options.handler;
+      logger.setHandler(options.handler);
     }
   });
 
   function* init() {
     // Send the provided options to the store.
     // This will be `state.config[name]`.
-    yield (0, _effects.put)((0, _actions3.update)(options, name));
+    yield (0, _effects.put)((0, _actions4.update)(options, name));
+    // Update state with the initial Logger levels.
+    yield (0, _effects.put)(actions.levelsChanged((0, _sagas.getLevelMap)(logManager)));
   }
 
   const components = {
     name,
     capabilities: ['logs'],
     init,
-    api: _api2.default
+    api: _api2.default,
+    reducer: _reducers2.default,
+    sagas: [_sagas.setLevelEntry, _sagas.setHandlerEntry]
   };
 
   options.logLevel = options.logLevel.toUpperCase();
@@ -63758,10 +64261,89 @@ function logPlugin(options = {}) {
   // Consider actions to be at the INFO log level.
   // Only export a middleware (for actions) at the appropriate levels.
   if (setLevel <= _kandyLogger.logLevels.INFO && options.logActions !== false) {
-    components.middleware = (0, _actions2.default)(options);
+    components.middleware = (0, _actions3.default)(options);
   }
 
   return components;
+}
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/interface/actionTypes.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+const prefix = '@@KANDY/LOGS/';
+
+const SET_LEVEL = exports.SET_LEVEL = prefix + 'SET_LEVEL';
+const LEVELS_CHANGE = exports.LEVELS_CHANGE = prefix + 'LEVELS_CHANGE';
+
+const SET_HANDLER = exports.SET_HANDLER = prefix + 'SET_HANDLER';
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/interface/actions.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setLevel = setLevel;
+exports.levelsChanged = levelsChanged;
+exports.setHandler = setHandler;
+
+var _actionTypes = __webpack_require__("../../packages/kandy/src/logs/interface/actionTypes.js");
+
+var actionTypes = _interopRequireWildcard(_actionTypes);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+/**
+ * Action for setting a Logger's level.
+ * @method setLevel
+ * @param  {string} level  The level to be set.
+ * @param  {string} [type] The type of Logger to set it for.
+ */
+function setLevel(level, type) {
+  return {
+    type: actionTypes.SET_LEVEL,
+    payload: { level, type }
+  };
+}
+
+/**
+ * Action for a setting all of the Loggers' log level.
+ * @method levelsChanged
+ * @param  {Object} levelMap Mapping of logger type to level.
+ * @return {Object}
+ */
+// Logs plugin.
+function levelsChanged(levelMap) {
+  return {
+    type: actionTypes.LEVELS_CHANGE,
+    payload: levelMap
+  };
+}
+
+/**
+ * Action for setting a Logger's handler.
+ * @method setHandler
+ * @param  {Function} handler A LogHandler function.
+ * @param  {string}   [type]  The type of Logger to set it for.
+ */
+function setHandler(handler, type) {
+  return {
+    type: actionTypes.SET_HANDLER,
+    payload: { handler, type }
+  };
 }
 
 /***/ }),
@@ -63776,6 +64358,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = api;
+
+var _index = __webpack_require__("../../packages/kandy/src/logs/index.js");
+
+var _actions = __webpack_require__("../../packages/kandy/src/logs/interface/actions.js");
+
+var actions = _interopRequireWildcard(_actions);
+
+var _selectors = __webpack_require__("../../packages/kandy/src/logs/interface/selectors.js");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 /**
  * The internal logger is used to provide information about the SDK's behaviour.
  * The logger can provide two types of logs: basic logs and action logs. Basic
@@ -63790,13 +64383,16 @@ exports.default = api;
  * @requires logs
  */
 
-function api() {
+function api({ dispatch, getState }) {
+  const log = _index.logManager.getLogger('LOGS');
+
   let api = {
     /**
      * Possible levels for the SDK logger.
      * @public
      * @static
      * @memberof logger
+     * @method levels
      * @property {string} SILENT Log nothing.
      * @property {string} ERROR Log only unhandled errors.
      * @property {string} WARN Log issues that may cause problems or unexpected behaviour.
@@ -63809,12 +64405,361 @@ function api() {
       WARN: 'warn',
       INFO: 'info',
       DEBUG: 'debug'
+    },
+
+    /**
+     * Update the log level used by the SDK's loggers.
+     *
+     * Changing the log level will affect the amount of logs that the SDK will
+     *    output for debugging purposes.
+     *
+     * See {@link logger.levels} for valid log levels. Other values will not be
+     *    accepted. See the {@link logger.getTypes} API for valid logger types.
+     *    Other values will have no affect.
+     * @private
+     * @static
+     * @memberof logger
+     * @method setLevel
+     * @param  {string} level The log level to set.
+     * @param  {string} [type] An optional subset of loggers to update.
+     * @example
+     * // Set logs to be at the warn level.
+     * client.logger.setLevel(client.logger.levels.WARN)
+     */
+    setLevel(level, type) {
+      log.debug(_index.API_LOG_TAG + 'logger.setLevel: ', level, type);
+
+      dispatch(actions.setLevel(level, type));
+    },
+
+    /**
+     * Get the currently set log level used by the SDK's loggers.
+     *
+     * @private
+     * @static
+     * @memberof logger
+     * @method getLevel
+     * @param  {string} [type] An optional subset of loggers.
+     * @return {logger.levels} A log level.
+     */
+    getLevel(type) {
+      log.debug(_index.API_LOG_TAG + 'logger.getLevel: ', type);
+
+      return (0, _selectors.getLevel)(getState(), type);
+    },
+
+    /**
+     * Updates the {@link logger.LogHandler LogHandler} used by the SDK's
+     *    loggers.
+     *
+     * Changing the log handler will change how the SDK's logs are handled by
+     *    the application.
+     *
+     * See {@link logger.LogHandler} and {@link logger.LogEntry} for information
+     *    about the handler. See the {@link logger.getTypes} API for valid
+     *    logger types. Other values will have no affect.
+     * @private
+     * @static
+     * @memberof logger
+     * @method setHandler
+     * @param  {logger.LogEntry} handler A {@link logger.LogHandler} function.
+     * @param  {string}   [type] An optional subset of loggers to update.
+     * @example
+     * // Change the SDK's Log Handler to a custom function.
+     * client.logger.setHandler((logEntry) => {
+     *    // Handle the SDK's logs in a custom way.
+     *    ...
+     * })
+     *
+     */
+    setHandler(handler, type) {
+      log.debug(_index.API_LOG_TAG + 'logger.setHandler: ', handler, type);
+
+      dispatch(actions.setHandler(handler, type));
+    },
+
+    /**
+     * Get the list of logger types used by the SDK.
+     *
+     * Logs for different SDK features can be managed separately from one
+     *    another by specifying the type when using the {@link logger.setLevel}
+     *    and {@link logger.setHandler} APIs.
+     * @private
+     * @static
+     * @memberof logger
+     * @method getTypes
+     * @return {Array<string>} Logger types.
+     * @example
+     * const types = client.logger.getTypes()
+     * // types: ['DEFAULT', 'AUTH', 'CALL', ...]
+     *
+     * // Set the Call logs to be at the debug level.
+     * client.logger.setLevel('DEBUG', 'CALL')
+     */
+    getTypes() {
+      log.debug(_index.API_LOG_TAG + 'logger.getTypes');
+
+      return (0, _selectors.getTypes)(getState());
     }
   };
 
   return {
     logger: api
   };
+} // Logs plugin.
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/interface/reducers.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _actionTypes = __webpack_require__("../../packages/kandy/src/logs/interface/actionTypes.js");
+
+var actionTypes = _interopRequireWildcard(_actionTypes);
+
+var _reduxActions = __webpack_require__("../../node_modules/redux-actions/es/index.js");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Logs state is a mapping between every Logger type (and the default type)
+ *    and its set log level.
+ * eg. {
+ *    DEFAULT: 'DEBUG',
+ *    AUTH: 'DEBUG',
+ *    CALL: 'INFO',
+ *    ...
+ * }
+ */
+
+const reducers = {};
+
+// Libraries
+
+
+reducers[actionTypes.LEVELS_CHANGE] = {
+  next(state, action) {
+    // Replace all levels that have been changed.
+    return (0, _extends3.default)({}, state, action.payload);
+  }
+};
+
+const reducer = (0, _reduxActions.handleActions)(reducers, {});
+exports.default = reducer;
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/interface/selectors.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _keys = __webpack_require__("../../node_modules/babel-runtime/core-js/object/keys.js");
+
+var _keys2 = _interopRequireDefault(_keys);
+
+exports.getLevel = getLevel;
+exports.getTypes = getTypes;
+
+var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Retrieves the log level for a specifie logger type, or the default level.
+ * @method getLevel
+ * @param  {Object} state            SDK redux state.
+ * @param  {String} [type='DEFAULT'] A type of Logger.
+ * @return {string} A log level.
+ */
+function getLevel(state, type = 'DEFAULT') {
+  const clonedState = (0, _fp.cloneDeep)(state);
+  return clonedState.logs[type];
+}
+
+/**
+ * Retrieves a list of all of the SDK's Logger types.
+ * @method getTypes
+ * @param  {Object} state  SDK redux state.
+ * @return {Array<string>}
+ */
+// Libraries.
+function getTypes(state) {
+  const clonedState = (0, _fp.cloneDeep)(state);
+  return (0, _keys2.default)(clonedState.logs);
+}
+
+/***/ }),
+
+/***/ "../../packages/kandy/src/logs/sagas.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _set = __webpack_require__("../../node_modules/babel-runtime/core-js/set.js");
+
+var _set2 = _interopRequireDefault(_set);
+
+exports.setLevelEntry = setLevelEntry;
+exports.setHandlerEntry = setHandlerEntry;
+exports.setLogLevel = setLogLevel;
+exports.setLogHandler = setLogHandler;
+exports.getLevelMap = getLevelMap;
+
+var _actionTypes = __webpack_require__("../../packages/kandy/src/logs/interface/actionTypes.js");
+
+var actionTypes = _interopRequireWildcard(_actionTypes);
+
+var _actions = __webpack_require__("../../packages/kandy/src/logs/interface/actions.js");
+
+var actions = _interopRequireWildcard(_actions);
+
+var _index = __webpack_require__("../../packages/kandy/src/logs/index.js");
+
+var _effects = __webpack_require__("../../node_modules/redux-saga/es/effects.js");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// The SDK's name for the default/global log level.
+// Logs plugin.
+const defaultType = 'DEFAULT';
+
+/**
+ * Taker saga for "set log level" actions.
+ * @method setLevelEntry
+ */
+
+
+// Libraries.
+function* setLevelEntry() {
+  yield (0, _effects.takeEvery)(actionTypes.SET_LEVEL, setLogLevel);
+}
+
+/**
+ * Taker saga for "set log handler" actions.
+ * @method setHandlerEntry
+ */
+function* setHandlerEntry() {
+  yield (0, _effects.takeEvery)(actionTypes.SET_HANDLER, setLogHandler);
+}
+
+/**
+ * Functionality saga for "set log level" actions.
+ * @method setLogLevel
+ * @param  {Object} action
+ * @param  {string} action.level
+ * @param  {string} [action.type]
+ */
+function* setLogLevel(action) {
+  const { level, type } = action.payload;
+
+  try {
+    if (!type || type === defaultType) {
+      // Update the Manager's default level.
+      _index.logManager.setLevel(level);
+      // Update all Loggers' levels.
+      _index.logManager.getLoggers().forEach(logger => {
+        logger.setLevel(level);
+      });
+
+      // Update all Logger levels in state, because changing the default level
+      //    will affect all Loggers without their own explicit level set.
+      yield (0, _effects.put)(actions.levelsChanged(getLevelMap(_index.logManager)));
+    } else {
+      // Update the Manager's default level for this type.
+      _index.logManager.setLevel(type, level);
+      // Update all Loggers of this type.
+      _index.logManager.getLoggers(type).forEach(logger => {
+        logger.setLevel(level);
+      });
+
+      // Update the one type's level in state.
+      yield (0, _effects.put)(actions.levelsChanged({ [type]: level }));
+    }
+  } catch (err) {
+    const log = _index.logManager.getLogger('LOGS');
+    log.error(err.message);
+  }
+}
+
+/**
+ * Functionality saga for "set log handler" actions.
+ * @method setLogHandler
+ * @param  {Object}   action
+ * @param  {Function} action.handler
+ * @param  {string}   [action.type]
+ */
+function* setLogHandler(action) {
+  const { handler, type } = action.payload;
+
+  try {
+    if (!type || type === defaultType) {
+      // Update the Manager's default level.
+      _index.logManager.setHandler(handler);
+      // Update all Loggers' handlers.
+      _index.logManager.getLoggers().forEach(logger => {
+        logger.setHandler(handler);
+      });
+    } else {
+      // Update the Manager's default handler for this type.
+      _index.logManager.setHandler(type, handler);
+      // Update all Loggers of this type.
+      _index.logManager.getLoggers(type).forEach(logger => {
+        logger.setHandler(handler);
+      });
+    }
+  } catch (err) {
+    const log = _index.logManager.getLogger('LOGS');
+    log.error(err.message);
+  }
+}
+
+/**
+ * Helper function.
+ * Gets the log levels for every Logger type (and default).
+ * @method getLevelMap
+ * @return {Object} Mapping of Logger type to its log level.
+ */
+function getLevelMap(logManager) {
+  // Get unique types from all Loggers.
+  const loggers = logManager.getLoggers();
+  const types = [...new _set2.default(loggers.map(logger => logger.type))];
+
+  const levels = {};
+  // Add the default level to the beginning.
+  levels[defaultType] = logManager.getLevel();
+
+  // Get the level for each Logger type.
+  types.forEach(type => {
+    levels[type] = logManager.getLevel(type);
+  });
+
+  return levels;
 }
 
 /***/ }),
@@ -64307,18 +65252,18 @@ var _selectors = __webpack_require__("../../packages/kandy/src/messaging/interfa
 var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 // Retrieve logger
-const log = (0, _logs.getLogManager)().getLogger('MESSAGING'); /**
-                                                                * The messaging feature revolves around a 'conversation' namespace. It is responsible to store the conversations
-                                                                * and its messages, and return conversation objects when requested.
-                                                                *
-                                                                * See the "Conversation" and "Message" sections of the documentation for more details.
-                                                                *
-                                                                *
-                                                                * Messaging functions are all part of the 'conversation' namespace. Ex: client.conversation.get('id').
-                                                                *
-                                                                * @public
-                                                                * @namespace conversation
-                                                                */
+const log = _logs.logManager.getLogger('MESSAGING'); /**
+                                                      * The messaging feature revolves around a 'conversation' namespace. It is responsible to store the conversations
+                                                      * and its messages, and return conversation objects when requested.
+                                                      *
+                                                      * See the "Conversation" and "Message" sections of the documentation for more details.
+                                                      *
+                                                      *
+                                                      * Messaging functions are all part of the 'conversation' namespace. Ex: client.conversation.get('id').
+                                                      *
+                                                      * @public
+                                                      * @namespace conversation
+                                                      */
 
 function api(context) {
   const messagingApi = {
@@ -64828,7 +65773,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @memberof conversation
  */
 
-const log = (0, _logs.getLogManager)().getLogger('MESSAGING');
+const log = _logs.logManager.getLogger('MESSAGING');
 
 /**
  * Base conversation stamp
@@ -65646,7 +66591,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Get the logger
 // Redux-Saga
-const log = (0, _logs.getLogManager)().getLogger('MESSAGING');
+const log = _logs.logManager.getLogger('MESSAGING');
 
 // The interface to implement.
 
@@ -65735,7 +66680,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Error
 
 // Auth
-const log = (0, _logs.getLogManager)().getLogger('MESSAGING');
+const log = _logs.logManager.getLogger('MESSAGING');
 
 /**
  * Link send message saga.
@@ -65960,16 +66905,16 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-const log = (0, _logs.getLogManager)().getLogger('MWI'); /**
-                                                          * The 'voicemail' namespace is used to retrieve and view
-                                                          * voicemail indicators.
-                                                          *
-                                                          * Voicemail functions are all part of this namespace.
-                                                          *
-                                                          * @public
-                                                          * @requires voicemail
-                                                          * @namespace voicemail
-                                                          */
+const log = _logs.logManager.getLogger('MWI'); /**
+                                                * The 'voicemail' namespace is used to retrieve and view
+                                                * voicemail indicators.
+                                                *
+                                                * Voicemail functions are all part of this namespace.
+                                                *
+                                                * @public
+                                                * @requires voicemail
+                                                * @namespace voicemail
+                                                */
 
 function api({ dispatch, getState }) {
   const mwiApi = {
@@ -66307,7 +67252,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // MWI Actions
 
 // Auth
-const log = (0, _logs.getLogManager)().getLogger('MWI');
+const log = _logs.logManager.getLogger('MWI');
 
 // Logs
 
@@ -66685,7 +67630,7 @@ const pDefer = __webpack_require__("../../node_modules/p-defer/index.js"); /**
                                     * @namespace notification
                                     */
 
-const log = (0, _logs.getLogManager)().getLogger('NOTIFICATION');
+const log = _logs.logManager.getLogger('NOTIFICATIONS');
 
 /**
  * Notifications API.
@@ -67223,7 +68168,7 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Request
-const log = (0, _logs.getLogManager)().getLogger('NOTIFICATIONS');
+const log = _logs.logManager.getLogger('NOTIFICATIONS');
 
 /**
  * Registers a device token with On-Prem services.
@@ -67443,7 +68388,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Get the logger
-const log = (0, _logs.getLogManager)().getLogger('NOTIFICATION');
+const log = _logs.logManager.getLogger('NOTIFICATIONS');
 
 /**
  * Unregister for android push notification.
@@ -67652,7 +68597,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Get the logger
 
 // Logs
-const log = (0, _logs.getLogManager)().getLogger('NOTIFICATION');
+const log = _logs.logManager.getLogger('NOTIFICATIONS');
 
 /**
  * Register for apple push notification
@@ -68156,23 +69101,23 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-const log = (0, _logs.getLogManager)().getLogger('PRESENCE'); /**
-                                                               * The 'presence' namespace provides an interface for an application to set the
-                                                               *    User's presence information and to track other Users' presence
-                                                               *    information.
-                                                               *
-                                                               * Presence information is persisted by the server. When the SDK is initialized,
-                                                               *    there will be no information available. Presence information will become
-                                                               *    available either by using {@link presence.fetch} or by subscribing for
-                                                               *    updates about other Users, using {@link presence.subscribe}.
-                                                               *
-                                                               * Available presence information can be retrieved using {@link presence.get} or
-                                                               *    {@link presence.getAll}.
-                                                               *
-                                                               * @public
-                                                               * @requires presence
-                                                               * @namespace presence
-                                                               */
+const log = _logs.logManager.getLogger('PRESENCE'); /**
+                                                     * The 'presence' namespace provides an interface for an application to set the
+                                                     *    User's presence information and to track other Users' presence
+                                                     *    information.
+                                                     *
+                                                     * Presence information is persisted by the server. When the SDK is initialized,
+                                                     *    there will be no information available. Presence information will become
+                                                     *    available either by using {@link presence.fetch} or by subscribing for
+                                                     *    updates about other Users, using {@link presence.subscribe}.
+                                                     *
+                                                     * Available presence information can be retrieved using {@link presence.get} or
+                                                     *    {@link presence.getAll}.
+                                                     *
+                                                     * @public
+                                                     * @requires presence
+                                                     * @namespace presence
+                                                     */
 
 /**
  * The PresenceStatus type defines the user's current status in terms of the user's availability to
@@ -68759,7 +69704,7 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Request
-const log = (0, _logs.getLogManager)().getLogger('PRESENCE');
+const log = _logs.logManager.getLogger('PRESENCE');
 // Logs
 function* updatePresenceRequest({ status, activity, note }, requestInfo) {
   let url = `${requestInfo.baseURL}/rest/version/${requestInfo.version}/user/${requestInfo.username}/presence`;
@@ -69126,7 +70071,7 @@ const { fetch } = (0, _fetchPonyfill2.default)({ Promise: _promise2.default });
 
 // State setters.
 
-const log = (0, _logs.getLogManager)().getLogger('REQUEST');
+const log = _logs.logManager.getLogger('REQUEST');
 
 /**
  * Enum declaring the valid request response data types that are available to be handled
@@ -69732,7 +70677,7 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-const log = (0, _logs.getLogManager)().getLogger('SIPEVENTS');
+const log = _logs.logManager.getLogger('SIPEVENTS');
 
 /**
  * Sip Events API.
@@ -70164,7 +71109,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 // Other plugins.
-const log = (0, _logs.getLogManager)().getLogger('SIPEVENTS');
+const log = _logs.logManager.getLogger('SIPEVENTS');
 
 /**
  * Saga for subscribing to specified Sip Events.
@@ -70853,7 +71798,7 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-const log = (0, _logs.getLogManager)().getLogger('USERS'); // Users plugin.
+const log = _logs.logManager.getLogger('USERS'); // Users plugin.
 function contactsAPI({ dispatch, getState, primitives }) {
   /**
    * The 'contacts' namespace allows users to store personal contacts to their account.
@@ -71103,7 +72048,7 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-const log = (0, _logs.getLogManager)().getLogger('USERS'); // Users plugin.
+const log = _logs.logManager.getLogger('USERS'); // Users plugin.
 function usersAPI({ dispatch, getState, primitives }) {
   /**
    * The 'user' namespace allows access to user information for users within the same domain.
@@ -71908,7 +72853,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Get the logger
 
 // Request
-const log = (0, _logs.getLogManager)().getLogger('USERS');
+const log = _logs.logManager.getLogger('USERS');
 
 // Constants
 
@@ -72562,7 +73507,30 @@ const logLevels = exports.logLevels = {
   WARN: 3,
   ERROR: 4,
   SILENT: 5
-};
+
+  /**
+   * Supported Log methods and their set log level; `<logMethod>: <logLevel>`
+   * Used to construct the logging methods on a Logger.
+   * @type {Object}
+   */
+};const logMethods = exports.logMethods = {
+  // Standard methods.
+  trace: logLevels.TRACE,
+  debug: logLevels.DEBUG,
+  info: logLevels.INFO,
+  warn: logLevels.WARN,
+  error: logLevels.ERROR,
+  // Extra console methods.
+  log: logLevels.DEBUG,
+  group: logLevels.DEBUG,
+  groupEnd: logLevels.DEBUG,
+  groupCollapsed: logLevels.DEBUG
+
+  /**
+   * The log level for all timer methods.
+   * @type {string}
+   */
+};const timeLevel = exports.timeLevel = logLevels.DEBUG;
 
 /***/ }),
 
@@ -72616,11 +73584,18 @@ exports.default = defaultLogHandler;
  */
 function defaultLogHandler(entry) {
   // Compile the meta info of the log for a prefix.
-  const { timestamp, level, method, target } = entry;
+  const { timestamp, level, target } = entry;
+  let { method } = entry;
   const logInfo = `${timestamp} - ${target.type} - ${level}`;
 
   // Assume that the first message parameter is a string.
   const [log, ...extra] = entry.messages;
+
+  // For the time-related methods, don't actually use the console methods.
+  //    The Logger already did the timing, so simply log out the info.
+  if (method.includes('time')) {
+    method = 'debug';
+  }
 
   console[method](`${logInfo} - ${log}`, ...extra);
 }
@@ -72641,6 +73616,10 @@ var _values = __webpack_require__("../../node_modules/babel-runtime/core-js/obje
 
 var _values2 = _interopRequireDefault(_values);
 
+var _symbol = __webpack_require__("../../node_modules/babel-runtime/core-js/symbol.js");
+
+var _symbol2 = _interopRequireDefault(_symbol);
+
 exports.default = createManager;
 
 var _logger = __webpack_require__("../../packages/logger/src/logger.js");
@@ -72657,12 +73636,16 @@ var _validation = __webpack_require__("../../packages/logger/src/validation.js")
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+const defaultType = (0, _symbol2.default)('Default');
+
 /**
  * Creates a Log Manager.
  * @method createManager
  * @param  {Object}     [options={}]
- * @param  {Function}   [options.handler] The function to receive/handle log entries.
- * @param  {string}     [options.level='INFO'] The log level to be set.
+ * @param  {Function}   [options.handler]      The default log handler used for
+ *    Loggers that don't have a handler set.
+ * @param  {string}     [options.level='INFO'] The default log level used for
+ *    Loggers that don't have a level set.
  * @return {LogManager}
  */
 function createManager(options = {}) {
@@ -72675,20 +73658,29 @@ function createManager(options = {}) {
    *    a developer.
    */
   console.debug(`Creating LogManager.`);
-
-  let handler = options.handler ? (0, _validation.checkHandler)(options.handler) : _logHandler2.default;
-  let level = options.level ? (0, _validation.checkLevel)(options.level) : _constants.logLevels.INFO;
   const loggers = {};
 
   /**
-   * Gets a specific logger. If the logger doesn't exist, a new one will be
-   *    created.
-   * @method getLogger
-   * @param  {string} type Human-readable type/name for the logger.
-   * @param  {string} [id] A unique identifier for the logger.
-   * @return {Logger}
+   * Mapping between a Logger `type` and their default settings. Created Loggers
+   *    will use their `type` settings if they exist. Otherwise the "global"
+   *    options provided during Manager creation.
+   * @type {Object}
    */
-  function getLogger(type, id) {
+  const settings = {
+    [defaultType]: {
+      handler: options.handler ? (0, _validation.checkHandler)(options.handler) : _logHandler2.default,
+      level: options.level ? (0, _validation.checkLevel)(options.level) : _constants.logLevels.INFO
+    }
+
+    /**
+     * Gets a specific logger. If the logger doesn't exist, a new one will be
+     *    created.
+     * @method getLogger
+     * @param  {string} type Human-readable type/name for the logger.
+     * @param  {string} [id] A unique identifier for the logger.
+     * @return {Logger}
+     */
+  };function getLogger(type, id) {
     // Combine the name and ID to create the "full" logger name.
     const loggerName = id ? `${type}-${id}` : type;
 
@@ -72697,7 +73689,12 @@ function createManager(options = {}) {
     if (!logger) {
       // This logger logs items from a specific "target".
       const target = { type, id, name: loggerName };
-      logger = (0, _logger2.default)(target, { level, handler });
+      let options = {
+        level: getLevel(type),
+        handler: getHandler(type)
+      };
+
+      logger = (0, _logger2.default)(target, options);
 
       // Save the new logger to be returned by future getter cals.
       loggers[loggerName] = logger;
@@ -72720,21 +73717,183 @@ function createManager(options = {}) {
     }
   }
 
+  /**
+   * Sets the default `level` to be used when creating Loggers.
+   *
+   * Can set the level "globally" or per `type`, depending if `type` is provided
+   *    or not. When set for a specific type, only Loggers of that type will use
+   *    the set level. When set "globally", all Loggers without a set type will
+   *    use the level as a default.
+   *
+   * Setting the level only affects Loggers created after that point.
+   * @method setLevel
+   * @param  {string} type  The type of Logger to set the option for.
+   * @param  {string} level The logLevel to be set.
+   * @throws Throws an error if level is not a valid log level.
+   * @example
+   * const manager = createManager({ level: logLevels.WARN })
+   *
+   * // Setting the level for a type sets it for created Loggers of that type.
+   * manager.setLevel('Call', logLevels.DEBUG)
+   * const logger1 = manager.getLogger('Call')
+   * // logger1.getLevel() === logLevels.DEBUG
+   *
+   * // Loggers created of types without a set level uses the Manager's level.
+   * const logger2 = manager.getLogger('Auth')
+   * // logger2.getLevel() === logLevels.WARN
+   *
+   * // Setting the level without a type changes the Manager's level.
+   * manager.setLevel(logLevels.INFO)
+   * const logger3 = manager.getLogger('Messaging')
+   * // logger3.getLevel() === logLevels.INFO
+   *
+   * // Setting the level for a type does not affect previously created Loggers.
+   * manager.setLevel('Auth', logLevels.INFO)
+   * // logger2.getLevel() !== logLevels.INFO
+   * // logger2.getLevel() === logLevels.WARN
+   */
+  function setLevel(type, level) {
+    // Signature can be: `setLevel(type, level)` or `setLevel(level)`.
+    // Normalize the parameters to always be consistent.
+    if (level === undefined) {
+      level = type;
+      type = defaultType;
+    }
+
+    // Ensure `settings[type]` is an object.
+    if (!settings[type]) {
+      settings[type] = {};
+    }
+
+    // Set the level.
+    settings[type].level = (0, _validation.checkLevel)(level);
+  }
+
+  /**
+   * Gets the default `level` that is used when creating Loggers.
+   *
+   * Can get the level used "globally" or per `type`, depending if `type` is
+   *    provided or not.
+   *
+   * See the `setLevel` API for setting these values.
+   * See the Logger APIs for getting this value for an already created Logger.
+   * @method getLevel
+   * @param  {string} [type] A type of Logger.
+   * @return {LogLevel}
+   * @example
+   * const manager = createManager({ level: logLevels.WARN })
+   *
+   * // If a type's level has not been set, gets the "global" level.
+   * // manager.getLevel('Call') === logLevels.WARN
+   *
+   * // If a type's level has been set, gets its level.
+   * manager.setLevel('Auth', logLevels.DEBUG)
+   * // manager.getLevel('Auth') === logLevels.DEBUG
+   *
+   * // Can get the "global" level.
+   * manager.setLevel(logLevels.INFO)
+   * // manager.getLevel() === logLevels.INFO
+   */
+  function getLevel(type) {
+    // Signature can be: `getLevel(type)` or `getLevel()`.
+    // Normalize the parameters to always be consistent.
+    type = type || defaultType;
+
+    return settings[type] && settings[type].level || settings[defaultType].level;
+  }
+
+  /**
+   * Sets the default `handler` to be used when creating Loggers.
+   *
+   * Can set the handler "globally" or per `type`, depending if `type` is
+   *    provided or not. When set for a specific type, only Loggers of that type
+   *    will use the set handler. When set "globally", all Loggers without a set
+   *    type will use the handler as a default.
+   *
+   * Setting the handler only affects Loggers created after that point.
+   * @method setHandler
+   * @param  {string}     type    The type of Logger to set the option for.
+   * @param  {LogHandler} handler The log handler to be set.
+   * @throws Throws an error if handler is not a function.
+   * @example
+   * const manager = createManager({ handler: managerHandler })
+   *
+   * // Setting the handler for a type sets it for created Loggers of that type.
+   * manager.setHandler('Call', callHandler)
+   * const logger1 = manager.getLogger('Call')
+   * // logger1.getHandler() === callHandler
+   *
+   * // Loggers created of types without a set handler uses the Manager's handler.
+   * const logger2 = manager.getLogger('Auth')
+   * // logger2.getHandler() === managerHandler
+   *
+   * // Setting the handler without a type changes the Manager's handler.
+   * manager.setHandler(newHandler)
+   * const logger3 = manager.getLogger('Messaging')
+   * // logger3.getHandler() === newHandler
+   *
+   * // Setting the handler for a type does not affect previously created Loggers.
+   * manager.setHandler('Auth', authHandler)
+   * // logger2.getHandler() !== authHandler
+   * // logger2.getHandler() === managerHandler
+   */
+  function setHandler(type, handler) {
+    // Signature can be: `setHandler(type, handler)` or `setHandler(handler)`.
+    // Normalize the parameters to always be consistent.
+    if (typeof type === 'function' && handler === undefined) {
+      handler = type;
+      type = defaultType;
+    }
+
+    // Ensure `settings[type]` is an object.
+    if (!settings[type]) {
+      settings[type] = {};
+    }
+
+    // Set the handler.
+    settings[type].handler = (0, _validation.checkHandler)(handler);
+  }
+
+  /**
+   * Gets the default `handler` that is used when creating Loggers.
+   *
+   * Can get the handler used "globally" or per `type`, depending if `type` is
+   *    provided or not.
+   *
+   * See the `setHandler` API for setting these values.
+   * See the Logger APIs for getting this value for an already created Logger.
+   * @method getHandler
+   * @param  {string} [type] A type of Logger.
+   * @return {LogHandler}
+   * @example
+   * const manager = createManager({ handler: managerHandler })
+   *
+   * // If a type's handler has not been set, gets the "global" handler.
+   * // manager.getHandler('Call') === managerHandler
+   *
+   * // If a type's handler has been set, gets its handler.
+   * manager.setHandler('Auth', authHandler)
+   * // manager.getHandler('Auth') === authHandler
+   *
+   * // Can get the "global" handler.
+   * manager.setHandler(newHandler)
+   * // manager.getHandler() === newHandler
+   */
+  function getHandler(type) {
+    // Signature can be: `getHandler(type)` or `getHandler()`.
+    // Normalize the parameters to always be consistent.
+    type = type || defaultType;
+
+    return settings[type] && settings[type].handler || settings[defaultType].handler;
+  }
+
   return {
     getLogger,
     getLoggers,
-    get handler() {
-      return handler;
-    },
-    set handler(newHandler) {
-      handler = (0, _validation.checkHandler)(newHandler);
-    },
-    set level(newLevel) {
-      level = (0, _validation.checkLevel)(newLevel);
-    },
-    get level() {
-      return level;
-    }
+    setLevel,
+    getLevel,
+    setHandler,
+    getHandler
   };
 }
 
@@ -72749,11 +73908,22 @@ function createManager(options = {}) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 exports.default = createLogger;
 
 var _constants = __webpack_require__("../../packages/logger/src/constants.js");
 
 var _validation = __webpack_require__("../../packages/logger/src/validation.js");
+
+var _timer = __webpack_require__("../../packages/logger/src/timer.js");
+
+var _timer2 = _interopRequireDefault(_timer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Creates a Logger.
@@ -72770,36 +73940,39 @@ function createLogger(target, options = {}) {
   const handler = (0, _validation.checkHandler)(options.handler);
 
   /**
-   * Currying function to dynamically create the Logger's logging methods.
-   * @method logFunc
-   * @param  {string} method Name of the logger method to create.
-   * @return {Function} A log method.
+   * Logger data.
+   * @type {Object}
+   * @property {Object}   target  Metadata about the "target" of the Logger.
+   * @property {LogLevel} level   The currently set log level.
+   * @property {Function} handler The currently set Log Handler.
    */
-  function logFunc(method) {
-    // The level that this function logs at.
-    let logLevel;
-    // Consider non-standard log levels to be debug.
-    if (['group', 'groupEnd', 'groupCollapsed', 'log'].includes(method)) {
-      logLevel = _constants.logLevels.DEBUG;
-    } else {
-      // Otherwise, the method and log level match directly.
-      logLevel = _constants.logLevels[method.toUpperCase()];
-    }
+  const logger = {
+    target,
+    level,
+    handler
 
+    /**
+     * Currying function to dynamically create the Logger's logging methods.
+     * @method logFunc
+     * @param  {string} method   Name of the logger method to create.
+     * @param  {string} logLevel The log level for the method.
+     * @param  {Object} [injectables] Other values to include in the LogEntry.
+     * @return {Function} A log method.
+     */
+  };function logFunc(method, logLevel, injectables) {
     /*
      * Return the function that will be used as `log.<method>`.
      */
     return function (...args) {
       // Compare the logged level and the configured level.
-      const setLevel = _constants.levelValues[logger.level];
-      const shouldLog = _constants.levelValues[logLevel] >= setLevel;
+      const shouldLog = _constants.levelValues[logLevel] >= _constants.levelValues[logger.level];
       // If this entry shouldn't be logged, don't do anything.
       if (!shouldLog) {
         return;
       }
 
       // Create the Log Entry to be handed off to the handler.
-      const entry = {
+      const entry = (0, _extends3.default)({}, injectables, {
         // Meta-info about the log.
         method,
         timestamp: Date.now(),
@@ -72807,33 +73980,74 @@ function createLogger(target, options = {}) {
         target: logger.target,
         // The actual arguments logged.
         messages: [...args]
-      };
+      });
 
       logger.handler(entry);
     };
   }
 
-  const logger = {
-    target,
-    level,
-    handler
+  /**
+   * Sets the Logger's current log level.
+   * @method setLevel
+   * @param  {string} level The logLevel to be set.
+   * @throws Throws an error if level is not a valid log level.
+   * @example
+   * logger.setLevel(logLevels.INFO)
+   * logger.info('This will be logged.')
+   * logger.debug('This will not be logged.')
+   */
+  function setLevel(level) {
+    logger.level = (0, _validation.checkLevel)(level);
+  }
 
-    // Supported console methods.
-  };const consoleMethods = ['trace', 'debug', 'warn', 'info', 'error', 'log', 'group', 'groupEnd', 'groupCollapsed'];
+  /**
+   * Gets the Logger's current log level.
+   * @method getLevel
+   * @return {string} The log level.
+   * @example
+   * logger.setLevel(logLevels.DEBUG)
+   * const level = logger.getLevel()
+   * // level === logLevels.DEBUG
+   */
+  function getLevel() {
+    return logger.level;
+  }
+
+  /**
+   * Sets the Logger's current log handler.
+   * @method setHandler
+   * @param  {Function} handler The log handler to be set.
+   * @throws Throws an error if handler is not a function.
+   * @example
+   * const logger = manager.getLogger('Test', '123')
+   * logger.setHandler((logEntry) => {
+   *    console.log(logEntry.target.name, ...logEntry.messages)
+   * })
+   * logger.info('I am a logged message.')
+   * // logs: "Test-123 I am a logged message."
+   */
+  function setHandler(handler) {
+    logger.handler = (0, _validation.checkHandler)(handler);
+  }
+
+  /**
+   * Gets the Logger's current log handler.
+   * @method getHandler
+   * @return {Function} The log handler.
+   * @example
+   * logger.setHandler(customHandler)
+   * const handler = logger.getHandler()
+   * // handler === customHandler.DEBUG
+   */
+  function getHandler() {
+    return logger.handler;
+  }
 
   const api = {
-    get handler() {
-      return logger.handler;
-    },
-    set handler(handler) {
-      logger.handler = (0, _validation.checkHandler)(handler);
-    },
-    get level() {
-      return logger.level;
-    },
-    set level(newLevel) {
-      logger.level = (0, _validation.checkLevel)(newLevel);
-    },
+    getHandler,
+    setHandler,
+    getLevel,
+    setLevel,
     get type() {
       return logger.target.type;
     },
@@ -72846,11 +74060,142 @@ function createLogger(target, options = {}) {
   };
 
   // For all supported log methods, create a function on the Logger for it.
-  consoleMethods.forEach(method => {
-    api[method] = logFunc(method);
-  });
+  for (let method in _constants.logMethods) {
+    api[method] = logFunc(method, _constants.logMethods[method]);
+  }
 
-  return api;
+  // Create log functions for the Timer to use.
+  // Follows the same style as above logMethods, but curries it once more
+  //    to align the timer parameters as needed.
+  const timeLog = (message, data) => logFunc(data.event, _constants.timeLevel, { timer: data })(message);
+  const timeWarn = (message, data) => logFunc('warn', _constants.logLevels.WARN, { timer: data })(message);
+  const timer = (0, _timer2.default)(timeLog, timeWarn);
+
+  return (0, _extends3.default)({}, api, timer);
+}
+
+/***/ }),
+
+/***/ "../../packages/logger/src/timer.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createTimer;
+
+var _validation = __webpack_require__("../../packages/logger/src/validation.js");
+
+/**
+ * Timer factory function.
+ * The Timer imitates the Console's Time APIs.
+ * Ref: https://developer.mozilla.org/en-US/docs/Web/API/console#Timers
+ * @method createTimer
+ * @param  {Function} log  Function for logging timer information.
+ * @param  {Function} warn Function for warning about timer misuse.
+ * @return {Timer}
+ */
+function createTimer(log, warn) {
+  // Validate that params are a function.
+  //    Uses funtions as `log(message, data)`.
+  (0, _validation.checkHandler)(log);
+  (0, _validation.checkHandler)(warn);
+
+  /**
+   * Mapping of on-going timers; <name>: <start>.
+   * @type {Object}
+   */
+  const timers = {};
+
+  /**
+   * Starts a timer. Logs a message to indicate it was started.
+   * Logs a warning if the timer has already been started.
+   * @method timeStart
+   * @param  {string} name Name to identify the timer.
+   */
+  function time(name) {
+    const now = Date.now();
+    // Base info about this timer call.
+    const data = {
+      event: 'time',
+      name
+    };
+
+    if (timers.hasOwnProperty(name)) {
+      data.start = timers[name];
+      warn(`Timer ${name} already started.`, data);
+    } else {
+      // Set the new timer.
+      timers[name] = now;
+
+      data.start = now;
+      log(`Timer ${name} started.`, data);
+    }
+  }
+
+  /**
+   * Ends a timer. Logs a message with the elapsed time.
+   * @method timeEnd
+   * @param  {string} name Name to identify the timer.
+   */
+  function timeEnd(name) {
+    const now = Date.now();
+    // Base info about this timer call.
+    const data = {
+      event: 'timeEnd',
+      name,
+      start: timers[name]
+    };
+
+    if (timers.hasOwnProperty(name)) {
+      const start = timers[name];
+      // End the timer.
+      delete timers[name];
+
+      const elapsed = now - start;
+      data.end = now;
+      data.elapsed = elapsed;
+
+      log(`Timer ${name} ended, taking ${elapsed}ms.`, data);
+    } else {
+      warn(`Timer ${name} has not been started.`, data);
+    }
+  }
+
+  /**
+   * Adds a split to the timer. Logs a message with the elapsed time so far.
+   * Logs a warning if the timer has not been started.
+   * @method timeSplit
+   * @param  {string} name Name to identify the timer.
+   */
+  function timeLog(name) {
+    const now = Date.now();
+    // Base info about this timer call.
+    const data = {
+      event: 'timeLog',
+      name,
+      start: timers[name]
+    };
+
+    if (timers.hasOwnProperty(name)) {
+      const elapsed = now - timers[name];
+      data.split = now;
+      data.elapsed = elapsed;
+
+      log(`Timer ${name} split, at ${elapsed}ms so far.`, data);
+    } else {
+      warn(`Timer ${name} has not been started.`, data);
+    }
+  }
+
+  return {
+    time,
+    timeEnd,
+    timeLog
+  };
 }
 
 /***/ }),
