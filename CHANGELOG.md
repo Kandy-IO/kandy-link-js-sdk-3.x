@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.14.0 - beta
 
+### Fixed
+
+- Fixed an intermittent Call issue where a queued, remote, slow-start operation may not be processed properly and hang. `KAA-2079`
+
 ## 3.13.0 - 2020-02-28
 
 ### Changed

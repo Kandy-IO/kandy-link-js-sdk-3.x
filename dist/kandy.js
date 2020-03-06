@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.14.0-beta.328
+ * Version: 3.14.0-beta.329
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -43133,12 +43133,23 @@ function WebRtcContainerAdaptorImpl(_ref) {
                     logger.trace('processHold: Setting local description with SDP: ' + obj.sdp);
                     peer.setLocalDescription(obj, function processHoldSetLocalDescriptionSuccessCallback() {
                         logger.debug('processHold: setLocalDescription success!! ' + 'iceConnectionState: ' + peer.iceConnectionState + ' iceGatheringState: ' + peer.iceGatheringState);
+
                         if (call.supportTrickle) {
+                            // Trickle ICE is supported; continue processing the operation right away.
                             _utils.callFunctionIfExist(successCallback, peer.localDescription.sdp);
-                        } else if (peer.iceGatheringState === 'complete') {
-                            if (call.successCallback) {
+                        } else {
+                            // Need to wait for ICE gathering to finish.
+                            if (peer.iceGatheringState === 'complete') {
+                                // ICE gathering is already done; continue processing the operation right away.
                                 logger.debug('processHold iceGatheringState completed ' + peer.localDescription.sdp);
                                 _utils.callFunctionIfExist(successCallback, peer.localDescription.sdp);
+                            } else {
+                                /**
+                                 * We need to wait for ICE gathering to finish. The operation should continue
+                                 *    being processed when ICE is done (onIceComplete listener), which should
+                                 *    use the call.successCallback function.
+                                 */
+                                logger.debug('Waiting for ICE gathering to complete.');
                             }
                         }
                     }, function processHoldSetLocalDescriptionFailureCallback(e) {
@@ -48397,10 +48408,12 @@ function WebRtcManager(_ref) {
         logger = _logManager.getLogger('WebRtcManager');
 
     function setSuccessCallbacktoCall(call, successCallback) {
+        logger.debug('Setting the call\'s successCallback.');
         call.successCallback = successCallback;
     }
 
     function clearSuccessParametersFromCall(call) {
+        logger.debug('Clearing the call\'s successCallback.');
         call.successCallback = null;
     }
 
@@ -58779,7 +58792,8 @@ function middleware({ dispatch, getState }) {
           if (data) {
             const callbacks = callShim.getNotificationCallbacks();
             if ((0, _fp.isFunction)(callbacks[data.eventType])) {
-              log.debug('WS notification message received: ' + data.eventType);
+              const channel = action.meta.channel;
+              log.debug(`${channel} notification message received: ${data.eventType}`);
               // Handle websocket messages by forwarding them to FCS' notification system.
               callbacks[data.eventType](data);
             }
@@ -60898,7 +60912,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.14.0-beta.328';
+  return '3.14.0-beta.329';
 }
 
 /***/ }),
@@ -67450,13 +67464,14 @@ function externalNotification(notification, channel = 'PUSH', platform) {
  * @param  {string} platform
  * @return {Object} A flux standard action.
  */
-function notificationReceived(notification, platform) {
+function notificationReceived(notification, platform, channel) {
   return {
     type: actionTypes.NOTIFICATION_RECEIVED,
     payload: notification,
     error: notification instanceof Error,
     meta: {
-      platform
+      platform,
+      channel
     }
   };
 }
@@ -68495,7 +68510,8 @@ function* processNotification() {
         // Add the notification ID to the idCache to prevent handling incoming duplicate notifications
         addIdToCache(notificationId);
 
-        yield (0, _effects.put)(actions.notificationReceived(formattedPayload, action.meta.platform));
+        const { platform, channel } = action.meta;
+        yield (0, _effects.put)(actions.notificationReceived(formattedPayload, platform, channel));
       } else {
         const error = new Error(`Notification id ${notificationId} is duplicate.`);
         // TODO: Tech-debt; this action should be a notificationReceived error action.
