@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.14.0-beta.330
+ * Version: 3.14.0-beta.331
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -56443,7 +56443,8 @@ function shim(context) {
         // Retrieve other call info that may have changed.
         var call = getInternalCall(callId);
         var callInfo = {
-          remoteParticipant: call.remoteParticipant
+          remoteParticipant: call.remoteParticipant,
+          isVideoNegotiationAvailable: call.isVideoNegotiationAvailable ? call.isVideoNegotiationAvailable() : false
 
           // If the FCS call has updated participant info, update the
           //      redux call with it. Try to ensure they have domains.
@@ -56512,7 +56513,8 @@ function shim(context) {
       to: getUsername(),
       remoteVideoState: call.getRemoteVideoState(),
       remoteParticipant: call.remoteParticipant,
-      wrtcsSessionId: call.getId()
+      wrtcsSessionId: call.getId(),
+      isVideoNegotiationAvailable: call.isVideoNegotiationAvailable ? call.isVideoNegotiationAvailable() : false
       // TODO: Get more info from the call.
       // TODO: Make call info consistent between
       //      making call and receiving call.
@@ -56609,6 +56611,8 @@ function shim(context) {
           fcsCall.onStateChange = onStateChange(callId);
           fcsCall.onMediaStateChange = onMediaStateChange(callId);
           options.wrtcsSessionId = fcsCall.getId();
+          options.isVideoNegotiationAvailable = fcsCall.isVideoNegotiationAvailable ? fcsCall.isVideoNegotiationAvailable() : false;
+
           // Go back to the redux level.
           resolve({ callId, options });
         }
@@ -60912,7 +60916,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.14.0-beta.330';
+  return '3.14.0-beta.331';
 }
 
 /***/ }),
