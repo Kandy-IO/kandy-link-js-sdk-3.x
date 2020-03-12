@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.14.0-beta.333
+ * Version: 3.14.0-beta.334
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -51860,7 +51860,7 @@ function* unsubscribe(connection, subscriptionURL) {
   };const response = yield (0, _effects2.default)(requestOptions, connection.requestOptions);
 
   if (response.error) {
-    if (response.payload.body) {
+    if (response.payload.body && response.payload.body.subscribeResponse) {
       // Handle errors from the server.
       let { statusCode } = response.payload.body.subscribeResponse;
       log.debug(`Failed to unsubscribe user with status code ${statusCode}.`);
@@ -58233,16 +58233,16 @@ function middleware({ dispatch, getState }) {
               websocketPort: authConfig.websocket.port,
               // Hook into FCS call requests to add the token to them.
               ajaxHook: function (xhr, unusedWindow, { url, headers }) {
+                const { oauthToken, accessToken } = (0, _selectors.getConnectionInfo)(getState(), _constants.platforms.UC);
                 // The token value will either be a normal Access Token or an OAuth Token
-                if (action.payload.connection.oauthToken) {
+                if (oauthToken) {
                   // For OAuth handling, add the Bearer token to the Request Header
                   headers = (0, _extends3.default)({}, headers, {
-                    Authorization: `Bearer ${action.payload.connection.oauthToken}`
+                    Authorization: `Bearer ${oauthToken}`
                   });
                 } else {
                   // For regular Access Token handling, add the token to the URL string
-                  const tokenString = `token=${action.payload.connection.accessToken}`;
-
+                  const tokenString = `token=${accessToken}`;
                   if (url.indexOf('?') === -1) {
                     url += '?' + tokenString;
                   } else {
@@ -60916,7 +60916,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.14.0-beta.333';
+  return '3.14.0-beta.334';
 }
 
 /***/ }),
