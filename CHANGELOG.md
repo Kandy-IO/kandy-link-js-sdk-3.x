@@ -12,6 +12,10 @@ Kandy.js change log.
 - Adding isVideoNegotiationAvailable flag to call objects for incoming and outgoing calls. `KAA-2203`
 - Fixed an intermittent Call issue where a queued, remote, slow-start operation may not be processed properly and hang. `KAA-2079`
 
+### Changed
+
+- Updated README to include a link to tutorials with Kandy-UAE configuration. `KAA-2226`
+
 ## 3.13.0 - 2020-02-28
 
 ### Changed
