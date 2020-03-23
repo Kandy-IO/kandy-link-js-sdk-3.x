@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.14.0-beta.343
+ * Version: 3.14.0-beta.344
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -30159,6 +30159,7 @@ function CallManagerImpl(_ref) {
             bridge;
         if (call.call) {
             call.call.clearAuditTimer();
+            call.isAuditing = false;
         }
         if (call.pendingRequestTimer) {
             clearTimeout(call.pendingRequestTimer);
@@ -31371,17 +31372,20 @@ function CallManagerImpl(_ref) {
         };
 
         startAuditTimer = function startAuditTimer() {
-            call.call.setAuditTimer(function () {
-                if (_core.isConnected()) {
-                    _callControlService.audit(call.id, function () {
-                        logger.info('Audit: Success for: ' + call.id);
-                    }, function () {
-                        logger.error('Audit: Fail for: ' + call.id);
-                        // no need to end the call after audit fail
-                        triggerQueue(call);
-                    });
-                }
-            });
+            if (!call.isAuditing) {
+                call.call.setAuditTimer(function () {
+                    if (_core.isConnected()) {
+                        _callControlService.audit(call.id, function () {
+                            logger.info('Audit: Success for: ' + call.id);
+                        }, function () {
+                            logger.error('Audit: Fail for: ' + call.id);
+                            // no need to end the call after audit fail
+                            triggerQueue(call);
+                        });
+                    }
+                });
+                call.isAuditing = true;
+            }
         };
 
         logger.info('Transfer Event: ' + event + '. callId: ' + call.id);
@@ -60916,7 +60920,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.14.0-beta.343';
+  return '3.14.0-beta.344';
 }
 
 /***/ }),
