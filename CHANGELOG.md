@@ -5,6 +5,20 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.14.0 - 2020-03-27
+
+### Changed
+
+- Updated README to include a link to tutorials with Kandy-UAE configuration. `KAA-2226`
+
+### Fixed
+
+- Adding isVideoNegotiationAvailable flag to call objects for incoming and outgoing calls. `KAA-2203`
+- Fixed an intermittent Call issue where a queued, remote, slow-start operation may not be processed properly and hang. `KAA-2079`
+- Fixed an intermittent Call issue where a call would audit twice per interval if the ICE candidate gathering process took too long. `KAA-2234`
+- Fixed an issue where the `conversation.subscribe` listener not being triggered. `KAA-2200`
+- Fixed an issue where incoming call notifications would be dropped when on `push-channel-only` mode if the notification arrived on the websocket channel first. `KAA-2156`
+
 ## 3.13.0 - 2020-02-28
 
 ### Changed

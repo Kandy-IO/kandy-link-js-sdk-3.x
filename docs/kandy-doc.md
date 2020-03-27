@@ -129,17 +129,23 @@ Configuration options for the call feature.
 ### config.connectivity
 
 Configuration options for the Connectivity feature.
+The SDK can only use keepalive as the connectivity check.
+
+Keep Alive: The client sends "keepalive" messages (to the server) on the websocket at regular intervals. This lets the server know that the client is still connected, and that it should "keep the connection alive".
+
+For more information on keepalive see here: [https://en.wikipedia.org/wiki/Keepalive][13]
 
 **Parameters**
 
--   `pingInterval` **[Number][11]** Time in between websocket ping attempts (milliseconds). (optional, default `30000`)
--   `reconnectLimit` **[Number][11]** Number of failed reconnect attempts before reporting an error. Can be set to 0 to not limit reconnection attempts. (optional, default `5`)
--   `reconnectDelay` **[Number][11]** Base time between websocket reconnect attempts (milliseconds). (optional, default `5000`)
--   `reconnectTimeMultiplier` **[Number][11]** Reconnect delay multiplier for subsequent attempts. The reconnect delay time will be multiplied by this factor after each failed reconnect attempt to increase the delay between attempts. (optional, default `1`)
--   `reconnectTimeLimit` **[Number][11]** Maximum time delay between reconnect attempts (milliseconds). Used in conjunction with the reconnect time multiplier to prevent overly long delays between reconnection attempts. (optional, default `640000`)
--   `autoReconnect` **[Boolean][10]** Flag to determine whether the SDK will attempt to automatically reconnect after connectivity disruptions. (optional, default `true`)
--   `maxMissedPings` **[Number][11]** Maximum pings sent (without receiving a response) before reporting an error. (optional, default `3`)
--   `checkConnectivity` **[Boolean][10]** Flag to determine whether the SDK should check connectivity. (optional, default `true`)
+-   `connectivity` **[Object][6]** Connectivity configs.
+    -   `connectivity.pingInterval` **[Number][11]** Time in between websocket ping attempts (milliseconds). (optional, default `30000`)
+    -   `connectivity.reconnectLimit` **[Number][11]** Number of failed reconnect attempts before reporting an error. Can be set to 0 to not limit reconnection attempts. (optional, default `5`)
+    -   `connectivity.reconnectDelay` **[Number][11]** Base time between websocket reconnect attempts (milliseconds). (optional, default `5000`)
+    -   `connectivity.reconnectTimeMultiplier` **[Number][11]** Reconnect delay multiplier for subsequent attempts. The reconnect delay time will be multiplied by this after each failed reconnect attempt to increase the delay between attempts. eg. 5000ms then 10000ms then 20000ms delay if value is 2. (optional, default `1`)
+    -   `connectivity.reconnectTimeLimit` **[Number][11]** Maximum time delay between reconnect attempts (milliseconds). Used in conjunction with the reconnect time multiplier to prevent overly long delays between reconnection attempts. (optional, default `640000`)
+    -   `connectivity.autoReconnect` **[Boolean][10]** Flag to determine whether the SDK will attempt to automatically reconnect after connectivity disruptions. (optional, default `true`)
+    -   `connectivity.maxMissedPings` **[Number][11]** Maximum pings sent (without receiving a response) before reporting an error. (optional, default `3`)
+    -   `connectivity.checkConnectivity` **[Boolean][10]** Flag to determine whether the SDK should check connectivity. (optional, default `true`)
 
 ### config.notifications
 
@@ -202,7 +208,7 @@ An error has occurred when changing local video preview status.
 **Parameters**
 
 -   `params` **[Object][6]** 
-    -   `params.error` **[api.BasicError][13]** Information about the error.
+    -   `params.error` **[api.BasicError][14]** Information about the error.
 
 ## api
 
@@ -252,7 +258,7 @@ Update values in the global Config section of the store. The values pertain to t
 
 **Parameters**
 
--   `newConfigValues` **[Object][6]** Key-value pairs that will be placed into the store. See [config][14] for details on what key-value pairs are available for use.
+-   `newConfigValues` **[Object][6]** Key-value pairs that will be placed into the store. See [config][15] for details on what key-value pairs are available for use.
 
 ### on
 
@@ -261,7 +267,7 @@ Add an event listener for the specified event type. The event is emmited by the 
 **Parameters**
 
 -   `type` **[string][7]** The event type for which to add the listener.
--   `listener` **[Function][15]** The listener for the event type. The parameters of the listener depend on the event type.
+-   `listener` **[Function][16]** The listener for the event type. The parameters of the listener depend on the event type.
 
 **Examples**
 
@@ -272,7 +278,7 @@ client.on('dummy:event', function (params) {
 })
 ```
 
--   Throws **[Error][16]** Invalid event type
+-   Throws **[Error][17]** Invalid event type
 
 ### off
 
@@ -281,10 +287,10 @@ Removes an event listener for the specified event type. The event is emmited by 
 **Parameters**
 
 -   `type` **[string][7]** The event type for which to remote the listener.
--   `listener` **[Function][15]** The listener to remove.
+-   `listener` **[Function][16]** The listener to remove.
 
 
--   Throws **[Error][16]** Invalid event type
+-   Throws **[Error][17]** Invalid event type
 
 ### subscribe
 
@@ -292,10 +298,10 @@ Adds a global event listener to SDK instance.
 
 **Parameters**
 
--   `listener` **[Function][15]** The event listener to add. The parameters are (type, ...args), where args depend on the event type.
+-   `listener` **[Function][16]** The event listener to add. The parameters are (type, ...args), where args depend on the event type.
 
 
--   Throws **[Error][16]** Listener not a function
+-   Throws **[Error][17]** Listener not a function
 
 ### unsubscribe
 
@@ -303,10 +309,10 @@ Removes a global event listener from SDK instance.
 
 **Parameters**
 
--   `listener` **[Function][15]** The event listener to remove.
+-   `listener` **[Function][16]** The event listener to remove.
 
 
--   Throws **[Error][16]** Listener not a function
+-   Throws **[Error][17]** Listener not a function
 
 ### connect
 
@@ -707,8 +713,8 @@ Start an outgoing call.
         -   `options.videoResolution.height` **[number][11]?** The height in pixels of the local video.
         -   `options.videoResolution.width` **[number][11]?** The width in pixels of the local video.
     -   `options.customParameters` **[Array][12]&lt;{name: [string][7], value: [string][7]}>?** Custom SIP header parameters for the SIP backend.
-    -   `options.remoteVideoContainer` **[HTMLElement][17]?** The HTML element to use as a container for the remote video.
-    -   `options.localVideoContainer` **[HTMLElement][17]?** The HTML element to use as a container for the local video.
+    -   `options.remoteVideoContainer` **[HTMLElement][18]?** The HTML element to use as a container for the remote video.
+    -   `options.localVideoContainer` **[HTMLElement][18]?** The HTML element to use as a container for the local video.
     -   `options.normalizeAddress` **[boolean][10]** Whether to enable normalization of callee address. (optional, default `false`)
 
 **Examples**
@@ -745,8 +751,8 @@ Answer an incoming call.
     -   `options.videoResolution` **[Object][6]?** The object to configure the local video resolution.
         -   `options.videoResolution.height` **[number][11]?** The height in pixels of the local video.
         -   `options.videoResolution.width` **[number][11]?** The width in pixels of the local video.
-    -   `options.localVideoContainer` **[HTMLElement][17]?** The HTML element to use as a container for the local video.
-    -   `options.remoteVideoContainer` **[HTMLElement][17]?** The HTML element to use as a container for the remote video.
+    -   `options.localVideoContainer` **[HTMLElement][18]?** The HTML element to use as a container for the local video.
+    -   `options.remoteVideoContainer` **[HTMLElement][18]?** The HTML element to use as a container for the remote video.
 
 ### ignore
 
@@ -1101,52 +1107,13 @@ If a conversation with the given user ID already exists in the store, it will be
     If this object is not passed, the function will query for "im" conversation with that recipient.
     -   `options.type` **[string][7]?** The type of conversation to retrieve. Can be one of "im", "sms" or "other".
 
-Returns **[conversation.Conversation][18]** A Conversation object.
-
-### Message
-
-A Message object is a means by which a sender can deliver information to a recipient.
-
-Creating and sending a message:
-
-A message object can be obtained through the [Conversation.createMessage][19] API on an existing conversation.
-
-Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
-Once all the desired parts have been added to the message using the [Message.addPart][20] function,
-the message can then be sent using the [Message.send][21] function.
-
-Once the sender sends a message, this message is saved in sender's state as an object.
-Similarly, once the recipient gets a message, this message is saved in recipient's state.
-
-Retrieving a delivered message:
-
-Once a message is delivered successfully, it can be
-obtained through the [Conversation.getMessages][22] or [Conversation.getMessage][23] API on an existing conversation.
-
-Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
-
-Type: [Object][6]
-
-**Properties**
-
--   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
--   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
--   `sender` **[string][7]** The primary contact address of the sender.
--   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
--   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
-    than the one associated with the message object stored in recipient's state.
--   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][24] for valid types.
-    This property applies only to message objects stored in sender's state.
-
-#### send
-
-Sends the message.
+Returns **[conversation.Conversation][19]** A Conversation object.
 
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
 user and a group. A Conversation can create messages via the conversation's
-[createMessage()][19] function.
+[createMessage()][20] function.
 
 Type: [Object][6]
 
@@ -1170,7 +1137,7 @@ Create and return a message object. You must provide a `text` part as demonstrat
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[conversation.Message][25]** The newly created Message object.
+Returns **[conversation.Message][21]** The newly created Message object.
 
 #### clearMessages
 
@@ -1182,9 +1149,9 @@ Get the messages associated with this conversation.
 
 Returns **[Array][12]&lt;[Object][6]>** messages An array containing the conversation's messages.
 
-Returns **[Function][15]** messages.markRead Marks the message as read.
+Returns **[Function][16]** messages.markRead Marks the message as read.
 
-Returns **[Function][15]** messages.forward Forward the message to another user.
+Returns **[Function][16]** messages.forward Forward the message to another user.
 
 Returns **[string][7]** messages.messageId The Id of the message.
 
@@ -1214,11 +1181,11 @@ Subscribe to this conversations messages array.
 
 **Parameters**
 
--   `subscriber` **[Function][15]** A subscriber function to be triggered when the messages array of this conversation is updated.
-    -   `subscriber.conversationId` **[string][7]** The conversation participant.
+-   `subscriber` **[Function][16]** A subscriber function to be triggered when the messages array of this conversation is updated.
+    -   `subscriber.destination` **[string][7]** The conversation participants.
     -   `subscriber.messageId` **[string][7]** The ID of the message that caused the event.
 
-Returns **[Function][15]** The unsubscribe function.
+Returns **[Function][16]** The unsubscribe function.
 
 #### fetchMessages
 
@@ -1230,6 +1197,45 @@ Messages can then be retrieved using getMessages.
 
 -   `amount` **[number][11]** An amount of messages to fetch. (optional, default `50`)
 
+### Message
+
+A Message object is a means by which a sender can deliver information to a recipient.
+
+Creating and sending a message:
+
+A message object can be obtained through the [Conversation.createMessage][20] API on an existing conversation.
+
+Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
+Once all the desired parts have been added to the message using the [Message.addPart][22] function,
+the message can then be sent using the [Message.send][23] function.
+
+Once the sender sends a message, this message is saved in sender's state as an object.
+Similarly, once the recipient gets a message, this message is saved in recipient's state.
+
+Retrieving a delivered message:
+
+Once a message is delivered successfully, it can be
+obtained through the [Conversation.getMessages][24] or [Conversation.getMessage][25] API on an existing conversation.
+
+Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
+
+Type: [Object][6]
+
+**Properties**
+
+-   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
+-   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
+-   `sender` **[string][7]** The primary contact address of the sender.
+-   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
+-   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
+    than the one associated with the message object stored in recipient's state.
+-   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][26] for valid types.
+    This property applies only to message objects stored in sender's state.
+
+#### send
+
+Sends the message.
+
 ## DEVICE_ERROR
 
 An error occurred while performing a device operation.
@@ -1239,7 +1245,7 @@ Type: [string][7]
 **Parameters**
 
 -   `params` **[Object][6]** 
-    -   `params.error` **[api.BasicError][13]** The Basic error object.
+    -   `params.error` **[api.BasicError][14]** The Basic error object.
 
 ## getDevices
 
@@ -1253,7 +1259,7 @@ logs are simple lines of information about what the SDK is doing during operatio
 Action logs are complete information about a specific action that occurred
 within the SDK, providing debug information describing it.
 The amount of information logged can be configured as part of the SDK configuration.
-See [config.logs][26] .
+See [config.logs][27] .
 
 ### levels
 
@@ -1267,6 +1273,50 @@ Possible levels for the SDK logger.
 -   `INFO` **[string][7]** Log useful information and messages to indicate the SDK's internal operations.
 -   `DEBUG` **[string][7]** Log information to help diagnose problematic behaviour.
 
+### LogHandler
+
+A LogHandler can be used to customize how the SDK should log information. By
+   default, the SDK will log information to the console, but a LogHandler can
+   be configured to change this behaviour.
+
+A LogHandler can be provided to the SDK as part of its configuration (see
+   [config.logs][27]). The SDK will then provide this
+   function with the logged information.
+
+Type: [Function][16]
+
+**Parameters**
+
+-   `LogEntry` **[Object][6]** The LogEntry to be logged.
+
+**Examples**
+
+```javascript
+// Define a custom function to handle logs.
+function logHandler (logEntry) {
+  // Compile the meta info of the log for a prefix.
+  const { timestamp, level, target } = logEntry
+  let { method } = logEntry
+  const logInfo = `${timestamp} - ${target.type} - ${level}`
+
+  // Assume that the first message parameter is a string.
+  const [log, ...extra] = logEntry.messages
+
+  // For the timer methods, don't actually use the console methods.
+  //    The Logger already did the timing, so simply log out the info.
+  if (['time', 'timeLog', 'timeEnd'].includes(method)) {
+    method = 'debug'
+  }
+
+  console[method](`${logInfo} - ${log}`, ...extra)
+}
+
+// Provide the LogHandler as part of the SDK configurations.
+const configs = { ... }
+configs.logs.handler = logHandler
+const client = create(configs)
+```
+
 ### LogEntry
 
 A LogEntry object is the data that the SDK compiles when information is
@@ -1274,7 +1324,7 @@ A LogEntry object is the data that the SDK compiles when information is
    and who logged it.
 
 A [LogHandler][4] provided to the SDK (see
-   [config.logs][26]) will need to handle LogEntry
+   [config.logs][27]) will need to handle LogEntry
    objects.
 
 Type: [Object][6]
@@ -1292,57 +1342,28 @@ Type: [Object][6]
            id was provided, this will be the same as the type.
 -   `messages` **[Array][12]** The logged information, given to the Logger
        method as parameters.
+-   `timer` **[Object][6]?** Timing data, if the log method was a timer method.
 
 **Examples**
 
 ```javascript
 function defaultLogHandler (logEntry) {
   // Compile the meta info of the log for a prefix.
-  const { timestamp, level, method, target } = logEntry
+  const { timestamp, level, target } = logEntry
+  let { method } = logEntry
   const logInfo = `${timestamp} - ${target.type} - ${level}`
 
   // Assume that the first message parameter is a string.
   const [log, ...extra] = logEntry.messages
 
-  console[method](`${logInfo} - ${log}`, ...extra)
-}
-```
-
-### LogHandler
-
-A LogHandler can be used to customize how the SDK should log information. By
-   default, the SDK will log information to the console, but a LogHandler can
-   be configured to change this behaviour.
-
-A LogHandler can be provided to the SDK as part of its configuration (see
-   [config.logs][26]). The SDK will then provide this
-   function with the logged information.
-
-Type: [Function][15]
-
-**Parameters**
-
--   `LogEntry` **[Object][6]** The LogEntry to be logged.
-
-**Examples**
-
-```javascript
-// Define a custom function to handle logs.
-function logHandler (logEntry) {
-  // Compile the meta info of the log for a prefix.
-  const { timestamp, level, method, target } = logEntry
-  const logInfo = `${timestamp} - ${target.type} - ${level}`
-
-  // Assume that the first message parameter is a string.
-  const [log, ...extra] = logEntry.messages
+  // For the timer methods, don't actually use the console methods.
+  //    The Logger already did the timing, so simply log out the info.
+  if (['time', 'timeLog', 'timeEnd'].includes(method)) {
+    method = 'debug'
+  }
 
   console[method](`${logInfo} - ${log}`, ...extra)
 }
-
-// Provide the LogHandler as part of the SDK configurations.
-const configs = { ... }
-configs.logs.handler = logHandler
-const client = create(configs)
 ```
 
 ## Media
@@ -1368,7 +1389,7 @@ Provides an external notification to the system for processing.
 ### registerApplePush
 
 Registers with Apple push notification service. Once registration is successful, the application will be able to receive
-standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][27]
+standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][28]
 in order for the SDK to process them.
 
 **Parameters**
@@ -1386,13 +1407,13 @@ in order for the SDK to process them.
     -   `params.isProduction` **[boolean][10]** If true, push notification will be sent to production.
                                                If false, push notification will be sent to sandbox.
 
-Returns **[Promise][28]** When successful,  the information of the registration.
+Returns **[Promise][29]** When successful,  the information of the registration.
                   Promise will reject with error object otherwise.
 
 ### registerAndroidPush
 
 Registers with Google push notification service. Once registration is successful, the application will be able to receive
-standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][27]
+standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][28]
 in order for the SDK to process them.
 
 **Parameters**
@@ -1406,7 +1427,7 @@ in order for the SDK to process them.
     -   `params.realm` **[string][7]** The realm used by the push registration service to identify
                                        and establish a connection with the service gateway.
 
-Returns **[Promise][28]** When successful,  the information of the registration.
+Returns **[Promise][29]** When successful,  the information of the registration.
                   Promise will reject with error object otherwise.
 
 ### unregisterApplePush
@@ -1417,7 +1438,7 @@ Unregister Apple push notifications.
 
 -   `registrationInfo` **[string][7]** The data returned from the push registration
 
-Returns **[Promise][28]** When successful, the promise will resolve with undefined.
+Returns **[Promise][29]** When successful, the promise will resolve with undefined.
                   Promise will reject with error object otherwise.
 
 ### unregisterAndroidPush
@@ -1428,7 +1449,7 @@ Unregister Android push notifications.
 
 -   `registrationInfo` **[string][7]** The data returned from the push registration
 
-Returns **[Promise][28]** When successful, the promise will resolve with undefined.
+Returns **[Promise][29]** When successful, the promise will resolve with undefined.
                   Promise will reject with error object otherwise.
 
 ### enableWebsocket
@@ -1447,11 +1468,11 @@ The 'presence' namespace provides an interface for an application to set the
 
 Presence information is persisted by the server. When the SDK is initialized,
    there will be no information available. Presence information will become
-   available either by using [presence.fetch][29] or by subscribing for
-   updates about other Users, using [presence.subscribe][30].
+   available either by using [presence.fetch][30] or by subscribing for
+   updates about other Users, using [presence.subscribe][31].
 
-Available presence information can be retrieved using [presence.get][31] or
-   [presence.getAll][32].
+Available presence information can be retrieved using [presence.get][32] or
+   [presence.getAll][33].
 
 ### statuses
 
@@ -1489,22 +1510,22 @@ Possible activity values.
 
 The PresenceStatus type defines the user's current status in terms of the user's availability to
 communicate/respond to other users in the network.
-An instance of this type can be obtained by invoking the [presence.get][31] function.
+An instance of this type can be obtained by invoking the [presence.get][32] function.
 
 Reporting when a user is on the phone is enabled (by default), which means that presence update notifications
 will be sent whenever a user is in a call, as well as when the call has ended.
 This is a user preference enabled or disabled on server side, and it can only be changed on the server side.
 
-The status is set to [open][33] as soon as a user subscribes for the presence service.
+The status is set to [open][34] as soon as a user subscribes for the presence service.
 
 Type: [Object][6]
 
 **Properties**
 
 -   `userId` **[string][7]** The unique identifier for the user associated with this presence status.
--   `status` **[string][7]** The current status the user has set for themselves. For supported values see [presence.statuses][33].
+-   `status` **[string][7]** The current status the user has set for themselves. For supported values see [presence.statuses][34].
 -   `activity` **[string][7]** The current activity of the user.
-         For supported values see [presence.activities][34].
+         For supported values see [presence.activities][35].
 -   `note` **[string][7]** Additional message acompanying the status & activity.
 -   `loading` **[boolean][10]** Whether the presence information has been loaded or is in the process of loading.
 
@@ -1512,16 +1533,16 @@ Type: [Object][6]
 
 Updates the presence information for the current user.
 
-See [presence.statuses][33] and [presence.activities][34] for valid
+See [presence.statuses][34] and [presence.activities][35] for valid
    values.
 
 The SDK will emit a
-   [presence:selfChange][35] event
+   [presence:selfChange][36] event
    when the operation completes. The updated presence information is
-   available and can be retrieved with [presence.getSelf][36].
+   available and can be retrieved with [presence.getSelf][37].
 
 Other users subscribed for this user's presence will receive a
-   [presence:change][37] event.
+   [presence:change][38] event.
 
 **Parameters**
 
@@ -1549,7 +1570,7 @@ Returns **[Array][12]&lt;[Object][6]>** List of user presence information.
 
 Retrieves the presence information for the current user.
 
-This information is set using the [presence.update][38] API.
+This information is set using the [presence.update][39] API.
 
 Returns **[Object][6]** Presence information for the current user.
 
@@ -1559,7 +1580,7 @@ Fetches presence information for the given users. This will refresh the
    available information with any new information from the server.
 
 Available presence information an be retrieved using the
-   [presence.get][31] or [presence.getAll][32] APIs.
+   [presence.get][32] or [presence.getAll][33] APIs.
 
 **Parameters**
 
@@ -1570,7 +1591,7 @@ Available presence information an be retrieved using the
 Subscribe to another User's presence updates.
 
 When the User updates their presence information, the SDK will emit a
-   [presence:change][37] event.
+   [presence:change][38] event.
 
 **Parameters**
 
@@ -1596,7 +1617,7 @@ Prompt the user for permission to use their audio and/or video devices.
 
 ## sdpHandlers
 
-A set of [SdpHandlerFunction][39]s for manipulating SDP information.
+A set of [SdpHandlerFunction][40]s for manipulating SDP information.
 These handlers are used to customize low-level call behaviour for very specific
 environments and/or scenarios. They can be provided during SDK instantiation
 to be used for all calls.
@@ -1716,7 +1737,7 @@ Starts the local video stream and displays it to the user.
 
 **Parameters**
 
--   `videoContainer` **[HTMLElement][17]?** The container to use for local video.
+-   `videoContainer` **[HTMLElement][18]?** The container to use for local video.
 
 **Examples**
 
@@ -1754,12 +1775,12 @@ Type: [Object][6]
 
 Fetches information about a User.
 
-The SDK will emit a [users:change][40]
+The SDK will emit a [users:change][41]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][41] API.
+   [user.get][42] API.
 
 **Parameters**
 
@@ -1768,36 +1789,36 @@ Information about an available User can be retrieved using the
 ### fetchSelfInfo
 
 Fetches information about the current User from directory.
-Compared to [user.fetch][42] API, this API retrieves additional user related information.
+Compared to [user.fetch][43] API, this API retrieves additional user related information.
 
-The SDK will emit a [users:change][40]
+The SDK will emit a [users:change][41]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][41] API.
+   [user.get][42] API.
 
 ### get
 
 Retrieves information about a User, if available.
 
-See the [user.fetch][42] and [user.search][43] APIs for details about
+See the [user.fetch][43] and [user.search][44] APIs for details about
    making Users' information available.
 
 **Parameters**
 
 -   `userId` **user.UserID** The User ID of the user.
 
-Returns **[user.User][44]** The User object for the specified user.
+Returns **[user.User][45]** The User object for the specified user.
 
 ### getAll
 
 Retrieves information about all available Users.
 
-See the [user.fetch][42] and [user.search][43] APIs for details about
+See the [user.fetch][43] and [user.search][44] APIs for details about
    making Users' information available.
 
-Returns **[Array][12]&lt;[user.User][44]>** An array of all the User objects.
+Returns **[Array][12]&lt;[user.User][45]>** An array of all the User objects.
 
 ### search
 
@@ -1806,10 +1827,10 @@ Searches the domain's directory for Users.
 Directory searching only supports one filter. If multiple filters are provided, only one of the filters will be used for the search.
 A search with no filters provided will return all users.
 
-The SDK will emit a [directory:change][45]
+The SDK will emit a [directory:change][46]
    event after the operation completes. The search results will be
    provided as part of the event, and will also be available using the
-   [user.get][41] and [user.getAll][46] APIs.
+   [user.get][42] and [user.getAll][47] APIs.
 
 **Parameters**
 
@@ -1861,70 +1882,72 @@ Returns voicemail data from the store.
 
 [12]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[13]: #apibasicerror
+[13]: https://en.wikipedia.org/wiki/Keepalive
 
-[14]: #config
+[14]: #apibasicerror
 
-[15]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[15]: #config
 
-[16]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+[16]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
-[17]: https://developer.mozilla.org/docs/Web/HTML/Element
+[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 
-[18]: #conversationconversation
+[18]: https://developer.mozilla.org/docs/Web/HTML/Element
 
-[19]: #conversationconversationcreatemessage
+[19]: #conversationconversation
 
-[20]: conversation.Message.addPart
+[20]: #conversationconversationcreatemessage
 
-[21]: #conversationmessagesend
+[21]: #conversationmessage
 
-[22]: #conversationconversationgetmessages
+[22]: conversation.Message.addPart
 
-[23]: #conversationconversationgetmessage
+[23]: #conversationmessagesend
 
-[24]: conversation.chatTypes
+[24]: #conversationconversationgetmessages
 
-[25]: #conversationmessage
+[25]: #conversationconversationgetmessage
 
-[26]: #configconfiglogs
+[26]: conversation.chatTypes
 
-[27]: api.notifications.process
+[27]: #configconfiglogs
 
-[28]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[28]: api.notifications.process
 
-[29]: #presencefetch
+[29]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[30]: #presencesubscribe
+[30]: #presencefetch
 
-[31]: #presenceget
+[31]: #presencesubscribe
 
-[32]: #presencegetall
+[32]: #presenceget
 
-[33]: #presencestatuses
+[33]: #presencegetall
 
-[34]: #presenceactivities
+[34]: #presencestatuses
 
-[35]: #presenceeventpresenceselfchange
+[35]: #presenceactivities
 
-[36]: #presencegetself
+[36]: #presenceeventpresenceselfchange
 
-[37]: #presenceeventpresencechange
+[37]: #presencegetself
 
-[38]: #presenceupdate
+[38]: #presenceeventpresencechange
 
-[39]: call.SdpHandlerFunction
+[39]: #presenceupdate
 
-[40]: #usereventuserschange
+[40]: call.SdpHandlerFunction
 
-[41]: #userget
+[41]: #usereventuserschange
 
-[42]: #userfetch
+[42]: #userget
 
-[43]: #usersearch
+[43]: #userfetch
 
-[44]: #useruser
+[44]: #usersearch
 
-[45]: #usereventdirectorychange
+[45]: #useruser
 
-[46]: #usergetall
+[46]: #usereventdirectorychange
+
+[47]: #usergetall
