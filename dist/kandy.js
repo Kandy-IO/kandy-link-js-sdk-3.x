@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.14.0-beta.350
+ * Version: 3.15.0-beta.351
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -50354,6 +50354,7 @@ function api({ dispatch, getState }) {
      * @param {string} [credentials.authname] The user's authorization name.
      * @param {Object} [options] The options object for non-credential options.
      * @param {boolean} [options.forceLogOut] Force the oldest connection to log out if too many simultaneous connections. Link only.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * client.connect({
      *   username: 'alfred@example.com',
@@ -50374,6 +50375,8 @@ function api({ dispatch, getState }) {
      * @param {string} credentials.domainApiKey The Api key for the application's domain.
      * @param {string} credentials.username The username without the application's domain.
      * @param {string} credentials.password The user's password.
+     * @param {Object} [options] The options object for non-credential options.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * client.connect({
      *   domainApiKey: 'DAK1111111111111111111',
@@ -50394,6 +50397,8 @@ function api({ dispatch, getState }) {
      * @param {string} credentials.accessToken An access token for the user with the provided user Id.
      * @param {string} [credentials.refreshToken] A refresh token for the same user.
      * @param {number} [credentials.expires] The time in seconds until the access token will expire.
+     * @param {Object} [options] The options object for non-credential options.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * client.connect({
      *   username: 'alfred@example.com',
@@ -50419,6 +50424,7 @@ function api({ dispatch, getState }) {
      * @param {string} credentials.hmacToken An HMAC token for the user with the provided user ID.
      * @param {Object} [options] The options object for non-credential options.
      * @param {boolean} [options.forceLogOut] Force the oldest connection to log out if too many simultaneous connections.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * const hmacToken = HmacSHA1Algorithm({
      *   authenticationTokenRequest: {
@@ -50445,6 +50451,8 @@ function api({ dispatch, getState }) {
      * @param {string} credentials.username The username without the application's domain.
      * @param {string} credentials.refreshToken A refresh token for the same user.
      * @param {number} [credentials.expires] The time in seconds until the access token will expire.
+     * @param {Object} [options] The options object for non-credential options.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * client.connect({
      *   username: 'alfred@example.com',
@@ -50462,6 +50470,8 @@ function api({ dispatch, getState }) {
      * @param {Object} credentials The credentials object.
      * @param {string} credentials.username The username without the application's domain.
      * @param {string} credentials.oauthToken An OAuth token provided by an outside service.
+     * @param {Object} [options] The options object for non-credential options.
+     * @param {string} [options.clientCorrelator] Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
      * @example
      * client.connect({
      *   username: 'alfred@example.com',
@@ -51898,7 +51908,8 @@ function* subscribe(connection, credentials, extras = {}) {
       useTurn: connection.useTurn || true,
       notificationType: connection.notificationType || 'WebSocket',
       supported: ['RingingFeedback'],
-      forceLogOut: (extras.forceLogOut || false).toString()
+      forceLogOut: (extras.forceLogOut || false).toString(),
+      clientCorrelator: extras.clientCorrelator
     }
   });
 
@@ -52055,7 +52066,11 @@ function* resubscribe(connection, subscription) {
   let requestOptions = {};
   requestOptions.method = 'PUT';
 
-  requestOptions.url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}` + subscription.url;
+  if (subscription.clientCorrelator) {
+    requestOptions.url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}` + `/rest/version/${connection.server.version}` + `/user/${connection.username}/subscription/clientCorrelator/${subscription.clientCorrelator}`;
+  } else {
+    requestOptions.url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}` + subscription.url;
+  }
 
   requestOptions.headers = {
     Accept: 'application/json',
@@ -61032,7 +61047,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.14.0-beta.350';
+  return '3.15.0-beta.351';
 }
 
 /***/ }),
@@ -64322,6 +64337,7 @@ const SET_LEVEL = exports.SET_LEVEL = prefix + 'SET_LEVEL';
 const LEVELS_CHANGE = exports.LEVELS_CHANGE = prefix + 'LEVELS_CHANGE';
 
 const SET_HANDLER = exports.SET_HANDLER = prefix + 'SET_HANDLER';
+const HANDLERS_CHANGE = exports.HANDLERS_CHANGE = prefix + 'HANDLERS_CHANGE';
 
 /***/ }),
 
@@ -64337,6 +64353,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.setLevel = setLevel;
 exports.levelsChanged = levelsChanged;
 exports.setHandler = setHandler;
+exports.handlersChanged = handlersChanged;
 
 var _actionTypes = __webpack_require__("../../packages/kandy/src/logs/interface/actionTypes.js");
 
@@ -64358,7 +64375,7 @@ function setLevel(level, type) {
 }
 
 /**
- * Action for a setting all of the Loggers' log level.
+ * Action for setting all of the Loggers' log level.
  * @method levelsChanged
  * @param  {Object} levelMap Mapping of logger type to level.
  * @return {Object}
@@ -64381,6 +64398,19 @@ function setHandler(handler, type) {
   return {
     type: actionTypes.SET_HANDLER,
     payload: { handler, type }
+  };
+}
+
+/**
+ * Action for setting all of the Loggers' log handler.
+ * @method handlersChanged
+ * @param  {Object} handlerMap Mapping of logger type to handler.
+ * @return {Object}
+ */
+function handlersChanged(handlerMap) {
+  return {
+    type: actionTypes.HANDLERS_CHANGE,
+    payload: handlerMap
   };
 }
 
@@ -64805,6 +64835,7 @@ exports.setHandlerEntry = setHandlerEntry;
 exports.setLogLevel = setLogLevel;
 exports.setLogHandler = setLogHandler;
 exports.getLevelMap = getLevelMap;
+exports.getHandlerMap = getHandlerMap;
 
 var _actionTypes = __webpack_require__("../../packages/kandy/src/logs/interface/actionTypes.js");
 
@@ -64902,6 +64933,11 @@ function* setLogHandler(action) {
       _index.logManager.getLoggers().forEach(logger => {
         logger.setHandler(handler);
       });
+
+      // Notify that all Logger handlers [may] have changed (because changing
+      //    the default handler will affect all Loggers without their own
+      //    handler explicitly set).
+      yield (0, _effects.put)(actions.handlersChanged(getHandlerMap(_index.logManager)));
     } else {
       // Update the Manager's default handler for this type.
       _index.logManager.setHandler(type, handler);
@@ -64909,6 +64945,9 @@ function* setLogHandler(action) {
       _index.logManager.getLoggers(type).forEach(logger => {
         logger.setHandler(handler);
       });
+
+      // Notify that the one type's handler has changed.
+      yield (0, _effects.put)(actions.handlersChanged({ [type]: handler }));
     }
   } catch (err) {
     const log = _index.logManager.getLogger('LOGS');
@@ -64937,6 +64976,29 @@ function getLevelMap(logManager) {
   });
 
   return levels;
+}
+
+/**
+ * Helper function.
+ * Gets the log handler for every Logger type (and default).
+ * @method getHandlerMap
+ * @return {Object} Mapping of Logger type to its log handler.
+ */
+function getHandlerMap(logManager) {
+  // Get unique types from all Loggers.
+  const loggers = logManager.getLoggers();
+  const types = [...new _set2.default(loggers.map(logger => logger.type))];
+
+  const handlers = {};
+  // Add the default level to the beginning.
+  handlers[defaultType] = logManager.getHandler();
+
+  // Get the handler for each Logger type.
+  types.forEach(type => {
+    handlers[type] = logManager.getHandler(type);
+  });
+
+  return handlers;
 }
 
 /***/ }),
@@ -68624,6 +68686,7 @@ function* processNotification() {
   const externalNotifications = yield (0, _effects.actionChannel)(actionTypes.PROCESS_NOTIFICATION, _reduxSaga.buffers.expanding(INITIAL_BUFFER_SIZE));
   while (true) {
     const action = yield (0, _effects.take)(externalNotifications);
+    log.info(`Received notification on channel ${action.meta.channel}; handling.`);
 
     // Only process notifications from enabled channels, ie. "silence" the channel.
     let channel = yield (0, _effects.select)(_selectors2.getNotificationsInfo, action.meta.channel);
@@ -68634,9 +68697,11 @@ function* processNotification() {
 
     // Find the unique ID of the received notification.
     let notificationId;
+    let notificationType;
     switch (action.meta.platform) {
       case _constants.platforms.LINK:
         notificationId = action.payload.notificationMessage.eventId;
+        notificationType = action.payload.notificationMessage.eventType;
         break;
       case _constants.platforms.UC:
         // A Link notification can be in either the Link format or the SPiDR format (for calls).
@@ -68660,6 +68725,9 @@ function* processNotification() {
       default:
         log.debug('Received notification from unknown platform.');
     }
+    if (notificationType) {
+      log.debug(`The received notification is of type ${notificationType}.`);
+    }
 
     let formattedPayload = action.payload;
     if ((0, _fp.has)('payload.notificationMessage.sessionParams.sdpFormat', action)) {
@@ -68682,6 +68750,7 @@ function* processNotification() {
         const { platform, channel } = action.meta;
         yield (0, _effects.put)(actions.notificationReceived(formattedPayload, platform, channel));
       } else {
+        log.info('Notification was a duplicate; ignoring.');
         const error = new Error(`Notification id ${notificationId} is duplicate.`);
         // TODO: Tech-debt; this action should be a notificationReceived error action.
         //      But that requires all sagas listening for notifications to filter out
@@ -70244,20 +70313,18 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const log = _logs.logManager.getLogger('REQUEST');
-
 /**
  * Enum declaring the valid request response data types that are available to be handled
  */
-
-
-// State setters.
 const responseTypes = (0, _freeze2.default)({
   json: 'json',
   blob: 'blob',
   text: 'text',
   none: 'none'
 });
+
+// State setters.
+
 
 const contentTypes = (0, _freeze2.default)({
   jsonType: 'application/json',
@@ -70335,13 +70402,31 @@ function* handleRequest(action) {
  * @return {Promise} A promise that resolves with a custom response object.
  */
 async function makeRequest(options, requestId) {
-  // Extract and remove the url property.
+  const log = _logs.logManager.getLogger('REQUEST', requestId);
+
+  // Extract and remove the non-fetch API properties.
   const { url, queryParams, responseType = 'json' } = options,
         fetchOptions = (0, _objectWithoutProperties3.default)(options, ['url', 'queryParams', 'responseType']);
 
+  if (!url || typeof url !== 'string') {
+    const invalidUrlMessage = `Invalid request url; expected url of type string but received ${url} instead`;
+    log.error(invalidUrlMessage);
+    return {
+      body: undefined,
+      error: 'REQUEST_URL',
+      message: invalidUrlMessage
+    };
+  }
+
+  // Grab that last part of the URL (after the last /) to be logged.
+  let endUrl = url.match(/([^/]*)$/)[0];
+  // Cut it short if it's too long, since this should be human-readable.
+  endUrl = endUrl.length > 15 ? endUrl.substring(0, 15) + '...' : endUrl;
+  log.info(`Making ${fetchOptions.method} ${endUrl} request.`);
+
   if (!responseTypes.hasOwnProperty(responseType)) {
     // Invalid data type requested
-    log.debug('responseType value was invalid');
+    log.info('Cannot make request; responseType value was invalid.');
     return {
       body: undefined,
       error: 'RESPONSE_TYPE',
@@ -70353,7 +70438,7 @@ async function makeRequest(options, requestId) {
   try {
     response = await fetch(url + (0, _utils.toQueryString)(queryParams), fetchOptions);
   } catch (err) {
-    log.debug(`Fetch request ${requestId} failed: ${err.message}.`);
+    log.info(`Failed to make request, caused by ${err.message}`);
     return {
       body: false,
       error: 'FETCH',
@@ -70380,7 +70465,7 @@ async function makeRequest(options, requestId) {
     let error = !response.ok;
 
     if (error) {
-      log.debug(`Response indicates that request ${requestId} failed`);
+      log.info(`Received error response for request (status ${response.status}).`);
       /*
        * Handle a special-case error where the response body is a HTML page...
        * Throw away the body and so it is simply reported as 'Forbidden'.
@@ -70412,6 +70497,8 @@ async function makeRequest(options, requestId) {
        * Avoid parsing the response because there isn't one.
        */
       responseBody = {};
+
+      log.info(`Finished request with successful response (status ${response.status}).`);
       return {
         body: responseBody,
         error: false,
@@ -70465,6 +70552,7 @@ async function makeRequest(options, requestId) {
         }
       }
 
+      log.info(`Finished request with successful response (status ${response.status}).`);
       return {
         body: responseBody,
         error: false,
@@ -70472,7 +70560,7 @@ async function makeRequest(options, requestId) {
       };
     }
   } catch (err) {
-    log.debug(`Error parsing response. Response for request ${requestId}: "${err.message}"`);
+    log.info(`Failed to parse response, caused by ${err.message}`);
     return {
       body: false,
       error: 'REQUEST',
@@ -73740,7 +73828,13 @@ function defaultLogHandler(entry) {
   // Compile the meta info of the log for a prefix.
   const { timestamp, level, target } = entry;
   let { method } = entry;
-  const logInfo = `${timestamp} - ${target.type} - ${level}`;
+
+  // Find a short name to reference which Logger this log is from.
+  //    This is mostly to cut down the ID if it's too long for a human to read.
+  const shortId = target.id && target.id.length > 8 ? target.id.substring(0, 6) : target.id;
+  const shortName = shortId ? `${target.type}/${shortId}` : target.type;
+
+  const logInfo = `${timestamp} - ${shortName} - ${level}`;
 
   // Assume that the first message parameter is a string.
   const [log, ...extra] = entry.messages;
@@ -73834,7 +73928,9 @@ function createManager(options = {}) {
      * @param  {string} [id] A unique identifier for the logger.
      * @return {Logger}
      */
-  };function getLogger(type, id) {
+  };function getLogger(type, id = '') {
+    id = String(id);
+
     // Combine the name and ID to create the "full" logger name.
     const loggerName = id ? `${type}-${id}` : type;
 
