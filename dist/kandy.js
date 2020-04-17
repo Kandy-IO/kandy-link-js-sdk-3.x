@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.15.0-beta.368
+ * Version: 3.15.0-beta.369
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -61047,7 +61047,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.15.0-beta.368';
+  return '3.15.0-beta.369';
 }
 
 /***/ }),
@@ -63643,6 +63643,9 @@ const factoryDefaults = {
       return next(action);
     }
   };
+
+  // Remove undefined plugins. Those are plugins that failed to load for some reason.
+  plugins = plugins.filter(plugin => Boolean(plugin));
 
   // Run all the plugins to build the context.
   // Set up each plugin component individually.
