@@ -1819,7 +1819,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/link/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/oldLink/index.js"
           },
           "augments": [],
           "examples": [],
@@ -5538,26 +5538,40 @@
               },
               "name": "connectivity.checkConnectivity",
               "default": "true"
+            },
+            {
+              "title": "param",
+              "description": "query will send the bearer access token to authenticate the websocket and none will not send it.",
+              "lineNumber": 20,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "connectivity.webSocketOAuthMode",
+              "default": "query"
             }
           ],
           "loc": {
             "start": {
-              "line": 17,
+              "line": 36,
               "column": 0
             },
             "end": {
-              "line": 37,
+              "line": 57,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 5,
+                "line": 58,
                 "column": 0
               },
               "end": {
-                "line": 15,
+                "line": 62,
                 "column": 1
               }
             },
@@ -6122,6 +6136,68 @@
                     "name": "Boolean"
                   },
                   "default": "true"
+                },
+                {
+                  "title": "param",
+                  "name": "connectivity.webSocketOAuthMode",
+                  "lineNumber": 20,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "query will send the bearer access token to authenticate the websocket and none will not send it.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 97,
+                                "offset": 96
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 97,
+                            "offset": 96
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 97,
+                        "offset": 96
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  },
+                  "default": "query"
                 }
               ]
             }
@@ -6336,23 +6412,23 @@
           ],
           "loc": {
             "start": {
-              "line": 15,
+              "line": 18,
               "column": 0
             },
             "end": {
-              "line": 29,
+              "line": 32,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 37,
+                "line": 35,
                 "column": 0
               },
               "end": {
-                "line": 59,
-                "column": 1
+                "line": 35,
+                "column": 102
               }
             },
             "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/link/index.js"
@@ -9361,22 +9437,22 @@
           ],
           "loc": {
             "start": {
-              "line": 250,
+              "line": 262,
               "column": 4
             },
             "end": {
-              "line": 256,
+              "line": 268,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 257,
+                "line": 269,
                 "column": 4
               },
               "end": {
-                "line": 259,
+                "line": 271,
                 "column": 5
               }
             },
@@ -9498,22 +9574,22 @@
           ],
           "loc": {
             "start": {
-              "line": 262,
+              "line": 274,
               "column": 4
             },
             "end": {
-              "line": 286,
+              "line": 298,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 287,
+                "line": 299,
                 "column": 4
               },
               "end": {
-                "line": 305,
+                "line": 317,
                 "column": 5
               }
             },
@@ -14724,6 +14800,972 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "Sets the user credentials necessary to make requests to the platform.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 70,
+                        "offset": 69
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 70,
+                    "offset": 69
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 70,
+                "offset": 69
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "api",
+              "lineNumber": 4
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 5,
+              "name": "userCredentialsAuth"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 6,
+              "name": "setCredentials"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username including the application's domain.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "The user's password.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.password"
+            },
+            {
+              "title": "param",
+              "description": "The user's authorization name.",
+              "lineNumber": 10,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "credentials.authname"
+            },
+            {
+              "title": "example",
+              "description": "client.setCredentials({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});",
+              "lineNumber": 11
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 341,
+              "column": 4
+            },
+            "end": {
+              "line": 358,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 422,
+                "column": 4
+              },
+              "end": {
+                "line": 436,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "client.setCredentials({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 8,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username including the application's domain.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 49,
+                                "offset": 48
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 49,
+                            "offset": 48
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 49,
+                        "offset": 48
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.password",
+                  "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's password.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 21,
+                                "offset": 20
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 21,
+                            "offset": 20
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 21,
+                        "offset": 20
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.authname",
+                  "lineNumber": 10,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's authorization name.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 31,
+                                "offset": 30
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 31,
+                            "offset": 30
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 31,
+                        "offset": 30
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "api",
+          "kind": "function",
+          "name": "setCredentials",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "api",
+              "kind": "module"
+            },
+            {
+              "name": "setCredentials",
+              "kind": "function"
+            }
+          ],
+          "namespace": "apisetCredentials"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Sets the username and HMAC token necessary to make requests to the platform.\nAn HMAC token is used to verify a user via the user's authorization within an of organization.\nHMAC tokens are generated by using the HmacSHA1 algorithm and a key on a data object\ncontaining an ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 15,
+                        "offset": 271
+                      },
+                      "indent": [
+                        1,
+                        1,
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "inlineCode",
+                    "value": "authenticationTokenRequest",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 15,
+                        "offset": 271
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 43,
+                        "offset": 299
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " object with the following properties:",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 43,
+                        "offset": 299
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 81,
+                        "offset": 337
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 81,
+                    "offset": 337
+                  },
+                  "indent": [
+                    1,
+                    1,
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "list",
+                "ordered": false,
+                "start": null,
+                "loose": false,
+                "children": [
+                  {
+                    "type": "listItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "subscriberId - The user's subscriber ID in the organization.",
+                            "position": {
+                              "start": {
+                                "line": 5,
+                                "column": 3,
+                                "offset": 340
+                              },
+                              "end": {
+                                "line": 5,
+                                "column": 63,
+                                "offset": 400
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 3,
+                            "offset": 340
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 63,
+                            "offset": 400
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1,
+                        "offset": 338
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 63,
+                        "offset": 400
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "listItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "organizationId - The ID of the organization the user is a part of.",
+                            "position": {
+                              "start": {
+                                "line": 6,
+                                "column": 3,
+                                "offset": 403
+                              },
+                              "end": {
+                                "line": 6,
+                                "column": 69,
+                                "offset": 469
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 6,
+                            "column": 3,
+                            "offset": 403
+                          },
+                          "end": {
+                            "line": 6,
+                            "column": 69,
+                            "offset": 469
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 1,
+                        "offset": 401
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 69,
+                        "offset": 469
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1,
+                    "offset": 338
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 69,
+                    "offset": 469
+                  },
+                  "indent": [
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 6,
+                "column": 69,
+                "offset": 469
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 8,
+              "type": null
+            },
+            {
+              "title": "memberof",
+              "description": "api",
+              "lineNumber": 9
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 10,
+              "name": "hmacTokenAuth"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 11,
+              "name": "setCredentials"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 12,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username.",
+              "lineNumber": 13,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "An HMAC token for the user with the provided user ID.",
+              "lineNumber": 14,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.hmacToken"
+            },
+            {
+              "title": "example",
+              "description": "const hmacToken = HmacSHA1Algorithm({\n  authenticationTokenRequest: {\n    subscriberId: 'alfred',\n    organizationId: 'example.com'\n  }\n}, key)\n\nclient.setCredentials({\n  username: 'alfred@example.com',\n  hmacToken\n});",
+              "lineNumber": 15
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 359,
+              "column": 4
+            },
+            "end": {
+              "line": 386,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 422,
+                "column": 4
+              },
+              "end": {
+                "line": 436,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "const hmacToken = HmacSHA1Algorithm({\n  authenticationTokenRequest: {\n    subscriberId: 'alfred',\n    organizationId: 'example.com'\n  }\n}, key)\n\nclient.setCredentials({\n  username: 'alfred@example.com',\n  hmacToken\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 12,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 13,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 14,
+                                "offset": 13
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 14,
+                            "offset": 13
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 14,
+                        "offset": 13
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.hmacToken",
+                  "lineNumber": 14,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "An HMAC token for the user with the provided user ID.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 54,
+                                "offset": 53
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 54,
+                            "offset": 53
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 54,
+                        "offset": 53
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "memberof": "api",
+          "kind": "function",
+          "name": "setCredentials",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "api",
+              "kind": "module"
+            },
+            {
+              "name": "setCredentials",
+              "kind": "function"
+            }
+          ],
+          "namespace": "apisetCredentials"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "The Basic Error object. Provides information about an error that occurred in the SDK.",
                     "position": {
                       "start": {
@@ -19434,11 +20476,11 @@
             },
             {
               "title": "returns",
-              "description": "A list of call log records from the cache, ordered by latest first.",
+              "description": "A stringified list of call log records from the cache, ordered by latest first.",
               "lineNumber": 6,
               "type": {
                 "type": "NameExpression",
-                "name": "Array"
+                "name": "string"
               }
             }
           ],
@@ -19479,7 +20521,7 @@
                     "children": [
                       {
                         "type": "text",
-                        "value": "A list of call log records from the cache, ordered by latest first.",
+                        "value": "A stringified list of call log records from the cache, ordered by latest first.",
                         "position": {
                           "start": {
                             "line": 1,
@@ -19488,8 +20530,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 68,
-                            "offset": 67
+                            "column": 80,
+                            "offset": 79
                           },
                           "indent": []
                         }
@@ -19503,8 +20545,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 68,
-                        "offset": 67
+                        "column": 80,
+                        "offset": 79
                       },
                       "indent": []
                     }
@@ -19518,15 +20560,15 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 68,
-                    "offset": 67
+                    "column": 80,
+                    "offset": 79
                   }
                 }
               },
               "title": "returns",
               "type": {
                 "type": "NameExpression",
-                "name": "Array"
+                "name": "string"
               }
             }
           ],
@@ -19635,10 +20677,11 @@
             },
             {
               "title": "param",
-              "description": "The data to restore in the cache.",
+              "description": "The stringified call history data to store in the cache.",
               "lineNumber": 6,
               "type": {
-                "type": "AllLiteral"
+                "type": "NameExpression",
+                "name": "string"
               },
               "name": "data"
             }
@@ -19681,7 +20724,7 @@
                     "children": [
                       {
                         "type": "text",
-                        "value": "The data to restore in the cache.",
+                        "value": "The stringified call history data to store in the cache.",
                         "position": {
                           "start": {
                             "line": 1,
@@ -19690,8 +20733,8 @@
                           },
                           "end": {
                             "line": 1,
-                            "column": 34,
-                            "offset": 33
+                            "column": 57,
+                            "offset": 56
                           },
                           "indent": []
                         }
@@ -19705,8 +20748,8 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 34,
-                        "offset": 33
+                        "column": 57,
+                        "offset": 56
                       },
                       "indent": []
                     }
@@ -19720,13 +20763,14 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 34,
-                    "offset": 33
+                    "column": 57,
+                    "offset": 56
                   }
                 }
               },
               "type": {
-                "type": "AllLiteral"
+                "type": "NameExpression",
+                "name": "string"
               }
             }
           ],
@@ -42976,6 +44020,324 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "A LogHandler can be used to customize how the SDK should log information. By\n   default, the SDK will log information to the console, but a LogHandler can\n   be configured to change this behaviour.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 43,
+                        "offset": 197
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 43,
+                    "offset": 197
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A LogHandler can be provided to the SDK as part of its configuration (see\n   ",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1,
+                        "offset": 199
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 4,
+                        "offset": 276
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#configconfiglogs",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "config.logs"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 4,
+                        "offset": 276
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 41,
+                        "offset": 313
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "). The SDK will then provide this\n   function with the logged information.",
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 41,
+                        "offset": 313
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 41,
+                        "offset": 387
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1,
+                    "offset": 199
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 41,
+                    "offset": 387
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 41,
+                "offset": 387
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 9,
+              "type": null
+            },
+            {
+              "title": "static",
+              "description": null,
+              "lineNumber": 10
+            },
+            {
+              "title": "typedef",
+              "description": null,
+              "lineNumber": 11,
+              "type": {
+                "type": "NameExpression",
+                "name": "Function"
+              },
+              "name": "LogHandler"
+            },
+            {
+              "title": "memberof",
+              "description": "logger",
+              "lineNumber": 12
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 13,
+              "name": "logs"
+            },
+            {
+              "title": "param",
+              "description": "The LogEntry to be logged.",
+              "lineNumber": 14,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "LogEntry"
+            },
+            {
+              "title": "example",
+              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)",
+              "lineNumber": 15
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 54,
+              "column": 0
+            },
+            "end": {
+              "line": 93,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 94,
+                "column": 0
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/docs.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "LogEntry",
+              "lineNumber": 14,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The LogEntry to be logged.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 27,
+                            "offset": 26
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 27,
+                        "offset": 26
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 27,
+                    "offset": 26
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "scope": "static",
+          "kind": "typedef",
+          "name": "LogHandler",
+          "type": {
+            "type": "NameExpression",
+            "name": "Function"
+          },
+          "memberof": "logger",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "logger",
+              "kind": "namespace"
+            },
+            {
+              "name": "LogHandler",
+              "kind": "typedef",
+              "scope": "static"
+            }
+          ],
+          "namespace": "logger.LogHandler"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "A LogEntry object is the data that the SDK compiles when information is\n   logged. It contains both the logged information and meta-info about when\n   and who logged it.",
                     "position": {
                       "start": {
@@ -43920,324 +45282,6 @@
             }
           ],
           "namespace": "logger.LogEntry"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "A LogHandler can be used to customize how the SDK should log information. By\n   default, the SDK will log information to the console, but a LogHandler can\n   be configured to change this behaviour.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 43,
-                        "offset": 197
-                      },
-                      "indent": [
-                        1,
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 43,
-                    "offset": 197
-                  },
-                  "indent": [
-                    1,
-                    1
-                  ]
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "A LogHandler can be provided to the SDK as part of its configuration (see\n   ",
-                    "position": {
-                      "start": {
-                        "line": 5,
-                        "column": 1,
-                        "offset": 199
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 4,
-                        "offset": 276
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#configconfiglogs",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "config.logs"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 6,
-                        "column": 4,
-                        "offset": 276
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 41,
-                        "offset": 313
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": "). The SDK will then provide this\n   function with the logged information.",
-                    "position": {
-                      "start": {
-                        "line": 6,
-                        "column": 41,
-                        "offset": 313
-                      },
-                      "end": {
-                        "line": 7,
-                        "column": 41,
-                        "offset": 387
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 5,
-                    "column": 1,
-                    "offset": 199
-                  },
-                  "end": {
-                    "line": 7,
-                    "column": 41,
-                    "offset": 387
-                  },
-                  "indent": [
-                    1,
-                    1
-                  ]
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 7,
-                "column": 41,
-                "offset": 387
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 9,
-              "type": null
-            },
-            {
-              "title": "static",
-              "description": null,
-              "lineNumber": 10
-            },
-            {
-              "title": "typedef",
-              "description": null,
-              "lineNumber": 11,
-              "type": {
-                "type": "NameExpression",
-                "name": "Function"
-              },
-              "name": "LogHandler"
-            },
-            {
-              "title": "memberof",
-              "description": "logger",
-              "lineNumber": 12
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 13,
-              "name": "logs"
-            },
-            {
-              "title": "param",
-              "description": "The LogEntry to be logged.",
-              "lineNumber": 14,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "LogEntry"
-            },
-            {
-              "title": "example",
-              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)",
-              "lineNumber": 15
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 54,
-              "column": 0
-            },
-            "end": {
-              "line": 93,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 1,
-                "column": 0
-              },
-              "end": {
-                "line": 94,
-                "column": 0
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/docs.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "LogEntry",
-              "lineNumber": 14,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The LogEntry to be logged.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 27,
-                            "offset": 26
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 27,
-                        "offset": 26
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 27,
-                    "offset": 26
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              }
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "scope": "static",
-          "kind": "typedef",
-          "name": "LogHandler",
-          "type": {
-            "type": "NameExpression",
-            "name": "Function"
-          },
-          "memberof": "logger",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "logger",
-              "kind": "namespace"
-            },
-            {
-              "name": "LogHandler",
-              "kind": "typedef",
-              "scope": "static"
-            }
-          ],
-          "namespace": "logger.LogHandler"
         }
       ]
     },
