@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.16.0-beta.397
+ * Version: 3.16.0-beta.398
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -31573,7 +31573,7 @@ function CallManagerImpl(_ref) {
                 call = null,
                 callid = null,
                 options = {},
-                callParams = data.callNotificationParams,
+                callParams = data.callNotificationParams || {},
                 dispositionParams = data.callDispositionParams,
                 sessionParams = data.sessionParams,
                 callerName,
@@ -31822,7 +31822,7 @@ function CallManagerImpl(_ref) {
         var sdp = data.sessionParams.sdp,
             notificationEvent = fsmNotificationEvent.startCallUpdate_slowStart_Notify,
             callid = data.sessionParams.sessionData,
-            callParams = data.callNotificationParams,
+            callParams = data.callNotificationParams || {},
             internalCall = calls[callid],
             remoteCallParams = {
             RemoteDisplayName: '',
@@ -31837,7 +31837,6 @@ function CallManagerImpl(_ref) {
                 notificationEvent = fsmNotificationEvent.startCallUpdate_remoteOffer_Notify;
             }
         }
-
         if (internalCall) {
             if (!internalCall.remoteDisplayNumber) {
                 internalCall.remoteDisplayNumber = (0, _utils2.getProperty)(callParams, 'callerDisplayNumber');
@@ -60623,7 +60622,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.16.0-beta.397';
+  return '3.16.0-beta.398';
 }
 
 /***/ }),

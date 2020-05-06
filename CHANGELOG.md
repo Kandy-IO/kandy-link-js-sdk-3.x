@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.16.0 - beta
 
+### Fixed
+
+- Removed the need for remote party properties (callNotificationParams) to be present in notifications. `KAA-2271`
+
 ## 3.15.0 - 2020-04-30
 
 ### Added
