@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.16.0 - beta
 
+### Changed
+
+- Changed the Tutorial's acccess URL so that it does not expose configuration parameters for a specific domain/server. `KAA-2320`
+
 ### Fixed
 
 - Removed the need for remote party properties (callNotificationParams) to be present in notifications. `KAA-2271`
