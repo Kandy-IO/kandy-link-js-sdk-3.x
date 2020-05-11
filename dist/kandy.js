@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.15.0
+ * Version: 3.15.1
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -39461,7 +39461,8 @@ function WebRtcAdaptorImpl(_ref) {
      */
     var self = this,
         logger = _logManager.getLogger('WebRtcAdaptorImpl'),
-        zero = '0';
+        zero = '0',
+        peerId = 0;
 
     logger.debug('WebRtcAdaptor initializing');
 
@@ -42119,9 +42120,31 @@ function WebRtcAdaptorImpl(_ref) {
             }
 
             pc = self.getRtcLibrary().createRTCPeerConnection(config, constraints);
+            pc._peerId = peerId++;
+
+            if (call.peer) {
+                logger.debug('createPeer - Peer Id: ' + call.peer._peerId + ' - detaching old peer from call ' + call.id + '.');
+
+                // Let's make sure we stop listening to any events from the old peer.
+                call.peer.onconnecting = undefined;
+                call.peer.onopen = undefined;
+                call.peer.onsignalingstatechange = undefined;
+                call.peer.onaddstream = undefined;
+                call.peer.onremovestream = undefined;
+                call.peer.onicecandidate = undefined;
+                call.peer.onicecomplete = undefined;
+                call.peer.oniceconnectionstatechange = undefined;
+                call.peer.ondatachannel = undefined;
+                call.peer.onicegatheringstatechange = undefined;
+
+                // Close the peer, it is no longer needed.
+                call.peer.close();
+            }
 
             self.setPeerCount(self.getPeerCount() + 1);
             call.peer = pc;
+
+            logger.debug('createPeer - Peer Id: ' + pc._peerId + ' - created new peer and attached to call (' + call.id + ').');
 
             pc.onconnecting = function (event) {
                 self.onSessionConnecting(call, event);
@@ -42139,8 +42162,12 @@ function WebRtcAdaptorImpl(_ref) {
                 self.onRemoteStreamRemoved(call, event);
             };
             pc.onicecandidate = function (event) {
+                if (pc !== call.peer) {
+                    logger.error('Peer Id: ' + pc._peerId + ' - received notification from detached peer not on call (Other Peer id: ' + call.peer._peerId + ' )');
+                    return;
+                }
                 if (pc.iceGatheringState === 'complete') {
-                    logger.debug('ice gathering complete');
+                    logger.debug('Peer Id: ' + pc._peerId + ' - ice gathering complete');
                     self.onIceComplete(call);
                 } else {
                     self.setupIceCandidateCollectionTimer(call);
@@ -42148,6 +42175,11 @@ function WebRtcAdaptorImpl(_ref) {
                 }
             };
             pc.onicecomplete = function () {
+                if (pc !== call.peer) {
+                    logger.error('Peer Id: ' + pc._peerId + ' - received notification from detached peer not on call (Other Peer id: ' + call.peer._peerId + ' )');
+                    return;
+                }
+
                 self.onIceComplete(call);
             };
             pc.oniceconnectionstatechange = function (event) {
@@ -42158,10 +42190,10 @@ function WebRtcAdaptorImpl(_ref) {
             };
 
             pc.onicegatheringstatechange = function () {
-                logger.debug('ice gathering state change:' + pc.iceGatheringState);
+                logger.debug('Peer Id: ' + pc._peerId + ' - ice gathering state change:' + pc.iceGatheringState);
             };
 
-            logger.info('create PeerConnection successfully.');
+            logger.info('Peer Id: ' + pc._peerId + ' - create PeerConnection successfully.');
 
             self.setupWebrtcLogCollectionTimer(call);
 
@@ -43728,7 +43760,8 @@ function WebRtcFirefoxAdaptorImpl(_ref) {
         _sdpPipeline = _ref.SdpPipeline;
 
     var self = this,
-        logger = _logManager.getLogger('WebRtcFirefoxAdaptorImpl');
+        logger = _logManager.getLogger('WebRtcFirefoxAdaptorImpl'),
+        peerId = 0;
     logger.debug('WebRtcFirefoxAdaptor initializing');
 
     (0, _utils2.compose)(_super, self);
@@ -44560,6 +44593,26 @@ function WebRtcFirefoxAdaptorImpl(_ref) {
             }
 
             pc = self.getRtcLibrary().createRTCPeerConnection(config, constraints);
+            pc._peerId = peerId++;
+
+            if (call.peer) {
+                logger.debug('createPeer - Peer Id: ' + call.peer._peerId + ' - detaching old peer from call ' + call.id + '.');
+
+                // Let's make sure we stop listening to any events from the old peer.
+                call.peer.onconnecting = undefined;
+                call.peer.onopen = undefined;
+                call.peer.onsignalingstatechange = undefined;
+                call.peer.onaddstream = undefined;
+                call.peer.onremovestream = undefined;
+                call.peer.onicecandidate = undefined;
+                call.peer.onicecomplete = undefined;
+                call.peer.oniceconnectionstatechange = undefined;
+                call.peer.ondatachannel = undefined;
+                call.peer.onicegatheringstatechange = undefined;
+
+                // Close the peer, it is no longer needed.
+                call.peer.close();
+            }
 
             self.setPeerCount(self.getPeerCount() + 1);
             call.peer = pc;
@@ -44580,8 +44633,12 @@ function WebRtcFirefoxAdaptorImpl(_ref) {
                 self.onRemoteStreamRemoved(call, event);
             };
             pc.onicecandidate = function (event) {
+                if (pc !== call.peer) {
+                    logger.error('Peer Id: ' + pc._peerId + ' - received notification from detached peer not on call (Other Peer id: ' + call.peer._peerId + ' )');
+                    return;
+                }
                 if (event.currentTarget.iceGatheringState === 'complete') {
-                    logger.debug('ice gathering complete');
+                    logger.debug('Peer Id: ' + pc._peerId + ' - ice gathering complete');
                     self.onIceComplete(call);
                 } else {
                     self.setupIceCandidateCollectionTimer(call);
@@ -44597,7 +44654,12 @@ function WebRtcFirefoxAdaptorImpl(_ref) {
             pc.ondatachannel = function (event) {
                 self.onDataChannel(call, event);
             };
-            logger.info('create PeerConnection successfully.');
+
+            pc.onicegatheringstatechange = function () {
+                logger.debug('Peer Id: ' + pc._peerId + ' - ice gathering state change:' + pc.iceGatheringState);
+            };
+
+            logger.info('Peer Id: ' + pc._peerId + ' - create PeerConnection successfully.');
 
             // Will be commented-in after decision of necessary stats
             // self.setupWebrtcLogCollectionTimer(call);
@@ -44946,7 +45008,8 @@ function WebRtcPluginAdaptorImpl(_ref) {
         _sdpPipeline = _ref.SdpPipeline;
 
     var self = this,
-        logger = _logManager.getLogger('WebRtcPluginAdaptorImpl');
+        logger = _logManager.getLogger('WebRtcPluginAdaptorImpl'),
+        peerId = 0;
 
     logger.debug('WebRtcPluginAdaptor initializing');
 
@@ -46378,6 +46441,26 @@ function WebRtcPluginAdaptorImpl(_ref) {
             }
 
             pc = self.getRtcLibrary().createRTCPeerConnection(config, constraints);
+            pc._peerId = peerId++;
+
+            if (call.peer) {
+                logger.debug('createPeer - Peer Id: ' + call.peer._peerId + ' - detaching old peer from call ' + call.id + '.');
+
+                // Let's make sure we stop listening to any events from the old peer.
+                call.peer.onconnecting = undefined;
+                call.peer.onopen = undefined;
+                call.peer.onsignalingstatechange = undefined;
+                call.peer.onaddstream = undefined;
+                call.peer.onremovestream = undefined;
+                call.peer.onicecandidate = undefined;
+                call.peer.onicecomplete = undefined;
+                call.peer.oniceconnectionstatechange = undefined;
+                call.peer.ondatachannel = undefined;
+                call.peer.onicegatheringstatechange = undefined;
+
+                // Close the peer, it is no longer needed.
+                call.peer.close();
+            }
 
             self.setPeerCount(self.getPeerCount() + 1);
             call.peer = pc;
@@ -46398,10 +46481,19 @@ function WebRtcPluginAdaptorImpl(_ref) {
                 self.onRemoteStreamRemoved(call, event);
             };
             pc.onicecandidate = function (event) {
+                if (pc !== call.peer) {
+                    logger.error('Peer Id: ' + pc._peerId + ' - received notification from detached peer not on call (Other Peer id: ' + call.peer._peerId + ' )');
+                    return;
+                }
+
                 self.setupIceCandidateCollectionTimer(call);
                 self.onIceCandidate(call, event);
             };
             pc.onicecomplete = function () {
+                if (pc !== call.peer) {
+                    logger.error('Peer Id: ' + pc._peerId + ' - received notification from detached peer not on call (Other Peer id: ' + call.peer._peerId + ' )');
+                    return;
+                }
                 self.onIceComplete(call);
             };
             pc.oniceconnectionstatechange = function (event) {
@@ -46411,7 +46503,11 @@ function WebRtcPluginAdaptorImpl(_ref) {
                 self.onDataChannel(call, event);
             };
 
-            logger.info('create PeerConnection successfully.');
+            pc.onicegatheringstatechange = function () {
+                logger.debug('Peer Id: ' + pc._peerId + ' - ice gathering state change:' + pc.iceGatheringState);
+            };
+
+            logger.info('Peer Id: ' + pc._peerId + ' - create PeerConnection successfully.');
 
             self.setupWebrtcLogCollectionTimer(call);
 
@@ -61047,7 +61143,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.15.0';
+  return '3.15.1';
 }
 
 /***/ }),
