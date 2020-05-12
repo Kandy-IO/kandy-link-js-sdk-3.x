@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.16.0-beta.405
+ * Version: 3.16.0-beta.406
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -60639,7 +60639,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.16.0-beta.405';
+  return '3.16.0-beta.406';
 }
 
 /***/ }),
@@ -67169,7 +67169,9 @@ function* mwiReceived() {
     let mwiData = (0, _extends3.default)({}, action.payload.notificationMessage.mwiNotificationParams);
     mwiData.newMessagesWaiting = mwiData.mwi === 'yes';
     delete mwiData.mwi;
+    log.info(`There are ${mwiData.newMessagesWaiting ? mwiData.newMessagesWaiting : 'no'} new messages waiting.`);
     mwiData.lastUpdated = action.payload.notificationMessage.time;
+    log.info(`There are ${mwiData.totalVoice} total voicemails. ${mwiData.unheardVoice} unheard.`);
 
     yield (0, _effects.put)(actions.mwiUpdate({ mwiData }));
   }
@@ -67192,21 +67194,23 @@ function* fetchMwi() {
       let error;
       if (response.payload.body) {
         // Handle errors from the server.
-        let { statusCode } = response.payload.body.mwiresponse;
-        log.debug(`Failed to fetch voicemails with status code ${statusCode}.`);
+        const { statusCode } = response.payload.body.mwiresponse;
+        const errMsg = `Failed to fetch voicemail(s). Status Code: ${statusCode}`;
+        log.info(errMsg);
 
         error = new _errors2.default({
           code: _errors.mwiCodes.FETCH_MWI_FAIL,
-          message: `Failed to fetch voicemail. Code: ${statusCode}.`
+          message: errMsg
         });
       } else {
         // Handle errors from the request helper.
         let { message } = response.payload.result;
-        log.debug('Fetch voicemail request failed.', message);
+        const errMsg = `Voicemail fetch request failed. ${message}`;
+        log.info(errMsg);
 
         error = new _errors2.default({
           code: _errors.mwiCodes.FETCH_MWI_FAIL,
-          message: `Fetch voicemail request failed: ${message}.`
+          message: errMsg
         });
       }
 
@@ -67222,6 +67226,7 @@ function* fetchMwi() {
           totalVoice: '0',
           unheardVoice: '0'
         };
+        log.info('There are no new or old voicemails.');
       } else {
         mwiData = (0, _extends3.default)({}, response.payload.body.mwiresponse);
         delete mwiData.statusCode;
@@ -67229,7 +67234,9 @@ function* fetchMwi() {
         // Parse the mwi data
         mwiData.newMessagesWaiting = mwiData.mwi === 'yes';
         delete mwiData.mwi;
+        log.info(`There are ${mwiData.newMessagesWaiting ? mwiData.newMessagesWaiting : 'no'} new messages waiting.`);
         mwiData.lastUpdated = Date.now();
+        log.info(`There are ${mwiData.totalVoice} total voicemails. ${mwiData.unheardVoice} unheard.`);
       }
       yield (0, _effects.put)(actions.mwiUpdate({ mwiData }));
     }
