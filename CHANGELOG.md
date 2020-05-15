@@ -14,6 +14,7 @@ Kandy.js change log.
 ### Fixed
 
 - Removed the need for remote party properties (callNotificationParams) to be present in notifications. `KAA-2271`
+- Fixed an issue with the `user.search` API where searching with a filter would not work. `KAA-2341`
 
 ## 3.15.1 - 2020-05-11
 
