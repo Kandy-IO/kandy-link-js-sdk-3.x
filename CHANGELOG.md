@@ -5,7 +5,7 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 3.16.0 - beta
+## 3.16.0 - 2020-05-29
 
 ### Changed
 
@@ -15,6 +15,7 @@ Kandy.js change log.
 
 - Removed the need for remote party properties (callNotificationParams) to be present in notifications. `KAA-2271`
 - Fixed an issue with the `user.search` API where searching with a filter would not work. `KAA-2341`
+- Fixed documentation for Conversation in messaging plugin. `KAA-2102`
 
 ## 3.15.1 - 2020-05-11
 
