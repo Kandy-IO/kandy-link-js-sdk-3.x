@@ -51,7 +51,7 @@ The format of logs can also be customized by providing a
            to the console.
     -   `logs.enableFcsLogs` **[boolean][10]** Enable the detailed call logger
            for v3.X. Requires log level debug. (optional, default `true`)
-    -   `logs.logActions` **[Object][6]?** Options specifically for action logs when
+    -   `logs.logActions` **([Object][6] \| [boolean][10])?** Options specifically for action logs when
            logLevel is at DEBUG+ levels. Set this to false to not output action logs.
         -   `logs.logActions.handler` **[logger.LogHandler][9]?** The function to receive action
                log entries from the SDK. If not provided, a default handler will be used
@@ -63,6 +63,8 @@ The format of logs can also be customized by providing a
                inspected on the console. (optional, default `false`)
         -   `logs.logActions.diff` **[boolean][10]** Include a diff of what SDK
                context was changed by the action. (optional, default `false`)
+        -   `logs.logActions.level` **[string][7]** Log level to be set
+               on the action logs (optional, default `'debug'`)
         -   `logs.logActions.exposePayloads` **[boolean][10]** Allow action payloads
                to be exposed in the logs, potentially displaying sensitive information. (optional, default `false`)
 
@@ -1172,45 +1174,6 @@ Returns all conversations currently tracked by the SDK
 
 Returns **[Array][12]&lt;[conversation.Conversation][19]>** An array of conversation objects.
 
-### Message
-
-A Message object is a means by which a sender can deliver information to a recipient.
-
-Creating and sending a message:
-
-A message object can be obtained through the [Conversation.createMessage][20] API on an existing conversation.
-
-Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
-Once all the desired parts have been added to the message using the [Message.addPart][21] function,
-the message can then be sent using the [Message.send][22] function.
-
-Once the sender sends a message, this message is saved in sender's state as an object.
-Similarly, once the recipient gets a message, this message is saved in recipient's state.
-
-Retrieving a delivered message:
-
-Once a message is delivered successfully, it can be
-obtained through the [Conversation.getMessages][23] or [Conversation.getMessage][24] API on an existing conversation.
-
-Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
-
-Type: [Object][6]
-
-**Properties**
-
--   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
--   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
--   `sender` **[string][7]** The primary contact address of the sender.
--   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
--   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
-    than the one associated with the message object stored in recipient's state.
--   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][25] for valid types.
-    This property applies only to message objects stored in sender's state.
-
-#### send
-
-Sends the message.
-
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
@@ -1239,7 +1202,7 @@ Create and return a message object. You must provide a `text` part as demonstrat
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[conversation.Message][26]** The newly created Message object.
+Returns **[conversation.Message][21]** The newly created Message object.
 
 #### clearMessages
 
@@ -1298,6 +1261,45 @@ Messages can then be retrieved using getMessages.
 **Parameters**
 
 -   `amount` **[number][11]** An amount of messages to fetch. (optional, default `50`)
+
+### Message
+
+A Message object is a means by which a sender can deliver information to a recipient.
+
+Creating and sending a message:
+
+A message object can be obtained through the [Conversation.createMessage][20] API on an existing conversation.
+
+Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
+Once all the desired parts have been added to the message using the [Message.addPart][22] function,
+the message can then be sent using the [Message.send][23] function.
+
+Once the sender sends a message, this message is saved in sender's state as an object.
+Similarly, once the recipient gets a message, this message is saved in recipient's state.
+
+Retrieving a delivered message:
+
+Once a message is delivered successfully, it can be
+obtained through the [Conversation.getMessages][24] or [Conversation.getMessage][25] API on an existing conversation.
+
+Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
+
+Type: [Object][6]
+
+**Properties**
+
+-   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
+-   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
+-   `sender` **[string][7]** The primary contact address of the sender.
+-   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
+-   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
+    than the one associated with the message object stored in recipient's state.
+-   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][26] for valid types.
+    This property applies only to message objects stored in sender's state.
+
+#### send
+
+Sends the message.
 
 ## DEVICE_ERROR
 
@@ -1683,7 +1685,7 @@ Prompt the user for permission to use their audio and/or video devices.
 A set of [SdpHandlerFunction][40]s for manipulating SDP information.
 These handlers are used to customize low-level call behaviour for very specific
 environments and/or scenarios. They can be provided during SDK instantiation
-to be used for all calls.
+to be used for all calls, or with the [call.setSdpHandlers][41] Call API post-instantiation.
 
 **Examples**
 
@@ -1692,9 +1694,14 @@ import { create, sdpHandlers } from 'kandy';
 const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
 const client = create({
   call: {
-    sdpHandlers: [ <Your-SDP-Handler-Function>, ...]
+    sdpHandlers: [ codecRemover, <Your-SDP-Handler-Function>, ...]
   }
 })
+```
+
+```javascript
+// Through the Call API post-instantiation
+client.call.setSdpHandlers([ codecRemover, <Your-SDP-Handler-Function>, ...])
 ```
 
 ### createCodecRemover
@@ -1838,12 +1845,12 @@ Type: [Object][6]
 
 Fetches information about a User.
 
-The SDK will emit a [users:change][41]
+The SDK will emit a [users:change][42]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][42] API.
+   [user.get][43] API.
 
 **Parameters**
 
@@ -1852,36 +1859,36 @@ Information about an available User can be retrieved using the
 ### fetchSelfInfo
 
 Fetches information about the current User from directory.
-Compared to [user.fetch][43] API, this API retrieves additional user related information.
+Compared to [user.fetch][44] API, this API retrieves additional user related information.
 
-The SDK will emit a [users:change][41]
+The SDK will emit a [users:change][42]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][42] API.
+   [user.get][43] API.
 
 ### get
 
 Retrieves information about a User, if available.
 
-See the [user.fetch][43] and [user.search][44] APIs for details about
+See the [user.fetch][44] and [user.search][45] APIs for details about
    making Users' information available.
 
 **Parameters**
 
 -   `userId` **user.UserID** The User ID of the user.
 
-Returns **[user.User][45]** The User object for the specified user.
+Returns **[user.User][46]** The User object for the specified user.
 
 ### getAll
 
 Retrieves information about all available Users.
 
-See the [user.fetch][43] and [user.search][44] APIs for details about
+See the [user.fetch][44] and [user.search][45] APIs for details about
    making Users' information available.
 
-Returns **[Array][12]&lt;[user.User][45]>** An array of all the User objects.
+Returns **[Array][12]&lt;[user.User][46]>** An array of all the User objects.
 
 ### search
 
@@ -1890,10 +1897,10 @@ Searches the domain's directory for Users.
 Directory searching only supports one filter. If multiple filters are provided, only one of the filters will be used for the search.
 A search with no filters provided will return all users.
 
-The SDK will emit a [directory:change][46]
+The SDK will emit a [directory:change][47]
    event after the operation completes. The search results will be
    provided as part of the event, and will also be available using the
-   [user.get][42] and [user.getAll][47] APIs.
+   [user.get][43] and [user.getAll][48] APIs.
 
 **Parameters**
 
@@ -1961,17 +1968,17 @@ Returns voicemail data from the store.
 
 [20]: #conversationconversationcreatemessage
 
-[21]: conversation.Message.addPart
+[21]: #conversationmessage
 
-[22]: #conversationmessagesend
+[22]: conversation.Message.addPart
 
-[23]: #conversationconversationgetmessages
+[23]: #conversationmessagesend
 
-[24]: #conversationconversationgetmessage
+[24]: #conversationconversationgetmessages
 
-[25]: conversation.chatTypes
+[25]: #conversationconversationgetmessage
 
-[26]: #conversationmessage
+[26]: conversation.chatTypes
 
 [27]: #configconfiglogs
 
@@ -2001,16 +2008,18 @@ Returns voicemail data from the store.
 
 [40]: call.SdpHandlerFunction
 
-[41]: #usereventuserschange
+[41]: call.setSdpHandlers
 
-[42]: #userget
+[42]: #usereventuserschange
 
-[43]: #userfetch
+[43]: #userget
 
-[44]: #usersearch
+[44]: #userfetch
 
-[45]: #useruser
+[45]: #usersearch
 
-[46]: #usereventdirectorychange
+[46]: #useruser
 
-[47]: #usergetall
+[47]: #usereventdirectorychange
+
+[48]: #usergetall
