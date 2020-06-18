@@ -265,7 +265,7 @@ Update values in the global Config section of the store. The values pertain to t
 
 ### on
 
-Add an event listener for the specified event type. The event is emmited by the SDK instance.
+Add an event listener for the specified event type. The event is emitted by the SDK instance.
 
 **Parameters**
 
@@ -285,7 +285,7 @@ client.on('dummy:event', function (params) {
 
 ### off
 
-Removes an event listener for the specified event type. The event is emmited by the SDK instance.
+Removes an event listener for the specified event type. The event is emitted by the SDK instance.
 
 **Parameters**
 
@@ -422,7 +422,7 @@ Returns **[boolean][10]** connection.isConnected Whether the authenticated user 
 
 Returns **[boolean][10]** connection.isPending Whether the authenticated user's connection is currently pending.
 
-Returns **[Object][6]** connection.error The error object if an error occured.
+Returns **[Object][6]** connection.error The error object if an error occurred.
 
 Returns **[string][7]** connection.error.message The error message.
 
@@ -452,27 +452,6 @@ Possible reasons for disconnecting.
 
 -   `GONE` **[string][7]** Connection was terminated by the server
 -   `LOST_CONNECTION` **[string][7]** Internet connection was lost
-
-### setCredentials
-
-Sets the user credentials necessary to make requests to the platform.
-
-**Parameters**
-
--   `credentials` **[Object][6]** The credentials object.
-    -   `credentials.username` **[string][7]** The username including the application's domain.
-    -   `credentials.password` **[string][7]** The user's password.
-    -   `credentials.authname` **[string][7]?** The user's authorization name.
-
-**Examples**
-
-```javascript
-client.setCredentials({
-  username: 'alfred@example.com',
-  password: '********'
-  authname: '********'
-});
-```
 
 ### setCredentials
 
@@ -506,6 +485,27 @@ client.setCredentials({
 });
 ```
 
+### setCredentials
+
+Sets the user credentials necessary to make requests to the platform.
+
+**Parameters**
+
+-   `credentials` **[Object][6]** The credentials object.
+    -   `credentials.username` **[string][7]** The username including the application's domain.
+    -   `credentials.password` **[string][7]** The user's password.
+    -   `credentials.authname` **[string][7]?** The user's authorization name.
+
+**Examples**
+
+```javascript
+client.setCredentials({
+  username: 'alfred@example.com',
+  password: '********'
+  authname: '********'
+});
+```
+
 ### BasicError
 
 The Basic Error object. Provides information about an error that occurred in the SDK.
@@ -515,7 +515,7 @@ Type: [Object][6]
 **Properties**
 
 -   `code` **[string][7]** The code of the error. If no code is known, this will be 'NO_CODE'.
--   `message` **[string][7]** A human-readable message to describe the error. If no message is known, this will be 'An error occured'.
+-   `message` **[string][7]** A human-readable message to describe the error. If no message is known, this will be 'An error occurred'.
 
 ## AudioBridge
 
@@ -1174,6 +1174,45 @@ Returns all conversations currently tracked by the SDK
 
 Returns **[Array][12]&lt;[conversation.Conversation][19]>** An array of conversation objects.
 
+### Message
+
+A Message object is a means by which a sender can deliver information to a recipient.
+
+Creating and sending a message:
+
+A message object can be obtained through the [Conversation.createMessage][20] API on an existing conversation.
+
+Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
+Once all the desired parts have been added to the message using the [Message.addPart][21] function,
+the message can then be sent using the [Message.send][22] function.
+
+Once the sender sends a message, this message is saved in sender's state as an object.
+Similarly, once the recipient gets a message, this message is saved in recipient's state.
+
+Retrieving a delivered message:
+
+Once a message is delivered successfully, it can be
+obtained through the [Conversation.getMessages][23] or [Conversation.getMessage][24] API on an existing conversation.
+
+Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
+
+Type: [Object][6]
+
+**Properties**
+
+-   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
+-   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
+-   `sender` **[string][7]** The primary contact address of the sender.
+-   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
+-   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
+    than the one associated with the message object stored in recipient's state.
+-   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][25] for valid types.
+    This property applies only to message objects stored in sender's state.
+
+#### send
+
+Sends the message.
+
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
@@ -1202,7 +1241,7 @@ Create and return a message object. You must provide a `text` part as demonstrat
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[conversation.Message][21]** The newly created Message object.
+Returns **[conversation.Message][26]** The newly created Message object.
 
 #### clearMessages
 
@@ -1262,45 +1301,6 @@ Messages can then be retrieved using getMessages.
 
 -   `amount` **[number][11]** An amount of messages to fetch. (optional, default `50`)
 
-### Message
-
-A Message object is a means by which a sender can deliver information to a recipient.
-
-Creating and sending a message:
-
-A message object can be obtained through the [Conversation.createMessage][20] API on an existing conversation.
-
-Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
-Once all the desired parts have been added to the message using the [Message.addPart][22] function,
-the message can then be sent using the [Message.send][23] function.
-
-Once the sender sends a message, this message is saved in sender's state as an object.
-Similarly, once the recipient gets a message, this message is saved in recipient's state.
-
-Retrieving a delivered message:
-
-Once a message is delivered successfully, it can be
-obtained through the [Conversation.getMessages][24] or [Conversation.getMessage][25] API on an existing conversation.
-
-Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
-
-Type: [Object][6]
-
-**Properties**
-
--   `timestamp` **[number][11]** A Unix timestamp in seconds marking the time when the message was created by sender.
--   `parts` **[Array][12]&lt;conversation.Part>** An array of Part Objects.
--   `sender` **[string][7]** The primary contact address of the sender.
--   `destination` **[Array][12]&lt;[string][7]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
--   `messageId` **[string][7]** The unique id of the message. The message object (stored in sender's state) has a different id
-    than the one associated with the message object stored in recipient's state.
--   `type` **[string][7]** The type of message that was sent. See [conversation.chatTypes][26] for valid types.
-    This property applies only to message objects stored in sender's state.
-
-#### send
-
-Sends the message.
-
 ## DEVICE_ERROR
 
 An error occurred while performing a device operation.
@@ -1337,6 +1337,50 @@ Possible levels for the SDK logger.
 -   `WARN` **[string][7]** Log issues that may cause problems or unexpected behaviour.
 -   `INFO` **[string][7]** Log useful information and messages to indicate the SDK's internal operations.
 -   `DEBUG` **[string][7]** Log information to help diagnose problematic behaviour.
+
+### LogHandler
+
+A LogHandler can be used to customize how the SDK should log information. By
+   default, the SDK will log information to the console, but a LogHandler can
+   be configured to change this behaviour.
+
+A LogHandler can be provided to the SDK as part of its configuration (see
+   [config.logs][27]). The SDK will then provide this
+   function with the logged information.
+
+Type: [Function][16]
+
+**Parameters**
+
+-   `LogEntry` **[Object][6]** The LogEntry to be logged.
+
+**Examples**
+
+```javascript
+// Define a custom function to handle logs.
+function logHandler (logEntry) {
+  // Compile the meta info of the log for a prefix.
+  const { timestamp, level, target } = logEntry
+  let { method } = logEntry
+  const logInfo = `${timestamp} - ${target.type} - ${level}`
+
+  // Assume that the first message parameter is a string.
+  const [log, ...extra] = logEntry.messages
+
+  // For the timer methods, don't actually use the console methods.
+  //    The Logger already did the timing, so simply log out the info.
+  if (['time', 'timeLog', 'timeEnd'].includes(method)) {
+    method = 'debug'
+  }
+
+  console[method](`${logInfo} - ${log}`, ...extra)
+}
+
+// Provide the LogHandler as part of the SDK configurations.
+const configs = { ... }
+configs.logs.handler = logHandler
+const client = create(configs)
+```
 
 ### LogEntry
 
@@ -1385,50 +1429,6 @@ function defaultLogHandler (logEntry) {
 
   console[method](`${logInfo} - ${log}`, ...extra)
 }
-```
-
-### LogHandler
-
-A LogHandler can be used to customize how the SDK should log information. By
-   default, the SDK will log information to the console, but a LogHandler can
-   be configured to change this behaviour.
-
-A LogHandler can be provided to the SDK as part of its configuration (see
-   [config.logs][27]). The SDK will then provide this
-   function with the logged information.
-
-Type: [Function][16]
-
-**Parameters**
-
--   `LogEntry` **[Object][6]** The LogEntry to be logged.
-
-**Examples**
-
-```javascript
-// Define a custom function to handle logs.
-function logHandler (logEntry) {
-  // Compile the meta info of the log for a prefix.
-  const { timestamp, level, target } = logEntry
-  let { method } = logEntry
-  const logInfo = `${timestamp} - ${target.type} - ${level}`
-
-  // Assume that the first message parameter is a string.
-  const [log, ...extra] = logEntry.messages
-
-  // For the timer methods, don't actually use the console methods.
-  //    The Logger already did the timing, so simply log out the info.
-  if (['time', 'timeLog', 'timeEnd'].includes(method)) {
-    method = 'debug'
-  }
-
-  console[method](`${logInfo} - ${log}`, ...extra)
-}
-
-// Provide the LogHandler as part of the SDK configurations.
-const configs = { ... }
-configs.logs.handler = logHandler
-const client = create(configs)
 ```
 
 ## Media
@@ -1968,17 +1968,17 @@ Returns voicemail data from the store.
 
 [20]: #conversationconversationcreatemessage
 
-[21]: #conversationmessage
+[21]: conversation.Message.addPart
 
-[22]: conversation.Message.addPart
+[22]: #conversationmessagesend
 
-[23]: #conversationmessagesend
+[23]: #conversationconversationgetmessages
 
-[24]: #conversationconversationgetmessages
+[24]: #conversationconversationgetmessage
 
-[25]: #conversationconversationgetmessage
+[25]: conversation.chatTypes
 
-[26]: conversation.chatTypes
+[26]: #conversationmessage
 
 [27]: #configconfiglogs
 
