@@ -115,7 +115,7 @@
           "column": 58
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/builds/core/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
     },
     "augments": [],
     "examples": [
@@ -404,7 +404,7 @@
           "column": 58
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/builds/core/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
     },
     "augments": [],
     "examples": [],
@@ -854,7 +854,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/logs/config.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/config.js"
           },
           "augments": [],
           "examples": [],
@@ -1917,7 +1917,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/oldLink/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/oldLink/index.js"
           },
           "augments": [],
           "examples": [],
@@ -3149,7 +3149,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/oldLink/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/oldLink/index.js"
           },
           "augments": [],
           "examples": [],
@@ -5673,7 +5673,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/connectivity/link/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/connectivity/link/index.js"
           },
           "augments": [],
           "examples": [],
@@ -6529,7 +6529,7 @@
                 "column": 1
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/link/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/link/index.js"
           },
           "augments": [],
           "examples": [],
@@ -7208,7 +7208,7 @@
           "column": 45
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/eventTypes.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/eventTypes.js"
     },
     "augments": [],
     "examples": [],
@@ -7434,7 +7434,7 @@
           "column": 61
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/eventTypes.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/eventTypes.js"
     },
     "augments": [],
     "examples": [],
@@ -7690,7 +7690,7 @@
           "column": 51
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/eventTypes.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/eventTypes.js"
     },
     "augments": [],
     "examples": [],
@@ -8095,7 +8095,7 @@
           "column": 55
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/eventTypes.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/eventTypes.js"
     },
     "augments": [],
     "examples": [],
@@ -8315,7 +8315,7 @@
           "column": 53
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/eventTypes.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/eventTypes.js"
     },
     "augments": [],
     "examples": [],
@@ -8512,7 +8512,7 @@
           "column": 58
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/builds/core/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
     },
     "augments": [],
     "examples": [],
@@ -8682,7 +8682,7 @@
                 "column": 40
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -8940,7 +8940,7 @@
                 "column": 38
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -9228,7 +9228,7 @@
                 "column": 38
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -9554,7 +9554,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/factory.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/factory.js"
           },
           "augments": [],
           "examples": [],
@@ -9691,7 +9691,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/factory.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/factory.js"
           },
           "augments": [],
           "examples": [
@@ -9836,7 +9836,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/config/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/config/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -10043,7 +10043,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/config/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/config/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -10309,7 +10309,7 @@
                 "column": 3
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/events/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -10650,7 +10650,7 @@
                 "column": 3
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/events/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -10977,7 +10977,7 @@
                 "column": 3
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/events/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -11243,7 +11243,7 @@
                 "column": 3
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/events/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/events/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -11583,7 +11583,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -12412,7 +12412,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -12940,7 +12940,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -13097,7 +13097,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -13327,7 +13327,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -13695,7 +13695,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -14191,7 +14191,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -14407,7 +14407,7 @@
                 "column": 42
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -14735,7 +14735,7 @@
                 "column": 41
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -15036,7 +15036,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -15632,7 +15632,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/auth/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -15977,7 +15977,7 @@
                 "column": 16
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/errors/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/errors/index.js"
           },
           "augments": [],
           "examples": [],
@@ -16283,7 +16283,7 @@
           "column": 20
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -16413,7 +16413,7 @@
                 "column": 49
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -16629,7 +16629,7 @@
                 "column": 47
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -16839,7 +16839,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -17035,7 +17035,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -17243,7 +17243,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -17512,7 +17512,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -17771,7 +17771,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -17969,7 +17969,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -18167,7 +18167,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -18365,7 +18365,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -18562,7 +18562,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -18767,7 +18767,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -19060,7 +19060,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -19204,7 +19204,7 @@
                 "column": 55
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -19349,7 +19349,7 @@
                 "column": 53
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -19547,7 +19547,7 @@
                 "column": 66
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -19750,7 +19750,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -20017,7 +20017,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -20211,7 +20211,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -20398,7 +20398,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -20603,7 +20603,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -20805,7 +20805,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/callHistory/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/callHistory/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -21073,7 +21073,7 @@
           "column": 20
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -21211,7 +21211,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -21432,7 +21432,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -21706,7 +21706,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -21920,7 +21920,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -22169,7 +22169,7 @@
                 "column": 27
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -22679,7 +22679,7 @@
                 "column": 33
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -23474,7 +23474,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -24776,7 +24776,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -25558,7 +25558,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -25762,7 +25762,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -25972,7 +25972,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -26182,7 +26182,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -26392,7 +26392,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -26602,7 +26602,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -26812,7 +26812,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -27057,7 +27057,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -27394,7 +27394,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [
@@ -27747,7 +27747,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -28217,7 +28217,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -28427,7 +28427,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -28637,7 +28637,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -28909,7 +28909,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -29377,7 +29377,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -29597,7 +29597,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -29922,7 +29922,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -30136,7 +30136,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -30411,7 +30411,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -30686,7 +30686,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -30961,7 +30961,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -31222,7 +31222,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/clickToCall/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/clickToCall/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -31358,7 +31358,7 @@
                 "column": 56
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/clickToCall/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/clickToCall/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -31592,7 +31592,7 @@
                 "column": 54
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/clickToCall/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/clickToCall/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -31883,7 +31883,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/clickToCall/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/clickToCall/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32207,7 +32207,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/clickToCall/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/clickToCall/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32403,7 +32403,7 @@
           "column": 54
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/connectivity/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/connectivity/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -32533,7 +32533,7 @@
                 "column": 36
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/connectivity/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/connectivity/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -32748,7 +32748,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/connectivity/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/connectivity/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -32947,7 +32947,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/connectivity/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/connectivity/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -33141,7 +33141,7 @@
           "column": 3
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
     },
     "augments": [],
     "examples": [],
@@ -33261,7 +33261,7 @@
                 "column": 42
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -33468,7 +33468,7 @@
                 "column": 46
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -33671,7 +33671,7 @@
                 "column": 48
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [
@@ -34033,7 +34033,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -35132,7 +35132,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -35389,7 +35389,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -35613,7 +35613,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -35787,7 +35787,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -36205,7 +36205,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -37333,7 +37333,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/contacts.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/contacts.js"
           },
           "augments": [],
           "examples": [],
@@ -37601,7 +37601,7 @@
           "column": 40
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -37711,7 +37711,7 @@
                 "column": 52
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -37866,7 +37866,7 @@
                 "column": 58
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -38274,7 +38274,7 @@
                 "column": 48
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -38715,7 +38715,7 @@
                 "column": 46
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -39006,7 +39006,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -39422,7 +39422,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -39690,7 +39690,7 @@
                 "column": 51
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -39953,7 +39953,7 @@
                       "column": 5
                     }
                   },
-                  "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+                  "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
                 },
                 "augments": [],
                 "examples": [
@@ -40341,7 +40341,7 @@
                       "column": 5
                     }
                   },
-                  "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+                  "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
                 },
                 "augments": [],
                 "examples": [],
@@ -40563,7 +40563,7 @@
                       "column": 5
                     }
                   },
-                  "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+                  "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
                 },
                 "augments": [],
                 "examples": [],
@@ -41261,7 +41261,7 @@
                       "column": 5
                     }
                   },
-                  "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+                  "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
                 },
                 "augments": [],
                 "examples": [],
@@ -41554,7 +41554,7 @@
                       "column": 5
                     }
                   },
-                  "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+                  "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
                 },
                 "augments": [],
                 "examples": [],
@@ -41958,7 +41958,7 @@
                       "column": 5
                     }
                   },
-                  "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+                  "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
                 },
                 "augments": [],
                 "examples": [],
@@ -42726,7 +42726,7 @@
                 "column": 51
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
           },
           "augments": [],
           "examples": [],
@@ -43284,7 +43284,7 @@
                       "column": 5
                     }
                   },
-                  "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/messaging/interface/mixins.js"
+                  "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/messaging/interface/mixins.js"
                 },
                 "augments": [],
                 "examples": [],
@@ -43468,7 +43468,7 @@
           "column": 43
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/eventTypes.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/eventTypes.js"
     },
     "augments": [],
     "examples": [],
@@ -43679,7 +43679,7 @@
           "column": 5
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -43859,7 +43859,7 @@
           "column": 1
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/logs/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -44026,7 +44026,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/logs/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -44376,324 +44376,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "A LogHandler can be used to customize how the SDK should log information. By\n   default, the SDK will log information to the console, but a LogHandler can\n   be configured to change this behaviour.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 43,
-                        "offset": 197
-                      },
-                      "indent": [
-                        1,
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 43,
-                    "offset": 197
-                  },
-                  "indent": [
-                    1,
-                    1
-                  ]
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "A LogHandler can be provided to the SDK as part of its configuration (see\n   ",
-                    "position": {
-                      "start": {
-                        "line": 5,
-                        "column": 1,
-                        "offset": 199
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 4,
-                        "offset": 276
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#configconfiglogs",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "config.logs"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 6,
-                        "column": 4,
-                        "offset": 276
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 41,
-                        "offset": 313
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": "). The SDK will then provide this\n   function with the logged information.",
-                    "position": {
-                      "start": {
-                        "line": 6,
-                        "column": 41,
-                        "offset": 313
-                      },
-                      "end": {
-                        "line": 7,
-                        "column": 41,
-                        "offset": 387
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 5,
-                    "column": 1,
-                    "offset": 199
-                  },
-                  "end": {
-                    "line": 7,
-                    "column": 41,
-                    "offset": 387
-                  },
-                  "indent": [
-                    1,
-                    1
-                  ]
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 7,
-                "column": 41,
-                "offset": 387
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 9,
-              "type": null
-            },
-            {
-              "title": "static",
-              "description": null,
-              "lineNumber": 10
-            },
-            {
-              "title": "typedef",
-              "description": null,
-              "lineNumber": 11,
-              "type": {
-                "type": "NameExpression",
-                "name": "Function"
-              },
-              "name": "LogHandler"
-            },
-            {
-              "title": "memberof",
-              "description": "logger",
-              "lineNumber": 12
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 13,
-              "name": "logs"
-            },
-            {
-              "title": "param",
-              "description": "The LogEntry to be logged.",
-              "lineNumber": 14,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "LogEntry"
-            },
-            {
-              "title": "example",
-              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)",
-              "lineNumber": 15
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 54,
-              "column": 0
-            },
-            "end": {
-              "line": 93,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 1,
-                "column": 0
-              },
-              "end": {
-                "line": 94,
-                "column": 0
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/logs/docs.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "LogEntry",
-              "lineNumber": 14,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The LogEntry to be logged.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 27,
-                            "offset": 26
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 27,
-                        "offset": 26
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 27,
-                    "offset": 26
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              }
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "scope": "static",
-          "kind": "typedef",
-          "name": "LogHandler",
-          "type": {
-            "type": "NameExpression",
-            "name": "Function"
-          },
-          "memberof": "logger",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "logger",
-              "kind": "namespace"
-            },
-            {
-              "name": "LogHandler",
-              "kind": "typedef",
-              "scope": "static"
-            }
-          ],
-          "namespace": "logger.LogHandler"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "A LogEntry object is the data that the SDK compiles when information is\n   logged. It contains both the logged information and meta-info about when\n   and who logged it.",
                     "position": {
                       "start": {
@@ -45026,7 +44708,7 @@
                 "column": 0
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/logs/docs.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/docs.js"
           },
           "augments": [],
           "examples": [
@@ -45638,6 +45320,324 @@
             }
           ],
           "namespace": "logger.LogEntry"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A LogHandler can be used to customize how the SDK should log information. By\n   default, the SDK will log information to the console, but a LogHandler can\n   be configured to change this behaviour.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 43,
+                        "offset": 197
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 43,
+                    "offset": 197
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A LogHandler can be provided to the SDK as part of its configuration (see\n   ",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1,
+                        "offset": 199
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 4,
+                        "offset": 276
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#configconfiglogs",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "config.logs"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 4,
+                        "offset": 276
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 41,
+                        "offset": 313
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "). The SDK will then provide this\n   function with the logged information.",
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 41,
+                        "offset": 313
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 41,
+                        "offset": 387
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1,
+                    "offset": 199
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 41,
+                    "offset": 387
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 41,
+                "offset": 387
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 9,
+              "type": null
+            },
+            {
+              "title": "static",
+              "description": null,
+              "lineNumber": 10
+            },
+            {
+              "title": "typedef",
+              "description": null,
+              "lineNumber": 11,
+              "type": {
+                "type": "NameExpression",
+                "name": "Function"
+              },
+              "name": "LogHandler"
+            },
+            {
+              "title": "memberof",
+              "description": "logger",
+              "lineNumber": 12
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 13,
+              "name": "logs"
+            },
+            {
+              "title": "param",
+              "description": "The LogEntry to be logged.",
+              "lineNumber": 14,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "LogEntry"
+            },
+            {
+              "title": "example",
+              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)",
+              "lineNumber": 15
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 54,
+              "column": 0
+            },
+            "end": {
+              "line": 93,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 94,
+                "column": 0
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/docs.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "LogEntry",
+              "lineNumber": 14,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The LogEntry to be logged.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 27,
+                            "offset": 26
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 27,
+                        "offset": 26
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 27,
+                    "offset": 26
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "scope": "static",
+          "kind": "typedef",
+          "name": "LogHandler",
+          "type": {
+            "type": "NameExpression",
+            "name": "Function"
+          },
+          "memberof": "logger",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "logger",
+              "kind": "namespace"
+            },
+            {
+              "name": "LogHandler",
+              "kind": "typedef",
+              "scope": "static"
+            }
+          ],
+          "namespace": "logger.LogHandler"
         }
       ]
     },
@@ -45773,7 +45773,7 @@
           "column": 20
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -45900,7 +45900,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -46036,7 +46036,7 @@
                 "column": 49
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -46270,7 +46270,7 @@
                 "column": 47
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -46561,7 +46561,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -46914,7 +46914,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -47701,7 +47701,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -48250,7 +48250,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -48527,7 +48527,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -48795,7 +48795,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/notifications/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/notifications/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -49252,7 +49252,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -49653,7 +49653,7 @@
                 "column": 41
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -50173,7 +50173,7 @@
                 "column": 48
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -50333,7 +50333,7 @@
                 "column": 45
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -50627,7 +50627,7 @@
                 "column": 49
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -50912,7 +50912,7 @@
                 "column": 37
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -51146,7 +51146,7 @@
                 "column": 37
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/link/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/link/index.js"
           },
           "augments": [],
           "examples": [
@@ -51383,7 +51383,7 @@
                 "column": 41
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/link/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/link/index.js"
           },
           "augments": [],
           "examples": [],
@@ -51807,7 +51807,7 @@
                 "column": 36
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -52709,7 +52709,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -53124,7 +53124,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -53439,7 +53439,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -53733,7 +53733,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -54087,7 +54087,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -54415,7 +54415,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -54662,7 +54662,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/presence/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/presence/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -54925,7 +54925,7 @@
           "column": 5
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -55288,7 +55288,7 @@
           "column": 58
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/builds/core/index.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
     },
     "augments": [],
     "examples": [
@@ -55514,7 +55514,7 @@
                 "column": 58
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/builds/core/index.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
           },
           "augments": [],
           "examples": [
@@ -55857,7 +55857,7 @@
           "column": 5
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [
@@ -56224,7 +56224,7 @@
           "column": 45
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -56390,7 +56390,7 @@
                 "column": 66
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -56797,7 +56797,7 @@
                 "column": 38
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -57041,7 +57041,7 @@
                 "column": 48
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -57465,7 +57465,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -57846,7 +57846,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -58247,7 +58247,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -58463,7 +58463,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/sipEvents/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/sipEvents/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -58748,7 +58748,7 @@
           "column": 5
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [
@@ -58979,7 +58979,7 @@
           "column": 5
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/call/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/call/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -59097,7 +59097,7 @@
           "column": 3
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
     },
     "augments": [],
     "examples": [],
@@ -59241,7 +59241,7 @@
                 "column": 50
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -59474,7 +59474,7 @@
                 "column": 48
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -59706,7 +59706,7 @@
                 "column": 42
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -59944,7 +59944,7 @@
                 "column": 40
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/events/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/events/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -60216,7 +60216,7 @@
                 "column": 3
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -60894,7 +60894,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -61305,7 +61305,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -61580,7 +61580,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -61976,7 +61976,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -62480,7 +62480,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/users/interface/api/users.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/users/interface/api/users.js"
           },
           "augments": [],
           "examples": [],
@@ -63107,7 +63107,7 @@
           "column": 36
         }
       },
-      "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/mwi/interface/api.js"
+      "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/mwi/interface/api.js"
     },
     "augments": [],
     "examples": [],
@@ -63303,7 +63303,7 @@
                 "column": 44
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/mwi/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/mwi/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -63945,7 +63945,7 @@
                 "column": 42
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/mwi/interface/eventTypes.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/mwi/interface/eventTypes.js"
           },
           "augments": [],
           "examples": [],
@@ -64190,7 +64190,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/mwi/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/mwi/interface/api.js"
           },
           "augments": [],
           "examples": [],
@@ -64322,7 +64322,7 @@
                 "column": 5
               }
             },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta@2/packages/kandy/src/mwi/interface/api.js"
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/mwi/interface/api.js"
           },
           "augments": [],
           "examples": [],
