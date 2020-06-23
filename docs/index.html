@@ -22,1809 +22,1181 @@
             type='text' />
           <div id='toc'>
             <ul class='list-reset h5 py1-ul'>
-              
-
-                <li>
-
-                  
-                      <div style="color:black;font-size:14px;font-weight:bold;">Functions</div> 
-                  
-                    <span style="color:green">ⓕ</span>
-                  
-                <a
-                  href='#create'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    create
-                  
-                  
-                </a>
+              <li><div style="color:black;font-size:14px;font-weight:bold;">Functions</div><span style="color:green">ⓕ</span><a href='#create' class=""> create</a>
+                  </li>
+                <li><div style="color:black;font-size:14px;font-weight:bold;">Types</div><span style="color:blue">ⓣ</span><a href='#config' class=" toggle-sibling"> config <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Instance members</span></li>
+                          
+                          <li><a
+                            href='#configconfiglogs'
+                            class='regular pre-open'>
+                            #config.logs
+                          </a></li>
+                          
+                          <li><a
+                            href='#configconfigauthentication'
+                            class='regular pre-open'>
+                            #config.authentication
+                          </a></li>
+                          
+                          <li><a
+                            href='#configconfigcall'
+                            class='regular pre-open'>
+                            #config.call
+                          </a></li>
+                          
+                          <li><a
+                            href='#configconfigconnectivity'
+                            class='regular pre-open'>
+                            #config.connectivity
+                          </a></li>
+                          
+                          <li><a
+                            href='#configconfignotifications'
+                            class='regular pre-open'>
+                            #config.notifications
+                          </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><a href='#eventdeviceschange' class=""> devices:change</a>
+                  </li>
+                <li><a href='#eventdevicesdefaultschange' class=""> devices:defaultsChange</a>
+                  </li>
+                <li><a href='#eventmediainitialize' class=""> media:initialize</a>
+                  </li>
+                <li><a href='#eventvideopreviewchange' class=""> videoPreview:change</a>
+                  </li>
+                <li><a href='#eventvideopreviewerror' class=""> videoPreview:error</a>
+                  </li>
+                <li><span style="color:blue">ⓣ</span><a href='#api' class=" toggle-sibling"> api <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Types</span></li>
+                          
+                            <li><a
+                              href='#apibasicerror'
+                              class='regular pre-open'>
+                              <span style="color:blue">ⓣ</span> BasicError
+                            </a></li>
+                          
+                          </ul>
+                        
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#apigetversion'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getVersion
+                            </a></li>
+                          
+                            <li><a
+                              href='#apidestroy'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .destroy
+                            </a></li>
+                          
+                            <li><a
+                              href='#apigetconfig'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getConfig
+                            </a></li>
+                          
+                            <li><a
+                              href='#apiupdateconfig'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .updateConfig
+                            </a></li>
+                          
+                            <li><a
+                              href='#apion'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .on
+                            </a></li>
+                          
+                            <li><a
+                              href='#apioff'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .off
+                            </a></li>
+                          
+                            <li><a
+                              href='#apisubscribe'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .subscribe
+                            </a></li>
+                          
+                            <li><a
+                              href='#apiunsubscribe'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .unsubscribe
+                            </a></li>
+                          
+                            <li><a
+                              href='#apiconnect'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .connect
+                            </a></li>
+                          
+                            <li><a
+                              href='#apiconnect'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .connect
+                            </a></li>
+                          
+                            <li><a
+                              href='#apidisconnect'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .disconnect
+                            </a></li>
+                          
+                            <li><a
+                              href='#apiupdateconnection'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .updateConnection
+                            </a></li>
+                          
+                            <li><a
+                              href='#apigetuserinfo'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getUserInfo
+                            </a></li>
+                          
+                            <li><a
+                              href='#apigetconnection'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getConnection
+                            </a></li>
+                          
+                            <li><a
+                              href='#apigetservices'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getServices
+                            </a></li>
+                          
+                            <li><a
+                              href='#apisubscriptionstates'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .subscriptionStates
+                            </a></li>
+                          
+                            <li><a
+                              href='#apidisconnectreasons'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .disconnectReasons
+                            </a></li>
+                          
+                            <li><a
+                              href='#apisetcredentials'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .setCredentials
+                            </a></li>
+                          
+                            <li><a
+                              href='#apisetcredentials'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .setCredentials
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#apieventauthchange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> auth:change
+                            </a></li>
+                          
+                            <li><a
+                              href='#apieventautherror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> auth:error
+                            </a></li>
+                          
+                            <li><a
+                              href='#apieventauthresub'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> auth:resub
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><span style="color:blue">ⓣ</span><a href='#audiobridge' class=" toggle-sibling"> AudioBridge <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#audiobridgecreate'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .create
+                            </a></li>
+                          
+                            <li><a
+                              href='#audiobridgeclose'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .close
+                            </a></li>
+                          
+                            <li><a
+                              href='#audiobridgeaddcall'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .addCall
+                            </a></li>
+                          
+                            <li><a
+                              href='#audiobridgeremovecall'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .removeCall
+                            </a></li>
+                          
+                            <li><a
+                              href='#audiobridgemute'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .mute
+                            </a></li>
+                          
+                            <li><a
+                              href='#audiobridgeunmute'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .unmute
+                            </a></li>
+                          
+                            <li><a
+                              href='#audiobridgesilence'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .silence
+                            </a></li>
+                          
+                            <li><a
+                              href='#audiobridgeunsilence'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .unsilence
+                            </a></li>
+                          
+                            <li><a
+                              href='#audiobridgegetall'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getAll
+                            </a></li>
+                          
+                            <li><a
+                              href='#audiobridgegetbridgecalls'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getBridgeCalls
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#audiobridgeeventaudiobridgechange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> audioBridge:change
+                            </a></li>
+                          
+                            <li><a
+                              href='#audiobridgeeventaudiobridgeerror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> audioBridge:error
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#callhistory' class=" toggle-sibling"> api.callHistory <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#callhistoryfetch'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .fetch
+                            </a></li>
+                          
+                            <li><a
+                              href='#callhistoryremove'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .remove
+                            </a></li>
+                          
+                            <li><a
+                              href='#callhistoryclear'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .clear
+                            </a></li>
+                          
+                            <li><a
+                              href='#callhistoryget'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .get
+                            </a></li>
+                          
+                            <li><a
+                              href='#callhistorygetcache'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getCache
+                            </a></li>
+                          
+                            <li><a
+                              href='#callhistorysetcache'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .setCache
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#callhistoryeventcallhistorychange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> callHistory:change
+                            </a></li>
+                          
+                            <li><a
+                              href='#callhistoryeventcallhistoryerror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> callHistory:error
+                            </a></li>
+                          
+                            <li><a
+                              href='#callhistoryeventcallhistorycachechange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> callHistoryCache:change
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#calls' class=" toggle-sibling"> api.Calls <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#callsgetall'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getAll
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsgetbyid'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getById
+                            </a></li>
+                          
+                            <li><a
+                              href='#callschangeinputdevices'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .changeInputDevices
+                            </a></li>
+                          
+                            <li><a
+                              href='#callschangespeaker'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .changeSpeaker
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsstates'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .states
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsmediastates'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .mediaStates
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsmake'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .make
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsanswer'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .answer
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsignore'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .ignore
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsreject'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .reject
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsend'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .end
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsmute'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .mute
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsunmute'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .unmute
+                            </a></li>
+                          
+                            <li><a
+                              href='#callssilence'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .silence
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsunsilence'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .unsilence
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsgetcustomparameters'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getCustomParameters
+                            </a></li>
+                          
+                            <li><a
+                              href='#callssetcustomparameters'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .setCustomParameters
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsstartvideo'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .startVideo
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsstopvideo'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .stopVideo
+                            </a></li>
+                          
+                            <li><a
+                              href='#callshold'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .hold
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsunhold'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .unhold
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsstartscreenshare'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .startScreenshare
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsstopscreenshare'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .stopScreenshare
+                            </a></li>
+                          
+                            <li><a
+                              href='#callssenddtmf'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .sendDTMF
+                            </a></li>
+                          
+                            <li><a
+                              href='#callssendcustomparameters'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .sendCustomParameters
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsforwardcall'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .forwardCall
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsdirecttransfer'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .directTransfer
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsconsultativetransfer'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .consultativeTransfer
+                            </a></li>
+                          
+                            <li><a
+                              href='#callsjoin'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .join
+                            </a></li>
+                          
+                          </ul>
+                        
+                    </div>
+                    
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#clicktocall' class=" toggle-sibling"> api.clickToCall <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#clicktocallmake'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .make
+                            </a></li>
+                          
+                            <li><a
+                              href='#clicktocallget'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .get
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#clicktocalleventclicktocallstart'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> clickToCall:start
+                            </a></li>
+                          
+                            <li><a
+                              href='#clicktocalleventclicktocallerror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> clickToCall:error
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#connection' class=" toggle-sibling"> api.connection <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#connectiongetsocketstate'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getSocketState
+                            </a></li>
+                          
+                            <li><a
+                              href='#connectionenableconnectivitychecking'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .enableConnectivityChecking
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#connectioneventwschange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> ws:change
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#contacts' class=" toggle-sibling"> api.contacts <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#contactsadd'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .add
+                            </a></li>
+                          
+                            <li><a
+                              href='#contactsget'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .get
+                            </a></li>
+                          
+                            <li><a
+                              href='#contactsgetall'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getAll
+                            </a></li>
+                          
+                            <li><a
+                              href='#contactsrefresh'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .refresh
+                            </a></li>
+                          
+                            <li><a
+                              href='#contactsremove'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .remove
+                            </a></li>
+                          
+                            <li><a
+                              href='#contactsupdate'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .update
+                            </a></li>
+                          
+                            <li><a
+                              href='#contactsfetch'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .fetch
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#contactseventcontactsnew'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> contacts:new
+                            </a></li>
+                          
+                            <li><a
+                              href='#contactseventcontactserror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> contacts:error
+                            </a></li>
+                          
+                            <li><a
+                              href='#contactseventcontactschange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> contacts:change
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#conversation' class=" toggle-sibling"> api.conversation <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Types</span></li>
+                          
+                            <li><a
+                              href='#conversationconversation'
+                              class='regular pre-open'>
+                              <span style="color:blue">ⓣ</span> Conversation
+                            </a></li>
+                          
+                            <li><a
+                              href='#conversationmessage'
+                              class='regular pre-open'>
+                              <span style="color:blue">ⓣ</span> Message
+                            </a></li>
+                          
+                          </ul>
+                        
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#conversationget'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .get
+                            </a></li>
+                          
+                            <li><a
+                              href='#conversationgetall'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getAll
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#conversationeventconversationsnew'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> conversations:new
+                            </a></li>
+                          
+                            <li><a
+                              href='#conversationeventconversationschange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> conversations:change
+                            </a></li>
+                          
+                            <li><a
+                              href='#conversationeventmessageschange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> messages:change
+                            </a></li>
+                          
+                            <li><a
+                              href='#conversationeventmessageserror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> messages:error
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><a href='#device_error' class=""> DEVICE_ERROR</a>
+                  </li>
+                <li><span style="color:green">ⓕ</span><a href='#getdevices' class=""> getDevices</a>
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#logger' class=" toggle-sibling"> api.logger <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Types</span></li>
+                          
+                            <li><a
+                              href='#loggerloghandler'
+                              class='regular pre-open'>
+                              <span style="color:blue">ⓣ</span> LogHandler
+                            </a></li>
+                          
+                            <li><a
+                              href='#loggerlogentry'
+                              class='regular pre-open'>
+                              <span style="color:blue">ⓣ</span> LogEntry
+                            </a></li>
+                          
+                          </ul>
+                        
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#loggerlevels'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .levels
+                            </a></li>
+                          
+                          </ul>
+                        
+                    </div>
+                    
+                  </li>
+                <li><span style="color:blue">ⓣ</span><a href='#media' class=""> Media</a>
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#notification' class=" toggle-sibling"> api.notification <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#notificationprocess'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .process
+                            </a></li>
+                          
+                            <li><a
+                              href='#notificationregisterapplepush'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .registerApplePush
+                            </a></li>
+                          
+                            <li><a
+                              href='#notificationregisterandroidpush'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .registerAndroidPush
+                            </a></li>
+                          
+                            <li><a
+                              href='#notificationunregisterapplepush'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .unregisterApplePush
+                            </a></li>
+                          
+                            <li><a
+                              href='#notificationunregisterandroidpush'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .unregisterAndroidPush
+                            </a></li>
+                          
+                            <li><a
+                              href='#notificationenablewebsocket'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .enableWebsocket
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#notificationeventnotificationschange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> notifications:change
+                            </a></li>
+                          
+                            <li><a
+                              href='#notificationeventnotificationserror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> notifications:error
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#presence' class=" toggle-sibling"> api.presence <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Types</span></li>
+                          
+                            <li><a
+                              href='#presencepresencestatus'
+                              class='regular pre-open'>
+                              <span style="color:blue">ⓣ</span> PresenceStatus
+                            </a></li>
+                          
+                          </ul>
+                        
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#presencestatuses'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .statuses
+                            </a></li>
+                          
+                            <li><a
+                              href='#presenceactivities'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .activities
+                            </a></li>
+                          
+                            <li><a
+                              href='#presenceupdate'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .update
+                            </a></li>
+                          
+                            <li><a
+                              href='#presenceget'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .get
+                            </a></li>
+                          
+                            <li><a
+                              href='#presencegetall'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getAll
+                            </a></li>
+                          
+                            <li><a
+                              href='#presencegetself'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getSelf
+                            </a></li>
+                          
+                            <li><a
+                              href='#presencefetch'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .fetch
+                            </a></li>
+                          
+                            <li><a
+                              href='#presencesubscribe'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .subscribe
+                            </a></li>
+                          
+                            <li><a
+                              href='#presenceunsubscribe'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .unsubscribe
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#presenceeventpresencechange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> presence:change
+                            </a></li>
+                          
+                            <li><a
+                              href='#presenceeventpresenceselfchange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> presence:selfChange
+                            </a></li>
+                          
+                            <li><a
+                              href='#presenceeventpresencesubscribe'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> presence:subscribe
+                            </a></li>
+                          
+                            <li><a
+                              href='#presenceeventpresenceunsubscribe'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> presence:unsubscribe
+                            </a></li>
+                          
+                            <li><a
+                              href='#presenceeventpresenceerror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> presence:error
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><span style="color:green">ⓕ</span><a href='#promptusermedia' class=""> promptUserMedia</a>
+                  </li>
+                <li><span style="color:green">ⓕ</span><a href='#setdefaultdevices' class=""> setDefaultDevices</a>
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#sip' class=" toggle-sibling"> api.sip <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#sipsubscribe'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .subscribe
+                            </a></li>
+                          
+                            <li><a
+                              href='#sipupdate'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .update
+                            </a></li>
+                          
+                            <li><a
+                              href='#sipunsubscribe'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .unsubscribe
+                            </a></li>
+                          
+                            <li><a
+                              href='#sipgetdetails'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getDetails
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#sipeventsipsubscriptionchange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> sip:subscriptionChange
+                            </a></li>
+                          
+                            <li><a
+                              href='#sipeventsiperror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> sip:error
+                            </a></li>
+                          
+                            <li><a
+                              href='#sipeventsipeventschange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> sip:eventsChange
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><span style="color:green">ⓕ</span><a href='#startpreviewvideo' class=""> startPreviewVideo</a>
+                  </li>
+                <li><span style="color:green">ⓕ</span><a href='#stoppreviewvideo' class=""> stopPreviewVideo</a>
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#user' class=" toggle-sibling"> api.user <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Types</span></li>
+                          
+                            <li><a
+                              href='#useruser'
+                              class='regular pre-open'>
+                              <span style="color:blue">ⓣ</span> User
+                            </a></li>
+                          
+                          </ul>
+                        
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#userfetch'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .fetch
+                            </a></li>
+                          
+                            <li><a
+                              href='#userfetchselfinfo'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .fetchSelfInfo
+                            </a></li>
+                          
+                            <li><a
+                              href='#userget'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .get
+                            </a></li>
+                          
+                            <li><a
+                              href='#usergetall'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .getAll
+                            </a></li>
+                          
+                            <li><a
+                              href='#usersearch'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .search
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#usereventdirectorychange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> directory:change
+                            </a></li>
+                          
+                            <li><a
+                              href='#usereventdirectoryerror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> directory:error
+                            </a></li>
+                          
+                            <li><a
+                              href='#usereventuserschange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> users:change
+                            </a></li>
+                          
+                            <li><a
+                              href='#usereventuserserror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> users:error
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#voicemail' class=" toggle-sibling"> api.voicemail <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#voicemailfetch'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .fetch
+                            </a></li>
+                          
+                            <li><a
+                              href='#voicemailget'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .get
+                            </a></li>
+                          
+                          </ul>
+                        
+                        <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'>Events</li>
+                          
+                            <li><a
+                              href='#voicemaileventvoicemailchange'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> voicemail:change
+                            </a></li>
+                          
+                            <li><a
+                              href='#voicemaileventvoicemailerror'
+                              class='regular pre-open'>
+                              <span style="color:orange">ⓔ</span> voicemail:error
+                            </a></li>
+                          
+                        </ul>
+                      
+                    </div>
+                    
+                  </li>
+                <div style="color:black;font-size:14px;font-weight:bold;">Extras</div> <li><span style="color:magenta">ⓝ</span><a href='#sdphandlers' class=" toggle-sibling"> sdpHandlers <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Types</span></li>
+                          
+                            <li><a
+                              href='#sdphandlerscodecselector'
+                              class='regular pre-open'>
+                              <span style="color:blue">ⓣ</span> CodecSelector
+                            </a></li>
+                          
+                          </ul>
+                        
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#sdphandlerscreatecodecremover'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .createCodecRemover
+                            </a></li>
+                          
+                          </ul>
+                        
+                    </div>
+                    
+                  </li>
                 
-                </li>
-              
-
-                <li>
-
-                  
-                      <div style="color:black;font-size:14px;font-weight:bold;">Types</div> 
-                  
-                    <span style="color:blue">ⓣ</span>
-                  
-                <a
-                  href='#config'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    config
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'><span>Instance members</span></li>
-                      
-                      <li><a
-                        href='#configconfiglogs'
-                        class='regular pre-open'>
-                        #config.logs
-                      </a></li>
-                      
-                      <li><a
-                        href='#configconfigauthentication'
-                        class='regular pre-open'>
-                        #config.authentication
-                      </a></li>
-                      
-                      <li><a
-                        href='#configconfigcall'
-                        class='regular pre-open'>
-                        #config.call
-                      </a></li>
-                      
-                      <li><a
-                        href='#configconfigconnectivity'
-                        class='regular pre-open'>
-                        #config.connectivity
-                      </a></li>
-                      
-                      <li><a
-                        href='#configconfignotifications'
-                        class='regular pre-open'>
-                        #config.notifications
-                      </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                <a
-                  href='#eventdeviceschange'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    devices:change
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                <a
-                  href='#eventdevicesdefaultschange'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    devices:defaultsChange
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                <a
-                  href='#eventmediainitialize'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    media:initialize
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                <a
-                  href='#eventvideopreviewchange'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    videoPreview:change
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                <a
-                  href='#eventvideopreviewerror'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    videoPreview:error
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:blue">ⓣ</span>
-                  
-                <a
-                  href='#api'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Types</span></li>
-                    
-                      <li><a
-                        href='#apibasicerror'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> BasicError
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#apigetversion'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getVersion
-                      </a></li>
-                    
-                      <li><a
-                        href='#apidestroy'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .destroy
-                      </a></li>
-                    
-                      <li><a
-                        href='#apigetconfig'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getConfig
-                      </a></li>
-                    
-                      <li><a
-                        href='#apiupdateconfig'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .updateConfig
-                      </a></li>
-                    
-                      <li><a
-                        href='#apion'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .on
-                      </a></li>
-                    
-                      <li><a
-                        href='#apioff'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .off
-                      </a></li>
-                    
-                      <li><a
-                        href='#apisubscribe'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .subscribe
-                      </a></li>
-                    
-                      <li><a
-                        href='#apiunsubscribe'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .unsubscribe
-                      </a></li>
-                    
-                      <li><a
-                        href='#apiconnect'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .connect
-                      </a></li>
-                    
-                      <li><a
-                        href='#apiconnect'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .connect
-                      </a></li>
-                    
-                      <li><a
-                        href='#apidisconnect'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .disconnect
-                      </a></li>
-                    
-                      <li><a
-                        href='#apiupdateconnection'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .updateConnection
-                      </a></li>
-                    
-                      <li><a
-                        href='#apigetuserinfo'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getUserInfo
-                      </a></li>
-                    
-                      <li><a
-                        href='#apigetconnection'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getConnection
-                      </a></li>
-                    
-                      <li><a
-                        href='#apigetservices'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getServices
-                      </a></li>
-                    
-                      <li><a
-                        href='#apisubscriptionstates'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .subscriptionStates
-                      </a></li>
-                    
-                      <li><a
-                        href='#apidisconnectreasons'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .disconnectReasons
-                      </a></li>
-                    
-                      <li><a
-                        href='#apisetcredentials'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .setCredentials
-                      </a></li>
-                    
-                      <li><a
-                        href='#apisetcredentials'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .setCredentials
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#apieventauthchange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> auth:change
-                        </a></li>
-                      
-                        <li><a
-                          href='#apieventautherror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> auth:error
-                        </a></li>
-                      
-                        <li><a
-                          href='#apieventauthresub'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> auth:resub
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:blue">ⓣ</span>
-                  
-                <a
-                  href='#audiobridge'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    AudioBridge
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#audiobridgecreate'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .create
-                      </a></li>
-                    
-                      <li><a
-                        href='#audiobridgeclose'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .close
-                      </a></li>
-                    
-                      <li><a
-                        href='#audiobridgeaddcall'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .addCall
-                      </a></li>
-                    
-                      <li><a
-                        href='#audiobridgeremovecall'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .removeCall
-                      </a></li>
-                    
-                      <li><a
-                        href='#audiobridgemute'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .mute
-                      </a></li>
-                    
-                      <li><a
-                        href='#audiobridgeunmute'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .unmute
-                      </a></li>
-                    
-                      <li><a
-                        href='#audiobridgesilence'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .silence
-                      </a></li>
-                    
-                      <li><a
-                        href='#audiobridgeunsilence'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .unsilence
-                      </a></li>
-                    
-                      <li><a
-                        href='#audiobridgegetall'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getAll
-                      </a></li>
-                    
-                      <li><a
-                        href='#audiobridgegetbridgecalls'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getBridgeCalls
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#audiobridgeeventaudiobridgechange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> audioBridge:change
-                        </a></li>
-                      
-                        <li><a
-                          href='#audiobridgeeventaudiobridgeerror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> audioBridge:error
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#callhistory'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.callHistory
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#callhistoryfetch'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .fetch
-                      </a></li>
-                    
-                      <li><a
-                        href='#callhistoryremove'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .remove
-                      </a></li>
-                    
-                      <li><a
-                        href='#callhistoryclear'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .clear
-                      </a></li>
-                    
-                      <li><a
-                        href='#callhistoryget'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .get
-                      </a></li>
-                    
-                      <li><a
-                        href='#callhistorygetcache'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getCache
-                      </a></li>
-                    
-                      <li><a
-                        href='#callhistorysetcache'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .setCache
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#callhistoryeventcallhistorychange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> callHistory:change
-                        </a></li>
-                      
-                        <li><a
-                          href='#callhistoryeventcallhistoryerror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> callHistory:error
-                        </a></li>
-                      
-                        <li><a
-                          href='#callhistoryeventcallhistorycachechange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> callHistoryCache:change
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#calls'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.Calls
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#callsgetall'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getAll
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsgetbyid'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getById
-                      </a></li>
-                    
-                      <li><a
-                        href='#callschangeinputdevices'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .changeInputDevices
-                      </a></li>
-                    
-                      <li><a
-                        href='#callschangespeaker'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .changeSpeaker
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsstates'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .states
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsmediastates'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .mediaStates
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsmake'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .make
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsanswer'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .answer
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsignore'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .ignore
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsreject'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .reject
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsend'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .end
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsmute'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .mute
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsunmute'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .unmute
-                      </a></li>
-                    
-                      <li><a
-                        href='#callssilence'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .silence
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsunsilence'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .unsilence
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsgetcustomparameters'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getCustomParameters
-                      </a></li>
-                    
-                      <li><a
-                        href='#callssetcustomparameters'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .setCustomParameters
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsstartvideo'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .startVideo
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsstopvideo'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .stopVideo
-                      </a></li>
-                    
-                      <li><a
-                        href='#callshold'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .hold
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsunhold'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .unhold
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsstartscreenshare'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .startScreenshare
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsstopscreenshare'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .stopScreenshare
-                      </a></li>
-                    
-                      <li><a
-                        href='#callssenddtmf'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .sendDTMF
-                      </a></li>
-                    
-                      <li><a
-                        href='#callssendcustomparameters'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .sendCustomParameters
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsforwardcall'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .forwardCall
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsdirecttransfer'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .directTransfer
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsconsultativetransfer'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .consultativeTransfer
-                      </a></li>
-                    
-                      <li><a
-                        href='#callsjoin'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .join
-                      </a></li>
-                    
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#clicktocall'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.clickToCall
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#clicktocallmake'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .make
-                      </a></li>
-                    
-                      <li><a
-                        href='#clicktocallget'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .get
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#clicktocalleventclicktocallstart'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> clickToCall:start
-                        </a></li>
-                      
-                        <li><a
-                          href='#clicktocalleventclicktocallerror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> clickToCall:error
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#connection'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.connection
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#connectiongetsocketstate'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getSocketState
-                      </a></li>
-                    
-                      <li><a
-                        href='#connectionenableconnectivitychecking'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .enableConnectivityChecking
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#connectioneventwschange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> ws:change
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#contacts'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.contacts
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#contactsadd'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .add
-                      </a></li>
-                    
-                      <li><a
-                        href='#contactsget'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .get
-                      </a></li>
-                    
-                      <li><a
-                        href='#contactsgetall'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getAll
-                      </a></li>
-                    
-                      <li><a
-                        href='#contactsrefresh'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .refresh
-                      </a></li>
-                    
-                      <li><a
-                        href='#contactsremove'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .remove
-                      </a></li>
-                    
-                      <li><a
-                        href='#contactsupdate'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .update
-                      </a></li>
-                    
-                      <li><a
-                        href='#contactsfetch'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .fetch
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#contactseventcontactsnew'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> contacts:new
-                        </a></li>
-                      
-                        <li><a
-                          href='#contactseventcontactserror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> contacts:error
-                        </a></li>
-                      
-                        <li><a
-                          href='#contactseventcontactschange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> contacts:change
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#conversation'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.conversation
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Types</span></li>
-                    
-                      <li><a
-                        href='#conversationconversation'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> Conversation
-                      </a></li>
-                    
-                      <li><a
-                        href='#conversationmessage'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> Message
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#conversationget'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .get
-                      </a></li>
-                    
-                      <li><a
-                        href='#conversationgetall'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getAll
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#conversationeventconversationsnew'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> conversations:new
-                        </a></li>
-                      
-                        <li><a
-                          href='#conversationeventconversationschange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> conversations:change
-                        </a></li>
-                      
-                        <li><a
-                          href='#conversationeventmessageschange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> messages:change
-                        </a></li>
-                      
-                        <li><a
-                          href='#conversationeventmessageserror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> messages:error
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                <a
-                  href='#device_error'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    DEVICE_ERROR
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:green">ⓕ</span>
-                  
-                <a
-                  href='#getdevices'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    getDevices
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#logger'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.logger
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Types</span></li>
-                    
-                      <li><a
-                        href='#loggerlogentry'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> LogEntry
-                      </a></li>
-                    
-                      <li><a
-                        href='#loggerloghandler'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> LogHandler
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#loggerlevels'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .levels
-                      </a></li>
-                    
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:blue">ⓣ</span>
-                  
-                <a
-                  href='#media'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    Media
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#notification'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.notification
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#notificationprocess'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .process
-                      </a></li>
-                    
-                      <li><a
-                        href='#notificationregisterapplepush'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .registerApplePush
-                      </a></li>
-                    
-                      <li><a
-                        href='#notificationregisterandroidpush'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .registerAndroidPush
-                      </a></li>
-                    
-                      <li><a
-                        href='#notificationunregisterapplepush'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .unregisterApplePush
-                      </a></li>
-                    
-                      <li><a
-                        href='#notificationunregisterandroidpush'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .unregisterAndroidPush
-                      </a></li>
-                    
-                      <li><a
-                        href='#notificationenablewebsocket'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .enableWebsocket
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#notificationeventnotificationschange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> notifications:change
-                        </a></li>
-                      
-                        <li><a
-                          href='#notificationeventnotificationserror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> notifications:error
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#presence'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.presence
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Types</span></li>
-                    
-                      <li><a
-                        href='#presencepresencestatus'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> PresenceStatus
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#presencestatuses'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .statuses
-                      </a></li>
-                    
-                      <li><a
-                        href='#presenceactivities'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .activities
-                      </a></li>
-                    
-                      <li><a
-                        href='#presenceupdate'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .update
-                      </a></li>
-                    
-                      <li><a
-                        href='#presenceget'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .get
-                      </a></li>
-                    
-                      <li><a
-                        href='#presencegetall'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getAll
-                      </a></li>
-                    
-                      <li><a
-                        href='#presencegetself'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getSelf
-                      </a></li>
-                    
-                      <li><a
-                        href='#presencefetch'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .fetch
-                      </a></li>
-                    
-                      <li><a
-                        href='#presencesubscribe'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .subscribe
-                      </a></li>
-                    
-                      <li><a
-                        href='#presenceunsubscribe'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .unsubscribe
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#presenceeventpresencechange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> presence:change
-                        </a></li>
-                      
-                        <li><a
-                          href='#presenceeventpresenceselfchange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> presence:selfChange
-                        </a></li>
-                      
-                        <li><a
-                          href='#presenceeventpresencesubscribe'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> presence:subscribe
-                        </a></li>
-                      
-                        <li><a
-                          href='#presenceeventpresenceunsubscribe'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> presence:unsubscribe
-                        </a></li>
-                      
-                        <li><a
-                          href='#presenceeventpresenceerror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> presence:error
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:green">ⓕ</span>
-                  
-                <a
-                  href='#promptusermedia'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    promptUserMedia
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:green">ⓕ</span>
-                  
-                <a
-                  href='#setdefaultdevices'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    setDefaultDevices
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#sip'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.sip
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#sipsubscribe'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .subscribe
-                      </a></li>
-                    
-                      <li><a
-                        href='#sipupdate'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .update
-                      </a></li>
-                    
-                      <li><a
-                        href='#sipunsubscribe'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .unsubscribe
-                      </a></li>
-                    
-                      <li><a
-                        href='#sipgetdetails'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getDetails
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#sipeventsipsubscriptionchange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> sip:subscriptionChange
-                        </a></li>
-                      
-                        <li><a
-                          href='#sipeventsiperror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> sip:error
-                        </a></li>
-                      
-                        <li><a
-                          href='#sipeventsipeventschange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> sip:eventsChange
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:green">ⓕ</span>
-                  
-                <a
-                  href='#startpreviewvideo'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    startPreviewVideo
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:green">ⓕ</span>
-                  
-                <a
-                  href='#stoppreviewvideo'
-                  class="
-                     
-                     
-                  ">
-                  
-                  
-                    stopPreviewVideo
-                  
-                  
-                </a>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#user'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.user
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Types</span></li>
-                    
-                      <li><a
-                        href='#useruser'
-                        class='regular pre-open'>
-                        <span style="color:blue">ⓣ</span> User
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#userfetch'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .fetch
-                      </a></li>
-                    
-                      <li><a
-                        href='#userfetchselfinfo'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .fetchSelfInfo
-                      </a></li>
-                    
-                      <li><a
-                        href='#userget'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .get
-                      </a></li>
-                    
-                      <li><a
-                        href='#usergetall'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .getAll
-                      </a></li>
-                    
-                      <li><a
-                        href='#usersearch'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .search
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#usereventdirectorychange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> directory:change
-                        </a></li>
-                      
-                        <li><a
-                          href='#usereventdirectoryerror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> directory:error
-                        </a></li>
-                      
-                        <li><a
-                          href='#usereventuserschange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> users:change
-                        </a></li>
-                      
-                        <li><a
-                          href='#usereventuserserror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> users:error
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-                <li>
-
-                  
-                    <span style="color:magenta">ⓝ</span>
-                  
-                <a
-                  href='#voicemail'
-                  class="
-                     
-                      
-                        toggle-sibling
-                     
-                  ">
-                  
-                  
-                    api.voicemail
-                  
-                  
-                    <span class='icon'>▸</span>
-                  
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#voicemailfetch'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .fetch
-                      </a></li>
-                    
-                      <li><a
-                        href='#voicemailget'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .get
-                      </a></li>
-                    
-                    </ul>
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'>Events</li>
-                      
-                        <li><a
-                          href='#voicemaileventvoicemailchange'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> voicemail:change
-                        </a></li>
-                      
-                        <li><a
-                          href='#voicemaileventvoicemailerror'
-                          class='regular pre-open'>
-                          <span style="color:orange">ⓔ</span> voicemail:error
-                        </a></li>
-                      
-                    </ul>
-                  
-                </div>
-                
-                </li>
-              
-
-              <div style="color:black;font-size:14px;font-weight:bold;">Extras</div> 
-              
-                 <li>
-                  <span style="color:magenta">ⓝ</span>
-                  <a
-                   href='#sdphandlers'
-                   class="
-                     
-                      
-                        toggle-sibling
-                     
-                   ">
-                  
-                    sdpHandlers
-                   
-                     <span class='icon'>▸</span>
-                   
-                  </a>
-                
-                  <div class='toggle-target display-none'>
-                   
-                    <ul class='list-reset py1-ul pl1'>
-                    <li class='h5'><span>Functions</span></li>
-                    
-                      <li><a
-                        href='#sdphandlerscreatecodecremover'
-                        class='regular pre-open'>
-                        <span style="color:green">ⓕ</span> .createCodecRemover
-                      </a></li>
-                    
-                    </ul>
-                  
-                  </div>
-                
-              </li>
-            
 
             </ul>
-          </div>
-          <div class='mt1 h6 quiet'>
-            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
           </div>
         </div>
       </div>
@@ -4234,6 +3606,164 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
 
   
 
+  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
+
+
+  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The credentials object.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The username including the application's domain.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The user's password.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The user's authorization name.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+	    The options object for non-credential options.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.forceLogOut</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>Force the oldest connection to log out if too many simultaneous connections. Link only.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.clientCorrelator</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>client.connect({
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
+  authname: <span class="hljs-string">'********'</span>
+}, {
+  <span class="hljs-attr">forceLogOut</span>: <span class="hljs-literal">true</span>
+});</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='apiconnect'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>connect(credentials, options?)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
   <p>Connect by providing a username and HMAC token. This connects to any backend services that the SDK instance deals with.
 An HMAC token is used to verify a user via the user's authorization within an organization.
 HMAC tokens are generated by using the HmacSHA1 algorithm and a key on a data object
@@ -4368,164 +3898,6 @@ containing an <code>authenticationTokenRequest</code> object with the following 
 client.connect({
   <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
   hmacToken
-}, {
-  <span class="hljs-attr">forceLogOut</span>: <span class="hljs-literal">true</span>
-});</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='apiconnect'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>connect(credentials, options?)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
-
-
-  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The credentials object.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The username including the application's domain.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The user's password.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>The user's authorization name.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
-	    The options object for non-credential options.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.forceLogOut</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
-  </td>
-  <td class='break-word'><span>Force the oldest connection to log out if too many simultaneous connections. Link only.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.clientCorrelator</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>client.connect({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
-  authname: <span class="hljs-string">'********'</span>
 }, {
   <span class="hljs-attr">forceLogOut</span>: <span class="hljs-literal">true</span>
 });</pre>
@@ -12674,6 +12046,104 @@ See <a href="#configconfiglogs">config.logs</a> .</p>
       <div class='py1 quiet mt1 prose-big'>Types</div>
       <div class="clearfix">
   
+    <div class='border-bottom' id='loggerloghandler'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>LogHandler(LogEntry)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>A LogHandler can be used to customize how the SDK should log information. By
+default, the SDK will log information to the console, but a LogHandler can
+be configured to change this behaviour.</p>
+<p>A LogHandler can be provided to the SDK as part of its configuration (see
+<a href="#configconfiglogs">config.logs</a>). The SDK will then provide this
+function with the logged information.</p>
+
+
+  <div class='pre p1 fill-light mt0'>LogHandler(LogEntry: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>LogEntry</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The LogEntry to be logged.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Define a custom function to handle logs.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logHandler</span> (<span class="hljs-params">logEntry</span>) </span>{
+  <span class="hljs-comment">// Compile the meta info of the log for a prefix.</span>
+  <span class="hljs-keyword">const</span> { timestamp, level, target } = logEntry
+  <span class="hljs-keyword">let</span> { method } = logEntry
+  <span class="hljs-keyword">const</span> logInfo = <span class="hljs-string">`<span class="hljs-subst">${timestamp}</span> - <span class="hljs-subst">${target.type}</span> - <span class="hljs-subst">${level}</span>`</span>
+
+  <span class="hljs-comment">// Assume that the first message parameter is a string.</span>
+  <span class="hljs-keyword">const</span> [log, ...extra] = logEntry.messages
+
+  <span class="hljs-comment">// For the timer methods, don't actually use the console methods.</span>
+  <span class="hljs-comment">//    The Logger already did the timing, so simply log out the info.</span>
+  <span class="hljs-keyword">if</span> ([<span class="hljs-string">'time'</span>, <span class="hljs-string">'timeLog'</span>, <span class="hljs-string">'timeEnd'</span>].includes(method)) {
+    method = <span class="hljs-string">'debug'</span>
+  }
+
+  <span class="hljs-built_in">console</span>[method](<span class="hljs-string">`<span class="hljs-subst">${logInfo}</span> - <span class="hljs-subst">${log}</span>`</span>, ...extra)
+}
+
+<span class="hljs-comment">// Provide the LogHandler as part of the SDK configurations.</span>
+<span class="hljs-keyword">const</span> configs = { ... }
+configs.logs.handler = logHandler
+<span class="hljs-keyword">const</span> client = create(configs)</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
     <div class='border-bottom' id='loggerlogentry'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
@@ -12856,104 +12326,6 @@ method as parameters.
 
   <span class="hljs-built_in">console</span>[method](<span class="hljs-string">`<span class="hljs-subst">${logInfo}</span> - <span class="hljs-subst">${log}</span>`</span>, ...extra)
 }</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='loggerloghandler'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>LogHandler(LogEntry)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>A LogHandler can be used to customize how the SDK should log information. By
-default, the SDK will log information to the console, but a LogHandler can
-be configured to change this behaviour.</p>
-<p>A LogHandler can be provided to the SDK as part of its configuration (see
-<a href="#configconfiglogs">config.logs</a>). The SDK will then provide this
-function with the logged information.</p>
-
-
-  <div class='pre p1 fill-light mt0'>LogHandler(LogEntry: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-    <p>
-      Type:
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>LogEntry</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The LogEntry to be logged.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Define a custom function to handle logs.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logHandler</span> (<span class="hljs-params">logEntry</span>) </span>{
-  <span class="hljs-comment">// Compile the meta info of the log for a prefix.</span>
-  <span class="hljs-keyword">const</span> { timestamp, level, target } = logEntry
-  <span class="hljs-keyword">let</span> { method } = logEntry
-  <span class="hljs-keyword">const</span> logInfo = <span class="hljs-string">`<span class="hljs-subst">${timestamp}</span> - <span class="hljs-subst">${target.type}</span> - <span class="hljs-subst">${level}</span>`</span>
-
-  <span class="hljs-comment">// Assume that the first message parameter is a string.</span>
-  <span class="hljs-keyword">const</span> [log, ...extra] = logEntry.messages
-
-  <span class="hljs-comment">// For the timer methods, don't actually use the console methods.</span>
-  <span class="hljs-comment">//    The Logger already did the timing, so simply log out the info.</span>
-  <span class="hljs-keyword">if</span> ([<span class="hljs-string">'time'</span>, <span class="hljs-string">'timeLog'</span>, <span class="hljs-string">'timeEnd'</span>].includes(method)) {
-    method = <span class="hljs-string">'debug'</span>
-  }
-
-  <span class="hljs-built_in">console</span>[method](<span class="hljs-string">`<span class="hljs-subst">${logInfo}</span> - <span class="hljs-subst">${log}</span>`</span>, ...extra)
-}
-
-<span class="hljs-comment">// Provide the LogHandler as part of the SDK configurations.</span>
-<span class="hljs-keyword">const</span> configs = { ... }
-configs.logs.handler = logHandler
-<span class="hljs-keyword">const</span> client = create(configs)</pre>
     
   
 
@@ -15435,6 +14807,99 @@ client.call.setSdpHandlers([ codecRemover, &lt;Your-SDP-Handler-<span class="hlj
   
 
   
+      <div class='py1 quiet mt1 prose-big'>Types</div>
+      <div class="clearfix">
+  
+    <div class='border-bottom' id='sdphandlerscodecselector'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>CodecSelector</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>An object that represents a selector to match codecs of an RTP map in SDP.</p>
+
+
+  <div class='pre p1 fill-light mt0'>CodecSelector</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>name</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
+          </code>
+
+          
+
+          
+             : The name of the codec.
+
+          
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>fmtpParams</span> 
+          <code class='quiet'>
+            (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)
+          </code>
+
+          
+
+          
+             : An array of strings to match against the "a=fmtp" format parameters for the corresponding codec.
+All of the elements in the array must be contained in the "a=fmtp" attribute in order to be a match.
+
+          
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+    
 
     
       <div class='py1 quiet mt1 prose-big'>Functions</div>
@@ -15452,13 +14917,13 @@ client.call.setSdpHandlers([ codecRemover, &lt;Your-SDP-Handler-<span class="hlj
 
   
 
-  <p>In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party.
+  <p>In some scenarios it's necessary to remove certain codecs being offered by the SDK to remote parties.
 While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.</p>
-<p>To facilitate this common task, the SDK provides a codec removal handler creator that can be used for this purpose.</p>
-<p>The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.</p>
+<p>To facilitate this common task, the createCodecRemover function creates a codec removal handler that can be used for this purpose.</p>
+<p>Note that SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.</p>
 
 
-  <div class='pre p1 fill-light mt0'>createCodecRemover(codecs: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>): call.SdpHandlerFunction</div>
+  <div class='pre p1 fill-light mt0'>createCodecRemover(codecs: (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;CodecSelector> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)): call.SdpHandlerFunction</div>
   
   
 
@@ -15475,8 +14940,9 @@ While creating an SDP handler would allow a user to perform this type of manipul
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>codecs</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)</code>
-	    A list of codec names to remove from the SDP.
+            <span class='code bold'>codecs</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;CodecSelector> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>))</code>
+	    A list of codec selectors to remove from the SDP. If passing a list of strings, they will be converted into
+codec selectors that correspond to those names without any extra FMTP parameters.
 
           </div>
           
@@ -15506,7 +14972,15 @@ While creating an SDP handler would allow a user to perform this type of manipul
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">import</span> { create, sdpHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">'kandy'</span>;
-<span class="hljs-keyword">const</span> codecRemover = sdpHandlers.createCodecRemover([<span class="hljs-string">'VP8'</span>, <span class="hljs-string">'VP9'</span>])
+<span class="hljs-keyword">const</span> codecRemover = sdpHandlers.createCodecRemover([
+  <span class="hljs-string">'VP8'</span>,
+  <span class="hljs-string">'VP9'</span>,
+  {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'H264'</span>,
+    <span class="hljs-attr">fmtpParams</span>: [<span class="hljs-string">'profile-level-id=4d0032'</span>, <span class="hljs-string">'packetization-mode=1'</span>]
+  }
+])
+
 <span class="hljs-keyword">const</span> client = create({
   <span class="hljs-attr">call</span>: {
     <span class="hljs-attr">sdpHandlers</span>: [codecRemover]

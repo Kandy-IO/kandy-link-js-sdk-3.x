@@ -7,6 +7,14 @@ Kandy.js change log.
 
 ## 3.17.0 - beta
 
+### Added
+
+- Added documentation about `CodecSelectors` for `sdpHandlers.createCodecRemover`.
+
+### Fixed
+
+- Fixed an issue with `sdpHandlers.createCodecRemover` where it wasn't handling multiple codecs selectors with the same name. `KAA-2416`
+
 ## 3.16.0 - 2020-05-29
 
 ### Changed
