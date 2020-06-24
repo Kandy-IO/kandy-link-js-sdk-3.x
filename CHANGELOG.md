@@ -14,6 +14,8 @@ Kandy.js change log.
 ### Fixed
 
 - Fixed an issue with `sdpHandlers.createCodecRemover` where it wasn't handling multiple codecs selectors with the same name. `KAA-2416`
+- Fixed a Call issue where the `changeInputDevices` API would not act on the correct call. `KAA-2404`
+  - Please note that there are still known issues for changing video when there are multiple active video calls. See `KAA-2420`.
 
 ## 3.16.0 - 2020-05-29
 

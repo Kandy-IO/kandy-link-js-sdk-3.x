@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.17.0-beta.455
+ * Version: 3.17.0-beta.456
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -57200,7 +57200,13 @@ function shim(context) {
 
         let call = getInternalCall(callId);
         if (call) {
-          fcs.call.changeDevices({ call }, changeDevicesSuccess, changeDevicesFailure);
+          /*
+           * FCS' API says the first parameter should be { call }, but internally
+           *    FCS checks for `params.callid` as if the first parameter is just
+           *    `call`. Change how the shim behaves to "fix" this, instead of
+           *    changing FCS, to prevent any other issues.
+           */
+          fcs.call.changeDevices({ callid: call.getId() }, changeDevicesSuccess, changeDevicesFailure);
         } else {
           reject({ callId, error: 'Call not found. ' });
         }
@@ -60932,7 +60938,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.17.0-beta.455';
+  return '3.17.0-beta.456';
 }
 
 /***/ }),
