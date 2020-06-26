@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.16.0
+ * Version: 3.17.0
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -35096,12 +35096,12 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
  * const newSdp = codecRemover(<SDP Object>); // the incoming SDP object
  * console.log(newSdp)
  */
-function createCodecRemover(config) {
-    if (!config) {
-        config = [];
+function createCodecRemover(codecs) {
+    if (!codecs) {
+        codecs = [];
     }
-    // We allow the user to pass in a config of objects or strings, so here we format the strings into objects for uniformity.
-    config = config.map(function (item) {
+    // We allow the user to pass in a codecs of objects or strings, so here we format the strings into objects for uniformity.
+    codecs = codecs.map(function (item) {
         return typeof item === 'string' ? { name: item } : item;
     });
 
@@ -35128,14 +35128,14 @@ function createCodecRemover(config) {
         var newSdp = (0, _fp.cloneDeep)(currentSdp);
 
         // This is an array of strings representing codec names we want to remove.
-        var codecStringsToRemove = config.map(function (codec) {
+        var codecStringsToRemove = codecs.map(function (codec) {
             return codec.name;
         });
 
         newSdp.media.forEach(function (media) {
             // This is an array of just the codes (codec payloads) that we FOR SURE want to remove.
             var finalRemoveList = [];
-            // This is an array of RTP objects who have codecs that are the same as strings passed in via config.
+            // This is an array of RTP objects who have codecs that are the same as strings passed in via codecs.
             var filteredRtp = [];
 
             // If the current rtp.codec is in the codecStringsToRemove list, add the rtp to filteredRtp
@@ -35144,13 +35144,13 @@ function createCodecRemover(config) {
             });
 
             filteredRtp.forEach(function (rtp) {
-                // We grab the relevantCodec config object from the passed in config, based on the name string.
-                var relevantCodec = (0, _fp.find)(function (codec) {
+                // We grab the relevantCodec codecs object from the passed in codecs, based on the name string.
+                var relevantCodecs = codecs.filter(function (codec) {
                     return codec.name === rtp.codec;
-                }, config);
+                });
 
-                // We check the relevantCodec. If it is not present, then we have no config info for this specific rtp.
-                if (relevantCodec) {
+                // We check the relevantCodec. If it is not present, then we have no codecs info for this specific rtp.
+                relevantCodecs.forEach(function (relevantCodec) {
                     // If fmtpParams doesnt exist or is of length 0 then we assume we can remove all instances of this codec
                     if (!relevantCodec.fmtpParams || relevantCodec.fmtpParams && relevantCodec.fmtpParams.length === 0) {
                         // We want to delete this codec no matter what, since no fmtp params were included.
@@ -35170,7 +35170,7 @@ function createCodecRemover(config) {
                             }
                         });
                     }
-                }
+                });
             });
 
             // At this point we should have an array (finalRemoveList) that contains all ORIGINAL codec payloads that we need to remove.
@@ -49362,7 +49362,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.connect = connect;
 exports.setConnectionInfo = setConnectionInfo;
-exports.connectionOccured = connectionOccured;
+exports.connectionOccurred = connectionOccurred;
 exports.connectFinished = connectFinished;
 exports.getUserDetails = getUserDetails;
 exports.userDetailsReceived = userDetailsReceived;
@@ -49422,21 +49422,22 @@ function setConnectionInfo({ userInfo, connection }, platform) {
 }
 
 /**
- * Connection Occured action.
+ * Connection occurred action.
  * Signifies that a connection has been made to a service, but that the connection
  *      workflow has not finished yet. Intended for use in scenarios where the
  *      workflow connects to multiple services, to represent the "intermediate"
  *      connections.
  *
- * @method connectionOccured
+ * @method connectionOccurred
  * @param  {Object} $0
  * @param  {Object} $0.subscription
  * @param  {Object} $0.connection
- * @param  {Object} [$0.error] An error message. Only present if an error occured.
+ * @param  {Object} [$0.error] An error message. Only present if an error occurred.
  * @param  {string} platform The backend platform used for the connection.
  * @return {Object} A flux standard action.
  */
-function connectionOccured({ subscription, connection, error }, platform) {
+function connectionOccurred({ subscription, connection, error }, platform) {
+  // TODO: Is this action used anywhere?
   var action = {
     type: actionTypes.CONNECTION_OCCURRED,
     meta: { platform }
@@ -49461,7 +49462,7 @@ function connectionOccured({ subscription, connection, error }, platform) {
  * @param {Object} $0.subscription A subscription object. Contains what services to subscribe to.
  * @param {Object} $0.userInfo An object representing the user information.
  * @param {Object} $0.connection A connection object. Information about how to connect to the backend services.
- * @param {string} [$0.error] An error message. Only present if an error occured.
+ * @param {string} [$0.error] An error message. Only present if an error occurred.
  * @param {string} platform The backend platform we are currently on.
  * @param {boolean} isSSO Boolean for whether the current connection scenario is SSO or not.
  * @return {Object} A flux standard action.
@@ -49564,7 +49565,7 @@ function disconnectFinished({ error, reason } = {}) {
  *
  * @method resubscribeFinished
  * @param {Object} $0
- * @param {string} [$0.error] An error message. Only present if an error occured.
+ * @param {string} [$0.error] An error message. Only present if an error occurred.
  * @param {string} [$0.attemptNum] The attempt number of this resubscription.
  * @param {string} platform The backend platform we are currently on.
  * @return {Object} A flux standard action.
@@ -49711,7 +49712,7 @@ function setCredentials({ username, password, authname, hmacToken, bearerAccessT
  * @param {Object} $0
  * @param {Object} $0.userInfo An object representing the user information.
  * @param {Object} $0.connection A connection object. Information about how to connect to the backend services.
- * @param {string} [$0.error] An error message. Only present if an error occured.
+ * @param {string} [$0.error] An error message. Only present if an error occurred.
  * @param {string} platform The backend platform we are currently on.
  * @return {Object} A flux standard action.
  */
@@ -50017,7 +50018,7 @@ function api({ dispatch, getState }) {
      * @returns {Object} connection The connection state.
      * @returns {boolean} connection.isConnected Whether the authenticated user is currently connected.
      * @returns {boolean} connection.isPending Whether the authenticated user's connection is currently pending.
-     * @returns {Object} connection.error The error object if an error occured.
+     * @returns {Object} connection.error The error object if an error occurred.
      * @returns {string} connection.error.message The error message.
      * @returns {string} connection.error.stack The stack trace of the error.
      */
@@ -50444,7 +50445,7 @@ reducers[actionTypes.CONNECT_FINISHED] = {
   }
 };
 
-// On connection occured, store the connection information into state, but do
+// On connection occurred, store the connection information into state, but do
 // not update any status state. The connection has not yet finished.
 reducers[actionTypes.CONNECTION_OCCURRED] = {
   next(state, action) {
@@ -51469,6 +51470,11 @@ const log = _logs.logManager.getLogger('AUTH');
 
 // Libraries.
 function* subscribe(connection, credentials, extras = {}) {
+  /*
+   * TODO: Clean-up / fix the function signature. The requestOptions (eg. headers)
+   *    are mixed with the API options (eg. client correlator) when they're used
+   *    for unrelated purposes.
+   */
   let subscribeType = connection.isAnonymous ? 'anonymous' : 'user';
   let requestOptions = {};
   requestOptions.method = 'POST';
@@ -57194,7 +57200,13 @@ function shim(context) {
 
         let call = getInternalCall(callId);
         if (call) {
-          fcs.call.changeDevices({ call }, changeDevicesSuccess, changeDevicesFailure);
+          /*
+           * FCS' API says the first parameter should be { call }, but internally
+           *    FCS checks for `params.callid` as if the first parameter is just
+           *    `call`. Change how the shim behaves to "fix" this, instead of
+           *    changing FCS, to prevent any other issues.
+           */
+          fcs.call.changeDevices({ callid: call.getId() }, changeDevicesSuccess, changeDevicesFailure);
         } else {
           reject({ callId, error: 'Call not found. ' });
         }
@@ -59239,7 +59251,7 @@ Object.defineProperty(exports, "__esModule", {
 const CALL_HISTORY_CHANGE = exports.CALL_HISTORY_CHANGE = 'callHistory:change';
 
 /**
- * An error occured while performing a call history operation.
+ * An error occurred while performing a call history operation.
  * @public
  * @memberof callHistory
  * @event callHistory:error
@@ -59968,6 +59980,146 @@ function* removeCallLogs(action) {
 
 /***/ }),
 
+/***/ "../../packages/kandy/src/callstack/utils/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sanitizeSdesFromSdp = sanitizeSdesFromSdp;
+exports.changeDtlsRoleTo = changeDtlsRoleTo;
+exports.modifySdpBandwidth = modifySdpBandwidth;
+exports.generateEndParams = generateEndParams;
+
+var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
+
+const log = _logs.logManager.getLogger('SDPHANDLER');
+
+/**
+ * SDP handler function that should be passed into session object's `processOffer` and `processAnswer` function.
+ * This function disables old media encryption method SDES (Modifies sdp by removing crypto).
+ * However, if only SDES is available, don't disable it.
+ *
+ * @method sanitizeSdesFromSdp
+ * @param {Object} newSdp The SDP so far (could have been modified by previous handlers).
+ * @param {Object} info Information about the session description.
+ * @param {RTCSdpType} info.type The session description's type.
+ * @param {string} info.step The step that will occur after the Pipeline is run.
+ * @param {string} info.endpoint Which end of the connection created the SDP.
+ * @param {Object} originalSdp The SDP in its initial state.
+ * @return {Object} The sanitized SDP with crypto removed (if fingerprint exists)
+ */
+// Other plugins.
+function sanitizeSdesFromSdp(newSdp, info, originalSdp) {
+  for (let mLine of newSdp.media) {
+    if (mLine.crypto && mLine.fingerprint) {
+      log.debug('Removing SDES line from SDP media section.');
+      delete mLine.crypto;
+    }
+  }
+  return newSdp;
+}
+
+/**
+ * Function generator for an SDP handler function that changes the DTLS role of the SDP.
+ * @method changeDtlsRoleTo
+ * @param  {string} role
+ * @return {Function} SDP handler.
+ */
+function changeDtlsRoleTo(role) {
+  return function changeDtlsRole(newSdp, info, originalSdp) {
+    // Grab the original DTLS role for logging purposes.
+    //    Assumed that the DTLS role is the same in every media section.
+    const original = newSdp.media[0].setup;
+    log.debug(`Changing SDP DTLS role from ${original} to ${role}.`);
+
+    // Change the DTLS role in every media section.
+    newSdp.media.map(media => {
+      media.setup = role;
+      return media;
+    });
+
+    return newSdp;
+  };
+}
+
+/**
+ * An SDP handler that adds bandwidth options to the SDP.
+ * Supports Chrome & Firefox by generating 2 types of configs:
+ *  - 'AS' for Chrome in kilobits per second
+ *  - 'TIAS' for Firefox in bits per second
+ * @method modifySdpBandwidth
+ * @param {BandwidthControls} bandwidthControls
+ * @return {Function} SDP handler.
+ */
+function modifySdpBandwidth(newSdp, info, originalSdp) {
+  /**
+   * Generates bandwidth configs that Chrome & Firefox can recognize.
+   * @param {number} limit The bandwidth limit in kilobits per second.
+   */
+  function generateBandwidthConfigs(limit) {
+    return [{
+      type: 'AS', // Chrome supports this (in kilobits per second)
+      limit
+    }, {
+      type: 'TIAS', // Firefox supports this (in bits per second)
+      limit: limit * 1000
+    }];
+  }
+
+  if (info.bandwidth) {
+    // For more details on bandwidth controls, see here https://webrtchacks.com/limit-webrtc-bandwidth-sdp/.
+    if (info.bandwidth.audio) {
+      newSdp.media.filter(media => media.type === 'audio').forEach(media => {
+        media.bandwidth = generateBandwidthConfigs(info.bandwidth.audio);
+      });
+    }
+    if (info.bandwidth.video) {
+      newSdp.media.filter(media => media.type === 'video').forEach(media => {
+        media.bandwidth = generateBandwidthConfigs(info.bandwidth.video);
+      });
+    }
+  }
+  return newSdp;
+}
+
+/**
+ * Generates extra informational parameters for ending a call.
+ *
+ * @method generateEndParams
+ * @param {string}  currentCallState The state of the current call, before it was ended.
+ * @param {boolean} isLocal Specifies if end operation was caused by the local side.
+ * @param {Object}  params Extra context information related to the call.
+ * @param {string}  [params.reasonText]  Human-readable explanation for the call change.
+ * @param {string}  [params.statusCode] Code representing the reason for the call change.
+ * @param {string}  params.remoteName   Name of the remote participant.
+ * @param {string}  params.remoteNumber Number of the remote participant.
+ */
+function generateEndParams(currentCallState, isLocal, params) {
+  const endParams = {
+    isLocal,
+    remoteParticipant: {
+      displayNumber: params.remoteNumber,
+      displayName: params.remoteName
+    },
+    transition: {
+      prevState: currentCallState
+    }
+  };
+  if (params.statusCode) {
+    endParams.transition.statusCode = params.statusCode;
+  }
+  if (params.reasonText) {
+    endParams.transition.reasonText = params.reasonText;
+  }
+  return endParams;
+}
+
+/***/ }),
+
 /***/ "../../packages/kandy/src/clickToCall/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60541,6 +60693,7 @@ exports.mergeValues = mergeValues;
 exports.toQueryString = toQueryString;
 exports.autoRestart = autoRestart;
 exports.forwardAction = forwardAction;
+exports.normalizeServices = normalizeServices;
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
@@ -60626,6 +60779,21 @@ function* forwardAction(action) {
   yield (0, _effects.put)(action);
 }
 
+/**
+ * Ensures that services are in the same format understood by the server regardless,
+ * of whether the client provides services as strings or objects.
+ * @param {Array} services The list of services requested by the client.
+ * @return {Array} A normalized list of services requested by the client.
+ */
+function normalizeServices(services = []) {
+  return services.map(service => {
+    if ((0, _fp.isPlainObject)(service) && service.hasOwnProperty('service')) {
+      return service;
+    }
+    return { service: service };
+  });
+}
+
 /***/ }),
 
 /***/ "../../packages/kandy/src/common/validation/index.js":
@@ -60637,83 +60805,118 @@ function* forwardAction(action) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.parse = exports.enums = exports.val = undefined;
+exports.parse = exports.validationResults = exports.errorMessages = exports.enums = exports.validation = undefined;
 
 var _stringify = __webpack_require__("../../node_modules/babel-runtime/core-js/json/stringify.js");
 
 var _stringify2 = _interopRequireDefault(_stringify);
 
-var _v8n = __webpack_require__("../../node_modules/v8n/dist/v8n.esm.js");
-
-var _v8n2 = _interopRequireDefault(_v8n);
-
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
 var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
+var _v8n = __webpack_require__("../../node_modules/v8n/dist/v8n.esm.js");
+
+var _v8n2 = _interopRequireDefault(_v8n);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Get the logger
-const log = _logs.logManager.getLogger('VALIDATION');
-
-// Custom v8n Rules
-// Imports
+// Custom v8n Rules - https://imbrn.github.io/v8n/api/#extend
 _v8n2.default.extend({
   function: () => value => typeof value === 'function'
 });
 
-// Exports
-const val = exports.val = (0, _v8n2.default)();
+// EXPORTS / IO
+/**
+ * This wrapper generates error messages from v8n Validation Errors. https://imbrn.github.io/v8n/api/#validationerror
+ * They are logged using LogManager as a warning to our customers when they mess up arguments.
+ * To use: `import { enums, validation as v8n, parse } from '<relativePath>/common/validation'`.
+ * Build up your validation using v8n.string, v8n.number, v8n.schema, enums, etc.
+ * Enums is not part of the v8n library, but provided here for ease of use
+ * const v8nValidation = v8n.schema({
+      sdpSemantics: enums(['unified-plan', 'plan-b']),
+      iceServers: v8n.array(),
+      iceCollectionDelay: v8n.positive(),
+      serverTurnCredentials: v8n.boolean(),
+      iceCollectionCheck: v8n.optional(v8n.function())
+    })
+ * Create a validator like this: `const parseOptions = parse('nameOfArg', v8nValidation)`
+ * Run that validator against the actual values: `parseOptions(options)`
+ * Returns the input either way and logs errors, in the future will throw errors on invalid data.
+ */
+const validation = exports.validation = (0, _v8n2.default)();
 
-// Takes any number of parameters, strings or numbers, and maps them to v8n.exact
-// Best way to replicate enums currently.
-// TODO: Add an enums function to v8n
-// const v8nSdpSemantics = val.passesAnyOf(val.exact('unified-plan'), val.exact('plan-b'))
-// Is done this way because v8n has some `_this = this` going on which messes up various map functions
-const enums = exports.enums = (...values) => val.passesAnyOf(...values.map(value => val.exact(value)));
+// TODO: Add an enums function to the v8n library
+// Use as such: `prop: enums( [ 'red', 'blue', 'green' ] )
+const enums = exports.enums = values => {
+  // Map iteratee isn't just `v8n().exact` due to v8n() returning a new ProxyContext each time
+  const v8nExact = value => (0, _v8n2.default)().exact(value);
+  const exactValues = (0, _fp.map)(v8nExact)(values);
+  return (0, _v8n2.default)().passesAnyOf(...exactValues);
+};
 
-const parse = exports.parse = (name, schema) => input => {
-  const result = schema.testAll(input);
+// Name -> v8nRule -> Input -> [String]
+const errorMessages = exports.errorMessages = name => v8nRule => input => (0, _fp.flatMap)(validationErrorMessages(name))(validationResults(v8nRule)(input));
 
-  if ((0, _fp.isEmpty)(result)) {
+const validationResults = exports.validationResults = v8nRule => input => v8nRule.testAll(input);
+
+// (Name, v8nRule) -> Input -> IO Input
+const parse = exports.parse = (name, v8nRule) => input => {
+  const errors = errorMessages(name)(v8nRule)(input);
+
+  if ((0, _fp.isEmpty)(errors)) {
     return input;
   } else {
-    const errors = (0, _fp.map)(validationErrorMessage(name))(result);
-
-    log.info(prettyPrint(errors));
-
+    const log = _logs.logManager.getLogger('VALIDATION');
+    log.info(prettyPrint(errors)); // This is an IO side-effect
     return input;
   }
 };
 
-// error message handling
-const validationErrorMessage = name => ({ cause, rule, target, value }) => {
+// DEFINITIONS
+
+// Name -> ValidationError -> [String]
+// https://imbrn.github.io/v8n/api/#validationerror
+const validationErrorMessages = name => validationError => {
+  const startingPath = [];
+  return validationErrorMessageHelper(startingPath)(name)(validationError);
+};
+
+// [String] -> Name -> ValidationError -> [String]
+const validationErrorMessageHelper = acc => name => ({ cause, rule, target, value }) => {
+  const path = (0, _fp.concat)(acc)(target || name);
   if ((0, _fp.isArray)(cause)) {
-    return { [`${target || name}`]: (0, _fp.map)(validationErrorMessage(target))(cause) };
+    const newVEM = validationErrorMessageHelper(path)(target);
+    return (0, _fp.flatMap)(newVEM)(cause);
   } else {
-    return `${target || name} has value of '${value}', but it should be ${ruleMessage(rule)}`;
+    return `${(0, _fp.join)('.')(path)} has value of '${value}', but it should be ${ruleMessage(rule)}`;
   }
 };
 
+// Rule -> String
+// https://imbrn.github.io/v8n/api/#rule
 const ruleMessage = ({ name, args }) => {
-  const startsWithVowel = string => /[aeiou]/i.test(string[0]);
   switch (name) {
     case 'schema':
       return 'Schema';
 
     case 'passesAnyOf':
-      // To get the values of an enum
-      return `any of '${args.flatMap(arg => arg.chain[0].args).join("', '")}'`;
+      const enumValues = (0, _fp.map)(enumName)(args);
+      return `any of '${(0, _fp.join)("', '")(enumValues)}'`;
 
     case 'between':
       return `between ${args.join(', ')}`;
 
     default:
-      return `${startsWithVowel(name) ? 'an' : 'a'} ${name}`;
+      return `${aOrAn(name)} ${name}`;
   }
 };
 
+// HELPERS
+const enumName = arg => arg.chain[0].args; // v8n internals
 const prettyPrint = (0, _fp.partial)(_stringify2.default)([_fp.__, null, 4]);
+// https://dictionary.cambridge.org/grammar/british-grammar/a-an-and-the
+const aOrAn = string => /[aeiou]/i.test(string[0]) ? 'an' : 'a';
 
 /***/ }),
 
@@ -60735,7 +60938,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.16.0';
+  return '3.17.0';
 }
 
 /***/ }),
@@ -60796,6 +60999,8 @@ const PREFIX = '@@KANDY/';
 
 const CONFIG_UPDATE = exports.CONFIG_UPDATE = PREFIX + 'CONFIG_UPDATE';
 
+const SET_SDP_HANDLERS = exports.SET_SDP_HANDLERS = PREFIX + 'SET_SDP_HANDLERS';
+
 /***/ }),
 
 /***/ "../../packages/kandy/src/config/interface/actions.js":
@@ -60808,10 +61013,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.update = update;
+exports.setSdpHandlers = setSdpHandlers;
 
 var _actionTypes = __webpack_require__("../../packages/kandy/src/config/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
+
+var _utils = __webpack_require__("../../packages/kandy/src/callstack/utils/index.js");
+
+var _codecRemover = __webpack_require__("../../packages/fcs/src/js/sdp/codecRemover.js");
+
+var _codecRemover2 = _interopRequireDefault(_codecRemover);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -60836,6 +61050,43 @@ function update(values, pluginName = '') {
   return {
     type: actionTypes.CONFIG_UPDATE,
     payload: payload
+  };
+}
+
+/**
+ * Updates the SDP Handlers in the call plugin configs
+ *
+ * @method setSdpHandlers
+ * @param {Array<call.SdpHandlerFunction>} sdpHandlers The list of SDP handler to set in the config.
+ * @param {Object}                         options     Options to configure extra sdp handlers
+ * @returns {Object} A flux standard action.
+ */
+function setSdpHandlers(sdpHandlers, options) {
+  /*
+   * Set SDP handlers to be used for every operation:
+   *
+   * 1. Application provided SDP handlers.
+   *
+   * 2. Disable DTLS-SDES crypto method (ie. delete the line) if there's a better
+   *    crypto method enabled. WebRTC only allows one method to be enabled.
+   *    This is needed for interoperability with non-browser endpoints that include
+   *    SDES as a fallback method.
+   *
+   * 3. [optional] Disable H264 Codecs for video calls, used to reduce SDP size
+   *
+   * 4. Modify sdp and add bandwidth limits on it if bandwidth controls are provided.
+   */
+  if (options.removeH264Codecs) {
+    sdpHandlers.push((0, _codecRemover2.default)(['H264']));
+  }
+  sdpHandlers.push(_utils.sanitizeSdesFromSdp);
+  sdpHandlers.push(_utils.modifySdpBandwidth);
+
+  return {
+    type: actionTypes.SET_SDP_HANDLERS,
+    payload: {
+      sdpHandlers
+    }
   };
 }
 
@@ -60945,6 +61196,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _actionTypes = __webpack_require__("../../packages/kandy/src/config/interface/actionTypes.js");
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
@@ -60955,11 +61210,23 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 const reducers = {};
 
 reducers[actionTypes.CONFIG_UPDATE] = {
   next(state, action) {
     return (0, _fp.merge)(state, action.payload);
+  }
+};
+
+reducers[actionTypes.SET_SDP_HANDLERS] = {
+  next(state, action) {
+    return (0, _extends3.default)({}, state, {
+      call: (0, _extends3.default)({}, state.call, {
+        sdpHandlers: action.payload.sdpHandlers
+      })
+    });
   }
 };
 
@@ -62226,17 +62493,17 @@ const defaultValues = {
 };
 
 // Parse and/or Validate
-const v8nValidation = _validation.val.schema({
-  method: _validation.val.string(),
-  pingInterval: _validation.val.number(),
-  reconnectLimit: _validation.val.number(),
-  reconnectDelay: _validation.val.number(),
-  reconnectTimeMultiplier: _validation.val.number(),
-  reconnectTimeLimit: _validation.val.number(),
-  autoReconnect: _validation.val.boolean(),
-  maxMissedPings: _validation.val.number(),
-  checkConnectivity: _validation.val.boolean(),
-  webSocketOAuthMode: _validation.val.string()
+const v8nValidation = _validation.validation.schema({
+  method: (0, _validation.enums)([_constants.connCheckMethods.KEEP_ALIVE]),
+  pingInterval: _validation.validation.positive(),
+  reconnectLimit: _validation.validation.positive(),
+  reconnectDelay: _validation.validation.positive(),
+  reconnectTimeMultiplier: _validation.validation.positive(),
+  reconnectTimeLimit: _validation.validation.positive(),
+  autoReconnect: _validation.validation.boolean(),
+  maxMissedPings: _validation.validation.positive(),
+  checkConnectivity: _validation.validation.boolean(),
+  webSocketOAuthMode: _validation.validation.string()
 });
 const parseOptions = (0, _validation.parse)('connectivity', v8nValidation);
 
@@ -63104,7 +63371,7 @@ function api({ dispatch }) {
   var api = {};
 
   /**
-   * Add an event listener for the specified event type. The event is emmited by the SDK instance.
+   * Add an event listener for the specified event type. The event is emitted by the SDK instance.
    *
    * @public
    * @memberof api
@@ -63124,7 +63391,7 @@ function api({ dispatch }) {
   };
 
   /**
-   * Removes an event listener for the specified event type. The event is emmited by the SDK instance.
+   * Removes an event listener for the specified event type. The event is emitted by the SDK instance.
    *
    * @public
    * @memberof api
@@ -63326,9 +63593,9 @@ const factoryDefaults = {
   allowProxy: false
 
   // config validation
-};const v8nValidation = _validation.val.schema({
-  enableReduxDevTools: _validation.val.boolean(),
-  allowProxy: _validation.val.boolean()
+};const v8nValidation = _validation.validation.schema({
+  enableReduxDevTools: _validation.validation.boolean(),
+  allowProxy: _validation.validation.boolean()
 });
 const parseOptions = (0, _validation.parse)('common', v8nValidation);
 
@@ -63875,6 +64142,7 @@ function titleFormatter(action, time, took) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.defaultOptions = undefined;
 
 var _actionHandler = __webpack_require__("../../packages/kandy/src/logs/actions/actionHandler.js");
 
@@ -63906,7 +64174,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *    to the console.
  * @param  {boolean} [logs.enableFcsLogs=true] Enable the detailed call logger
  *    for v3.X. Requires log level debug.
- * @param {Object} [logs.logActions] Options specifically for action logs when
+ * @param {Object|boolean} [logs.logActions] Options specifically for action logs when
  *    logLevel is at DEBUG+ levels. Set this to false to not output action logs.
  * @param {logger.LogHandler} [logs.logActions.handler] The function to receive action
  *    log entries from the SDK. If not provided, a default handler will be used
@@ -63918,10 +64186,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *    inspected on the console.
  * @param {boolean} [logs.logActions.diff=false] Include a diff of what SDK
  *    context was changed by the action.
+ * @param {string}  [logs.logActions.level='debug'] Log level to be set
+ *    on the action logs
  * @param {boolean} [logs.logActions.exposePayloads=false] Allow action payloads
  *    to be exposed in the logs, potentially displaying sensitive information.
  */
-exports.default = {
+const defaultOptions = exports.defaultOptions = {
   logLevel: 'debug',
   handler: undefined,
   enableFcsLogs: true,
@@ -63935,6 +64205,37 @@ exports.default = {
     level: 'debug',
     exposePayloads: false
   }
+  /*
+   * TODO: Figure out a way to work around this.
+   * Can't use validation in logging because validation uses logging to output errors.
+   * Circular dependency, have to refactor.
+   * Code:
+   ```javascript
+  // Parse and/or Validate
+  // import { enums, validation as v8n, parse } from '../common/validation'
+  const defaultValidation = v8n.schema({
+    logLevel: enums(['silent', 'error', 'warn', 'info', 'debug']),
+    handler: v8n.optional(v8n.function()),
+    enableFcsLogs: v8n.boolean(),
+    logActions: v8n.optional(
+      v8n.passesAnyOf(
+        v8n.schema({
+          handler: v8n.optional(v8n.function()),
+          actionOnly: v8n.boolean(),
+          collapsed: v8n.boolean(),
+          diff: v8n.boolean(),
+          exposePayloads: v8n.boolean()
+        }),
+        // OR
+        v8n.boolean()
+      )
+    )
+  })
+  
+  export const parseLogConfig = parse('logger', defaultValidation)
+  ```
+  */
+
 };
 
 /***/ }),
@@ -64468,8 +64769,6 @@ var actions = _interopRequireWildcard(_actions);
 
 var _config = __webpack_require__("../../packages/kandy/src/logs/config.js");
 
-var _config2 = _interopRequireDefault(_config);
-
 var _sagas = __webpack_require__("../../packages/kandy/src/logs/sagas.js");
 
 var _actions2 = __webpack_require__("../../packages/kandy/src/logs/actions/index.js");
@@ -64503,7 +64802,7 @@ Usually plugins factories are in the index.js file of their corresponding folder
 This used to be the case. However this file was also being used to host the logManager
 that is being used with the SDK.
 
-Since the logManager is being included in almost every file it was preferrable to rename this
+Since the logManager is being included in almost every file it was preferable to rename this
 file rather than point 100s of files to a new place for the logManager.
 **/
 
@@ -64524,7 +64823,8 @@ function logPlugin(options = {}) {
     logger.warn('Invalid log level configuration provided; using default instead.');
   }
 
-  options = (0, _utils.mergeValues)(_config2.default, options);
+  options = (0, _utils.mergeValues)(_config.defaultOptions, options);
+
   // Now that we have the application's log configs, update everything to
   //    use those values instead of default values.
   _index.logManager.setLevel(options.logLevel);
@@ -65446,7 +65746,7 @@ Object.defineProperty(exports, "__esModule", {
 const CONVERSATIONS_NEW = exports.CONVERSATIONS_NEW = 'conversations:new';
 
 /**
- * A change has occured in the conversation list.
+ * A change has occurred in the conversation list.
  *
  * @public
  * @memberof conversation
@@ -65458,7 +65758,7 @@ const CONVERSATIONS_NEW = exports.CONVERSATIONS_NEW = 'conversations:new';
 const CONVERSATIONS_CHANGE = exports.CONVERSATIONS_CHANGE = 'conversations:change';
 
 /**
- * A change has occured in a specific conversations message list.
+ * A change has occurred in a specific conversations message list.
  * If a single message was affected/created, `messageId` will be present
  * as part of the event argument.
  *
@@ -65474,7 +65774,7 @@ const CONVERSATIONS_CHANGE = exports.CONVERSATIONS_CHANGE = 'conversations:chang
 const MESSAGES_CHANGE = exports.MESSAGES_CHANGE = 'messages:change';
 
 /**
- * An error occured with messaging.
+ * An error occurred with messaging.
  *
  * @public
  * @memberof conversation
@@ -66583,20 +66883,41 @@ var _interface = __webpack_require__("../../packages/kandy/src/messaging/interfa
 
 var _interface2 = _interopRequireDefault(_interface);
 
+var _validation = __webpack_require__("../../packages/kandy/src/common/validation/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Get the logger
-// Redux-Saga
-const log = _logs.logManager.getLogger('MESSAGING');
+
 
 // The interface to implement.
 
 // Events
+const log = _logs.logManager.getLogger('MESSAGING');
+
+// Parse and/or Validate
+// Redux-Saga
+
+
+const defaultOptions = {
+  features: ['base']
+};
+
+const v8nValidation = _validation.validation.schema({
+  features: _validation.validation.array().every.string()
+});
+const parseOptions = (0, _validation.parse)('messaging', v8nValidation);
+
+/**
+ * Factory function for the Link messaging plugin.
+ * @method linkMessaging
+ * @param  {Object} [options={}]
+ * @param  {Array}  [options.features=['base']] - A list of the supported features of messaging
+ * @return {Object} A plugin object.
+ */
 function linkMessaging(options = {}) {
-  const defaultOptions = {
-    features: ['base']
-  };
   options = (0, _fp.defaults)(defaultOptions, options);
+  parseOptions(options);
 
   if (options.features.length > 1 || options.features[0] !== defaultOptions.features[0]) {
     log.warn('Link messaging is not compatible with add-on ' + 'features. Reverting to base messaging.');
@@ -66976,7 +67297,7 @@ Object.defineProperty(exports, "__esModule", {
 const MWI_CHANGE = exports.MWI_CHANGE = 'voicemail:change';
 
 /**
- * An error has occured while attempting to retrieve voicemail data.
+ * An error has occurred while attempting to retrieve voicemail data.
  *
  * @requires voicemail
  * @public
@@ -67830,7 +68151,7 @@ Object.defineProperty(exports, "__esModule", {
 const NOTI_CHANGE = exports.NOTI_CHANGE = 'notifications:change';
 
 /**
- * An error occured with push notifications.
+ * An error occurred with push notifications.
  *
  * @public
  * @requires push
@@ -68110,8 +68431,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {string} [notifications.pushRegistration.version] - Version for the push registration server.
  */
 
-// config validation
-const v8nNotificationModes = _validation.val.passesAnyOf(_validation.val.exact('any-channel'), _validation.val.exact('push-channel-only'));
+const defaultOptions = {
+  idCacheLength: 100,
+  incomingCallNotificationMode: 'any-channel'
+
+  // config validation
+};
 
 // Parse and/or Validate
 
@@ -68121,15 +68446,14 @@ const v8nNotificationModes = _validation.val.passesAnyOf(_validation.val.exact('
 
 // Other plugins.
 // Notification plugin.
-
-const v8nValidation = _validation.val.schema({
-  idCacheLength: _validation.val.number(),
-  incomingCallNotificationMode: v8nNotificationModes,
-  pushRegistration: _validation.val.optional(_validation.val.schema({
-    server: _validation.val.string(),
-    port: _validation.val.string(),
-    protocol: _validation.val.string(),
-    version: _validation.val.string()
+const v8nValidation = _validation.validation.schema({
+  idCacheLength: _validation.validation.positive(),
+  incomingCallNotificationMode: (0, _validation.enums)(['any-channel', 'push-channel-only']),
+  pushRegistration: _validation.validation.optional(_validation.validation.schema({
+    server: _validation.validation.string(),
+    port: _validation.validation.string(),
+    protocol: _validation.validation.string(),
+    version: _validation.validation.string()
   }))
 });
 const parseOptions = (0, _validation.parse)('notifications', v8nValidation);
@@ -68141,10 +68465,6 @@ const parseOptions = (0, _validation.parse)('notifications', v8nValidation);
  * @return {Object} plugin - A notifications plugin.
  */
 function notifications(options = {}) {
-  const defaultOptions = {
-    idCacheLength: 100,
-    incomingCallNotificationMode: 'any-channel'
-  };
   const pluginOptions = (0, _fp.defaultsDeep)(defaultOptions, options);
   parseOptions(pluginOptions);
 
@@ -70021,7 +70341,11 @@ var _effects = __webpack_require__("../../node_modules/redux-saga/dist/redux-sag
 
 var _selectors = __webpack_require__("../../packages/kandy/src/request/interface/selectors.js");
 
+var _selectors2 = __webpack_require__("../../packages/kandy/src/auth/interface/selectors.js");
+
 var _version = __webpack_require__("../../packages/kandy/src/common/version.js");
+
+var _constants = __webpack_require__("../../packages/kandy/src/constants.js");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -70047,6 +70371,9 @@ function request(options, commonOptions) {
  */
 
 
+// Constants
+
+
 // Libraries.
 // Requests plugin.
 function* requestSaga(options, commonOptions) {
@@ -70056,9 +70383,28 @@ function* requestSaga(options, commonOptions) {
 
   const useCustomHeader = yield (0, _effects.select)(_selectors.injectAgentVersionHeader);
   if (useCustomHeader) {
+    let platform = yield (0, _effects.select)(_selectors2.getPlatform);
+
+    // Assume request is for CPaaS platform, by default.
+    let headerValue = `cpaas-js-sdk/${(0, _version.getVersion)()}`;
+
+    // Check if request is for callMe service, otherwise determine the apropriate platform.
+    // (callMe service uses Link platform for call requests)
+    if (options.url && options.url.includes('/anonymous/')) {
+      headerValue = `callme-js-sdk/${(0, _version.getVersion)()}`;
+    } else {
+      // Check the actual platform used
+      if (platform === _constants.platforms.UC) {
+        headerValue = `uc-js-sdk/${(0, _version.getVersion)()}`;
+      } else if (platform === _constants.platforms.LINK) {
+        headerValue = `link-js-sdk/${(0, _version.getVersion)()}`;
+      }
+    }
+
+    // Note that the same headerName is used for all platforms & services.
     options = (0, _utils.mergeValues)(options, {
       headers: {
-        'X-Cpaas-Agent': `cpaas-js-sdk/${(0, _version.getVersion)()}`
+        'X-Cpaas-Agent': headerValue
       }
     });
   }
@@ -70081,6 +70427,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.__testonly__ = undefined;
+
+var _extends2 = __webpack_require__("../../node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
 
 var _objectWithoutProperties2 = __webpack_require__("../../node_modules/babel-runtime/helpers/objectWithoutProperties.js");
 
@@ -70108,6 +70458,8 @@ var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
 var _actions2 = __webpack_require__("../../packages/kandy/src/config/interface/actions.js");
 
+var _validation = __webpack_require__("../../packages/kandy/src/common/validation/index.js");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -70115,6 +70467,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Enum declaring the valid request response data types that are available to be handled
  */
+
+
+// State setters.
 const responseTypes = (0, _freeze2.default)({
   json: 'json',
   blob: 'blob',
@@ -70122,7 +70477,7 @@ const responseTypes = (0, _freeze2.default)({
   none: 'none'
 });
 
-// State setters.
+// Parse and/or Validate
 
 
 const contentTypes = (0, _freeze2.default)({
@@ -70138,18 +70493,25 @@ const pluginName = 'requests';
 /**
  * Configurable properties 'published' by this "Request" plugin.
  *
- * @property {boolean} injectAgentVersionHeader Option to automatically inject an agent version header to every REST request.
+ * @property {boolean} [injectAgentVersionHeader=true] Option to automatically inject an agent version header to every REST request.
  *            This header is used to help with diagnostics and analytics in a completely anonymous fashion.
  *            TODO: Set it to 'true' after server side whitelists that actual custom header.
  */
 const defaultOptions = {
   injectAgentVersionHeader: true
+};
 
-  /*
-   * HTTP request plugin.
-   */
-};function request(options = {}) {
+const v8nValidation = _validation.validation.schema({
+  injectAgentVersionHeader: _validation.validation.boolean()
+});
+const parseOptions = (0, _validation.parse)('request', v8nValidation);
+
+/*
+ * HTTP request plugin.
+ */
+function request(options = {}) {
   options = (0, _utils.mergeValues)(defaultOptions, options);
+  parseOptions(options);
 
   function* init() {
     yield (0, _effects.put)((0, _actions2.update)(options, pluginName));
@@ -70188,7 +70550,7 @@ function* handleRequest(action) {
  * Currently this processes the request and assumes nothing about the response.
  * - If the response has a body, it will always be parsed and forwarded on.
  *      - If no body, then an empty object in its place.
- * - If the fetch succeded, the response "results" will always be forwarded on,
+ * - If the fetch succeeded, the response "results" will always be forwarded on,
  *      even if the response is outside of the 200-299 range.
  *      - Because some backends provide more detailed error info (that a saga
  *        may need) as part of the body, rather than just the response status.
@@ -70203,12 +70565,33 @@ function* handleRequest(action) {
 async function makeRequest(options, requestId) {
   const log = _logs.logManager.getLogger('REQUEST', requestId);
 
-  // TODO This function sometimes returns `{ body : false , ...}` and also isn't consistent
-  // with providing `{ message }` or `{result : {message}}`. What's up with that?
-  // Make it so that it returns consistently and the same object.
-  // Make sure this behaviour is not relied upon by callers before changing this.
-
   // TODO This functions is too complex. Consider refactoring.
+
+  /**
+   * Make a response object that will  have the same structure every time
+   * regardless of the server response.
+   *
+   * @param {Object} apiResponse API related response data
+   * @param {string} apiResponse.error This should be a string indicating an error if the request fails due to an invalid request.
+   * @param {string} apiResponse.message This should be a string with more details about the api error.
+   * @param {Object} httpResponse This will contain the response data from the server.
+   * @param {Object} httpResponse.body The response body data from the server.
+   * @param {boolean} httpResponse.ok Indicates if the request was considered a success by the server.
+   * @param {Object} httpResponse.code The HTTP status code for the request.
+   * @param {Object} httpResponse.message A message describing the server response.
+   * @return {Object} An object containing API and/or server response details.
+   */
+  function makeResponse(apiResponse = {}, httpResponse = {}) {
+    return {
+      body: httpResponse.body,
+      error: apiResponse.error,
+      result: {
+        ok: Boolean(httpResponse.ok),
+        code: httpResponse.code,
+        message: apiResponse.message || httpResponse.message
+      }
+    };
+  }
 
   // Extract and remove the non-fetch API properties.
   const { url, queryParams, responseType = 'json' } = options,
@@ -70217,11 +70600,7 @@ async function makeRequest(options, requestId) {
   if (!url || typeof url !== 'string') {
     const invalidUrlMessage = `Invalid request url; expected url of type string but received ${url} instead`;
     log.error(invalidUrlMessage);
-    return {
-      body: undefined,
-      error: 'REQUEST_URL',
-      message: invalidUrlMessage
-    };
+    return makeResponse({ error: 'REQUEST_URL', message: invalidUrlMessage });
   }
 
   // Grab that last part of the URL (after the last /) to be logged.
@@ -70232,28 +70611,18 @@ async function makeRequest(options, requestId) {
 
   if (!responseTypes.hasOwnProperty(responseType)) {
     // Invalid data type requested
-    log.info('Cannot make request; responseType value was invalid.');
-    return {
-      body: undefined,
-      error: 'RESPONSE_TYPE',
-      message: 'Requested invalid data type for response'
-    };
+    const invalidResponseType = 'Cannot make request; responseType value was invalid.';
+    log.info(invalidResponseType);
+    return makeResponse({ error: 'RESPONSE_TYPE', message: invalidResponseType });
   }
+
   let response;
   let contentType;
   try {
     response = await fetch(url + (0, _utils.toQueryString)(queryParams), fetchOptions);
   } catch (err) {
     log.info(`Failed to make request, caused by ${err.message}`);
-    return {
-      body: false,
-      error: 'FETCH',
-      result: {
-        ok: false,
-        code: err.name,
-        message: err.message
-      }
-    };
+    return makeResponse({ error: 'FETCH' }, { code: err.name, message: err.message });
   }
 
   try {
@@ -70280,11 +70649,7 @@ async function makeRequest(options, requestId) {
        *    individual special cases...
        */
       if (response.status === 403 && contentType.includes('html')) {
-        return {
-          body: false,
-          error: 'REQUEST',
-          result
-        };
+        return makeResponse({ error: 'REQUEST' }, result);
       }
 
       /*
@@ -70293,11 +70658,7 @@ async function makeRequest(options, requestId) {
        */
       const isJson = contentType && contentType.includes(contentTypes.jsonType);
       responseBody = isJson ? await response.json() : {};
-      return {
-        body: responseBody,
-        error: 'REQUEST',
-        result
-      };
+      return makeResponse({ error: 'REQUEST' }, (0, _extends3.default)({ body: responseBody }, result));
     } else if (response.status === 204) {
       /*
        * A `204 (No Content)` response indicates a success, but with no content to return.
@@ -70306,11 +70667,7 @@ async function makeRequest(options, requestId) {
       responseBody = {};
 
       log.info(`Finished request with successful response (status ${response.status}).`);
-      return {
-        body: responseBody,
-        error: false,
-        result
-      };
+      return makeResponse(undefined, (0, _extends3.default)({ body: responseBody }, result));
     } else {
       /**
        * The SDK should only be parsing the responses as is expected without checking the content type of the response.
@@ -70345,35 +70702,15 @@ async function makeRequest(options, requestId) {
         // If the code gets here the issue is either with the server not sending us expected data, or with
         // the calling code that told us to expect the wrong data.
 
-        return {
-          body: undefined,
-          error: 'REQUEST',
-          result: {
-            ok: false,
-            code: e.name,
-            message: e.message
-          }
-        };
+        return makeResponse({ error: 'REQUEST' }, { code: e.name, message: e.message });
       }
 
       log.info(`Finished request with successful response (status ${response.status}).`);
-      return {
-        body: responseBody,
-        error: false,
-        result
-      };
+      return makeResponse(undefined, (0, _extends3.default)({ body: responseBody }, result));
     }
   } catch (err) {
     log.info(`Failed to parse response, caused by ${err.message}`);
-    return {
-      body: false,
-      error: 'REQUEST',
-      result: {
-        ok: false,
-        code: err.name,
-        message: err.message
-      }
-    };
+    return makeResponse({ error: 'REQUEST' }, { code: err.name, message: err.message });
   }
 }
 
@@ -72560,7 +72897,7 @@ const DIRECTORY_ERROR = exports.DIRECTORY_ERROR = 'directory:error';
 const USERS_CHANGE = exports.USERS_CHANGE = 'users:change';
 
 /**
- * An error occured while retrieving the user information
+ * An error occurred while retrieving the user information
  * @public
  * @static
  * @memberof user
@@ -74525,8 +74862,12 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 /**
  * A set of {@link call.SdpHandlerFunction SdpHandlerFunction}s for manipulating SDP information.
  * These handlers are used to customize low-level call behaviour for very specific
- * environments and/or scenarios. They can be provided during SDK instantiation
- * to be used for all calls.
+ * environments and/or scenarios.
+ *
+ * Note that SDP handlers are exposed on the entry point of the SDK. They can be added during
+ * initialization of the SDK using the {@link #configconfigcall config.call.sdpHandlers} configuration
+ * parameter. They can also be set after the SDK's creation by using the
+ * {@link call.setSdpHandlers} function.
  *
  * @public
  * @namespace sdpHandlers
@@ -74535,29 +74876,59 @@ var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
  * const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
  * const client = create({
  *   call: {
- *     sdpHandlers: [ <Your-SDP-Handler-Function>, ...]
+ *     sdpHandlers: [ codecRemover, <Your-SDP-Handler-Function>, ...]
  *   }
  * })
+ * @example
+ * // Through the Call API post-instantiation
+ * client.call.setSdpHandlers([ codecRemover, <Your-SDP-Handler-Function>, ...])
  */
 
-// Disabling eslint for the next comment as we want to be able to use a disallowed word
-// eslint-disable-next-line no-warning-comments
 /**
- * In some scenarios it's necessary to remove certain codecs being offered by the SDK to the remote party.
+ * An object that represents a selector to match codecs of an RTP map in SDP.
+ *
+ * @public
+ * @static
+ * @typedef {Object} CodecSelector
+ * @memberof sdpHandlers
+ * @property {string} name The name of the codec.
+ * @property {Array<string>} fmtpParams An array of strings to match against the "a=fmtp" format parameters for the corresponding codec.
+ *                                      All of the elements in the array must be contained in the "a=fmtp" attribute in order to be a match.
+ */
+
+/**
+ * This function creates an SDP handler that will remove codecs matching the selectors specified for SDP offers and answers.
+ *
+ * In some scenarios it's necessary to remove certain codecs being offered by the SDK to remote parties. For example, some legacy call services limit the SDP
+ * length (usually to 4KB) and will reject calls that have SDP size above this amount.
+ *
  * While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
  *
- * To facilitate this common task, the SDK provides a codec removal handler creator that can be used for this purpose.
- *
- * The SDP handlers are exposed on the entry point of the SDK. They need to be added to the list of SDP handlers via configuration on creation of an instance of the SDK.
+ * To facilitate this common task, the createCodecRemover function creates a codec removal handler that can be used for this purpose. Applications can use this codec
+ * removal handler in combination with the {@link call.getAvailableCodecs call.getAvailableCodecs} function in order to build logic to determine the best codecs to use
+ * for their application.
  *
  * @public
  * @memberof sdpHandlers
  * @method createCodecRemover
- * @param {Array<string>} codecs A list of codec names to remove from the SDP.
+ * @param {Array<CodecSelector> | Array<string>} codecs A list of codec selectors to remove from the SDP. If passing a list of strings, they will be converted into
+ *                                                      codec selectors that correspond to those names without any extra FMTP parameters.
  * @returns {call.SdpHandlerFunction} The resulting SDP handler that will remove the codec.
  * @example
  * import { create, sdpHandlers } from 'kandy';
- * const codecRemover = sdpHandlers.createCodecRemover(['VP8', 'VP9'])
+ *
+ * const codecRemover = sdpHandlers.createCodecRemover([
+ *   // Remove all VP8 and VP9 codecs.
+ *   'VP8',
+ *   'VP9',
+ *
+ *   // Remove all H264 codecs with the specified FMTP parameters.
+ *   {
+ *     name: 'H264',
+ *     fmtpParams: ['profile-level-id=4d0032', 'packetization-mode=1']
+ *   }
+ * ])
+ *
  * const client = create({
  *   call: {
  *     sdpHandlers: [codecRemover]
