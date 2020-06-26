@@ -5,7 +5,7 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 3.17.0 - beta
+## 3.17.0 - 2020-06-26
 
 ### Added
 
@@ -389,7 +389,7 @@ Version 3.0 is a hard break in backwards compatibility for Kandy.js. This latest
 
 The summary of the breaking changes are (1) most API functions have been namespaced, (2) many API function names have been slightly changed, (3) many event names have been slightly changed, (4) event argument parameters have changed, and (5) renaming of SDK build files.
 
-For in-depth information about what has changed, please see: https://confluence.genband.com/display/KSDK/Kandy.js+3.0.0-beta+Breaking+Changes
+For in-depth information about what has changed, please see: <https://confluence.genband.com/display/KSDK/Kandy.js+3.0.0-beta+Breaking+Changes>
 
 ### Fixed
 
