@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.18.0-beta.473
+ * Version: 3.18.0-beta.474
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -29157,7 +29157,7 @@ function CallManagerImpl({
                         }
                     }, function (response) {
                         var currentCallState = _callFSM.getCurrentState(internalCall);
-                        if (currentCallState !== fsmState.ENDED && currentCallState !== fsmState.REJECTED && response.statusCode === 47) {
+                        if (currentCallState !== fsmState.ENDED && currentCallState !== fsmState.REJECTED && response && response.statusCode === 47) {
                             // Call not found on server, end call.
                             if (!internalCall.localStatusCode) {
                                 internalCall.localStatusCode = LOCAL_STATUS_CODES.STATUS_CODE_NOT_PROVIDED;
@@ -29168,7 +29168,7 @@ function CallManagerImpl({
                             internalCall.call.onStateChange(CALL_STATES.ENDED, 0);
                             clearResources(internalCall);
                         } else {
-                            logger.info(`Unable to sync call ${internalCall}`);
+                            logger.info(`Unable to sync call ${id} due to an error. Error: ${response}`);
                         }
                     });
                 }
@@ -57929,12 +57929,53 @@ function middleware({ dispatch, getState }) {
           var connectionInfo = {
             protocol: authConfig.subscription.protocol,
             restUrl: authConfig.subscription.server,
-            // TODO: Auth plugin default is 80, but that doesn't work?
-            restPort: '443',
-            // Workaround... need to set callResyncOnConnect into FCS config here
-            callResyncOnConnect: config.resyncOnConnect
+            restPort: authConfig.subscription.port,
+            websocketProtocol: authConfig.websocket.protocol,
+            websocketIP: authConfig.websocket.server,
+            websocketPort: authConfig.websocket.port,
+            // Need to set callResyncOnConnect into FCS config here
+            callResyncOnConnect: config.resyncOnConnect,
+            // Hook into FCS Call requests
+            ajaxHook: function (xhr, unusedWindow, { url, headers }) {
+              const platform = (0, _selectors.getPlatform)(getState());
+
+              // Request headers/urls are populated differently depending on whether it is Link or UC
+              if (platform === _constants.platforms.LINK) {
+                const requestInfo = (0, _selectors.getRequestInfo)(getState(), platform);
+                const customHeaders = requestInfo.requestOptions.headers;
+                // Include custom x-session header if it exists.
+                // (Used by subsequent requests after authenticated & subscribed via HMAC token)
+                if (customHeaders['x-session']) {
+                  headers['x-session'] = customHeaders['x-session'];
+                }
+                return {
+                  url: url,
+                  headers: headers
+                };
+              } else if (platform === _constants.platforms.UC) {
+                const { oauthToken, accessToken } = (0, _selectors.getConnectionInfo)(getState(), _constants.platforms.UC);
+                if (oauthToken) {
+                  // For OAuth handling, add the Bearer token to the Request Header
+                  headers = (0, _extends3.default)({}, headers, {
+                    Authorization: `Bearer ${oauthToken}`
+                  });
+                } else {
+                  // For regular Access Token handling, add the token to the URL string
+                  const tokenString = `token=${accessToken}`;
+                  if (url.indexOf('?') === -1) {
+                    url += '?' + tokenString;
+                  } else {
+                    url += '&' + tokenString;
+                  }
+                }
+                return {
+                  url: url,
+                  headers: headers
+                };
+              }
+            }
           };
-          log.debug(`Setting connection info in FCS: ${connectionInfo}`);
+          log.debug('Setting connection info configs in FCS', connectionInfo);
           callShim.setConnectionInfo(connectionInfo);
           break;
         }
@@ -57963,71 +58004,6 @@ function middleware({ dispatch, getState }) {
 
             // This call tells FCS to use UAT's instead of basic auth for all future rest calls.
             callShim.setKandyUAT(action.payload.userInfo.token);
-          }
-          var setupVars;
-          // Retrieve the FCS configs from different places depending on auth's service.
-          if (action.meta.platform === _constants.platforms.LINK) {
-            // If we're Link, config has the variables we need.
-            const authConfig = (0, _selectors.getAuthConfig)(getState());
-            setupVars = {
-              notificationType: 'WebSocket',
-              protocol: authConfig.subscription.protocol,
-              restUrl: authConfig.subscription.server,
-              restPort: authConfig.subscription.port,
-              websocketProtocol: authConfig.websocket.protocol,
-              websocketIP: authConfig.websocket.server,
-              websocketPort: authConfig.websocket.port,
-              ajaxHook: function (xhr, unusedWindow, { url, headers }) {
-                const requestInfo = (0, _selectors.getRequestInfo)(getState());
-                const customHeaders = requestInfo.requestOptions.headers;
-                // Include custom x-session header if it exists.
-                // (Used by subsequent requests after authenticated & subscribed via HMAC token)
-                if (customHeaders['x-session']) {
-                  headers['x-session'] = customHeaders['x-session'];
-                }
-                return {
-                  url: url,
-                  headers: headers
-                };
-              }
-            };
-          } else if (action.meta.platform === _constants.platforms.UC) {
-            // If we're Link, config has the variables we need.
-            const authConfig = (0, _selectors.getAuthConfig)(getState());
-            log.debug(`Auth config is: ${authConfig}`);
-            setupVars = {
-              notificationType: 'WebSocket',
-              protocol: authConfig.subscription.protocol,
-              restUrl: authConfig.subscription.server,
-              // TODO: Auth plugin default is 80, but that doesn't work?
-              restPort: '443',
-              websocketProtocol: authConfig.websocket.protocol,
-              websocketIP: authConfig.websocket.server,
-              websocketPort: authConfig.websocket.port,
-              // Hook into FCS call requests to add the token to them.
-              ajaxHook: function (xhr, unusedWindow, { url, headers }) {
-                const { oauthToken, accessToken } = (0, _selectors.getConnectionInfo)(getState(), _constants.platforms.UC);
-                // The token value will either be a normal Access Token or an OAuth Token
-                if (oauthToken) {
-                  // For OAuth handling, add the Bearer token to the Request Header
-                  headers = (0, _extends3.default)({}, headers, {
-                    Authorization: `Bearer ${oauthToken}`
-                  });
-                } else {
-                  // For regular Access Token handling, add the token to the URL string
-                  const tokenString = `token=${accessToken}`;
-                  if (url.indexOf('?') === -1) {
-                    url += '?' + tokenString;
-                  } else {
-                    url += '&' + tokenString;
-                  }
-                }
-                return {
-                  url: url,
-                  headers: headers
-                };
-              }
-            };
           }
 
           // Pull out the FCS' setup configs from the plugin configs.
@@ -58060,7 +58036,7 @@ function middleware({ dispatch, getState }) {
 
           // If there are plugin configs not present in setupVars,
           // add them in now.
-          setupVars = (0, _fp.defaults)(fcsConfig, setupVars);
+          var setupVars = fcsConfig;
           if (action.payload.connection.isAnonymous) {
             setupVars.anonymous = true;
           }
@@ -58077,7 +58053,7 @@ function middleware({ dispatch, getState }) {
               });
             })
           });
-          log.debug('Setting up FCS with configs: ', toLog);
+          log.debug('Setting up FCS with configs (connection info, including hooks, already set): ', toLog);
 
           // Setup the callstack.
           callShim.setup(setupVars);
@@ -60987,7 +60963,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.18.0-beta.473';
+  return '3.18.0-beta.474';
 }
 
 /***/ }),
