@@ -27,7 +27,7 @@ Kandy.js change log.
 
 ### Changed
 
-- Changed the Tutorial's acccess URL so that it does not expose configuration parameters for a specific domain/server. `KAA-2320`
+- Changed the Tutorial's access URL so that it does not expose configuration parameters for a specific domain/server. `KAA-2320`
 
 ### Fixed
 
@@ -69,7 +69,7 @@ Kandy.js change log.
 
 ### Added
 
-- Added a destroy function to allow users to wipe the SDK state and render the SDK unusuable. `KAA-2181`
+- Added a destroy function to allow users to wipe the SDK state and render the SDK unusable. `KAA-2181`
   - This is useful when a user is finished with the SDK and wants their data to not be available to the next SDK consumer. After destroy is called, the SDK must be recreated for an application to continue working.
 - Added four API's `kandy.notification.registerApplePush`,`kandy.notification.registerAndroidPush`, `kandy.notification.unregisterAndroidPush` and `kandy.notification.unregisterApplePush` to handle the push registration notifications for Apple and Android respectively.`KAA-2153`
 - Added a new call configuration to trigger a resync of all active calls upon connecting to the websocket. `KAA-2154`
@@ -160,7 +160,7 @@ This 3.x version of the SDK is deprecated and will stop being supported as of No
 
 ### Fixed
 
-- Refixed an Authentication issue where connecting with invalid credentials for a pre-provisioned user would return an error event with misleading information. `KAA-1937`
+- Re-fixed an Authentication issue where connecting with invalid credentials for a pre-provisioned user would return an error event with misleading information. `KAA-1937`
 
 ## 3.7.0 - 2019-08-30
 
@@ -171,7 +171,7 @@ This 3.x version of the SDK is deprecated and will stop being supported as of No
 - Fixed an issue causing some BasicError objects to have a misleading message rather than a message about the operation that failed. `KAA-1947`
 - Fixed an Authentication issue where connecting with invalid credentials for a pre-provisioned user would return an error event with misleading information. `KAA-1937`
 - Fixed an issue where the screensharing for the callee would fail to stop from the Chrome notification. `KAA-601`
-- Fixed an issue where the transfered call status was not being passed to the application properly. `KAA-1926`
+- Fixed an issue where the transferred call status was not being passed to the application properly. `KAA-1926`
 
 ## 3.6.0 - 2019-08-01
 
@@ -206,11 +206,11 @@ This 3.x version of the SDK is deprecated and will stop being supported as of No
 ### Added
 
 - Added a DEBUG log at the start of every public API invocation, which will better help with future investigations `KAA-1353`
-- Added the error event to the `subscription`, to prevent subscription change to emmited when there is a subscription failure `KAA-1351`
+- Added the error event to the `subscription`, to prevent subscription change to emitted when there is a subscription failure `KAA-1351`
 
 ### Changed
 
-- The `subscription:change` event is no longer emmitted when there is an error. User will have to subscribe to `subscription:error` as well. `KAA-1351`
+- The `subscription:change` event is no longer emitted when there is an error. User will have to subscribe to `subscription:error` as well. `KAA-1351`
 - No longer stores call stats in localstorage by default. Use the `recordCallStats` configuration to turn this back on. `KAA-1552`
 
 ## 3.3.0 - 2019-03-29
