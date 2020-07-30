@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.18.0-beta.485
+ * Version: 3.18.0-beta.486
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -51556,15 +51556,23 @@ function* subscribe(connection, credentials, extras = {}) {
       const body = response.payload.body;
 
       let statusCode;
-      /*
-       * In some cases, the response is not wrapped in a `subscribeResponse`
-       *    property. This seems to be when using a pre-provisioned user (stored
-       *    as part of KL?) rather than a dynamically created user (retrieved
-       *    from AS?).
-       * Reference: ABE-23981 (and KAA-1937)
-       */
       if (body.statusCode && body.reason) {
+        /*
+         * In some cases, the response is not wrapped in a `subscribeResponse`
+         *    property. This seems to be when using a pre-provisioned user (stored
+         *    as part of KL?) rather than a dynamically created user (retrieved
+         *    from AS?).
+         * Reference: ABE-23981 (and KAA-1937)
+         */
         statusCode = body.statusCode;
+      } else if (body.authorizationResponse && body.authorizationResponse.statusCode) {
+        /*
+         * In other cases, the response is wrapped in a `authorizationResponse`
+         *    property instead. This seems to be when an anonymous user
+         *    subscription fails (a success has `subscribeResponse`).
+         * Reference: KAA-2440
+         */
+        statusCode = body.authorizationResponse.statusCode;
       } else {
         statusCode = body.subscribeResponse.statusCode;
       }
@@ -60963,7 +60971,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.18.0-beta.485';
+  return '3.18.0-beta.486';
 }
 
 /***/ }),
