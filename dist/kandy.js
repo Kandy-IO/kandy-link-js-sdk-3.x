@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.19.0-beta.499
+ * Version: 3.19.0-beta.500
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -58562,6 +58562,13 @@ function middleware({ dispatch, getState }) {
           break;
         }
 
+      case connActionTypes.LOST_CONNECTION:
+        {
+          const globalBroadcaster = callShim.getGlobalBroadcaster();
+          globalBroadcaster.publish('NOTIFICATION_CHANNEL_LOST', {});
+          break;
+        }
+
       case connActionTypes.WS_CONNECT_FINISHED:
         {
           const globalBroadcaster = callShim.getGlobalBroadcaster();
@@ -60971,7 +60978,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.19.0-beta.499';
+  return '3.19.0-beta.500';
 }
 
 /***/ }),
