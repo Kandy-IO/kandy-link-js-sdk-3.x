@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.19.0-beta.509
+ * Version: 3.19.0-beta.510
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -62088,7 +62088,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.19.0-beta.509';
+  return '3.19.0-beta.510';
 }
 
 /***/ }),
@@ -65987,7 +65987,7 @@ function logPlugin(options = {}) {
 
   const logger = _index.logManager.getLogger('LOGS');
   // Make sure the configured log handler was a function.
-  if (typeof options.handler !== 'function') {
+  if (options.handler && typeof options.handler !== 'function') {
     delete options.handler;
     logger.warn('Invalid log handler configuration provided; using default instead.');
   }

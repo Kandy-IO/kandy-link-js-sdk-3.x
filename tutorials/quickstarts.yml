@@ -5,6 +5,10 @@
   description: # Kandy Configurations
   link: /quickstarts/javascript/link/Configurations
 
+- name: Logging
+  description: # SDK Logs
+  link: /quickstarts/javascript/link/Logging
+
 - name: User Connect
   description: # Connecting and Disconnecting
   link: /quickstarts/javascript/link/User%20Connect

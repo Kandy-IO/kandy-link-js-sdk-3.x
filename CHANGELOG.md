@@ -7,6 +7,11 @@ Kandy.js change log.
 
 ## 3.19.0 - beta
 
+### Added
+
+- Added a new Logging tutorial. `KAA-2464`
+  - Explains how the SDK's logging system works and how an application can customize its behaviour.
+
 ### Fixed
 
 - Fixed a Call issue where an active call was not being reconnected to after successfully reconnecting to the network. `KAA-2468`
