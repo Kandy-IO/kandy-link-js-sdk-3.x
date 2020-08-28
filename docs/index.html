@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>kandy-link-js-sdk-3.x 3.18.0 | Documentation</title>
+  <title>kandy-link-js-sdk-3.x 3.19.0 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>kandy-link-js-sdk-3.x</h3>
-          <div class='mb1'><code>3.18.0</code></div>
+          <div class='mb1'><code>3.19.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -787,15 +787,15 @@
                           <li class='h5'><span>Types</span></li>
                           
                             <li><a
-                              href='#loggerlogentry'
-                              class='regular pre-open'>
-                              <span style="color:blue">ⓣ</span> LogEntry
-                            </a></li>
-                          
-                            <li><a
                               href='#loggerloghandler'
                               class='regular pre-open'>
                               <span style="color:blue">ⓣ</span> LogHandler
+                            </a></li>
+                          
+                            <li><a
+                              href='#loggerlogentry'
+                              class='regular pre-open'>
+                              <span style="color:blue">ⓣ</span> LogEntry
                             </a></li>
                           
                           </ul>
@@ -1351,7 +1351,8 @@ amount of information will depend on how the Logs feature is configured.</p>
 <p>The format of logs can also be customized by providing a
 <a href="#loggerloghandler">LogHandler</a>. This function will receive a
 <a href="#loggerlogentry">LogEntry</a> which it can handle as it sees fit. By
-default, the SDK will log information to the console.</p>
+default, the SDK will log information to the console. For more
+information, see the <a href="#logger">Logs feature</a> description.</p>
 
 
   <div class='pre p1 fill-light mt0'>config.logs</div>
@@ -3606,6 +3607,164 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
 
   
 
+  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
+
+
+  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The credentials object.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The username including the application's domain.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The user's password.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The user's authorization name.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
+	    The options object for non-credential options.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.forceLogOut</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
+  </td>
+  <td class='break-word'><span>Force the oldest connection to log out if too many simultaneous connections. Link only.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.clientCorrelator</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>client.connect({
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
+  <span class="hljs-attr">authname</span>: <span class="hljs-string">'********'</span>
+}, {
+  <span class="hljs-attr">forceLogOut</span>: <span class="hljs-literal">true</span>
+});</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='apiconnect'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>connect(credentials, options?)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
   <p>Connect by providing a username and HMAC token. This connects to any backend services that the SDK instance deals with.
 An HMAC token is used to verify a user via the user's authorization within an organization.
 HMAC tokens are generated by using the HmacSHA1 algorithm and a key on a data object
@@ -3740,164 +3899,6 @@ containing an <code>authenticationTokenRequest</code> object with the following 
 client.connect({
   <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
   hmacToken
-}, {
-  <span class="hljs-attr">forceLogOut</span>: <span class="hljs-literal">true</span>
-});</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='apiconnect'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>connect(credentials, options?)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Connect with user credentials to any backend services that the SDK instance deals with.</p>
-
-
-  <div class='pre p1 fill-light mt0'>connect(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The credentials object.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The username including the application's domain.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The user's password.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>The user's authorization name.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?)</code>
-	    The options object for non-credential options.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.forceLogOut</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
-  </td>
-  <td class='break-word'><span>Force the oldest connection to log out if too many simultaneous connections. Link only.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.clientCorrelator</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>client.connect({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
-  <span class="hljs-attr">authname</span>: <span class="hljs-string">'********'</span>
 }, {
   <span class="hljs-attr">forceLogOut</span>: <span class="hljs-literal">true</span>
 });</pre>
@@ -4459,119 +4460,6 @@ It's not meant to be displayed to a user.
 
   
 
-  <p>Sets the user credentials necessary to make requests to the platform.</p>
-
-
-  <div class='pre p1 fill-light mt0'>setCredentials(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The credentials object.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The username including the application's domain.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span>The user's password.
-</span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
-  </td>
-  <td class='break-word'><span>The user's authorization name.
-</span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>client.setCredentials({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
-  <span class="hljs-attr">authname</span>: <span class="hljs-string">'********'</span>
-});</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='apisetcredentials'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>setCredentials(credentials)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
   <p>Sets the username and HMAC token necessary to make requests to the platform.
 An HMAC token is used to verify a user via the user's authorization within an of organization.
 HMAC tokens are generated by using the HmacSHA1 algorithm and a key on a data object
@@ -4663,6 +4551,119 @@ containing an <code>authenticationTokenRequest</code> object with the following 
 client.setCredentials({
   <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
   hmacToken
+});</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='apisetcredentials'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>setCredentials(credentials)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Sets the user credentials necessary to make requests to the platform.</p>
+
+
+  <div class='pre p1 fill-light mt0'>setCredentials(credentials: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>credentials</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The credentials object.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.username</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The username including the application's domain.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.password</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  </td>
+  <td class='break-word'><span>The user's password.
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>credentials.authname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?</code>
+  </td>
+  <td class='break-word'><span>The user's authorization name.
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>client.setCredentials({
+  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
+  <span class="hljs-attr">authname</span>: <span class="hljs-string">'********'</span>
 });</pre>
     
   
@@ -12012,13 +12013,28 @@ as part of the event argument.</p>
   </div>
   
 
-  <p>The internal logger is used to provide information about the SDK's behaviour.
-The logger can provide two types of logs: basic logs and action logs. Basic
-logs are simple lines of information about what the SDK is doing during operations.
-Action logs are complete information about a specific action that occurred
-within the SDK, providing debug information describing it.
-The amount of information logged can be configured as part of the SDK configuration.
-See <a href="#configconfiglogs">config.logs</a> .</p>
+  <p>The SDK has an internal logging system for providing information about its
+behaviour. The SDK will generate logs, at different levels for different
+types of information, which are routed to a
+"<a href="#loggerloghandler">Log Handler</a>" for consumption. An application
+can provide their own Log Handler (see
+<a href="#configconfiglogs">config.logs</a>) to customize how the logs are
+handled, or allow the default Log Handler to print the logs to the
+console.</p>
+<p>The SDK's default Log Handler is merely a thin wrapper around the browser's
+console API (ie. <code>window.console</code>). It receives the log generated by the
+SDK, called a "<a href="#loggerlogentry">Log Entry</a>", formats a
+human-readable message with it, then uses the console to log it at the
+appropriate level. This is important to be aware of, since your browser's
+console may affect how you see the SDK's default log messages. Since the
+default Log Handler uses the console's levels, the browser may filter
+which messages are shown depending on which levels it has configured. For
+a user that understands console log levels, this can be helpful for
+filtering the logs to only the relevant information. But it can equally
+be a hindrance by hiding the more detailed log messages (at the 'debug'
+level), since browser can have this level hidden by default. For this
+reason, we recommend providing a custom Log Handler to the SDK that is
+better suited for your application and its users.</p>
 
 
   <div class='pre p1 fill-light mt0'>logger</div>
@@ -12045,6 +12061,104 @@ See <a href="#configconfiglogs">config.logs</a> .</p>
   
       <div class='py1 quiet mt1 prose-big'>Types</div>
       <div class="clearfix">
+  
+    <div class='border-bottom' id='loggerloghandler'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>LogHandler(LogEntry)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>A LogHandler can be used to customize how the SDK should log information. By
+default, the SDK will log information to the console, but a LogHandler can
+be configured to change this behaviour.</p>
+<p>A LogHandler can be provided to the SDK as part of its configuration (see
+<a href="#configconfiglogs">config.logs</a>). The SDK will then provide this
+function with the logged information.</p>
+
+
+  <div class='pre p1 fill-light mt0'>LogHandler(LogEntry: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>LogEntry</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    The LogEntry to be logged.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Define a custom function to handle logs.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logHandler</span> (<span class="hljs-params">logEntry</span>) </span>{
+  <span class="hljs-comment">// Compile the meta info of the log for a prefix.</span>
+  <span class="hljs-keyword">const</span> { timestamp, level, target } = logEntry
+  <span class="hljs-keyword">let</span> { method } = logEntry
+  <span class="hljs-keyword">const</span> logInfo = <span class="hljs-string">`<span class="hljs-subst">${timestamp}</span> - <span class="hljs-subst">${target.type}</span> - <span class="hljs-subst">${level}</span>`</span>
+
+  <span class="hljs-comment">// Assume that the first message parameter is a string.</span>
+  <span class="hljs-keyword">const</span> [log, ...extra] = logEntry.messages
+
+  <span class="hljs-comment">// For the timer methods, don't actually use the console methods.</span>
+  <span class="hljs-comment">//    The Logger already did the timing, so simply log out the info.</span>
+  <span class="hljs-keyword">if</span> ([<span class="hljs-string">'time'</span>, <span class="hljs-string">'timeLog'</span>, <span class="hljs-string">'timeEnd'</span>].includes(method)) {
+    method = <span class="hljs-string">'debug'</span>
+  }
+
+  <span class="hljs-built_in">console</span>[method](<span class="hljs-string">`<span class="hljs-subst">${logInfo}</span> - <span class="hljs-subst">${log}</span>`</span>, ...extra)
+}
+
+<span class="hljs-comment">// Provide the LogHandler as part of the SDK configurations.</span>
+<span class="hljs-keyword">const</span> configs = { ... }
+configs.logs.handler = logHandler
+<span class="hljs-keyword">const</span> client = create(configs)</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
   
     <div class='border-bottom' id='loggerlogentry'>
       <div class="clearfix small pointer toggle-sibling">
@@ -12241,104 +12355,6 @@ method as parameters.
       </div>
     </div>
   
-    <div class='border-bottom' id='loggerloghandler'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>LogHandler(LogEntry)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>A LogHandler can be used to customize how the SDK should log information. By
-default, the SDK will log information to the console, but a LogHandler can
-be configured to change this behaviour.</p>
-<p>A LogHandler can be provided to the SDK as part of its configuration (see
-<a href="#configconfiglogs">config.logs</a>). The SDK will then provide this
-function with the logged information.</p>
-
-
-  <div class='pre p1 fill-light mt0'>LogHandler(LogEntry: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
-  
-    <p>
-      Type:
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>LogEntry</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    The LogEntry to be logged.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Define a custom function to handle logs.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logHandler</span> (<span class="hljs-params">logEntry</span>) </span>{
-  <span class="hljs-comment">// Compile the meta info of the log for a prefix.</span>
-  <span class="hljs-keyword">const</span> { timestamp, level, target } = logEntry
-  <span class="hljs-keyword">let</span> { method } = logEntry
-  <span class="hljs-keyword">const</span> logInfo = <span class="hljs-string">`<span class="hljs-subst">${timestamp}</span> - <span class="hljs-subst">${target.type}</span> - <span class="hljs-subst">${level}</span>`</span>
-
-  <span class="hljs-comment">// Assume that the first message parameter is a string.</span>
-  <span class="hljs-keyword">const</span> [log, ...extra] = logEntry.messages
-
-  <span class="hljs-comment">// For the timer methods, don't actually use the console methods.</span>
-  <span class="hljs-comment">//    The Logger already did the timing, so simply log out the info.</span>
-  <span class="hljs-keyword">if</span> ([<span class="hljs-string">'time'</span>, <span class="hljs-string">'timeLog'</span>, <span class="hljs-string">'timeEnd'</span>].includes(method)) {
-    method = <span class="hljs-string">'debug'</span>
-  }
-
-  <span class="hljs-built_in">console</span>[method](<span class="hljs-string">`<span class="hljs-subst">${logInfo}</span> - <span class="hljs-subst">${log}</span>`</span>, ...extra)
-}
-
-<span class="hljs-comment">// Provide the LogHandler as part of the SDK configurations.</span>
-<span class="hljs-keyword">const</span> configs = { ... }
-configs.logs.handler = logHandler
-<span class="hljs-keyword">const</span> client = create(configs)</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
 </div>
 
     
@@ -12360,6 +12376,13 @@ configs.logs.handler = logHandler
   
 
   <p>Possible levels for the SDK logger.</p>
+<p>The SDK will provide <a href="#loggerlogentry">Log Entries</a> to the
+<a href="#loggerloghandler">Log Handler</a> for all logs at or above the set
+log level. 'debug' is considered the lowest level and 'silent' the
+highest level. For example, if the current level is 'info', then the
+<a href="#loggerloghandler">Log Handler</a> will receive
+<a href="#loggerlogentry">Log Entries</a> for logs at 'info', 'warn', and
+'error', but not for the 'debug' level.</p>
 
 
   <div class='pre p1 fill-light mt0'>levels()</div>

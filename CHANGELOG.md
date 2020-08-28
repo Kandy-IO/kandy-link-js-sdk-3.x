@@ -5,6 +5,17 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.19.0 - 2020-08-28
+
+### Added
+
+- Added a new Logging tutorial. `KAA-2464`
+  - Explains how the SDK's logging system works and how an application can customize its behaviour.
+
+### Fixed
+
+- Fixed a Call issue where an active call was not being reconnected to after successfully reconnecting to the network. `KAA-2468`
+
 ## 3.18.0 - 2020-07-31
 
 ### Fixed
