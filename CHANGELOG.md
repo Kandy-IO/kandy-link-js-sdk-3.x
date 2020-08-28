@@ -5,6 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.20.0 - beta
+
+### Added
+
+- Added `X-Cpaas-Agent` header to all call control requests. `KAA-2427`
+
 ## 3.19.0 - 2020-08-28
 
 ### Added
