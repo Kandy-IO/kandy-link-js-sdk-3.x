@@ -16,6 +16,10 @@ Kandy.js change log.
 
 - Updated tutorial codepens to be more robust around authentication and subscription operations. `KAA-2491`
 
+### Fixed
+
+- Fixed broken links in Call History Link docs. `KAA-2497`
+
 ## 3.19.0 - 2020-08-28
 
 ### Added
