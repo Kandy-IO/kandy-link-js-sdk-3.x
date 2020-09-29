@@ -11,6 +11,7 @@ Kandy.js change log.
 
 - Added `X-Cpaas-Agent` header to all call control requests. `KAA-2427`
 - Added a new event `auth:credentialsSet`, to notify when connection credentials are set for all 3.x SDK's. `KAA-2490`
+- Added the ability to name the redux store instance for debugging with redux devtools extension.
 
 ### Changed
 
