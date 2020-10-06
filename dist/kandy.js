@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.20.0-beta.546
+ * Version: 3.21.0-beta.547
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -50818,7 +50818,22 @@ function getServices(state, platform) {
  * @return {string}
  */
 function getPlatform(state) {
-  return (0, _fp.cloneDeep)(state.authentication.platform);
+  let platform = state.authentication.platform;
+
+  /**
+   * Link and UC set the platform in auth state after setting credentials /
+   *    connecting, but CPaaS does not (because the idea was to move away from
+   *    needing the platform). So if there isn't a platform, but there is a
+   *    CPaaS-specific identity, then assume the platform is CPaaS.
+   * This was needed for the request plugin to get the right platform when using
+   *    the `getRequestInfo` selector below.
+   * This is a workaround for bad design.
+   */
+  if (!platform && getUserInfo(state).identity) {
+    platform = 'cpaas';
+  }
+
+  return platform;
 }
 
 /**
@@ -51182,12 +51197,9 @@ function* connectFlow() {
  * @method connect
  */
 function* connect(action, config) {
-  // Common request options, to be used for all subsequent requests after connect.
+  // Request options, to be used for all subsequent requests after connect.
   let requestOptions = {
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json'
-    }
+    headers: {}
     // Determine what type of connect method to use. This determines what extra
     //      information needs to be added to the request.
   };const { credentials, options } = action.payload;
@@ -51657,14 +51669,9 @@ function* unsubscribe(connection, subscriptionURL) {
 
   requestOptions.url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}` + subscriptionURL;
 
-  requestOptions.headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  };
-
   log.info('Unsubscribing user.');
   // Send the unsubscribe request.
-  const response = yield (0, _effects2.default)(requestOptions, connection.requestOptions);
+  const response = yield (0, _effects2.default)(requestOptions);
 
   if (response.error) {
     if (response.payload.body && response.payload.body.subscribeResponse) {
@@ -51745,12 +51752,9 @@ function* resubscribe(connection, subscription) {
     requestOptions.url = `${connection.server.protocol}://${connection.server.server}:${connection.server.port}` + subscription.url;
   }
 
-  requestOptions.headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-    // TODO: Don't hardcode the defaults here. Should be shared with
-    //      the subscribe request as well.
-  };requestOptions.body = (0, _stringify2.default)({
+  // TODO: Don't hardcode the defaults here. Should be shared with
+  //      the subscribe request as well.
+  requestOptions.body = (0, _stringify2.default)({
     subscribeRequest: {
       expires: subscription.expires,
       service: subscription.service,
@@ -51762,7 +51766,7 @@ function* resubscribe(connection, subscription) {
 
   log.info('Resubscribing user.');
   // Send the subscription update request.
-  const response = yield (0, _effects2.default)(requestOptions, connection.requestOptions);
+  const response = yield (0, _effects2.default)(requestOptions);
 
   if (response.error) {
     if (response.payload.body) {
@@ -61015,7 +61019,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.20.0-beta.546';
+  return '3.21.0-beta.547';
 }
 
 /***/ }),
@@ -63998,6 +64002,43 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = defaultActionHandler;
+/* Helper function for styling logs based on the log type.
+ * This function will inspect the log entry and format the log
+ * accordingly.
+ */
+function styleLog(entry) {
+  const { timestamp, level } = entry;
+  const logInfo = `${timestamp} - ACTION - ${level}`;
+
+  let [logType, payload] = entry.messages;
+
+  let prefix;
+  let style = '';
+  if (logType.includes('state')) {
+    // If the log is for prev state / next state, display that in the prefix.
+    prefix = `${logInfo} - ${logType.toUpperCase()}`;
+  } else if (logType.includes('ADDED') || logType.includes('DELETED') || logType.includes('ARRAY')) {
+    // If the log has added or removed keys from state, log the operation, keys affected and new values.
+    prefix = `${entry.messages[0]}: ${entry.messages[2]}`;
+    style = entry.messages[1];
+    payload = entry.messages[3];
+  } else if (logType.includes('CHANGED')) {
+    // If the log has changed keys in state, log the operation, keys, old and new values.
+    prefix = `${entry.messages[0]}: ${entry.messages[2]}`;
+    style = entry.messages[1];
+    payload = `${entry.messages[3]} ${entry.messages[4]} ${entry.messages[5]}`;
+  } else if (logType.includes('no diff')) {
+    // If action results in no change in state, just log no diff.
+    prefix = `${logInfo} - NO DIFF`;
+    payload = '';
+  } else {
+    // Else the log is the action itself, so use the action type.
+    prefix = `${logInfo} - ${payload.type} - ${logType}`;
+  }
+
+  return { prefix, style, payload };
+}
+
 /**
  * Default function for the SDK to use for logging actions.
  * Action entries come in 4 different types:
@@ -64019,21 +64060,8 @@ function defaultActionHandler(entry) {
     return;
   }
 
-  const { timestamp, level } = entry;
-  const logInfo = `${timestamp} - ACTION - ${level}`;
-
-  const [logType, payload] = entry.messages;
-
-  let prefix;
-  if (logType.includes('state')) {
-    // If the log is for prev state / next state, display that in the prefix.
-    prefix = `${logInfo} - ${logType.toUpperCase()}`;
-  } else {
-    // Else the log is the action itself, so use the action type.
-    prefix = `${logInfo} - ${payload.type}`;
-  }
-
-  console[entry.method](prefix, payload);
+  const { prefix, style, payload } = styleLog(entry);
+  console[entry.method](prefix, style, payload);
 }
 
 /***/ }),
@@ -64247,7 +64275,7 @@ function titleFormatter(action, time, took) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.defaultOptions = undefined;
+exports.partialDefaultLogActions = exports.defaultOptions = undefined;
 
 var _actionHandler = __webpack_require__("../../packages/kandy/src/logs/actions/actionHandler.js");
 
@@ -64280,12 +64308,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *    to the console.
  * @param  {boolean} [logs.enableFcsLogs=true] Enable the detailed call logger
  *    for v3.X. Requires log level debug.
- * @param {Object|boolean} [logs.logActions] Options specifically for action logs when
+ * @param {Object|boolean} [logs.logActions=false] Options specifically for action logs when
  *    logLevel is at DEBUG+ levels. Set this to false to not output action logs.
  * @param {logger.LogHandler} [logs.logActions.handler] The function to receive action
  *    log entries from the SDK. If not provided, a default handler will be used
  *    that logs actions to the console.
- * @param {boolean} [logs.logActions.actionOnly=true] Only output information
+ * @param {boolean} [logs.logActions.actionOnly=false] Only output information
  *    about the action itself. Omits the SDK context for when it occurred.
  * @param {boolean} [logs.logActions.collapsed=false] Whether logs should be
  *    minimized when initially output. The full log is still output and can be
@@ -64294,23 +64322,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *    context was changed by the action.
  * @param {string}  [logs.logActions.level='debug'] Log level to be set
  *    on the action logs
- * @param {boolean} [logs.logActions.exposePayloads=false] Allow action payloads
+ * @param {boolean} [logs.logActions.exposePayloads=true] Allow action payloads
  *    to be exposed in the logs, potentially displaying sensitive information.
  */
 const defaultOptions = exports.defaultOptions = {
   logLevel: 'debug',
   handler: undefined,
   enableFcsLogs: true,
+  logActions: false
+};
 
-  // Action-specific configs.
-  logActions: {
-    handler: _actionHandler2.default,
-    actionOnly: true,
-    collapsed: false,
-    diff: false,
-    level: 'debug',
-    exposePayloads: false
-  }
+const partialDefaultLogActions = exports.partialDefaultLogActions = {
+  handler: _actionHandler2.default,
+  actionOnly: false,
+  collapsed: false,
+  diff: false,
+  level: 'debug',
+  exposePayloads: true
   /*
    * TODO: Figure out a way to work around this.
    * Can't use validation in logging because validation uses logging to output errors.
@@ -64968,6 +64996,15 @@ function logPlugin(options = {}) {
   }
 
   options = (0, _utils.mergeValues)(_config.defaultOptions, options);
+
+  // Check if `logActions` is true and apply defaults for action logging
+  if (options.logActions !== false) {
+    if (options.logActions instanceof Object) {
+      options.logActions = (0, _utils.mergeValues)(_config.partialDefaultLogActions, options.logActions);
+    } else {
+      options.logActions = _config.partialDefaultLogActions;
+    }
+  }
 
   // Now that we have the application's log configs, update everything to
   //    use those values instead of default values.
@@ -70574,7 +70611,9 @@ var _actions = __webpack_require__("../../packages/kandy/src/request/interface/a
 
 var actions = _interopRequireWildcard(_actions);
 
-var _utils = __webpack_require__("../../packages/kandy/src/common/utils.js");
+var _utils = __webpack_require__("../../packages/kandy/src/request/utils/index.js");
+
+var _utils2 = __webpack_require__("../../packages/kandy/src/common/utils.js");
 
 var _fp = __webpack_require__("../../node_modules/lodash/fp.js");
 
@@ -70595,6 +70634,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  * @param {Blob|BufferSource|FormData|UrlSearchParams|string} [options.body] Any body that you want to add to your request.
  * @return A blocking redux-saga effect that will instruct the middleware to wait for the request to be fullfilled or until it fails.
  */
+// Requests plugin.
 function request(options, commonOptions) {
   return (0, _effects.call)(requestSaga, options, commonOptions);
 }
@@ -70605,12 +70645,21 @@ function request(options, commonOptions) {
 
 
 // Libraries.
-// Requests plugin.
 function* requestSaga(options, commonOptions) {
-  // Merge any extra request options into the provided options
-  //      for this request. Priority is for the passed-in options.
-  options = (0, _utils.mergeValues)(commonOptions, options);
+  // Get the common request options that should be used for all requests.
+  let common = yield (0, _effects.call)(_utils.getCommonOptions, options.url);
 
+  // Merge the retrieved common options with the provided commonOptions.
+  //    This is needed until all REST requests have been cleaned-up to not
+  //    provide their own set of common options.
+  // TODO: Remove this after _all_ of KAA-225 is done.
+  common = (0, _utils2.mergeValues)(commonOptions, common);
+
+  // Merge any common options into the request options. Priority is for the
+  //    common options, to prevent them from being overwritten.
+  options = (0, _utils2.mergeValues)(options, common);
+
+  // Dispatch the request action for the sagas to process.
   const requestAction = yield (0, _effects.put)(actions.request(options));
   const responseAction = yield (0, _effects.take)(action => action.type === _actionTypes.RESPONSE && (0, _fp.get)('meta.requestId', action) === requestAction.meta.requestId);
 
@@ -70639,23 +70688,17 @@ var _actions = __webpack_require__("../../packages/kandy/src/request/interface/a
 
 var actions = _interopRequireWildcard(_actions);
 
-var _selectors = __webpack_require__("../../packages/kandy/src/request/interface/selectors.js");
-
 var _configs = __webpack_require__("../../packages/kandy/src/request/configs.js");
 
 var _makeRequest = __webpack_require__("../../packages/kandy/src/request/makeRequest.js");
 
 var _makeRequest2 = _interopRequireDefault(_makeRequest);
 
-var _utils = __webpack_require__("../../packages/kandy/src/request/utils/index.js");
-
-var _selectors2 = __webpack_require__("../../packages/kandy/src/auth/interface/selectors.js");
-
 var _actions2 = __webpack_require__("../../packages/kandy/src/config/interface/actions.js");
 
 var _logs = __webpack_require__("../../packages/kandy/src/logs/index.js");
 
-var _utils2 = __webpack_require__("../../packages/kandy/src/common/utils.js");
+var _utils = __webpack_require__("../../packages/kandy/src/common/utils.js");
 
 var _effects = __webpack_require__("../../node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
 
@@ -70666,13 +70709,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 // Libraries.
+const pluginName = 'requests';
+
+// Utils.
 
 
 // Other plugins.
 // Request plugin.
-const pluginName = 'requests';
-
-// Utils.
 
 const log = _logs.logManager.getLogger('REQUESTS');
 
@@ -70680,7 +70723,7 @@ const log = _logs.logManager.getLogger('REQUESTS');
  * HTTP request plugin.
  */
 function request(options = {}) {
-  options = (0, _utils2.mergeValues)(_configs.defaultOptions, options);
+  options = (0, _utils.mergeValues)(_configs.defaultOptions, options);
   (0, _configs.parseOptions)(options);
 
   function* init() {
@@ -70708,9 +70751,7 @@ function* watchRequests() {
  * @param {FluxStandardAction} action The action to handle.
  */
 function* handleRequest(action) {
-  const options = yield (0, _effects.call)(addVersionHeader, action.payload);
-
-  const logOptions = (0, _fp.cloneDeep)(options);
+  const logOptions = (0, _fp.cloneDeep)(action.payload);
   // When logging the Auth header, cut it off so that we can see the type of
   //    token but not the token itself. Depending on the type, it can contain
   //    a password.
@@ -70721,41 +70762,15 @@ function* handleRequest(action) {
   log.debug(`Making REST request ${action.meta.requestId}.`, logOptions);
 
   // Make the request based on the action
-  var result = yield (0, _effects.call)(_makeRequest2.default, options, action.meta.requestId);
+  var result = yield (0, _effects.call)(_makeRequest2.default, action.payload, action.meta.requestId);
 
   log.debug(`Received REST response ${action.meta.requestId}.`, result);
 
   yield (0, _effects.put)(actions.response(action.meta.requestId, result, !!result.error));
 }
 
-/**
- * If enabled, adds the Agent Version header to the REST request's options.
- * Relies on the "platform" being set in state to know which SDK is being used.
- * @method addVersionHeader
- * @param  {Object} options Request options.
- * @return {Object} The same request options but with one extra header (maybe).
- */
-function* addVersionHeader(options) {
-  const useCustomHeader = yield (0, _effects.select)(_selectors.injectAgentVersionHeader);
-  if (useCustomHeader) {
-    const platform = yield (0, _effects.select)(_selectors2.getPlatform);
-
-    // Assume request is for CPaaS platform, by default.
-    const headerValue = (0, _utils.getCpaasAgentHeaderValue)(platform, options.url);
-
-    // Note that the same headerName is used for all platforms & services.
-    options = (0, _utils2.mergeValues)(options, {
-      headers: {
-        'X-Cpaas-Agent': headerValue
-      }
-    });
-  }
-
-  return options;
-}
-
 // begin-test-code
-const __testonly__ = exports.__testonly__ = { addVersionHeader, watchRequests, handleRequest
+const __testonly__ = exports.__testonly__ = { watchRequests, handleRequest
   // end-test-code
 
 };
@@ -71090,11 +71105,58 @@ exports.default = async function makeRequest(options, requestId) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getCommonOptions = getCommonOptions;
 exports.getCpaasAgentHeaderValue = getCpaasAgentHeaderValue;
+
+var _selectors = __webpack_require__("../../packages/kandy/src/request/interface/selectors.js");
+
+var _selectors2 = __webpack_require__("../../packages/kandy/src/auth/interface/selectors.js");
 
 var _version = __webpack_require__("../../packages/kandy/src/common/version.js");
 
 var _constants = __webpack_require__("../../packages/kandy/src/constants.js");
+
+var _effects = __webpack_require__("../../node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
+
+/**
+ * Helper function to compile the common headers/options for a REST request.
+ * @method getCommonOptions
+ * @param  {string} url The URL to be used for the request.
+ * @return {Object}
+ */
+
+
+// Other plugins.
+function* getCommonOptions(url) {
+  const platform = yield (0, _effects.select)(_selectors2.getPlatform);
+  const requestInfo = yield (0, _effects.select)(_selectors2.getRequestInfo, platform);
+  const useCustomHeader = yield (0, _effects.select)(_selectors.injectAgentVersionHeader);
+
+  // Start off with whatever options were set by the Auth plugin.
+  //    The authentication headers / token will be there if they are set.
+  let options;
+  if (platform === 'cpaas') {
+    // For some reason, CPaaS has this property as `options` where the other
+    //    SDKs have it as `requestOptions`. Workaround that here.
+    options = requestInfo.options || {};
+  } else {
+    options = requestInfo.requestOptions || {};
+  }
+
+  // Ensure there is a headers object.
+  options.headers = options.headers || {};
+
+  // Add the common headers.
+  options.headers['Content-Type'] = 'application/json';
+  options.headers.Accept = 'application/json';
+
+  // If enabled, add the 'Agent Version' header to the options.
+  if (useCustomHeader) {
+    options.headers['X-Cpaas-Agent'] = getCpaasAgentHeaderValue(platform, url);
+  }
+
+  return options;
+}
 
 /**
  * Determine and return the current SDK platform and version string to be used
@@ -71104,6 +71166,13 @@ var _constants = __webpack_require__("../../packages/kandy/src/constants.js");
  * @param  {string}  url The url for the request being made.
  * @return {string}  A string representation of the platform and version the SDK is using.
  */
+
+
+// Libraries.
+
+
+// Utils.
+// Request plugin.
 function getCpaasAgentHeaderValue(platform, url) {
   // Assume request is for CPaaS platform, by default.
   let headerValue = `cpaas-js-sdk/${(0, _version.getVersion)()}`;
@@ -71122,8 +71191,6 @@ function getCpaasAgentHeaderValue(platform, url) {
   }
   return headerValue;
 }
-
-// Constants
 
 /***/ }),
 
