@@ -11584,673 +11584,6 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Connect with user credentials to any backend services that the SDK instance deals with.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 88,
-                        "offset": 87
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 88,
-                    "offset": 87
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 88,
-                "offset": 87
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "memberof",
-              "description": "api",
-              "lineNumber": 4
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 5,
-              "name": "userCredentialsAuth"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 6,
-              "name": "connect"
-            },
-            {
-              "title": "param",
-              "description": "The credentials object.",
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "credentials"
-            },
-            {
-              "title": "param",
-              "description": "The username including the application's domain.",
-              "lineNumber": 8,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.username"
-            },
-            {
-              "title": "param",
-              "description": "The user's password.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.password"
-            },
-            {
-              "title": "param",
-              "description": "The user's authorization name.",
-              "lineNumber": 10,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "credentials.authname"
-            },
-            {
-              "title": "param",
-              "description": "The options object for non-credential options.",
-              "lineNumber": 11,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Object"
-                }
-              },
-              "name": "options"
-            },
-            {
-              "title": "param",
-              "description": "Force the oldest connection to log out if too many simultaneous connections. Link only.",
-              "lineNumber": 12,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "boolean"
-                }
-              },
-              "name": "options.forceLogOut"
-            },
-            {
-              "title": "param",
-              "description": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
-              "lineNumber": 13,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "options.clientCorrelator"
-            },
-            {
-              "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n}, {\n  forceLogOut: true\n});",
-              "lineNumber": 14
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 19,
-              "column": 4
-            },
-            "end": {
-              "line": 41,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 156,
-                "column": 4
-              },
-              "end": {
-                "line": 161,
-                "column": 5
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n}, {\n  forceLogOut: true\n});"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "credentials",
-              "lineNumber": 7,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The credentials object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 24,
-                            "offset": 23
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 24,
-                    "offset": 23
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "credentials.username",
-                  "lineNumber": 8,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The username including the application's domain.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 49,
-                                "offset": 48
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 49,
-                            "offset": 48
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 49,
-                        "offset": 48
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.password",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's password.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 21,
-                                "offset": 20
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 21,
-                            "offset": 20
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 21,
-                        "offset": 20
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.authname",
-                  "lineNumber": 10,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's authorization name.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 31,
-                                "offset": 30
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 31,
-                            "offset": 30
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 31,
-                        "offset": 30
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "title": "param",
-              "name": "options",
-              "lineNumber": 11,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The options object for non-credential options.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 47,
-                            "offset": 46
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 47,
-                        "offset": 46
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 47,
-                    "offset": 46
-                  }
-                }
-              },
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Object"
-                }
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "options.forceLogOut",
-                  "lineNumber": 12,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "Force the oldest connection to log out if too many simultaneous connections. Link only.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 88,
-                                "offset": 87
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 88,
-                            "offset": 87
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 88,
-                        "offset": 87
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "boolean"
-                    }
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "options.clientCorrelator",
-                  "lineNumber": 13,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 127,
-                                "offset": 126
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 127,
-                            "offset": 126
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 127,
-                        "offset": 126
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
-                  }
-                }
-              ]
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "memberof": "api",
-          "kind": "function",
-          "name": "connect",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "api",
-              "kind": "module"
-            },
-            {
-              "name": "connect",
-              "kind": "function"
-            }
-          ],
-          "namespace": "apiconnect"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
                     "value": "Connect by providing a username and HMAC token. This connects to any backend services that the SDK instance deals with.\nAn HMAC token is used to verify a user via the user's authorization within an organization.\nHMAC tokens are generated by using the HmacSHA1 algorithm and a key on a data object\ncontaining an ",
                     "position": {
                       "start": {
@@ -12478,26 +11811,31 @@
               "type": null
             },
             {
+              "title": "deprecated",
+              "description": "Since version 4.19.0. Please see {@link apisetCredentials setCredentials} and {@link services.subscribe subscribe} for new method of connecting.",
+              "lineNumber": 9
+            },
+            {
               "title": "memberof",
               "description": "api",
-              "lineNumber": 9
+              "lineNumber": 10
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 10,
+              "lineNumber": 11,
               "name": "hmacTokenAuth"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 11,
+              "lineNumber": 12,
               "name": "connect"
             },
             {
               "title": "param",
               "description": "The credentials object.",
-              "lineNumber": 12,
+              "lineNumber": 13,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -12507,7 +11845,7 @@
             {
               "title": "param",
               "description": "The username.",
-              "lineNumber": 13,
+              "lineNumber": 14,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -12517,7 +11855,7 @@
             {
               "title": "param",
               "description": "An HMAC token for the user with the provided user ID.",
-              "lineNumber": 14,
+              "lineNumber": 15,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -12527,7 +11865,7 @@
             {
               "title": "param",
               "description": "The options object for non-credential options.",
-              "lineNumber": 15,
+              "lineNumber": 16,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -12540,7 +11878,7 @@
             {
               "title": "param",
               "description": "Force the oldest connection to log out if too many simultaneous connections.",
-              "lineNumber": 16,
+              "lineNumber": 17,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -12553,7 +11891,7 @@
             {
               "title": "param",
               "description": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
-              "lineNumber": 17,
+              "lineNumber": 18,
               "type": {
                 "type": "OptionalType",
                 "expression": {
@@ -12566,27 +11904,27 @@
             {
               "title": "example",
               "description": "const hmacToken = HmacSHA1Algorithm({\n  authenticationTokenRequest: {\n    subscriberId: 'alfred',\n    organizationId: 'example.com'\n  }\n}, key)\n\nclient.connect({\n  username: 'alfred@example.com',\n  hmacToken\n}, {\n  forceLogOut: true\n});",
-              "lineNumber": 18
+              "lineNumber": 19
             }
           ],
           "loc": {
             "start": {
-              "line": 85,
+              "line": 88,
               "column": 4
             },
             "end": {
-              "line": 117,
+              "line": 121,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 156,
+                "line": 162,
                 "column": 4
               },
               "end": {
-                "line": 161,
+                "line": 167,
                 "column": 5
               }
             },
@@ -12602,7 +11940,7 @@
             {
               "title": "param",
               "name": "credentials",
-              "lineNumber": 12,
+              "lineNumber": 13,
               "description": {
                 "type": "root",
                 "children": [
@@ -12663,7 +12001,7 @@
                 {
                   "title": "param",
                   "name": "credentials.username",
-                  "lineNumber": 13,
+                  "lineNumber": 14,
                   "description": {
                     "type": "root",
                     "children": [
@@ -12724,7 +12062,7 @@
                 {
                   "title": "param",
                   "name": "credentials.hmacToken",
-                  "lineNumber": 14,
+                  "lineNumber": 15,
                   "description": {
                     "type": "root",
                     "children": [
@@ -12787,7 +12125,7 @@
             {
               "title": "param",
               "name": "options",
-              "lineNumber": 15,
+              "lineNumber": 16,
               "description": {
                 "type": "root",
                 "children": [
@@ -12851,7 +12189,7 @@
                 {
                   "title": "param",
                   "name": "options.forceLogOut",
-                  "lineNumber": 16,
+                  "lineNumber": 17,
                   "description": {
                     "type": "root",
                     "children": [
@@ -12915,7 +12253,7 @@
                 {
                   "title": "param",
                   "name": "options.clientCorrelator",
-                  "lineNumber": 17,
+                  "lineNumber": 18,
                   "description": {
                     "type": "root",
                     "children": [
@@ -12985,6 +12323,950 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "deprecated": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Since version 4.19.0. Please see ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#apisetcredentials",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "setCredentials"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " and ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "services.subscribe",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "subscribe"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " for new method of connecting.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 145,
+                        "offset": 144
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 145,
+                    "offset": 144
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 145,
+                "offset": 144
+              }
+            }
+          },
+          "memberof": "api",
+          "kind": "function",
+          "name": "connect",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "api",
+              "kind": "module"
+            },
+            {
+              "name": "connect",
+              "kind": "function"
+            }
+          ],
+          "namespace": "apiconnect"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Connect with user credentials to any backend services that the SDK instance deals with.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 88,
+                        "offset": 87
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 88,
+                    "offset": 87
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 88,
+                "offset": 87
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "deprecated",
+              "description": "Since version 4.19.0. Please see {@link apisetCredentials setCredentials} and {@link services.subscribe subscribe} for new method of connecting.",
+              "lineNumber": 4
+            },
+            {
+              "title": "memberof",
+              "description": "api",
+              "lineNumber": 5
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 6,
+              "name": "userCredentialsAuth"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 7,
+              "name": "connect"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username including the application's domain.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "The user's password.",
+              "lineNumber": 10,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.password"
+            },
+            {
+              "title": "param",
+              "description": "The user's authorization name.",
+              "lineNumber": 11,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "credentials.authname"
+            },
+            {
+              "title": "param",
+              "description": "The options object for non-credential options.",
+              "lineNumber": 12,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Object"
+                }
+              },
+              "name": "options"
+            },
+            {
+              "title": "param",
+              "description": "Force the oldest connection to log out if too many simultaneous connections. Link only.",
+              "lineNumber": 13,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "boolean"
+                }
+              },
+              "name": "options.forceLogOut"
+            },
+            {
+              "title": "param",
+              "description": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
+              "lineNumber": 14,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "options.clientCorrelator"
+            },
+            {
+              "title": "example",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n}, {\n  forceLogOut: true\n});",
+              "lineNumber": 15
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 4
+            },
+            "end": {
+              "line": 42,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 162,
+                "column": 4
+              },
+              "end": {
+                "line": 167,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n}, {\n  forceLogOut: true\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 8,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username including the application's domain.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 49,
+                                "offset": 48
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 49,
+                            "offset": 48
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 49,
+                        "offset": 48
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.password",
+                  "lineNumber": 10,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's password.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 21,
+                                "offset": 20
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 21,
+                            "offset": 20
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 21,
+                        "offset": 20
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.authname",
+                  "lineNumber": 11,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's authorization name.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 31,
+                                "offset": 30
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 31,
+                            "offset": 30
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 31,
+                        "offset": 30
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "title": "param",
+              "name": "options",
+              "lineNumber": 12,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The options object for non-credential options.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 47,
+                            "offset": 46
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 47,
+                        "offset": 46
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 47,
+                    "offset": 46
+                  }
+                }
+              },
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Object"
+                }
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "options.forceLogOut",
+                  "lineNumber": 13,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Force the oldest connection to log out if too many simultaneous connections. Link only.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 88,
+                                "offset": 87
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 88,
+                            "offset": 87
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 88,
+                        "offset": 87
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "boolean"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "options.clientCorrelator",
+                  "lineNumber": 14,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 127,
+                                "offset": 126
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 127,
+                            "offset": 126
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 127,
+                        "offset": 126
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "deprecated": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Since version 4.19.0. Please see ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#apisetcredentials",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "setCredentials"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " and ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "services.subscribe",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "subscribe"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " for new method of connecting.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 145,
+                        "offset": 144
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 145,
+                    "offset": 144
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 145,
+                "offset": 144
+              }
+            }
+          },
           "memberof": "api",
           "kind": "function",
           "name": "connect",
@@ -13068,53 +13350,58 @@
               "type": null
             },
             {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 4,
-              "name": "userCredentialsAuth"
+              "title": "deprecated",
+              "description": "Since version 4.19.0. Please see {@link services.unsubscribe unsubscribe} for new method of disconnecting.",
+              "lineNumber": 4
             },
             {
               "title": "requires",
               "description": null,
               "lineNumber": 5,
-              "name": "userCredentialsDAKAuth"
+              "name": "userCredentialsAuth"
             },
             {
               "title": "requires",
               "description": null,
               "lineNumber": 6,
+              "name": "userCredentialsDAKAuth"
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 7,
               "name": "accessTokenAuth"
             },
             {
               "title": "memberof",
               "description": "api",
-              "lineNumber": 7
+              "lineNumber": 8
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 8,
+              "lineNumber": 9,
               "name": "disconnect"
             }
           ],
           "loc": {
             "start": {
-              "line": 163,
+              "line": 169,
               "column": 4
             },
             "end": {
-              "line": 172,
+              "line": 179,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 173,
+                "line": 180,
                 "column": 4
               },
               "end": {
-                "line": 176,
+                "line": 183,
                 "column": 5
               }
             },
@@ -13129,6 +13416,100 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "deprecated": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Since version 4.19.0. Please see ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "services.unsubscribe",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "unsubscribe"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " for new method of disconnecting.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 107,
+                        "offset": 106
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 107,
+                    "offset": 106
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 107,
+                "offset": 106
+              }
+            }
+          },
           "memberof": "api",
           "kind": "function",
           "name": "disconnect",
@@ -13256,22 +13637,22 @@
           ],
           "loc": {
             "start": {
-              "line": 214,
+              "line": 221,
               "column": 4
             },
             "end": {
-              "line": 227,
+              "line": 234,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 228,
+                "line": 235,
                 "column": 4
               },
               "end": {
-                "line": 231,
+                "line": 238,
                 "column": 5
               }
             },
@@ -13486,22 +13867,22 @@
           ],
           "loc": {
             "start": {
-              "line": 233,
+              "line": 240,
               "column": 4
             },
             "end": {
-              "line": 243,
+              "line": 250,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 244,
+                "line": 251,
                 "column": 4
               },
               "end": {
-                "line": 247,
+                "line": 254,
                 "column": 5
               }
             },
@@ -13854,22 +14235,22 @@
           ],
           "loc": {
             "start": {
-              "line": 249,
+              "line": 256,
               "column": 4
             },
             "end": {
-              "line": 262,
+              "line": 269,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 263,
+                "line": 270,
                 "column": 4
               },
               "end": {
-                "line": 272,
+                "line": 279,
                 "column": 5
               }
             },
@@ -14350,22 +14731,22 @@
           ],
           "loc": {
             "start": {
-              "line": 274,
+              "line": 281,
               "column": 4
             },
             "end": {
-              "line": 282,
+              "line": 289,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 283,
+                "line": 290,
                 "column": 4
               },
               "end": {
-                "line": 286,
+                "line": 293,
                 "column": 5
               }
             },
@@ -14566,22 +14947,22 @@
           ],
           "loc": {
             "start": {
-              "line": 288,
+              "line": 295,
               "column": 4
             },
             "end": {
-              "line": 297,
+              "line": 304,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 298,
+                "line": 305,
                 "column": 4
               },
               "end": {
-                "line": 298,
+                "line": 305,
                 "column": 42
               }
             },
@@ -14894,22 +15275,22 @@
           ],
           "loc": {
             "start": {
-              "line": 300,
+              "line": 307,
               "column": 4
             },
             "end": {
-              "line": 308,
+              "line": 315,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 309,
+                "line": 316,
                 "column": 4
               },
               "end": {
-                "line": 309,
+                "line": 316,
                 "column": 41
               }
             },
@@ -15195,22 +15576,22 @@
           ],
           "loc": {
             "start": {
-              "line": 341,
+              "line": 348,
               "column": 4
             },
             "end": {
-              "line": 358,
+              "line": 365,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 422,
+                "line": 429,
                 "column": 4
               },
               "end": {
-                "line": 436,
+                "line": 443,
                 "column": 5
               }
             },
@@ -15791,22 +16172,22 @@
           ],
           "loc": {
             "start": {
-              "line": 359,
+              "line": 366,
               "column": 4
             },
             "end": {
-              "line": 386,
+              "line": 393,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 422,
+                "line": 429,
                 "column": 4
               },
               "end": {
-                "line": 436,
+                "line": 443,
                 "column": 5
               }
             },
@@ -45013,6 +45394,324 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "A LogHandler can be used to customize how the SDK should log information. By\n   default, the SDK will log information to the console, but a LogHandler can\n   be configured to change this behaviour.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 43,
+                        "offset": 197
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 43,
+                    "offset": 197
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A LogHandler can be provided to the SDK as part of its configuration (see\n   ",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1,
+                        "offset": 199
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 4,
+                        "offset": 276
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#configconfiglogs",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "config.logs"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 4,
+                        "offset": 276
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 41,
+                        "offset": 313
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "). The SDK will then provide this\n   function with the logged information.",
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 41,
+                        "offset": 313
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 41,
+                        "offset": 387
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1,
+                    "offset": 199
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 41,
+                    "offset": 387
+                  },
+                  "indent": [
+                    1,
+                    1
+                  ]
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 41,
+                "offset": 387
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 9,
+              "type": null
+            },
+            {
+              "title": "static",
+              "description": null,
+              "lineNumber": 10
+            },
+            {
+              "title": "typedef",
+              "description": null,
+              "lineNumber": 11,
+              "type": {
+                "type": "NameExpression",
+                "name": "Function"
+              },
+              "name": "LogHandler"
+            },
+            {
+              "title": "memberof",
+              "description": "logger",
+              "lineNumber": 12
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 13,
+              "name": "logs"
+            },
+            {
+              "title": "param",
+              "description": "The LogEntry to be logged.",
+              "lineNumber": 14,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "LogEntry"
+            },
+            {
+              "title": "example",
+              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)",
+              "lineNumber": 15
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 54,
+              "column": 0
+            },
+            "end": {
+              "line": 93,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 94,
+                "column": 0
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/docs.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "LogEntry",
+              "lineNumber": 14,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The LogEntry to be logged.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 27,
+                            "offset": 26
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 27,
+                        "offset": 26
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 27,
+                    "offset": 26
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              }
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "scope": "static",
+          "kind": "typedef",
+          "name": "LogHandler",
+          "type": {
+            "type": "NameExpression",
+            "name": "Function"
+          },
+          "memberof": "logger",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "logger",
+              "kind": "namespace"
+            },
+            {
+              "name": "LogHandler",
+              "kind": "typedef",
+              "scope": "static"
+            }
+          ],
+          "namespace": "logger.LogHandler"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "A LogEntry object is the data that the SDK compiles when information is\n   logged. It contains both the logged information and meta-info about when\n   and who logged it.",
                     "position": {
                       "start": {
@@ -45957,324 +46656,6 @@
             }
           ],
           "namespace": "logger.LogEntry"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "A LogHandler can be used to customize how the SDK should log information. By\n   default, the SDK will log information to the console, but a LogHandler can\n   be configured to change this behaviour.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 43,
-                        "offset": 197
-                      },
-                      "indent": [
-                        1,
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 43,
-                    "offset": 197
-                  },
-                  "indent": [
-                    1,
-                    1
-                  ]
-                }
-              },
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "A LogHandler can be provided to the SDK as part of its configuration (see\n   ",
-                    "position": {
-                      "start": {
-                        "line": 5,
-                        "column": 1,
-                        "offset": 199
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 4,
-                        "offset": 276
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#configconfiglogs",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "config.logs"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 6,
-                        "column": 4,
-                        "offset": 276
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 41,
-                        "offset": 313
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": "). The SDK will then provide this\n   function with the logged information.",
-                    "position": {
-                      "start": {
-                        "line": 6,
-                        "column": 41,
-                        "offset": 313
-                      },
-                      "end": {
-                        "line": 7,
-                        "column": 41,
-                        "offset": 387
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 5,
-                    "column": 1,
-                    "offset": 199
-                  },
-                  "end": {
-                    "line": 7,
-                    "column": 41,
-                    "offset": 387
-                  },
-                  "indent": [
-                    1,
-                    1
-                  ]
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 7,
-                "column": 41,
-                "offset": 387
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 9,
-              "type": null
-            },
-            {
-              "title": "static",
-              "description": null,
-              "lineNumber": 10
-            },
-            {
-              "title": "typedef",
-              "description": null,
-              "lineNumber": 11,
-              "type": {
-                "type": "NameExpression",
-                "name": "Function"
-              },
-              "name": "LogHandler"
-            },
-            {
-              "title": "memberof",
-              "description": "logger",
-              "lineNumber": 12
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 13,
-              "name": "logs"
-            },
-            {
-              "title": "param",
-              "description": "The LogEntry to be logged.",
-              "lineNumber": 14,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "LogEntry"
-            },
-            {
-              "title": "example",
-              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)",
-              "lineNumber": 15
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 54,
-              "column": 0
-            },
-            "end": {
-              "line": 93,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 1,
-                "column": 0
-              },
-              "end": {
-                "line": 94,
-                "column": 0
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/logs/docs.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "// Define a custom function to handle logs.\nfunction logHandler (logEntry) {\n  // Compile the meta info of the log for a prefix.\n  const { timestamp, level, target } = logEntry\n  let { method } = logEntry\n  const logInfo = `${timestamp} - ${target.type} - ${level}`\n\n  // Assume that the first message parameter is a string.\n  const [log, ...extra] = logEntry.messages\n\n  // For the timer methods, don't actually use the console methods.\n  //    The Logger already did the timing, so simply log out the info.\n  if (['time', 'timeLog', 'timeEnd'].includes(method)) {\n    method = 'debug'\n  }\n\n  console[method](`${logInfo} - ${log}`, ...extra)\n}\n\n// Provide the LogHandler as part of the SDK configurations.\nconst configs = { ... }\nconfigs.logs.handler = logHandler\nconst client = create(configs)"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "LogEntry",
-              "lineNumber": 14,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The LogEntry to be logged.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 27,
-                            "offset": 26
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 27,
-                        "offset": 26
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 27,
-                    "offset": 26
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              }
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "scope": "static",
-          "kind": "typedef",
-          "name": "LogHandler",
-          "type": {
-            "type": "NameExpression",
-            "name": "Function"
-          },
-          "memberof": "logger",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "logger",
-              "kind": "namespace"
-            },
-            {
-              "name": "LogHandler",
-              "kind": "typedef",
-              "scope": "static"
-            }
-          ],
-          "namespace": "logger.LogHandler"
         }
       ]
     },
