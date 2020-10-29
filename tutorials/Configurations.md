@@ -25,20 +25,16 @@ const kandy = create({
     serverProvidedTurnCredentials: true,
     iceserver:[
         {
-            url: '$KANDYTURN1$',
-            credentials: ''
+            url: '$KANDYTURN1$'
         },
         {
-            url: '$KANDYTURN2$',
-            credentials: ''
+            url: '$KANDYTURN2$'
         },
         {
-            url: '$KANDYSTUN1$',
-            credentials: ''
+            url: '$KANDYSTUN1$'
         },
         {
-            url: '$KANDYSTUN2$',
-            credentials: ''
+            url: '$KANDYSTUN2$'
         }
     ]
     },
@@ -110,20 +106,16 @@ call: {
     serverProvidedTurnCredentials: true,
     iceserver:[
         {
-            url: '$KANDYTURN1$',
-            credentials: ''
+            url: '$KANDYTURN1$'
         },
         {
-            url: '$KANDYTURN2$',
-            credentials: ''
+            url: '$KANDYTURN2$'
         },
         {
-            url: '$KANDYSTUN1$',
-            credentials: ''
+            url: '$KANDYSTUN1$'
         },
         {
-            url: '$KANDYSTUN2$',
-            credentials: ''
+            url: '$KANDYSTUN2$'
         }
     ]
 }
