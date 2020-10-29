@@ -11584,6 +11584,814 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "Connect with user credentials to any backend services that the SDK instance deals with.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 88,
+                        "offset": 87
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 88,
+                    "offset": 87
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 88,
+                "offset": 87
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "deprecated",
+              "description": "Since version 4.19.0. Please see {@link apisetCredentials setCredentials} and {@link services.subscribe subscribe} for new method of connecting.",
+              "lineNumber": 4
+            },
+            {
+              "title": "memberof",
+              "description": "api",
+              "lineNumber": 5
+            },
+            {
+              "title": "requires",
+              "description": null,
+              "lineNumber": 6,
+              "name": "userCredentialsAuth"
+            },
+            {
+              "title": "method",
+              "description": null,
+              "lineNumber": 7,
+              "name": "connect"
+            },
+            {
+              "title": "param",
+              "description": "The credentials object.",
+              "lineNumber": 8,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "credentials"
+            },
+            {
+              "title": "param",
+              "description": "The username including the application's domain.",
+              "lineNumber": 9,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.username"
+            },
+            {
+              "title": "param",
+              "description": "The user's password.",
+              "lineNumber": 10,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "credentials.password"
+            },
+            {
+              "title": "param",
+              "description": "The user's authorization name.",
+              "lineNumber": 11,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "credentials.authname"
+            },
+            {
+              "title": "param",
+              "description": "The options object for non-credential options.",
+              "lineNumber": 12,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Object"
+                }
+              },
+              "name": "options"
+            },
+            {
+              "title": "param",
+              "description": "Force the oldest connection to log out if too many simultaneous connections. Link only.",
+              "lineNumber": 13,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "boolean"
+                }
+              },
+              "name": "options.forceLogOut"
+            },
+            {
+              "title": "param",
+              "description": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
+              "lineNumber": 14,
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              },
+              "name": "options.clientCorrelator"
+            },
+            {
+              "title": "example",
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n}, {\n  forceLogOut: true\n});",
+              "lineNumber": 15
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 4
+            },
+            "end": {
+              "line": 42,
+              "column": 7
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 162,
+                "column": 4
+              },
+              "end": {
+                "line": 167,
+                "column": 5
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
+          },
+          "augments": [],
+          "examples": [
+            {
+              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n}, {\n  forceLogOut: true\n});"
+            }
+          ],
+          "params": [
+            {
+              "title": "param",
+              "name": "credentials",
+              "lineNumber": 8,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The credentials object.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 24,
+                            "offset": 23
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 24,
+                        "offset": 23
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 24,
+                    "offset": 23
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "credentials.username",
+                  "lineNumber": 9,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The username including the application's domain.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 49,
+                                "offset": 48
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 49,
+                            "offset": 48
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 49,
+                        "offset": 48
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.password",
+                  "lineNumber": 10,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's password.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 21,
+                                "offset": 20
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 21,
+                            "offset": 20
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 21,
+                        "offset": 20
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "credentials.authname",
+                  "lineNumber": 11,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "The user's authorization name.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 31,
+                                "offset": 30
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 31,
+                            "offset": 30
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 31,
+                        "offset": 30
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "title": "param",
+              "name": "options",
+              "lineNumber": 12,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The options object for non-credential options.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 47,
+                            "offset": 46
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 47,
+                        "offset": 46
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 47,
+                    "offset": 46
+                  }
+                }
+              },
+              "type": {
+                "type": "OptionalType",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Object"
+                }
+              },
+              "properties": [
+                {
+                  "title": "param",
+                  "name": "options.forceLogOut",
+                  "lineNumber": 13,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Force the oldest connection to log out if too many simultaneous connections. Link only.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 88,
+                                "offset": 87
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 88,
+                            "offset": 87
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 88,
+                        "offset": 87
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "boolean"
+                    }
+                  }
+                },
+                {
+                  "title": "param",
+                  "name": "options.clientCorrelator",
+                  "lineNumber": 14,
+                  "description": {
+                    "type": "root",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1,
+                                "offset": 0
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 127,
+                                "offset": 126
+                              },
+                              "indent": []
+                            }
+                          }
+                        ],
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 127,
+                            "offset": 126
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 127,
+                        "offset": 126
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "OptionalType",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "properties": [],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "deprecated": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Since version 4.19.0. Please see ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#apisetcredentials",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "setCredentials"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 34,
+                        "offset": 33
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " and ",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 74,
+                        "offset": 73
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "services.subscribe",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "subscribe"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 79,
+                        "offset": 78
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " for new method of connecting.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 115,
+                        "offset": 114
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 145,
+                        "offset": 144
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 145,
+                    "offset": 144
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 145,
+                "offset": 144
+              }
+            }
+          },
+          "memberof": "api",
+          "kind": "function",
+          "name": "connect",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "api",
+              "kind": "module"
+            },
+            {
+              "name": "connect",
+              "kind": "function"
+            }
+          ],
+          "namespace": "apiconnect"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "Connect by providing a username and HMAC token. This connects to any backend services that the SDK instance deals with.\nAn HMAC token is used to verify a user via the user's authorization within an organization.\nHMAC tokens are generated by using the HmacSHA1 algorithm and a key on a data object\ncontaining an ",
                     "position": {
                       "start": {
@@ -12254,814 +13062,6 @@
                   "title": "param",
                   "name": "options.clientCorrelator",
                   "lineNumber": 18,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 127,
-                                "offset": 126
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 127,
-                            "offset": 126
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 127,
-                        "offset": 126
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
-                  }
-                }
-              ]
-            }
-          ],
-          "properties": [],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "deprecated": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "Since version 4.19.0. Please see ",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 34,
-                        "offset": 33
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "#apisetcredentials",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "setCredentials"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 34,
-                        "offset": 33
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 74,
-                        "offset": 73
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " and ",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 74,
-                        "offset": 73
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 79,
-                        "offset": 78
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "link",
-                    "url": "services.subscribe",
-                    "title": null,
-                    "jsdoc": true,
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "subscribe"
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 79,
-                        "offset": 78
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 115,
-                        "offset": 114
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " for new method of connecting.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 115,
-                        "offset": 114
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 145,
-                        "offset": 144
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 145,
-                    "offset": 144
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 145,
-                "offset": 144
-              }
-            }
-          },
-          "memberof": "api",
-          "kind": "function",
-          "name": "connect",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "api",
-              "kind": "module"
-            },
-            {
-              "name": "connect",
-              "kind": "function"
-            }
-          ],
-          "namespace": "apiconnect"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "Connect with user credentials to any backend services that the SDK instance deals with.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 88,
-                        "offset": 87
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 88,
-                    "offset": 87
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 88,
-                "offset": 87
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "deprecated",
-              "description": "Since version 4.19.0. Please see {@link apisetCredentials setCredentials} and {@link services.subscribe subscribe} for new method of connecting.",
-              "lineNumber": 4
-            },
-            {
-              "title": "memberof",
-              "description": "api",
-              "lineNumber": 5
-            },
-            {
-              "title": "requires",
-              "description": null,
-              "lineNumber": 6,
-              "name": "userCredentialsAuth"
-            },
-            {
-              "title": "method",
-              "description": null,
-              "lineNumber": 7,
-              "name": "connect"
-            },
-            {
-              "title": "param",
-              "description": "The credentials object.",
-              "lineNumber": 8,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "credentials"
-            },
-            {
-              "title": "param",
-              "description": "The username including the application's domain.",
-              "lineNumber": 9,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.username"
-            },
-            {
-              "title": "param",
-              "description": "The user's password.",
-              "lineNumber": 10,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "credentials.password"
-            },
-            {
-              "title": "param",
-              "description": "The user's authorization name.",
-              "lineNumber": 11,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "credentials.authname"
-            },
-            {
-              "title": "param",
-              "description": "The options object for non-credential options.",
-              "lineNumber": 12,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Object"
-                }
-              },
-              "name": "options"
-            },
-            {
-              "title": "param",
-              "description": "Force the oldest connection to log out if too many simultaneous connections. Link only.",
-              "lineNumber": 13,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "boolean"
-                }
-              },
-              "name": "options.forceLogOut"
-            },
-            {
-              "title": "param",
-              "description": "Unique ID for the client. This is used by the platform to identify an instance of the application used by the specific device.",
-              "lineNumber": 14,
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "string"
-                }
-              },
-              "name": "options.clientCorrelator"
-            },
-            {
-              "title": "example",
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n}, {\n  forceLogOut: true\n});",
-              "lineNumber": 15
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 19,
-              "column": 4
-            },
-            "end": {
-              "line": 42,
-              "column": 7
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 162,
-                "column": 4
-              },
-              "end": {
-                "line": 167,
-                "column": 5
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/packages/kandy/src/auth/interface/api.js"
-          },
-          "augments": [],
-          "examples": [
-            {
-              "description": "client.connect({\n  username: 'alfred@example.com',\n  password: '********'\n  authname: '********'\n}, {\n  forceLogOut: true\n});"
-            }
-          ],
-          "params": [
-            {
-              "title": "param",
-              "name": "credentials",
-              "lineNumber": 8,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The credentials object.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 24,
-                            "offset": 23
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 24,
-                        "offset": 23
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 24,
-                    "offset": 23
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "credentials.username",
-                  "lineNumber": 9,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The username including the application's domain.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 49,
-                                "offset": 48
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 49,
-                            "offset": 48
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 49,
-                        "offset": 48
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.password",
-                  "lineNumber": 10,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's password.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 21,
-                                "offset": 20
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 21,
-                            "offset": 20
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 21,
-                        "offset": 20
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "credentials.authname",
-                  "lineNumber": 11,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "The user's authorization name.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 31,
-                                "offset": 30
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 31,
-                            "offset": 30
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 31,
-                        "offset": 30
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "string"
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "title": "param",
-              "name": "options",
-              "lineNumber": 12,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The options object for non-credential options.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 47,
-                            "offset": 46
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 47,
-                        "offset": 46
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 47,
-                    "offset": 46
-                  }
-                }
-              },
-              "type": {
-                "type": "OptionalType",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Object"
-                }
-              },
-              "properties": [
-                {
-                  "title": "param",
-                  "name": "options.forceLogOut",
-                  "lineNumber": 13,
-                  "description": {
-                    "type": "root",
-                    "children": [
-                      {
-                        "type": "paragraph",
-                        "children": [
-                          {
-                            "type": "text",
-                            "value": "Force the oldest connection to log out if too many simultaneous connections. Link only.",
-                            "position": {
-                              "start": {
-                                "line": 1,
-                                "column": 1,
-                                "offset": 0
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 88,
-                                "offset": 87
-                              },
-                              "indent": []
-                            }
-                          }
-                        ],
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 88,
-                            "offset": 87
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 88,
-                        "offset": 87
-                      }
-                    }
-                  },
-                  "type": {
-                    "type": "OptionalType",
-                    "expression": {
-                      "type": "NameExpression",
-                      "name": "boolean"
-                    }
-                  }
-                },
-                {
-                  "title": "param",
-                  "name": "options.clientCorrelator",
-                  "lineNumber": 14,
                   "description": {
                     "type": "root",
                     "children": [
@@ -56425,6 +56425,312 @@
                 "children": [
                   {
                     "type": "text",
+                    "value": "An object that represents a selector to match codecs of an RTP map in SDP.",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 75,
+                        "offset": 74
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 75,
+                    "offset": 74
+                  },
+                  "indent": []
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 75,
+                "offset": 74
+              }
+            }
+          },
+          "tags": [
+            {
+              "title": "public",
+              "description": null,
+              "lineNumber": 3,
+              "type": null
+            },
+            {
+              "title": "static",
+              "description": null,
+              "lineNumber": 4
+            },
+            {
+              "title": "typedef",
+              "description": null,
+              "lineNumber": 5,
+              "type": {
+                "type": "NameExpression",
+                "name": "Object"
+              },
+              "name": "CodecSelector"
+            },
+            {
+              "title": "memberof",
+              "description": "sdpHandlers",
+              "lineNumber": 6
+            },
+            {
+              "title": "property",
+              "description": "The name of the codec.",
+              "lineNumber": 7,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "name"
+            },
+            {
+              "title": "property",
+              "description": "An array of strings to match against the \"a=fmtp\" format parameters for the corresponding codec.\n                                     All of the elements in the array must be contained in the \"a=fmtp\" attribute in order to be a match.",
+              "lineNumber": 8,
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              },
+              "name": "fmtpParams"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 65,
+              "column": 0
+            },
+            "end": {
+              "line": 75,
+              "column": 3
+            }
+          },
+          "context": {
+            "loc": {
+              "start": {
+                "line": 121,
+                "column": 0
+              },
+              "end": {
+                "line": 121,
+                "column": 58
+              }
+            },
+            "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
+          },
+          "augments": [],
+          "examples": [],
+          "params": [],
+          "properties": [
+            {
+              "title": "property",
+              "name": "name",
+              "lineNumber": 7,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "The name of the codec.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 23,
+                            "offset": 22
+                          },
+                          "indent": []
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 23,
+                        "offset": 22
+                      },
+                      "indent": []
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 23,
+                    "offset": 22
+                  }
+                }
+              },
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            },
+            {
+              "title": "property",
+              "name": "fmtpParams",
+              "lineNumber": 8,
+              "description": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "An array of strings to match against the \"a=fmtp\" format parameters for the corresponding codec.\n                                     All of the elements in the array must be contained in the \"a=fmtp\" attribute in order to be a match.",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1,
+                            "offset": 0
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 138,
+                            "offset": 234
+                          },
+                          "indent": [
+                            1
+                          ]
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1,
+                        "offset": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 138,
+                        "offset": 234
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1,
+                    "offset": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 138,
+                    "offset": 234
+                  }
+                }
+              },
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "returns": [],
+          "sees": [],
+          "throws": [],
+          "todos": [],
+          "access": "public",
+          "scope": "static",
+          "kind": "typedef",
+          "name": "CodecSelector",
+          "type": {
+            "type": "NameExpression",
+            "name": "Object"
+          },
+          "memberof": "sdpHandlers",
+          "members": {
+            "global": [],
+            "inner": [],
+            "instance": [],
+            "events": [],
+            "static": []
+          },
+          "path": [
+            {
+              "name": "sdpHandlers",
+              "kind": "namespace"
+            },
+            {
+              "name": "CodecSelector",
+              "kind": "typedef",
+              "scope": "static"
+            }
+          ],
+          "namespace": "sdpHandlers.CodecSelector"
+        },
+        {
+          "description": {
+            "type": "root",
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
                     "value": "This function creates an SDP handler that will remove codecs matching the selectors specified for SDP offers and answers.",
                     "position": {
                       "start": {
@@ -56907,312 +57213,6 @@
             }
           ],
           "namespace": "sdpHandlerscreateCodecRemover"
-        },
-        {
-          "description": {
-            "type": "root",
-            "children": [
-              {
-                "type": "paragraph",
-                "children": [
-                  {
-                    "type": "text",
-                    "value": "An object that represents a selector to match codecs of an RTP map in SDP.",
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 75,
-                        "offset": 74
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 75,
-                    "offset": 74
-                  },
-                  "indent": []
-                }
-              }
-            ],
-            "position": {
-              "start": {
-                "line": 1,
-                "column": 1,
-                "offset": 0
-              },
-              "end": {
-                "line": 1,
-                "column": 75,
-                "offset": 74
-              }
-            }
-          },
-          "tags": [
-            {
-              "title": "public",
-              "description": null,
-              "lineNumber": 3,
-              "type": null
-            },
-            {
-              "title": "static",
-              "description": null,
-              "lineNumber": 4
-            },
-            {
-              "title": "typedef",
-              "description": null,
-              "lineNumber": 5,
-              "type": {
-                "type": "NameExpression",
-                "name": "Object"
-              },
-              "name": "CodecSelector"
-            },
-            {
-              "title": "memberof",
-              "description": "sdpHandlers",
-              "lineNumber": 6
-            },
-            {
-              "title": "property",
-              "description": "The name of the codec.",
-              "lineNumber": 7,
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              },
-              "name": "name"
-            },
-            {
-              "title": "property",
-              "description": "An array of strings to match against the \"a=fmtp\" format parameters for the corresponding codec.\n                                     All of the elements in the array must be contained in the \"a=fmtp\" attribute in order to be a match.",
-              "lineNumber": 8,
-              "type": {
-                "type": "TypeApplication",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Array"
-                },
-                "applications": [
-                  {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                ]
-              },
-              "name": "fmtpParams"
-            }
-          ],
-          "loc": {
-            "start": {
-              "line": 65,
-              "column": 0
-            },
-            "end": {
-              "line": 75,
-              "column": 3
-            }
-          },
-          "context": {
-            "loc": {
-              "start": {
-                "line": 121,
-                "column": 0
-              },
-              "end": {
-                "line": 121,
-                "column": 58
-              }
-            },
-            "file": "/var/jenkins_home/workspace/Kandy.js_beta/builds/core/index.js"
-          },
-          "augments": [],
-          "examples": [],
-          "params": [],
-          "properties": [
-            {
-              "title": "property",
-              "name": "name",
-              "lineNumber": 7,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "The name of the codec.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 23,
-                            "offset": 22
-                          },
-                          "indent": []
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 23,
-                        "offset": 22
-                      },
-                      "indent": []
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 23,
-                    "offset": 22
-                  }
-                }
-              },
-              "type": {
-                "type": "NameExpression",
-                "name": "string"
-              }
-            },
-            {
-              "title": "property",
-              "name": "fmtpParams",
-              "lineNumber": 8,
-              "description": {
-                "type": "root",
-                "children": [
-                  {
-                    "type": "paragraph",
-                    "children": [
-                      {
-                        "type": "text",
-                        "value": "An array of strings to match against the \"a=fmtp\" format parameters for the corresponding codec.\n                                     All of the elements in the array must be contained in the \"a=fmtp\" attribute in order to be a match.",
-                        "position": {
-                          "start": {
-                            "line": 1,
-                            "column": 1,
-                            "offset": 0
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 138,
-                            "offset": 234
-                          },
-                          "indent": [
-                            1
-                          ]
-                        }
-                      }
-                    ],
-                    "position": {
-                      "start": {
-                        "line": 1,
-                        "column": 1,
-                        "offset": 0
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 138,
-                        "offset": 234
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  }
-                ],
-                "position": {
-                  "start": {
-                    "line": 1,
-                    "column": 1,
-                    "offset": 0
-                  },
-                  "end": {
-                    "line": 2,
-                    "column": 138,
-                    "offset": 234
-                  }
-                }
-              },
-              "type": {
-                "type": "TypeApplication",
-                "expression": {
-                  "type": "NameExpression",
-                  "name": "Array"
-                },
-                "applications": [
-                  {
-                    "type": "NameExpression",
-                    "name": "string"
-                  }
-                ]
-              }
-            }
-          ],
-          "returns": [],
-          "sees": [],
-          "throws": [],
-          "todos": [],
-          "access": "public",
-          "scope": "static",
-          "kind": "typedef",
-          "name": "CodecSelector",
-          "type": {
-            "type": "NameExpression",
-            "name": "Object"
-          },
-          "memberof": "sdpHandlers",
-          "members": {
-            "global": [],
-            "inner": [],
-            "instance": [],
-            "events": [],
-            "static": []
-          },
-          "path": [
-            {
-              "name": "sdpHandlers",
-              "kind": "namespace"
-            },
-            {
-              "name": "CodecSelector",
-              "kind": "typedef",
-              "scope": "static"
-            }
-          ],
-          "namespace": "sdpHandlers.CodecSelector"
         }
       ]
     },
