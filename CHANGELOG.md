@@ -5,6 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.21.0 - 2020-10-30
+
+### Changed
+
+- Action logs are now disabled by default. The client can provide either a boolean or an object with action log configuration details. If `logActions` is set to `true`, the default settings for action logs will be used. See [Config documentation](https://kandy-io.github.io/kandy-link-js-sdk-3.x/docs/#config). `KAA-2504`
+
 ## 3.20.0 - 2020-10-02
 
 ### Added
