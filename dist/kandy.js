@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.22.0-beta.578
+ * Version: 3.22.0-beta.579
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -61291,7 +61291,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.22.0-beta.578';
+  return '3.22.0-beta.579';
 }
 
 /***/ }),
@@ -67707,7 +67707,9 @@ function api({ dispatch, getState }) {
   const mwiApi = {
     /**
      * Attempts to retrieve voicemail information from the server.
-     * A `voicemail:new` event is emitted upon completion.
+     *
+     * A {@link voicemail.event:voicemail:change voicemail:change} event is
+     *    emitted upon completion.
      *
      * @public
      * @requires voicemail
@@ -67753,6 +67755,7 @@ Object.defineProperty(exports, "__esModule", {
  *
  * @requires voicemail
  * @public
+ * @static
  * @memberof voicemail
  * @event voicemail:change
  * @param {Object} params An object containing voicemail info.

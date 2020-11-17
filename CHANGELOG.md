@@ -7,6 +7,11 @@ Kandy.js change log.
 
 ## 3.22.0 - beta
 
+### Fixed
+
+- Minor documentation fixes.
+  - Fix the Voicemail `fetch` API description to mention the correct event emitted. `KAA-2569`
+
 ## 3.21.0 - 2020-10-30
 
 ### Changed
