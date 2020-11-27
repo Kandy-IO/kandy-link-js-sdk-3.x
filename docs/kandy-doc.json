@@ -64724,19 +64724,24 @@
               "type": null
             },
             {
+              "title": "static",
+              "description": null,
+              "lineNumber": 5
+            },
+            {
               "title": "memberof",
               "description": "voicemail",
-              "lineNumber": 5
+              "lineNumber": 6
             },
             {
               "title": "event",
               "description": "voicemail:change",
-              "lineNumber": 6
+              "lineNumber": 7
             },
             {
               "title": "param",
               "description": "An object containing voicemail info.",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -64746,7 +64751,7 @@
             {
               "title": "param",
               "description": "Timestamp of the last time voicemail data was checked.",
-              "lineNumber": 8,
+              "lineNumber": 9,
               "type": {
                 "type": "NameExpression",
                 "name": "number"
@@ -64756,7 +64761,7 @@
             {
               "title": "param",
               "description": "Whether there are new messages.",
-              "lineNumber": 9,
+              "lineNumber": 10,
               "type": {
                 "type": "NameExpression",
                 "name": "boolean"
@@ -64766,7 +64771,7 @@
             {
               "title": "param",
               "description": "The total number of voicemail messages.",
-              "lineNumber": 10,
+              "lineNumber": 11,
               "type": {
                 "type": "NameExpression",
                 "name": "number"
@@ -64776,7 +64781,7 @@
             {
               "title": "param",
               "description": "Number of unheard voicemail messages.",
-              "lineNumber": 11,
+              "lineNumber": 12,
               "type": {
                 "type": "NameExpression",
                 "name": "number"
@@ -64786,7 +64791,7 @@
             {
               "title": "param",
               "description": "Object containing individual counts of new, old, urgent voicemails.",
-              "lineNumber": 12,
+              "lineNumber": 13,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -64796,7 +64801,7 @@
             {
               "title": "param",
               "description": "Object containing individual counts of new, old, urgent faxes.",
-              "lineNumber": 13,
+              "lineNumber": 14,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -64806,7 +64811,7 @@
             {
               "title": "param",
               "description": "Object containing individual counts of new, old, urgent multimedia messages.",
-              "lineNumber": 14,
+              "lineNumber": 15,
               "type": {
                 "type": "NameExpression",
                 "name": "Object"
@@ -64820,18 +64825,18 @@
               "column": 0
             },
             "end": {
-              "line": 17,
+              "line": 18,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 18,
+                "line": 19,
                 "column": 0
               },
               "end": {
-                "line": 18,
+                "line": 19,
                 "column": 44
               }
             },
@@ -64843,7 +64848,7 @@
             {
               "title": "param",
               "name": "params",
-              "lineNumber": 7,
+              "lineNumber": 8,
               "description": {
                 "type": "root",
                 "children": [
@@ -64904,7 +64909,7 @@
                 {
                   "title": "param",
                   "name": "params.lastUpdated",
-                  "lineNumber": 8,
+                  "lineNumber": 9,
                   "description": {
                     "type": "root",
                     "children": [
@@ -64965,7 +64970,7 @@
                 {
                   "title": "param",
                   "name": "params.newMessagesWaiting",
-                  "lineNumber": 9,
+                  "lineNumber": 10,
                   "description": {
                     "type": "root",
                     "children": [
@@ -65026,7 +65031,7 @@
                 {
                   "title": "param",
                   "name": "params.totalVoice",
-                  "lineNumber": 10,
+                  "lineNumber": 11,
                   "description": {
                     "type": "root",
                     "children": [
@@ -65087,7 +65092,7 @@
                 {
                   "title": "param",
                   "name": "params.unheardVoice",
-                  "lineNumber": 11,
+                  "lineNumber": 12,
                   "description": {
                     "type": "root",
                     "children": [
@@ -65148,7 +65153,7 @@
                 {
                   "title": "param",
                   "name": "params.voice",
-                  "lineNumber": 12,
+                  "lineNumber": 13,
                   "description": {
                     "type": "root",
                     "children": [
@@ -65209,7 +65214,7 @@
                 {
                   "title": "param",
                   "name": "params.fax",
-                  "lineNumber": 13,
+                  "lineNumber": 14,
                   "description": {
                     "type": "root",
                     "children": [
@@ -65270,7 +65275,7 @@
                 {
                   "title": "param",
                   "name": "params.multimedia",
-                  "lineNumber": 14,
+                  "lineNumber": 15,
                   "description": {
                     "type": "root",
                     "children": [
@@ -65337,6 +65342,7 @@
           "throws": [],
           "todos": [],
           "access": "public",
+          "scope": "static",
           "memberof": "voicemail",
           "kind": "event",
           "name": "voicemail:change",
@@ -65354,7 +65360,8 @@
             },
             {
               "name": "voicemail:change",
-              "kind": "event"
+              "kind": "event",
+              "scope": "static"
             }
           ],
           "namespace": "voicemail.event:voicemail:change"
@@ -65458,22 +65465,22 @@
           ],
           "loc": {
             "start": {
-              "line": 20,
+              "line": 21,
               "column": 0
             },
             "end": {
-              "line": 29,
+              "line": 30,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 30,
+                "line": 31,
                 "column": 0
               },
               "end": {
-                "line": 30,
+                "line": 31,
                 "column": 42
               }
             },
@@ -65594,7 +65601,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "Attempts to retrieve voicemail information from the server.\nA ",
+                    "value": "Attempts to retrieve voicemail information from the server.",
                     "position": {
                       "start": {
                         "line": 1,
@@ -65602,45 +65609,9 @@
                         "offset": 0
                       },
                       "end": {
-                        "line": 2,
-                        "column": 3,
-                        "offset": 62
-                      },
-                      "indent": [
-                        1
-                      ]
-                    }
-                  },
-                  {
-                    "type": "inlineCode",
-                    "value": "voicemail:new",
-                    "position": {
-                      "start": {
-                        "line": 2,
-                        "column": 3,
-                        "offset": 62
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 18,
-                        "offset": 77
-                      },
-                      "indent": []
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "value": " event is emitted upon completion.",
-                    "position": {
-                      "start": {
-                        "line": 2,
-                        "column": 18,
-                        "offset": 77
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 52,
-                        "offset": 111
+                        "line": 1,
+                        "column": 60,
+                        "offset": 59
                       },
                       "indent": []
                     }
@@ -65653,9 +65624,88 @@
                     "offset": 0
                   },
                   "end": {
-                    "line": 2,
-                    "column": 52,
-                    "offset": 111
+                    "line": 1,
+                    "column": 60,
+                    "offset": 59
+                  },
+                  "indent": []
+                }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A ",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1,
+                        "offset": 61
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 3,
+                        "offset": 63
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "#voicemaileventvoicemailchange",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "voicemail:change"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 3,
+                        "offset": 63
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 60,
+                        "offset": 120
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " event is\n   emitted upon completion.",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 60,
+                        "offset": 120
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 28,
+                        "offset": 157
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1,
+                    "offset": 61
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 28,
+                    "offset": 157
                   },
                   "indent": [
                     1
@@ -65670,9 +65720,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 2,
-                "column": 52,
-                "offset": 111
+                "line": 4,
+                "column": 28,
+                "offset": 157
               }
             }
           },
@@ -65680,24 +65730,24 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 4,
+              "lineNumber": 6,
               "type": null
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 5,
+              "lineNumber": 7,
               "name": "voicemail"
             },
             {
               "title": "memberof",
               "description": "voicemail",
-              "lineNumber": 6
+              "lineNumber": 8
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 7,
+              "lineNumber": 9,
               "name": "fetch"
             }
           ],
@@ -65707,18 +65757,18 @@
               "column": 4
             },
             "end": {
-              "line": 30,
+              "line": 32,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 31,
+                "line": 33,
                 "column": 4
               },
               "end": {
-                "line": 34,
+                "line": 36,
                 "column": 5
               }
             },
@@ -65835,22 +65885,22 @@
           ],
           "loc": {
             "start": {
-              "line": 36,
+              "line": 38,
               "column": 4
             },
             "end": {
-              "line": 43,
+              "line": 45,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 44,
+                "line": 46,
                 "column": 4
               },
               "end": {
-                "line": 47,
+                "line": 49,
                 "column": 5
               }
             },

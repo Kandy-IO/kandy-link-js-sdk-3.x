@@ -2009,7 +2009,9 @@ Voicemail functions are all part of this namespace.
 ### fetch
 
 Attempts to retrieve voicemail information from the server.
-A `voicemail:new` event is emitted upon completion.
+
+A [voicemail:change][56] event is
+   emitted upon completion.
 
 ### get
 
@@ -2124,3 +2126,5 @@ Returns voicemail data from the store.
 [54]: #usereventdirectorychange
 
 [55]: #usergetall
+
+[56]: #voicemaileventvoicemailchange
