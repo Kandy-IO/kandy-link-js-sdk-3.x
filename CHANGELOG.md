@@ -5,6 +5,8 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.24.0 - beta
+
 ## 3.23.0 - 2020-12-21
 
 ## 3.22.0 - 2020-11-27
