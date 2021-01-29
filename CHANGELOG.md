@@ -5,6 +5,13 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.24.0 - 2021-01-29
+
+### Added
+
+- Added explicit warning around the connectivity plugin when using `server` for the `responsibleParty` and a `pingInterval`. `KJS-58`
+  - `pingInterval` is ignored when the server is responsible for pings. This has been made more explicit now.
+
 ## 3.23.0 - 2020-12-21
 
 ## 3.22.0 - 2020-11-27
