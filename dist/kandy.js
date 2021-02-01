@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.24.0-beta.614
+ * Version: 3.25.0-beta.615
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -56051,6 +56051,9 @@ const MAKE_ANONYMOUS_CALL_FINISH = exports.MAKE_ANONYMOUS_CALL_FINISH = callPref
 
 const CALL_INCOMING = exports.CALL_INCOMING = callPrefix + 'INCOMING';
 
+const SEND_RINGING_FEEDBACK = exports.SEND_RINGING_FEEDBACK = callPrefix + 'SEND_RINGING_FEEDBACK';
+const SEND_RINGING_FEEDBACK_FINISH = exports.SEND_RINGING_FEEDBACK_FINISH = callPrefix + 'SEND_RINGING_FEEDBACK_FINISH';
+
 const CALL_RINGING = exports.CALL_RINGING = callPrefix + 'RINGING';
 const SESSION_PROGRESS = exports.SESSION_PROGRESS = callPrefix + 'SESSION_PROGRESS';
 const CALL_CANCELLED = exports.CALL_CANCELLED = callPrefix + 'CANCELLED';
@@ -61316,7 +61319,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.24.0-beta.614';
+  return '3.25.0-beta.615';
 }
 
 /***/ }),
