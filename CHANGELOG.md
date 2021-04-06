@@ -5,18 +5,18 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.27.0 - beta
+
+### Fixed
+
+- Changed how [`destroy`](https://kandy-io.github.io/kandy-link-js-sdk-3.x/docs/#apidestroy) is used to prevent errors when destroying inside an event. `KJS-123`
+
 ## 3.26.0 - 2021-03-26
 
 ### Added
 
 - Added SIP Event capability to receive unsolicited events. `KAA-2600`
 - Added improved documentation for the SIP Events feature. `KAA-2590`
-
-## 3.27.0 - beta
-
-### Fixed
-
-- Changed how [`destroy`](https://kandy-io.github.io/kandy-link-js-sdk-3.x/docs/#apidestroy) is used to prevent errors when destroying inside an event. `KJS-123`
 
 ## 3.25.0 - 2021-02-26
 
