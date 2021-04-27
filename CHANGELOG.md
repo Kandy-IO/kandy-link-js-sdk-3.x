@@ -10,6 +10,7 @@ Kandy.js change log.
 ### Fixed
 
 - Changed how [`destroy`](https://kandy-io.github.io/kandy-link-js-sdk-3.x/docs/#apidestroy) is used to prevent errors when destroying inside an event. `KJS-123`
+- Fixed an issue where minimizing the SDK caused an error. `KJS-141`
 
 ## 3.26.0 - 2021-03-26
 
