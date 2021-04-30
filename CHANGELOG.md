@@ -5,6 +5,13 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.27.0 - 2021-04-30
+
+### Fixed
+
+- Changed how [`destroy`](https://kandy-io.github.io/kandy-link-js-sdk-3.x/docs/#apidestroy) is used to prevent errors when destroying inside an event. `KJS-123`
+- Fixed an issue where minimizing the SDK caused an error. `KJS-141`
+
 ## 3.26.0 - 2021-03-26
 
 ### Added
