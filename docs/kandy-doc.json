@@ -21112,6 +21112,92 @@
                   },
                   "indent": []
                 }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The data is provided in a format that can be used directly with the\n   ",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1,
+                        "offset": 65
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 4,
+                        "offset": 136
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "callHistory.setCache",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "call.history.setCache"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 4,
+                        "offset": 136
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 54,
+                        "offset": 186
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " API. This allows an\n   application to persist the information across SDK instances when the\n   backend environment does not support the CallHistory feature.",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 54,
+                        "offset": 186
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 65,
+                        "offset": 343
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1,
+                    "offset": 65
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 65,
+                    "offset": 343
+                  },
+                  "indent": [
+                    1,
+                    1,
+                    1
+                  ]
+                }
               }
             ],
             "position": {
@@ -21121,9 +21207,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 1,
-                "column": 64,
-                "offset": 63
+                "line": 6,
+                "column": 65,
+                "offset": 343
               }
             }
           },
@@ -21131,30 +21217,30 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 2,
+              "lineNumber": 7,
               "type": null
             },
             {
               "title": "memberof",
               "description": "callHistory",
-              "lineNumber": 3
+              "lineNumber": 8
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 4,
+              "lineNumber": 9,
               "name": "callHistory"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 5,
+              "lineNumber": 10,
               "name": "getCache"
             },
             {
               "title": "returns",
               "description": "A stringified list of call log records from the cache, ordered by latest first.",
-              "lineNumber": 6,
+              "lineNumber": 11,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -21167,18 +21253,18 @@
               "column": 4
             },
             "end": {
-              "line": 97,
+              "line": 102,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 98,
+                "line": 103,
                 "column": 4
               },
               "end": {
-                "line": 101,
+                "line": 106,
                 "column": 5
               }
             },
@@ -21313,6 +21399,92 @@
                   },
                   "indent": []
                 }
+              },
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "The data can be retreived from the ",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1,
+                        "offset": 83
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 36,
+                        "offset": 118
+                      },
+                      "indent": []
+                    }
+                  },
+                  {
+                    "type": "link",
+                    "url": "callHistory.getCache",
+                    "title": null,
+                    "jsdoc": true,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "   call.history.getCache"
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 36,
+                        "offset": 118
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 26,
+                        "offset": 171
+                      },
+                      "indent": [
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": " API. This allows an\n   application to persist the information across SDK instances when the\n   backend environment does not support the CallHistory feature.",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 26,
+                        "offset": 171
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 65,
+                        "offset": 328
+                      },
+                      "indent": [
+                        1,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1,
+                    "offset": 83
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 65,
+                    "offset": 328
+                  },
+                  "indent": [
+                    1,
+                    1,
+                    1
+                  ]
+                }
               }
             ],
             "position": {
@@ -21322,9 +21494,9 @@
                 "offset": 0
               },
               "end": {
-                "line": 1,
-                "column": 82,
-                "offset": 81
+                "line": 6,
+                "column": 65,
+                "offset": 328
               }
             }
           },
@@ -21332,30 +21504,30 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 2,
+              "lineNumber": 7,
               "type": null
             },
             {
               "title": "memberof",
               "description": "callHistory",
-              "lineNumber": 3
+              "lineNumber": 8
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 4,
+              "lineNumber": 9,
               "name": "callHistory"
             },
             {
               "title": "method",
               "description": null,
-              "lineNumber": 5,
+              "lineNumber": 10,
               "name": "setCache"
             },
             {
               "title": "param",
               "description": "The stringified call history data to store in the cache.",
-              "lineNumber": 6,
+              "lineNumber": 11,
               "type": {
                 "type": "NameExpression",
                 "name": "string"
@@ -21365,22 +21537,22 @@
           ],
           "loc": {
             "start": {
-              "line": 103,
+              "line": 108,
               "column": 4
             },
             "end": {
-              "line": 110,
+              "line": 120,
               "column": 7
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 111,
+                "line": 121,
                 "column": 4
               },
               "end": {
-                "line": 114,
+                "line": 124,
                 "column": 5
               }
             },
@@ -21392,7 +21564,7 @@
             {
               "title": "param",
               "name": "data",
-              "lineNumber": 6,
+              "lineNumber": 11,
               "description": {
                 "type": "root",
                 "children": [

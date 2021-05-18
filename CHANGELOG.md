@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.28.0 - beta
 
+### Fixed
+
+- Fixed a CallHistory documentation issue to clarify a usage example for the `getCache` and `setCache` APIs. `KAA-2578`
+
 ## 3.27.0 - 2021-04-30
 
 ### Fixed
