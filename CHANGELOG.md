@@ -5,6 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.28.0 - 2021-05-28
+
+### Fixed
+
+- Fixed a CallHistory documentation issue to clarify a usage example for the `getCache` and `setCache` APIs. `KAA-2578`
+
 ## 3.27.0 - 2021-04-30
 
 ### Fixed

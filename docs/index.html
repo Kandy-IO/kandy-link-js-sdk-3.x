@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>kandy-link-js-sdk-3.x 3.27.0 | Documentation</title>
+  <title>kandy-link-js-sdk-3.x 3.28.0 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>kandy-link-js-sdk-3.x</h3>
-          <div class='mb1'><code>3.27.0</code></div>
+          <div class='mb1'><code>3.28.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -6182,6 +6182,10 @@ has been updated.</p>
   
 
   <p>Gets the cached call history data and returns stringified data.</p>
+<p>The data is provided in a format that can be used directly with the
+<a href="callHistory.setCache">call.history.setCache</a> API. This allows an
+application to persist the information across SDK instances when the
+backend environment does not support the CallHistory feature.</p>
 
 
   <div class='pre p1 fill-light mt0'>getCache(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
@@ -6238,6 +6242,9 @@ has been updated.</p>
   
 
   <p>Sets the cached call history data, expects stringified data as it will be parsed.</p>
+<p>The data can be retreived from the <a href="callHistory.getCache">   call.history.getCache</a> API. This allows an
+application to persist the information across SDK instances when the
+backend environment does not support the CallHistory feature.</p>
 
 
   <div class='pre p1 fill-light mt0'>setCache(data: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
