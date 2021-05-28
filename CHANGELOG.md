@@ -5,6 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.29.0 - beta
+
+### Added
+
+- Added the ability to customize the `X-CPaaS-Agent` header's value by appending any custom string to its value. `KJS-162`
+
 ## 3.28.0 - 2021-05-28
 
 ### Fixed

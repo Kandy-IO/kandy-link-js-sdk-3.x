@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.28.0-beta.678
+ * Version: 3.29.0-beta.679
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -7508,7 +7508,7 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ICE_MEDIA_STATES = exports.FCS_ICE_MEDIA_STATES = exports.WEBRTC_DEVICE_KINDS = exports.CALL_DIRECTION = exports.STATUS_CODES = exports.COMPLEX_OPERATION_MESSAGES = exports.COMPLEX_OPERATIONS = exports.OPERATIONS = exports.CALL_MEDIA_STATES = exports.CALL_STATES = exports.CALL_STATES_FCS = exports.FCS_CALL_STATES = undefined;
+exports.ICE_MEDIA_STATES = exports.FCS_ICE_MEDIA_STATES = exports.WEBRTC_DEVICE_KINDS = exports.CALL_DIRECTION = exports.STATUS_CODES = exports.COMPLEX_OPERATION_MESSAGES = exports.COMPLEX_OPERATIONS = exports.OPERATIONS = exports.CALL_MEDIA_CONNECTION_STATES = exports.CALL_MEDIA_STATES = exports.CALL_STATES = exports.CALL_STATES_FCS = exports.FCS_CALL_STATES = undefined;
 
 var _fp = __webpack_require__(2);
 
@@ -7586,6 +7586,19 @@ const CALL_STATES = exports.CALL_STATES = {
   LOCAL_HOLD: 'Local Hold',
   REMOTE_HOLD: 'Remote Hold',
   DUAL_HOLD: 'Dual Hold'
+
+  /**
+   * Possible states for a Call's media connection.
+   * @name CALL_MEDIA_CONNECTION_STATES
+   */
+};const CALL_MEDIA_CONNECTION_STATES = exports.CALL_MEDIA_CONNECTION_STATES = {
+  NEW: 'new',
+  CHECKING: 'checking',
+  CONNECTED: 'connected',
+  COMPLETED: 'completed',
+  FAILED: 'failed',
+  DISCONNECTED: 'disconnected',
+  CLOSED: 'closed'
 
   /**
    * Call operations that require negotiation.
@@ -8117,7 +8130,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.28.0-beta.678';
+  return '3.29.0-beta.679';
 }
 
 /***/ }),
@@ -14237,6 +14250,7 @@ function* getCommonOptions(url) {
   const platform = yield (0, _effects.select)(_selectors2.getPlatform);
   const requestInfo = yield (0, _effects.select)(_selectors2.getRequestInfo, platform);
   const useCustomHeader = yield (0, _effects.select)(_selectors.injectAgentVersionHeader);
+  const customSuffix = yield (0, _effects.select)(_selectors.customAgentVersionHeaderSuffix);
 
   // Start off with whatever options were set by the Auth plugin.
   //    The authentication headers / token will be there if they are set.
@@ -14258,7 +14272,12 @@ function* getCommonOptions(url) {
 
   // If enabled, add the 'Agent Version' header to the options.
   if (useCustomHeader) {
-    options.headers['X-Cpaas-Agent'] = getCpaasAgentHeaderValue(platform, url);
+    let headerValue = getCpaasAgentHeaderValue(platform, url);
+    if (customSuffix) {
+      // If a custom suffix value was provided as well, then use it.
+      headerValue += ' ' + customSuffix;
+    }
+    options.headers['X-Cpaas-Agent'] = headerValue;
   }
 
   return options;
@@ -15861,8 +15880,6 @@ const SEND_RINGING_FEEDBACK_FINISH = exports.SEND_RINGING_FEEDBACK_FINISH = call
 const CALL_RINGING = exports.CALL_RINGING = callPrefix + 'RINGING';
 const SESSION_PROGRESS = exports.SESSION_PROGRESS = callPrefix + 'SESSION_PROGRESS';
 const CALL_CANCELLED = exports.CALL_CANCELLED = callPrefix + 'CANCELLED';
-
-const CALL_AUDIT = exports.CALL_AUDIT = callPrefix + 'AUDIT';
 
 const ANSWER_CALL = exports.ANSWER_CALL = callPrefix + 'ANSWER';
 const ANSWER_CALL_FINISH = exports.ANSWER_CALL_FINISH = callPrefix + 'ANSWER_FINISH';
@@ -27851,14 +27868,26 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.injectAgentVersionHeader = injectAgentVersionHeader;
+exports.customAgentVersionHeaderSuffix = customAgentVersionHeaderSuffix;
 /**
  * Retrieves the flag which specifies wether or not this SDK should use a custom header as part of any requests being sent to server.
- * This custom header refers to the current agent version.
+ * This custom header refers to the current agent version,
+ * but it may also contain additional custom information (see customAgentVersionHeaderSuffix).
  * @param {Object} state  The current Redux state object.
  * @return {boolean} True if custom header should be used, false otherwise.
  */
 function injectAgentVersionHeader(state) {
   return state.config.requests.injectAgentVersionHeader;
+}
+
+/**
+ * Retrieves a custom suffix value which specifies any extra information that can be appended to the custom header.
+ * This custom header is sent by the SDK, as part of any requests being sent to server.
+ * @param {Object} state  The current Redux state object.
+ * @return {string} The suffix value.
+ */
+function customAgentVersionHeaderSuffix(state) {
+  return state.config.requests.customAgentVersionHeaderSuffix;
 }
 
 /***/ }),
@@ -74371,13 +74400,17 @@ var _validation = __webpack_require__(54);
 
 /**
  * Configurable properties 'published' by this "Request" plugin.
+ * NOTE: Do NOT expose the config properties (related to this plugin) to the public API documentation.
  *
  * @property {boolean} [injectAgentVersionHeader=true] Option to automatically inject an agent version header to every REST request.
  *            This header is used to help with diagnostics and analytics in a completely anonymous fashion.
- *            TODO: Set it to 'true' after server side whitelists that actual custom header.
+ *
+ * @property {string} [customAgentVersionHeaderSuffix=''] Additional custom information that can be appended to the agent version header's value.
+ *           This additional suffix value is only used when injectAgentVersionHeader property is enabled.
  */
 const defaultOptions = exports.defaultOptions = {
-  injectAgentVersionHeader: true
+  injectAgentVersionHeader: true,
+  customAgentVersionHeaderSuffix: ''
 }; // Parse and/or Validate
 
 
