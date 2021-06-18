@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.29.0-beta.698
+ * Version: 3.29.0-beta.699
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8130,7 +8130,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.29.0-beta.698';
+  return '3.29.0-beta.699';
 }
 
 /***/ }),
@@ -27031,15 +27031,9 @@ function* disconnect() {
   const connection = yield (0, _effects.select)(_selectors.getConnectionInfo);
 
   // If the above info is not present, we probably got a disconnect mid-connection attempt.
-  let response = {};
   if (subscription && connection) {
     // If the info is in the store we can go ahead and unsubscribe.
-    response = yield (0, _effects.call)(_requests.unsubscribe, connection, subscription.url);
-  }
-
-  if (response.error) {
-    log.info('Failed to unsubscribe from services. Error: ', response.error);
-    // We should still continue and attempt to also disconnect to websocket ?
+    yield (0, _effects.call)(_requests.unsubscribe, connection, subscription.url);
   }
 
   log.info('Successfully unsubscribed from services.');
@@ -27048,17 +27042,11 @@ function* disconnect() {
     log.info('Disconnecting from websocket.');
     // disconnect from the websocket
     yield (0, _effects2.disconnectWebsocket)(undefined, platform);
+    log.info('Successfully disconnected from websocket.');
   }
 
   // Dispatch disconnect finished action appropriate for the response.
-  if (response.error) {
-    log.info('Failed to disconnect from websocket. Error: ', response.error);
-    yield (0, _effects.put)(actions.disconnectFinished(response));
-  } else {
-    log.info('Successfully disconnected from websocket.');
-    // We enter this block if we unsubscribed succesfully OR we never even called unsub. Either way we are unsubscribed.
-    yield (0, _effects.put)(actions.disconnectFinished());
-  }
+  yield (0, _effects.put)(actions.disconnectFinished());
 }
 
 /**
@@ -27158,7 +27146,7 @@ function* updateSubscription() {
         })
       }, platform));
     } else {
-      log.debug('Succesfully updated subscription services.', action.payload);
+      log.debug('Successfully updated subscription services.', action.payload);
       // TODO: Use response.serviceInfo to update full/partial subscription.
       // Only update the service substate in subscription.
       yield (0, _effects.put)(actions.updateSubscriptionFinished({
@@ -27388,8 +27376,6 @@ exports.subscribe = subscribe;
 exports.unsubscribe = unsubscribe;
 exports.resubscribe = resubscribe;
 
-var _selectors = __webpack_require__(8);
-
 var _services = __webpack_require__(290);
 
 var _effects = __webpack_require__(26);
@@ -27406,11 +27392,9 @@ var _effects3 = __webpack_require__(5);
 
 var _utils = __webpack_require__(25);
 
-var _constants = __webpack_require__(9);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Other plugins.
+// Libraries.
 // Authentication plugin.
 const log = _logs.logManager.getLogger('AUTH');
 
@@ -27423,10 +27407,7 @@ const log = _logs.logManager.getLogger('AUTH');
  */
 
 
-// Constants
-
-
-// Libraries.
+// Other plugins.
 function* subscribe(connection, credentials, extras = {}) {
   /*
    * TODO: Clean-up / fix the function signature. The requestOptions (eg. headers)
@@ -27529,7 +27510,6 @@ function* subscribe(connection, credentials, extras = {}) {
  * @param  {string}    connection.server Server information for generating the URL.
  * @param  {string}    connection.requestOptions Common request options to be added.
  * @param  {string}    subscriptionURL URL of the user's subscription instance.
- * @return {Object}    Unsubscription response.
  */
 function* unsubscribe(connection, subscriptionURL) {
   const requestOptions = {};
@@ -27541,60 +27521,25 @@ function* unsubscribe(connection, subscriptionURL) {
   // Send the unsubscribe request.
   const response = yield (0, _effects2.default)(requestOptions);
 
+  /*
+   * No matter what the response was, we still want to handle the user as
+   *    unsubscribed afterwards. If the request fails, there isn't a point to
+   *    keep the user subscribed since they want to unsubscribe anyway.
+   * For debug purposes, log what the response was but handle it as a success.
+   */
   if (response.error) {
-    if (response.payload.body && response.payload.body.subscribeResponse) {
+    if (response.payload.body) {
       // Handle errors from the server.
       const { statusCode } = response.payload.body.subscribeResponse;
-      log.debug(`Failed to unsubscribe user with status code ${statusCode}.`);
-
-      return {
-        // TODO: Better error; more info.
-        error: new _errors2.default({
-          message: `Failed to unsubscribe user. Code: ${statusCode}.`,
-          code: _errors.authCodes.LINK_UNSUBSCRIBE_FAIL
-        })
-      };
+      log.debug(`Encountered error unsubscribing user with status code ${statusCode}.`);
     } else {
       // Handle errors from the request helper.
       const { message } = response.payload.result;
-      log.debug('Failed user unsubscription.', message);
-
-      return {
-        // TODO: Better error; more info.
-        error: new _errors2.default({
-          message: `Unsubscribe request failed: ${message}.`,
-          // TODO: Shared error codes.
-          code: _errors.authCodes.LINK_UNSUBSCRIBE_FAIL
-        })
-      };
+      log.debug('Encountered error unsubscribing user.', message);
     }
   } else {
     // Request was successful.
-    const unsubResponse = response.payload.body.subscribeResponse;
-    const platform = yield (0, _effects3.select)(_selectors.getPlatform);
-
-    if (platform === _constants.platforms.LINK && unsubResponse.statusCode === 0) {
-      log.info('Successfully unsubscribed user.');
-      // Link success response.
-      return (0, _extends3.default)({
-        error: false
-      }, unsubResponse);
-    } else if (platform === _constants.platforms.UC && unsubResponse.statusCode === 0) {
-      log.info('Successfully unsubscribed user.');
-      // Link success response.
-      return (0, _extends3.default)({
-        error: false
-      }, unsubResponse);
-    } else {
-      log.info('Failed to unsubscribe user. Status Code: ', unsubResponse.statusCode);
-      // Unknown statusCode, consider as failure.
-      return {
-        error: new _errors2.default({
-          message: `Unknown error; statusCode: ${unsubResponse.statusCode}.`,
-          code: _errors.authCodes.LINK_UNSUBSCRIBE_FAIL
-        })
-      };
-    }
+    log.debug('User unsubscribed successfully.');
   }
 }
 
