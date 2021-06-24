@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.29.0-beta.704
+ * Version: 3.29.0-beta.705
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8130,7 +8130,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.29.0-beta.704';
+  return '3.29.0-beta.705';
 }
 
 /***/ }),
@@ -46630,15 +46630,16 @@ function WebRtcAdaptorImpl({
 
     self.createAudioContext = function () {
         window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.oAudioContext || window.msAudioContext;
-        // Only create the audioContext if needed to avoid creating multiple ones as Chrome limits them to 6
-        if (self.audioContext === undefined || self.audioContext.state !== 'running') {
-            try {
-                self.audioContext = new window.AudioContext();
-            } catch (e) {
-                logger.error('Failed to create AudioContext:' + e);
-            }
+        /*
+         * Issues surrounding AudioContext usage/sharing: KAA-434 and KAA-2646
+         */
+        try {
+            var context = new window.AudioContext();
+            return context;
+        } catch (e) {
+            logger.error('Failed to create AudioContext:' + e);
+            return;
         }
-        return self.audioContext;
     };
 
     /*
@@ -53914,6 +53915,7 @@ function webRtcLibraryDecoratorImpl(target, _utils) {
     };
 
     libraryObjWrapper.detachWebAudioContextFromLocalMedia = function (localMedia) {
+        localMedia.audioContext.close();
         localMedia.mediaStreamDestination.disconnect();
     };
 
@@ -54110,6 +54112,7 @@ function webRtcLibraryChromeDecoratorImpl(target, _window, _navigator, _utils, _
     };
 
     target.detachWebAudioContextFromLocalMedia = function (localMedia) {
+        localMedia.audioContext.close();
         if (localMedia && localMedia.mediaStreamDestination && localMedia.mediaStreamDestination.numberOfOutputs > 0) {
             localMedia.mediaStreamDestination.disconnect();
         }
