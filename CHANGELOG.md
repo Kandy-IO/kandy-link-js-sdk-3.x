@@ -5,7 +5,13 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
-## 3.29.0 - beta
+## 3.30.0 - beta
+
+### Changed
+
+- Changed the domain names used in configuration for all turn/stun servers to the newly public ones (for Kandy tutorials).
+
+## 3.29.0 - 2021-06-25
 
 ### Added
 
@@ -16,6 +22,7 @@ Kandy.js change log.
 - Fixed an Authentication race condition where receiving a 'Gone' notification while disconnecting would cause an unexpected error in some scenarios. `KAA-2643`
 - Fixed Authentication behaviour where issues encountered while disconnecting should still unsubscribe the user locally but wouldn't.
 - Fixed a Call issue where the system believes audio is still being used by SDK after a call ends because of AudioContext usage. `KAA-2646`
+- Fixed Authentication behaviour where a resubscription failure would not be handled as "subscription gone" when it no longer exists. `KJS-171`
 
 ## 3.28.0 - 2021-05-28
 
