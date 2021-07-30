@@ -5,6 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.30.0 - 2021-07-30
+
+### Changed
+
+- Changed the domain names used in configuration for all turn/stun servers to the newly public ones (for Kandy tutorials).
+
 ## 3.29.0 - 2021-06-25
 
 ### Added
