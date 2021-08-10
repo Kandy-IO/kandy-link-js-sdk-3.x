@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.31.0-beta.719
+ * Version: 3.31.0-beta.720
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -3227,53 +3227,6 @@ module.exports = function (it) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-const prefix = '@@KANDY/';
-
-const PROCESS_NOTIFICATION = exports.PROCESS_NOTIFICATION = prefix + 'PROCESS_NOTIFICATION';
-const PROCESS_NOTIFICATION_FINISH = exports.PROCESS_NOTIFICATION_FINISH = prefix + 'PROCESS_NOTIFICATION_FINISH';
-const NOTIFICATION_RECEIVED = exports.NOTIFICATION_RECEIVED = prefix + 'NOTIFICATION_RECEIVED';
-
-const ENABLE_NOTIFICATION_CHANNEL = exports.ENABLE_NOTIFICATION_CHANNEL = prefix + 'ENABLE_NOTIFICATION_CHANNEL';
-const ENABLE_NOTIFICATION_CHANNEL_FINISH = exports.ENABLE_NOTIFICATION_CHANNEL_FINISH = prefix + 'ENABLE_NOTIFICATION_CHANNEL_FINISH';
-
-const REGISTER_APPLE_PUSH_NOTIFICATION = exports.REGISTER_APPLE_PUSH_NOTIFICATION = prefix + 'REGISTER_APPLE_PUSH_NOTIFICATION';
-const REGISTER_ANDROID_PUSH_NOTIFICATION = exports.REGISTER_ANDROID_PUSH_NOTIFICATION = prefix + 'REGISTER_ANDROID_PUSH_NOTIFICATION';
-
-const UNREGISTER_APPLE_PUSH_NOTIFICATION = exports.UNREGISTER_APPLE_PUSH_NOTIFICATION = prefix + 'UNREGISTER_APPLE_PUSH_NOTIFICATION';
-const UNREGISTER_ANDROID_PUSH_NOTIFICATION = exports.UNREGISTER_ANDROID_PUSH_NOTIFICATION = prefix + 'UNREGISTER_ANDROID_PUSH_NOTIFICATION';
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var anObject = __webpack_require__(29);
-var IE8_DOM_DEFINE = __webpack_require__(112);
-var toPrimitive = __webpack_require__(79);
-var dP = Object.defineProperty;
-
-exports.f = __webpack_require__(20) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
-  anObject(O);
-  P = toPrimitive(P, true);
-  anObject(Attributes);
-  if (IE8_DOM_DEFINE) try {
-    return dP(O, P, Attributes);
-  } catch (e) { /* empty */ }
-  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
-  if ('value' in Attributes) O[P] = Attributes.value;
-  return O;
-};
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
 var _keys = __webpack_require__(31);
 
@@ -3385,6 +3338,53 @@ function normalizeServices(services = []) {
 }
 
 /***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+const prefix = '@@KANDY/';
+
+const PROCESS_NOTIFICATION = exports.PROCESS_NOTIFICATION = prefix + 'PROCESS_NOTIFICATION';
+const PROCESS_NOTIFICATION_FINISH = exports.PROCESS_NOTIFICATION_FINISH = prefix + 'PROCESS_NOTIFICATION_FINISH';
+const NOTIFICATION_RECEIVED = exports.NOTIFICATION_RECEIVED = prefix + 'NOTIFICATION_RECEIVED';
+
+const ENABLE_NOTIFICATION_CHANNEL = exports.ENABLE_NOTIFICATION_CHANNEL = prefix + 'ENABLE_NOTIFICATION_CHANNEL';
+const ENABLE_NOTIFICATION_CHANNEL_FINISH = exports.ENABLE_NOTIFICATION_CHANNEL_FINISH = prefix + 'ENABLE_NOTIFICATION_CHANNEL_FINISH';
+
+const REGISTER_APPLE_PUSH_NOTIFICATION = exports.REGISTER_APPLE_PUSH_NOTIFICATION = prefix + 'REGISTER_APPLE_PUSH_NOTIFICATION';
+const REGISTER_ANDROID_PUSH_NOTIFICATION = exports.REGISTER_ANDROID_PUSH_NOTIFICATION = prefix + 'REGISTER_ANDROID_PUSH_NOTIFICATION';
+
+const UNREGISTER_APPLE_PUSH_NOTIFICATION = exports.UNREGISTER_APPLE_PUSH_NOTIFICATION = prefix + 'UNREGISTER_APPLE_PUSH_NOTIFICATION';
+const UNREGISTER_ANDROID_PUSH_NOTIFICATION = exports.UNREGISTER_ANDROID_PUSH_NOTIFICATION = prefix + 'UNREGISTER_ANDROID_PUSH_NOTIFICATION';
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__(29);
+var IE8_DOM_DEFINE = __webpack_require__(112);
+var toPrimitive = __webpack_require__(79);
+var dP = Object.defineProperty;
+
+exports.f = __webpack_require__(20) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+
+/***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3405,7 +3405,7 @@ var actions = _interopRequireWildcard(_actions);
 
 var _utils = __webpack_require__(143);
 
-var _utils2 = __webpack_require__(25);
+var _utils2 = __webpack_require__(23);
 
 var _fp = __webpack_require__(2);
 
@@ -3491,7 +3491,7 @@ module.exports = function (fn, that, length) {
 /* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP = __webpack_require__(24);
+var dP = __webpack_require__(25);
 var createDesc = __webpack_require__(47);
 module.exports = __webpack_require__(20) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
@@ -7672,7 +7672,7 @@ exports.f = {}.propertyIsEnumerable;
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var def = __webpack_require__(24).f;
+var def = __webpack_require__(25).f;
 var has = __webpack_require__(36);
 var TAG = __webpack_require__(16)('toStringTag');
 
@@ -8018,7 +8018,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.31.0-beta.719';
+  return '3.31.0-beta.720';
 }
 
 /***/ }),
@@ -8028,7 +8028,7 @@ function getVersion() {
 var META = __webpack_require__(59)('meta');
 var isObject = __webpack_require__(22);
 var has = __webpack_require__(36);
-var setDesc = __webpack_require__(24).f;
+var setDesc = __webpack_require__(25).f;
 var id = 0;
 var isExtensible = Object.isExtensible || function () {
   return true;
@@ -11094,7 +11094,7 @@ var global = __webpack_require__(13);
 var core = __webpack_require__(7);
 var LIBRARY = __webpack_require__(49);
 var wksExt = __webpack_require__(90);
-var defineProperty = __webpack_require__(24).f;
+var defineProperty = __webpack_require__(25).f;
 module.exports = function (name) {
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
@@ -11735,7 +11735,7 @@ exports.unregisterApplePushNotification = unregisterApplePushNotification;
 exports.unregisterAndroidPushNotification = unregisterAndroidPushNotification;
 exports.enableNotificationChannelFinish = enableNotificationChannelFinish;
 
-var _actionTypes = __webpack_require__(23);
+var _actionTypes = __webpack_require__(24);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -13077,7 +13077,7 @@ module.exports = Array.isArray || function isArray(arg) {
 /* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP = __webpack_require__(24);
+var dP = __webpack_require__(25);
 var anObject = __webpack_require__(29);
 var getKeys = __webpack_require__(42);
 
@@ -13336,7 +13336,7 @@ module.exports = __webpack_require__(7).getIteratorMethod = function (it) {
 
 var global = __webpack_require__(13);
 var core = __webpack_require__(7);
-var dP = __webpack_require__(24);
+var dP = __webpack_require__(25);
 var DESCRIPTORS = __webpack_require__(20);
 var SPECIES = __webpack_require__(16)('species');
 
@@ -16067,7 +16067,7 @@ var _fp = __webpack_require__(2);
 
 var _selectors = __webpack_require__(8);
 
-var _utils = __webpack_require__(25);
+var _utils = __webpack_require__(23);
 
 /**
  * Plugin selector function to expose state globally
@@ -17762,7 +17762,7 @@ var _compose = __webpack_require__(114);
 
 var _compose2 = _interopRequireDefault(_compose);
 
-var _utils = __webpack_require__(25);
+var _utils = __webpack_require__(23);
 
 var _version = __webpack_require__(60);
 
@@ -20467,7 +20467,7 @@ var _create = __webpack_require__(62);
 var gOPNExt = __webpack_require__(202);
 var $GOPD = __webpack_require__(203);
 var $GOPS = __webpack_require__(86);
-var $DP = __webpack_require__(24);
+var $DP = __webpack_require__(25);
 var $keys = __webpack_require__(42);
 var gOPD = $GOPD.f;
 var dP = $DP.f;
@@ -21942,7 +21942,7 @@ var _actions3 = _interopRequireDefault(_actions2);
 
 var _actions4 = __webpack_require__(32);
 
-var _utils = __webpack_require__(25);
+var _utils = __webpack_require__(23);
 
 var _effects = __webpack_require__(5);
 
@@ -22780,7 +22780,7 @@ module.exports = __webpack_require__(228)(SET, function (get) {
 
 "use strict";
 
-var dP = __webpack_require__(24).f;
+var dP = __webpack_require__(25).f;
 var create = __webpack_require__(62);
 var redefineAll = __webpack_require__(98);
 var ctx = __webpack_require__(27);
@@ -22941,7 +22941,7 @@ var forOf = __webpack_require__(55);
 var anInstance = __webpack_require__(99);
 var isObject = __webpack_require__(22);
 var setToStringTag = __webpack_require__(51);
-var dP = __webpack_require__(24).f;
+var dP = __webpack_require__(25).f;
 var each = __webpack_require__(229)(0);
 var DESCRIPTORS = __webpack_require__(20);
 
@@ -23777,7 +23777,7 @@ $export($export.S + $export.F * !__webpack_require__(133)(function (iter) { Arra
 
 "use strict";
 
-var $defineProperty = __webpack_require__(24);
+var $defineProperty = __webpack_require__(25);
 var createDesc = __webpack_require__(47);
 
 module.exports = function (object, index, value) {
@@ -24230,7 +24230,7 @@ var actionTypes = _interopRequireWildcard(_actionTypes);
 
 var _reduxActions = __webpack_require__(11);
 
-var _fp = __webpack_require__(2);
+var _utils = __webpack_require__(23);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -24240,7 +24240,7 @@ const reducers = {};
 
 reducers[actionTypes.CONFIG_UPDATE] = {
   next(state, action) {
-    return (0, _fp.merge)(state, action.payload);
+    return (0, _utils.mergeValues)(state, action.payload);
   }
 };
 
@@ -25248,7 +25248,7 @@ var _interface = __webpack_require__(276);
 
 var _actions2 = __webpack_require__(32);
 
-var _utils = __webpack_require__(25);
+var _utils = __webpack_require__(23);
 
 var _logs = __webpack_require__(3);
 
@@ -26312,7 +26312,7 @@ var _errors2 = _interopRequireDefault(_errors);
 
 var _requests = __webpack_require__(283);
 
-var _actionTypes2 = __webpack_require__(23);
+var _actionTypes2 = __webpack_require__(24);
 
 var _actionTypes3 = __webpack_require__(33);
 
@@ -26330,7 +26330,7 @@ var _utf = __webpack_require__(289);
 
 var _utf2 = _interopRequireDefault(_utf);
 
-var _utils = __webpack_require__(25);
+var _utils = __webpack_require__(23);
 
 var _logs = __webpack_require__(3);
 
@@ -26901,7 +26901,7 @@ var _logs = __webpack_require__(3);
 
 var _effects3 = __webpack_require__(5);
 
-var _utils = __webpack_require__(25);
+var _utils = __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27788,7 +27788,7 @@ var _actionTypes = __webpack_require__(56);
 
 var authActionTypes = _interopRequireWildcard(_actionTypes);
 
-var _actionTypes2 = __webpack_require__(23);
+var _actionTypes2 = __webpack_require__(24);
 
 var notiActionTypes = _interopRequireWildcard(_actionTypes2);
 
@@ -60615,7 +60615,7 @@ var _reduxSaga = __webpack_require__(75);
 
 var _effects = __webpack_require__(5);
 
-var _utils = __webpack_require__(25);
+var _utils = __webpack_require__(23);
 
 var _actions2 = __webpack_require__(106);
 
@@ -61016,7 +61016,7 @@ var _selectors = __webpack_require__(108);
 
 var _selectors2 = __webpack_require__(8);
 
-var _actionTypes2 = __webpack_require__(23);
+var _actionTypes2 = __webpack_require__(24);
 
 var _predicates = __webpack_require__(419);
 
@@ -62984,7 +62984,7 @@ var _effects = __webpack_require__(5);
 
 var _selectors = __webpack_require__(8);
 
-var _actionTypes = __webpack_require__(23);
+var _actionTypes = __webpack_require__(24);
 
 var _actions = __webpack_require__(156);
 
@@ -63261,7 +63261,7 @@ var _extends2 = __webpack_require__(4);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _actionTypes = __webpack_require__(23);
+var _actionTypes = __webpack_require__(24);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -63567,7 +63567,7 @@ var _eventTypes = __webpack_require__(441);
 
 var eventTypes = _interopRequireWildcard(_eventTypes);
 
-var _actionTypes = __webpack_require__(23);
+var _actionTypes = __webpack_require__(24);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -63674,7 +63674,7 @@ var _selectors = __webpack_require__(8);
 
 var _logs = __webpack_require__(3);
 
-var _actionTypes = __webpack_require__(23);
+var _actionTypes = __webpack_require__(24);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -63828,7 +63828,7 @@ var _actions = __webpack_require__(106);
 
 var actions = _interopRequireWildcard(_actions);
 
-var _actionTypes = __webpack_require__(23);
+var _actionTypes = __webpack_require__(24);
 
 var actionTypes = _interopRequireWildcard(_actionTypes);
 
@@ -71266,7 +71266,7 @@ var _requests = __webpack_require__(451);
 
 var _selectors = __webpack_require__(8);
 
-var _actionTypes2 = __webpack_require__(23);
+var _actionTypes2 = __webpack_require__(24);
 
 var _effects = __webpack_require__(5);
 
@@ -72165,7 +72165,7 @@ var _selectors3 = __webpack_require__(152);
 
 var _selectors4 = __webpack_require__(154);
 
-var _actionTypes2 = __webpack_require__(23);
+var _actionTypes2 = __webpack_require__(24);
 
 var _effects = __webpack_require__(26);
 
@@ -74182,7 +74182,7 @@ var _actions = __webpack_require__(32);
 
 var _actions2 = __webpack_require__(14);
 
-var _utils = __webpack_require__(25);
+var _utils = __webpack_require__(23);
 
 var _effects = __webpack_require__(5);
 
@@ -74424,7 +74424,7 @@ var _freeze2 = _interopRequireDefault(_freeze);
 
 var _logs = __webpack_require__(3);
 
-var _utils = __webpack_require__(25);
+var _utils = __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.31.0 - beta
 
+### Changed
+
+- Changed how we merge data when the `updateConfig()` API is called. For arrays, it will now replace the array instead of merging it's elements. All other types should update in the same way they previously updated. `KJS-239`
+
 ## 3.30.0 - 2021-07-30
 
 ### Changed
