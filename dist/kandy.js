@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.31.0-beta.729
+ * Version: 3.31.0-beta.730
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8018,7 +8018,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.31.0-beta.729';
+  return '3.31.0-beta.730';
 }
 
 /***/ }),
@@ -15803,8 +15803,8 @@ const JOIN_FINISH = exports.JOIN_FINISH = callPrefix + 'JOIN_FINISH';
 const REPLACE_TRACK = exports.REPLACE_TRACK = callPrefix + 'REPLACE_TRACK';
 const REPLACE_TRACK_FINISH = exports.REPLACE_TRACK_FINISH = callPrefix + 'REPLACE_TRACK_FINISH';
 
-const ICE_RESTART = exports.ICE_RESTART = callPrefix + 'ICE_RESTART';
-const ICE_RESTART_FINISH = exports.ICE_RESTART_FINISH = callPrefix + 'ICE_RESTART_FINISH';
+const MEDIA_RESTART = exports.MEDIA_RESTART = callPrefix + 'MEDIA_RESTART';
+const MEDIA_RESTART_FINISH = exports.MEDIA_RESTART_FINISH = callPrefix + 'MEDIA_RESTART_FINISH';
 
 /**
  * Miscellaneous call actions
