@@ -7,9 +7,9 @@ Kandy.js change log.
 
 ## 3.31.0 - beta
 
-### Changed
+### Fixed
 
-- Changed how we merge data when the `updateConfig()` API is called. For arrays, it will now replace the array instead of merging it's elements. All other types should update in the same way they previously updated. `KJS-239`
+- Fixed an issue with the `updateConfig()` API where it would merge arrays instead of replace them. `KJS-205`
 
 ## 3.30.0 - 2021-07-30
 
@@ -21,14 +21,14 @@ Kandy.js change log.
 
 ### Added
 
-- Added the ability to customize the `X-CPaaS-Agent` header's value by appending any custom string to its value. `KJS-162`
+- Added the ability to customize the `X-CPaaS-Agent` header's value by appending any custom string to its value. `KJS-159`
 
 ### Fixed
 
 - Fixed an Authentication race condition where receiving a 'Gone' notification while disconnecting would cause an unexpected error in some scenarios. `KAA-2643`
 - Fixed Authentication behaviour where issues encountered while disconnecting should still unsubscribe the user locally but wouldn't.
 - Fixed a Call issue where the system believes audio is still being used by SDK after a call ends because of AudioContext usage. `KAA-2646`
-- Fixed Authentication behaviour where a resubscription failure would not be handled as "subscription gone" when it no longer exists. `KJS-171`
+- Fixed Authentication behaviour where a resubscription failure would not be handled as "subscription gone" when it no longer exists. `KJS-213`
 
 ## 3.28.0 - 2021-05-28
 
