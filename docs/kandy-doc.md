@@ -1064,6 +1064,38 @@ Returns **[Array][13]** A list of clickToCall records, ordered by earliest reque
 The 'connection' namespace is used to connect and maintain connections between
 the SDK and one or more backend servers.
 
+### WSConnectionObject
+
+Information about a websocket connection.
+
+Can be retrieved using the [connection.getSocketState][26] API.
+
+Type: [Object][7]
+
+**Properties**
+
+-   `connected` **[boolean][11]** The state of the websocket connection.
+-   `pinging` **[boolean][11]** True if the client has sent a ping to the server and is still waiting for a pong response.
+-   `method` **[Object][7]** Information about how the websocket is being used.
+    -   `method.type` **[string][8]?** How the websocket is staying connected.
+    -   `method.responsibleParty` **[string][8]?** Who is responsible for keeping the connection alive.
+-   `platform` **[string][8]** The SDK platform being used.
+-   `pingInterval` **[number][12]** How often the client will ping the server to test for websocket connectivity.
+-   `reconnectLimit` **[number][12]** How many times the SDK will try to reconnect a disconnected websocket.
+-   `reconnectDelay` **[number][12]** How long the SDK will wait before retrying websocket reconnection.
+-   `reconnectTimeMultiplier` **[number][12]** Reconnect delay multiplier for subsequent attempts. The reconnect delay time will be multiplied by this after each failed reconnect attempt to increase the delay between attempts. eg. 5000ms then 10000ms then 20000ms delay if value is 2.
+-   `reconnectTimeLimit` **[number][12]** Maximum time delay between reconnect attempts (milliseconds). Used in conjunction with `reconnectTimeMultiplier` to prevent overly long delays between reconnection attempts.
+-   `autoReconnect` **[boolean][11]** Indicates if the SDK should automatically try reconnecting a disconnected websocket.
+-   `maxMissedPings` **[number][12]** How many missed pings before the SDK stops trying to reconnect a disconnected websocket.
+-   `webSocketOAuthMode` **[string][8]** The mode used for authenticating with the server.
+-   `wsInfo` **[Object][7]** Information required to connect a websocket to the server.
+    -   `wsInfo.protocol` **[string][8]?** The protocol to use to connect a websocket.
+    -   `wsInfo.server` **[string][8]?** The domain name or IP address of the server to connect to.
+    -   `wsInfo.port` **[number][12]?** The port of the server to connect to.
+    -   `wsInfo.url` **[string][8]?** The URL path to use to request a websocket connection.
+    -   `wsInfo.params` **[string][8]?** Any additional params that might be required by the server to establish the websocket connection.
+-   `lastContact` **[number][12]** The date and time that the last known contact with the server was.
+
 ### getSocketState
 
 Get the state of the websocket.
@@ -1071,6 +1103,8 @@ Get the state of the websocket.
 **Parameters**
 
 -   `platform` **[string][8]** Backend platform for which to request the websocket's state. (optional, default `'link'`)
+
+Returns **[connection.WSConnectionObject][27]** Details about the current websocket connection, including state and configuration.
 
 ### enableConnectivityChecking
 
@@ -1193,19 +1227,19 @@ This API will retrieve a conversation already existing in the store.
     If this object is not passed, the function will query for "im" conversation with that recipient.
     -   `options.type` **[string][8]?** The type of conversation to retrieve. Can be one of "im", "sms" or "other".
 
-Returns **[conversation.Conversation][26]** A Conversation object matching the passed destination, otherwise undefined is returned.
+Returns **[conversation.Conversation][28]** A Conversation object matching the passed destination, otherwise undefined is returned.
 
 ### getAll
 
 Returns all conversations currently tracked by the SDK
 
-Returns **[Array][13]&lt;[conversation.Conversation][26]>** An array of conversation objects.
+Returns **[Array][13]&lt;[conversation.Conversation][28]>** An array of conversation objects.
 
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
 user and a group. A Conversation can create messages via the conversation's
-[createMessage()][27] function.
+[createMessage()][29] function.
 
 Type: [Object][7]
 
@@ -1229,7 +1263,7 @@ Create and return a message object. You must provide a `text` part as demonstrat
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[conversation.Message][28]** The newly created Message object.
+Returns **[conversation.Message][30]** The newly created Message object.
 
 #### clearMessages
 
@@ -1295,11 +1329,11 @@ A Message object is a means by which a sender can deliver information to a recip
 
 Creating and sending a message:
 
-A message object can be obtained through the [Conversation.createMessage][27] API on an existing conversation.
+A message object can be obtained through the [Conversation.createMessage][29] API on an existing conversation.
 
 Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
-Once all the desired parts have been added to the message using the [Message.addPart][29] function,
-the message can then be sent using the [Message.send][30] function.
+Once all the desired parts have been added to the message using the [Message.addPart][31] function,
+the message can then be sent using the [Message.send][32] function.
 
 Once the sender sends a message, this message is saved in sender's state as an object.
 Similarly, once the recipient gets a message, this message is saved in recipient's state.
@@ -1307,7 +1341,7 @@ Similarly, once the recipient gets a message, this message is saved in recipient
 Retrieving a delivered message:
 
 Once a message is delivered successfully, it can be
-obtained through the [Conversation.getMessages][31] or [Conversation.getMessage][32] API on an existing conversation.
+obtained through the [Conversation.getMessages][33] or [Conversation.getMessage][34] API on an existing conversation.
 
 Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
 
@@ -1321,7 +1355,7 @@ Type: [Object][7]
 -   `destination` **[Array][13]&lt;[string][8]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
 -   `messageId` **[string][8]** The unique id of the message. The message object (stored in sender's state) has a different id
     than the one associated with the message object stored in recipient's state.
--   `type` **[string][8]** The type of message that was sent. See [conversation.chatTypes][33] for valid types.
+-   `type` **[string][8]** The type of message that was sent. See [conversation.chatTypes][35] for valid types.
     This property applies only to message objects stored in sender's state.
 
 #### send
@@ -1350,7 +1384,7 @@ The SDK has an internal logging system for providing information about its
    types of information, which are routed to a
    "[Log Handler][4]" for consumption. An application
    can provide their own Log Handler (see
-   [config.logs][34]) to customize how the logs are
+   [config.logs][36]) to customize how the logs are
    handled, or allow the default Log Handler to print the logs to the
    console.
 
@@ -1410,7 +1444,7 @@ A LogEntry object is the data that the SDK compiles when information is
    and who logged it.
 
 A [LogHandler][4] provided to the SDK (see
-   [config.logs][34]) will need to handle LogEntry
+   [config.logs][36]) will need to handle LogEntry
    objects.
 
 Type: [Object][7]
@@ -1459,7 +1493,7 @@ A LogHandler can be used to customize how the SDK should log information. By
    be configured to change this behaviour.
 
 A LogHandler can be provided to the SDK as part of its configuration (see
-   [config.logs][34]). The SDK will then provide this
+   [config.logs][36]). The SDK will then provide this
    function with the logged information.
 
 Type: [Function][17]
@@ -1519,7 +1553,7 @@ Provides an external notification to the system for processing.
 ### registerApplePush
 
 Registers with Apple push notification service. Once registration is successful, the application will be able to receive
-standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][35]
+standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][37]
 in order for the SDK to process them.
 
 **Parameters**
@@ -1537,13 +1571,13 @@ in order for the SDK to process them.
     -   `params.isProduction` **[boolean][11]** If true, push notification will be sent to production.
                                                If false, push notification will be sent to sandbox.
 
-Returns **[Promise][36]** When successful,  the information of the registration.
+Returns **[Promise][38]** When successful,  the information of the registration.
                   Promise will reject with error object otherwise.
 
 ### registerAndroidPush
 
 Registers with Google push notification service. Once registration is successful, the application will be able to receive
-standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][35]
+standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][37]
 in order for the SDK to process them.
 
 **Parameters**
@@ -1557,7 +1591,7 @@ in order for the SDK to process them.
     -   `params.realm` **[string][8]** The realm used by the push registration service to identify
                                        and establish a connection with the service gateway.
 
-Returns **[Promise][36]** When successful,  the information of the registration.
+Returns **[Promise][38]** When successful,  the information of the registration.
                   Promise will reject with error object otherwise.
 
 ### unregisterApplePush
@@ -1568,7 +1602,7 @@ Unregister Apple push notifications.
 
 -   `registrationInfo` **[string][8]** The data returned from the push registration
 
-Returns **[Promise][36]** When successful, the promise will resolve with undefined.
+Returns **[Promise][38]** When successful, the promise will resolve with undefined.
                   Promise will reject with error object otherwise.
 
 ### unregisterAndroidPush
@@ -1579,7 +1613,7 @@ Unregister Android push notifications.
 
 -   `registrationInfo` **[string][8]** The data returned from the push registration
 
-Returns **[Promise][36]** When successful, the promise will resolve with undefined.
+Returns **[Promise][38]** When successful, the promise will resolve with undefined.
                   Promise will reject with error object otherwise.
 
 ### enableWebsocket
@@ -1598,11 +1632,11 @@ The 'presence' namespace provides an interface for an application to set the
 
 Presence information is persisted by the server. When the SDK is initialized,
    there will be no information available. Presence information will become
-   available either by using [presence.fetch][37] or by subscribing for
-   updates about other Users, using [presence.subscribe][38].
+   available either by using [presence.fetch][39] or by subscribing for
+   updates about other Users, using [presence.subscribe][40].
 
-Available presence information can be retrieved using [presence.get][39] or
-   [presence.getAll][40].
+Available presence information can be retrieved using [presence.get][41] or
+   [presence.getAll][42].
 
 ### statuses
 
@@ -1640,22 +1674,22 @@ Possible activity values.
 
 The PresenceStatus type defines the user's current status in terms of the user's availability to
 communicate/respond to other users in the network.
-An instance of this type can be obtained by invoking the [presence.get][39] function.
+An instance of this type can be obtained by invoking the [presence.get][41] function.
 
 Reporting when a user is on the phone is enabled (by default), which means that presence update notifications
 will be sent whenever a user is in a call, as well as when the call has ended.
 This is a user preference enabled or disabled on server side, and it can only be changed on the server side.
 
-The status is set to [open][41] as soon as a user subscribes for the presence service.
+The status is set to [open][43] as soon as a user subscribes for the presence service.
 
 Type: [Object][7]
 
 **Properties**
 
 -   `userId` **[string][8]** The unique identifier for the user associated with this presence status.
--   `status` **[string][8]** The current status the user has set for themselves. For supported values see [presence.statuses][41].
+-   `status` **[string][8]** The current status the user has set for themselves. For supported values see [presence.statuses][43].
 -   `activity` **[string][8]** The current activity of the user.
-         For supported values see [presence.activities][42].
+         For supported values see [presence.activities][44].
 -   `note` **[string][8]** Additional message acompanying the status & activity.
 -   `loading` **[boolean][11]** Whether the presence information has been loaded or is in the process of loading.
 
@@ -1663,16 +1697,16 @@ Type: [Object][7]
 
 Updates the presence information for the current user.
 
-See [presence.statuses][41] and [presence.activities][42] for valid
+See [presence.statuses][43] and [presence.activities][44] for valid
    values.
 
 The SDK will emit a
-   [presence:selfChange][43] event
+   [presence:selfChange][45] event
    when the operation completes. The updated presence information is
-   available and can be retrieved with [presence.getSelf][44].
+   available and can be retrieved with [presence.getSelf][46].
 
 Other users subscribed for this user's presence will receive a
-   [presence:change][45] event.
+   [presence:change][47] event.
 
 **Parameters**
 
@@ -1700,7 +1734,7 @@ Returns **[Array][13]&lt;[Object][7]>** List of user presence information.
 
 Retrieves the presence information for the current user.
 
-This information is set using the [presence.update][46] API.
+This information is set using the [presence.update][48] API.
 
 Returns **[Object][7]** Presence information for the current user.
 
@@ -1710,7 +1744,7 @@ Fetches presence information for the given users. This will refresh the
    available information with any new information from the server.
 
 Available presence information an be retrieved using the
-   [presence.get][39] or [presence.getAll][40] APIs.
+   [presence.get][41] or [presence.getAll][42] APIs.
 
 **Parameters**
 
@@ -1721,7 +1755,7 @@ Available presence information an be retrieved using the
 Subscribe to another User's presence updates.
 
 When the User updates their presence information, the SDK will emit a
-   [presence:change][45] event.
+   [presence:change][47] event.
 
 **Parameters**
 
@@ -1747,14 +1781,14 @@ Prompt the user for permission to use their audio and/or video devices.
 
 ## sdpHandlers
 
-A set of [SdpHandlerFunction][47]s for manipulating SDP information.
+A set of [SdpHandlerFunction][49]s for manipulating SDP information.
 These handlers are used to customize low-level call behaviour for very specific
 environments and/or scenarios.
 
 Note that SDP handlers are exposed on the entry point of the SDK. They can be added during
-initialization of the SDK using the [config.call.sdpHandlers][48] configuration
+initialization of the SDK using the [config.call.sdpHandlers][50] configuration
 parameter. They can also be set after the SDK's creation by using the
-[call.setSdpHandlers][49] function.
+[call.setSdpHandlers][51] function.
 
 **Examples**
 
@@ -1795,7 +1829,7 @@ length (usually to 4KB) and will reject calls that have SDP size above this amou
 While creating an SDP handler would allow a user to perform this type of manipulation, it is a non-trivial task that requires in-depth knowledge of WebRTC SDP.
 
 To facilitate this common task, the createCodecRemover function creates a codec removal handler that can be used for this purpose. Applications can use this codec
-removal handler in combination with the [call.getAvailableCodecs][50] function in order to build logic to determine the best codecs to use
+removal handler in combination with the [call.getAvailableCodecs][52] function in order to build logic to determine the best codecs to use
 for their application.
 
 **Parameters**
@@ -1870,7 +1904,7 @@ An example of a common SIP event is "SIP presence". When a user is connected to 
 
 A SIP event may either be solicited or unsolicited. Solicited events, such as the "presence"
    example above, requires the application to subscribe for the event. See the
-   [sip.subscribe API][51] for more information about solicited events.
+   [sip.subscribe API][53] for more information about solicited events.
    Unsolicited events have no prerequisites for being received.
 
 ### subscribe
@@ -1884,13 +1918,13 @@ A subscription is required to receive SIP notifications for solicited events. Be
 
 Only one SIP subscription per event type can exist at a time. A subscription can
    watch for events from multiple users at once. Users can be added to or removed
-   from a subscription using the [sip.update][52] API at any time.
+   from a subscription using the [sip.update][54] API at any time.
 
-The SDK will emit a [sip:subscriptionChange][53]
-   event when the operations completes. The [sip.getDetails][54] API can be used
+The SDK will emit a [sip:subscriptionChange][55]
+   event when the operations completes. The [sip.getDetails][56] API can be used
    to retrieve the current information about a subscription.
 
-The SDK will emit a [sip:eventsChange][55] event when
+The SDK will emit a [sip:eventsChange][57] event when
    a SIP event is received.
 
 **Parameters**
@@ -1926,8 +1960,8 @@ Updates an existing SIP event subscription.
 Allows for adding or removing users from the subscription, and for changing the
    custom parameters of the subscription.
 
-The SDK will emit a [sip:subscriptionChange][53]
-   event when the operations completes. The [sip.getDetails][54] API can be used
+The SDK will emit a [sip:subscriptionChange][55]
+   event when the operations completes. The [sip.getDetails][56] API can be used
    to retrieve the current information about a subscription.
 
 **Parameters**
@@ -1959,10 +1993,10 @@ client.sip.update('event:presence', userLists)
 
 Deletes an existing SIP event subscription.
 
-The SDK will emit a [sip:subscriptionChange][53]
+The SDK will emit a [sip:subscriptionChange][55]
    event when the operations completes.
 
-Subscription details will no longer be available using the [sip.getDetails][54]
+Subscription details will no longer be available using the [sip.getDetails][56]
    API after it has been unsubscribed from.
 
 **Parameters**
@@ -2046,12 +2080,12 @@ Type: [Object][7]
 
 Fetches information about a User.
 
-The SDK will emit a [users:change][56]
+The SDK will emit a [users:change][58]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][57] API.
+   [user.get][59] API.
 
 **Parameters**
 
@@ -2060,36 +2094,36 @@ Information about an available User can be retrieved using the
 ### fetchSelfInfo
 
 Fetches information about the current User from directory.
-Compared to [user.fetch][58] API, this API retrieves additional user related information.
+Compared to [user.fetch][60] API, this API retrieves additional user related information.
 
-The SDK will emit a [users:change][56]
+The SDK will emit a [users:change][58]
    event after the operation completes. The User's information will then
    be available.
 
 Information about an available User can be retrieved using the
-   [user.get][57] API.
+   [user.get][59] API.
 
 ### get
 
 Retrieves information about a User, if available.
 
-See the [user.fetch][58] and [user.search][59] APIs for details about
+See the [user.fetch][60] and [user.search][61] APIs for details about
    making Users' information available.
 
 **Parameters**
 
 -   `userId` **user.UserID** The User ID of the user.
 
-Returns **[user.User][60]** The User object for the specified user.
+Returns **[user.User][62]** The User object for the specified user.
 
 ### getAll
 
 Retrieves information about all available Users.
 
-See the [user.fetch][58] and [user.search][59] APIs for details about
+See the [user.fetch][60] and [user.search][61] APIs for details about
    making Users' information available.
 
-Returns **[Array][13]&lt;[user.User][60]>** An array of all the User objects.
+Returns **[Array][13]&lt;[user.User][62]>** An array of all the User objects.
 
 ### search
 
@@ -2098,10 +2132,10 @@ Searches the domain's directory for Users.
 Directory searching only supports one filter. If multiple filters are provided, only one of the filters will be used for the search.
 A search with no filters provided will return all users.
 
-The SDK will emit a [directory:change][61]
+The SDK will emit a [directory:change][63]
    event after the operation completes. The search results will be
    provided as part of the event, and will also be available using the
-   [user.get][57] and [user.getAll][62] APIs.
+   [user.get][59] and [user.getAll][64] APIs.
 
 **Parameters**
 
@@ -2124,7 +2158,7 @@ Voicemail functions are all part of this namespace.
 
 Attempts to retrieve voicemail information from the server.
 
-A [voicemail:change][63] event is
+A [voicemail:change][65] event is
    emitted upon completion.
 
 ### get
@@ -2181,78 +2215,82 @@ Returns voicemail data from the store.
 
 [25]: https://developer.mozilla.org/docs/Web/HTML/Element
 
-[26]: #conversationconversation
+[26]: #connectiongetsocketstate
 
-[27]: #conversationconversationcreatemessage
+[27]: #connectionwsconnectionobject
 
-[28]: #conversationmessage
+[28]: #conversationconversation
 
-[29]: conversation.Message.addPart
+[29]: #conversationconversationcreatemessage
 
-[30]: #conversationmessagesend
+[30]: #conversationmessage
 
-[31]: #conversationconversationgetmessages
+[31]: conversation.Message.addPart
 
-[32]: #conversationconversationgetmessage
+[32]: #conversationmessagesend
 
-[33]: conversation.chatTypes
+[33]: #conversationconversationgetmessages
 
-[34]: #configconfiglogs
+[34]: #conversationconversationgetmessage
 
-[35]: api.notifications.process
+[35]: conversation.chatTypes
 
-[36]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[36]: #configconfiglogs
 
-[37]: #presencefetch
+[37]: api.notifications.process
 
-[38]: #presencesubscribe
+[38]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[39]: #presenceget
+[39]: #presencefetch
 
-[40]: #presencegetall
+[40]: #presencesubscribe
 
-[41]: #presencestatuses
+[41]: #presenceget
 
-[42]: #presenceactivities
+[42]: #presencegetall
 
-[43]: #presenceeventpresenceselfchange
+[43]: #presencestatuses
 
-[44]: #presencegetself
+[44]: #presenceactivities
 
-[45]: #presenceeventpresencechange
+[45]: #presenceeventpresenceselfchange
 
-[46]: #presenceupdate
+[46]: #presencegetself
 
-[47]: call.SdpHandlerFunction
+[47]: #presenceeventpresencechange
 
-[48]: #configconfigcall
+[48]: #presenceupdate
 
-[49]: call.setSdpHandlers
+[49]: call.SdpHandlerFunction
 
-[50]: call.getAvailableCodecs
+[50]: #configconfigcall
 
-[51]: #sipsubscribe
+[51]: call.setSdpHandlers
 
-[52]: #sipupdate
+[52]: call.getAvailableCodecs
 
-[53]: #sipeventsipsubscriptionchange
+[53]: #sipsubscribe
 
-[54]: #sipgetdetails
+[54]: #sipupdate
 
-[55]: #sipeventsipeventschange
+[55]: #sipeventsipsubscriptionchange
 
-[56]: #usereventuserschange
+[56]: #sipgetdetails
 
-[57]: #userget
+[57]: #sipeventsipeventschange
 
-[58]: #userfetch
+[58]: #usereventuserschange
 
-[59]: #usersearch
+[59]: #userget
 
-[60]: #useruser
+[60]: #userfetch
 
-[61]: #usereventdirectorychange
+[61]: #usersearch
 
-[62]: #usergetall
+[62]: #useruser
 
-[63]: #voicemaileventvoicemailchange
+[63]: #usereventdirectorychange
+
+[64]: #usergetall
+
+[65]: #voicemaileventvoicemailchange
