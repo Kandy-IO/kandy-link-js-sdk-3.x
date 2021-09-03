@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.32.0 - beta
 
+### Fixed
+
+- Update notifications plugin state when a websocket connection is removed to indicate the websocket channel is no longer enabled. `KJS-209`
+
 ## 3.31.0 - 2021-08-30
 
 ### Fixed

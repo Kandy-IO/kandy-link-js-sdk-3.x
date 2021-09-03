@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.32.0-beta.738
+ * Version: 3.32.0-beta.739
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8018,7 +8018,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.32.0-beta.738';
+  return '3.32.0-beta.739';
 }
 
 /***/ }),
@@ -63338,6 +63338,21 @@ reducers[_actionTypes2.WS_CONNECT_FINISHED] = {
     return (0, _extends3.default)({}, state, {
       WEBSOCKET: (0, _extends3.default)({}, state.WEBSOCKET, {
         channelEnabled: true
+      })
+    });
+  }
+};
+
+/*
+ * The websocket channel is assumed to be disabled when the
+ *      websocket is closed.
+ */
+reducers[_actionTypes2.WS_DISCONNECT_FINISHED] = {
+  next(state) {
+    // TODO: Link WS only?
+    return (0, _extends3.default)({}, state, {
+      WEBSOCKET: (0, _extends3.default)({}, state.WEBSOCKET, {
+        channelEnabled: false
       })
     });
   }
