@@ -1285,13 +1285,13 @@ The SDK instance will be refered as 'api' throughout the rest of the documentati
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Instantiate the SDK.</span>
-<span class="hljs-keyword">import</span> { create } <span class="hljs-keyword">from</span> <span class="hljs-string">'kandy'</span>
+<span class="hljs-keyword">import</span> { create } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kandy&#x27;</span>
 <span class="hljs-keyword">const</span> client = create({
     <span class="hljs-attr">authentication</span>: { ... },
     <span class="hljs-attr">logs</span>: { ... },
     ...
 });
-<span class="hljs-comment">// Use the SDK's API.</span>
+<span class="hljs-comment">// Use the SDK&#x27;s API.</span>
 client.on( ... );</pre>
     
   
@@ -2174,7 +2174,7 @@ to be exposed in the logs, potentially displaying sensitive information.
   <p>Configuration options for the Connectivity feature.
 The SDK can only use keepalive as the connectivity check.</p>
 <p>Keep Alive: The client sends "keepalive" messages (to the server) on the websocket at regular intervals. This lets the server know that the client is still connected, and that it should "keep the connection alive".</p>
-<p>For more information on keepalive see here: <a href="https://en.wikipedia.org/wiki/Keepalive">https://en.wikipedia.org/wiki/Keepalive</a></p>
+<p>For more information on keepalive see here: https://en.wikipedia.org/wiki/Keepalive</p>
 
 
   <div class='pre p1 fill-light mt0'>config.connectivity</div>
@@ -3172,7 +3172,7 @@ so as not to interfere with any ongoing events.</p>
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Instantiate the SDK.</span>
-<span class="hljs-keyword">import</span> { create } <span class="hljs-keyword">from</span> <span class="hljs-string">'kandy'</span>
+<span class="hljs-keyword">import</span> { create } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kandy&#x27;</span>
 <span class="hljs-keyword">const</span> config = {
     <span class="hljs-attr">authentication</span>: { ... },
     <span class="hljs-attr">logs</span>: { ... },
@@ -3387,7 +3387,7 @@ client.on( ... )</pre>
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Listen for events of a specific type emitted by the SDK.</span>
-client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">params</span>) </span>{
+client.on(<span class="hljs-string">&#x27;dummy:event&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">params</span>) </span>{
    <span class="hljs-comment">// Handle the event.</span>
 })</pre>
     
@@ -3760,9 +3760,9 @@ client.on(<span class="hljs-string">'dummy:event'</span>, <span class="hljs-func
     
       
       <pre class='p1 overflow-auto round fill-light'>client.connect({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
-  <span class="hljs-attr">authname</span>: <span class="hljs-string">'********'</span>
+  <span class="hljs-attr">username</span>: <span class="hljs-string">&#x27;alfred@example.com&#x27;</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">&#x27;********&#x27;</span>
+  <span class="hljs-attr">authname</span>: <span class="hljs-string">&#x27;********&#x27;</span>
 }, {
   <span class="hljs-attr">forceLogOut</span>: <span class="hljs-literal">true</span>
 });</pre>
@@ -3922,13 +3922,13 @@ containing an <code>authenticationTokenRequest</code> object with the following 
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> hmacToken = HmacSHA1Algorithm({
   <span class="hljs-attr">authenticationTokenRequest</span>: {
-    <span class="hljs-attr">subscriberId</span>: <span class="hljs-string">'alfred'</span>,
-    <span class="hljs-attr">organizationId</span>: <span class="hljs-string">'example.com'</span>
+    <span class="hljs-attr">subscriberId</span>: <span class="hljs-string">&#x27;alfred&#x27;</span>,
+    <span class="hljs-attr">organizationId</span>: <span class="hljs-string">&#x27;example.com&#x27;</span>
   }
 }, key)
 
 client.connect({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">username</span>: <span class="hljs-string">&#x27;alfred@example.com&#x27;</span>,
   hmacToken
 }, {
   <span class="hljs-attr">forceLogOut</span>: <span class="hljs-literal">true</span>
@@ -4072,7 +4072,7 @@ client.connect({
     
       
       <pre class='p1 overflow-auto round fill-light'>client.updateConnection({
-  <span class="hljs-attr">services</span>: [<span class="hljs-string">'IM'</span>, <span class="hljs-string">'Presence'</span>, <span class="hljs-string">'call'</span>]
+  <span class="hljs-attr">services</span>: [<span class="hljs-string">&#x27;IM&#x27;</span>, <span class="hljs-string">&#x27;Presence&#x27;</span>, <span class="hljs-string">&#x27;call&#x27;</span>]
 })</pre>
     
   
@@ -4578,9 +4578,9 @@ It's not meant to be displayed to a user.
     
       
       <pre class='p1 overflow-auto round fill-light'>client.setCredentials({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
-  <span class="hljs-attr">password</span>: <span class="hljs-string">'********'</span>
-  <span class="hljs-attr">authname</span>: <span class="hljs-string">'********'</span>
+  <span class="hljs-attr">username</span>: <span class="hljs-string">&#x27;alfred@example.com&#x27;</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">&#x27;********&#x27;</span>
+  <span class="hljs-attr">authname</span>: <span class="hljs-string">&#x27;********&#x27;</span>
 });</pre>
     
   
@@ -4690,13 +4690,13 @@ containing an <code>authenticationTokenRequest</code> object with the following 
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">const</span> hmacToken = HmacSHA1Algorithm({
   <span class="hljs-attr">authenticationTokenRequest</span>: {
-    <span class="hljs-attr">subscriberId</span>: <span class="hljs-string">'alfred'</span>,
-    <span class="hljs-attr">organizationId</span>: <span class="hljs-string">'example.com'</span>
+    <span class="hljs-attr">subscriberId</span>: <span class="hljs-string">&#x27;alfred&#x27;</span>,
+    <span class="hljs-attr">organizationId</span>: <span class="hljs-string">&#x27;example.com&#x27;</span>
   }
 }, key)
 
 client.setCredentials({
-  <span class="hljs-attr">username</span>: <span class="hljs-string">'alfred@example.com'</span>,
+  <span class="hljs-attr">username</span>: <span class="hljs-string">&#x27;alfred@example.com&#x27;</span>,
   hmacToken
 });</pre>
     
@@ -6163,8 +6163,8 @@ has been updated.</p>
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>client.on(<span class="hljs-string">'callHistory:change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// Get all call logs when they've been updated.</span>
+      <pre class='p1 overflow-auto round fill-light'>client.on(<span class="hljs-string">&#x27;callHistory:change&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Get all call logs when they&#x27;ve been updated.</span>
     <span class="hljs-keyword">let</span> callLogs = client.call.history.get();
 });</pre>
     
@@ -6253,7 +6253,7 @@ backend environment does not support the CallHistory feature.</p>
   
 
   <p>Sets the cached call history data, expects stringified data as it will be parsed.</p>
-<p>The data can be retreived from the <a href="callHistory.getCache">   call.history.getCache</a> API. This allows an
+<p>The data can be retreived from the <a href="callHistory.getCache">call.history.getCache</a> API. This allows an
 application to persist the information across SDK instances when the
 backend environment does not support the CallHistory feature.</p>
 
@@ -6919,7 +6919,7 @@ Supported on browser's that support HTMLMediaElement.setSinkId().</p>
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>client.on(<span class="hljs-string">'call:stateChange'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callInfo</span>) </span>{
+      <pre class='p1 overflow-auto round fill-light'>client.on(<span class="hljs-string">&#x27;call:stateChange&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callInfo</span>) </span>{
      <span class="hljs-keyword">if</span>(callInfo.state === client.call.states.ENDED) {
          <span class="hljs-comment">// Call has ended.</span>
      }
@@ -7309,16 +7309,16 @@ Supported on browser's that support HTMLMediaElement.setSinkId().</p>
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">let</span> remoteContainer = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'remote-container'</span>);
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">let</span> remoteContainer = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;remote-container&#x27;</span>);
 <span class="hljs-comment">// Start a video call that only shows the remote media (not local).</span>
-<span class="hljs-keyword">let</span> callId = client.call.make(<span class="hljs-string">'sampleUser@example.com'</span>, {
+<span class="hljs-keyword">let</span> callId = client.call.make(<span class="hljs-string">&#x27;sampleUser@example.com&#x27;</span>, {
     <span class="hljs-attr">isVideoEnabled</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">sendInitialVideo</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">remoteVideoContainer</span>: remoteContainer,
     <span class="hljs-attr">customParameters</span>: [
       {
-        <span class="hljs-string">"name"</span>: <span class="hljs-string">"X-GPS"</span>,
-        <span class="hljs-string">"value"</span>: <span class="hljs-string">"42.686032,23.344565"</span>
+        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;X-GPS&quot;</span>,
+        <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;42.686032,23.344565&quot;</span>
       }
     ]
 });</pre>
@@ -8051,8 +8051,8 @@ Supported on browser's that support HTMLMediaElement.setSinkId().</p>
 client.call.setCustomParameters(
    callId,
    [
-     { <span class="hljs-string">"name"</span>: <span class="hljs-string">"X-GPS"</span>,
-       <span class="hljs-string">"value"</span>: <span class="hljs-string">"42.686032,23.344565"</span>
+     { <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;X-GPS&quot;</span>,
+       <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;42.686032,23.344565&quot;</span>
      }
    ]
 });</pre>
@@ -8591,9 +8591,7 @@ client.call.setCustomParameters(
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>tone</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
-	    DTMF tone to send. Valid values are 
-[0,1,2,3,4,5,6,7,8,9,#]
-.
+	    DTMF tone to send. Valid values are [0,1,2,3,4,5,6,7,8,9,#].
 
           </div>
           
@@ -10876,7 +10874,7 @@ Will trigger the <code>contacts:change</code> event.</p>
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>client.on(<span class="hljs-string">'contacts:change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <pre class='p1 overflow-auto round fill-light'>client.on(<span class="hljs-string">&#x27;contacts:change&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
    <span class="hljs-comment">// Get the updated list of contacts.</span>
    <span class="hljs-keyword">const</span> contacts = client.contacts.getAll()
    ...
@@ -11111,7 +11109,7 @@ user and a group. A Conversation can create messages via the conversation's
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>conversation.createMessage({<span class="hljs-attr">type</span>: <span class="hljs-string">'text'</span>, <span class="hljs-attr">text</span>: <span class="hljs-string">'This is the message'</span>});</pre>
+      <pre class='p1 overflow-auto round fill-light'>conversation.createMessage({<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;text&#x27;</span>, <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;This is the message&#x27;</span>});</pre>
     
   
 
@@ -12652,10 +12650,10 @@ method as parameters.
   <span class="hljs-comment">// Assume that the first message parameter is a string.</span>
   <span class="hljs-keyword">const</span> [log, ...extra] = logEntry.messages
 
-  <span class="hljs-comment">// For the timer methods, don't actually use the console methods.</span>
+  <span class="hljs-comment">// For the timer methods, don&#x27;t actually use the console methods.</span>
   <span class="hljs-comment">//    The Logger already did the timing, so simply log out the info.</span>
-  <span class="hljs-keyword">if</span> ([<span class="hljs-string">'time'</span>, <span class="hljs-string">'timeLog'</span>, <span class="hljs-string">'timeEnd'</span>].includes(method)) {
-    method = <span class="hljs-string">'debug'</span>
+  <span class="hljs-keyword">if</span> ([<span class="hljs-string">&#x27;time&#x27;</span>, <span class="hljs-string">&#x27;timeLog&#x27;</span>, <span class="hljs-string">&#x27;timeEnd&#x27;</span>].includes(method)) {
+    method = <span class="hljs-string">&#x27;debug&#x27;</span>
   }
 
   <span class="hljs-built_in">console</span>[method](<span class="hljs-string">`<span class="hljs-subst">${logInfo}</span> - <span class="hljs-subst">${log}</span>`</span>, ...extra)
@@ -12745,10 +12743,10 @@ function with the logged information.</p>
   <span class="hljs-comment">// Assume that the first message parameter is a string.</span>
   <span class="hljs-keyword">const</span> [log, ...extra] = logEntry.messages
 
-  <span class="hljs-comment">// For the timer methods, don't actually use the console methods.</span>
+  <span class="hljs-comment">// For the timer methods, don&#x27;t actually use the console methods.</span>
   <span class="hljs-comment">//    The Logger already did the timing, so simply log out the info.</span>
-  <span class="hljs-keyword">if</span> ([<span class="hljs-string">'time'</span>, <span class="hljs-string">'timeLog'</span>, <span class="hljs-string">'timeEnd'</span>].includes(method)) {
-    method = <span class="hljs-string">'debug'</span>
+  <span class="hljs-keyword">if</span> ([<span class="hljs-string">&#x27;time&#x27;</span>, <span class="hljs-string">&#x27;timeLog&#x27;</span>, <span class="hljs-string">&#x27;timeEnd&#x27;</span>].includes(method)) {
+    method = <span class="hljs-string">&#x27;debug&#x27;</span>
   }
 
   <span class="hljs-built_in">console</span>[method](<span class="hljs-string">`<span class="hljs-subst">${logInfo}</span> - <span class="hljs-subst">${log}</span>`</span>, ...extra)
@@ -14003,6 +14001,11 @@ For supported values see
 
   <div class='pre p1 fill-light mt0'>statuses</div>
   
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
   
 
   
@@ -14085,6 +14088,11 @@ client.presence.update(statuses.OPEN, activities.AVAILABLE)</pre>
 
 
   <div class='pre p1 fill-light mt0'>activities</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
   
   
 
@@ -15248,8 +15256,8 @@ parameter. They can also be set after the SDK's creation by using the
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">import</span> { create, sdpHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">'kandy'</span>;
-<span class="hljs-keyword">const</span> codecRemover = sdpHandlers.createCodecRemover([<span class="hljs-string">'VP8'</span>, <span class="hljs-string">'VP9'</span>])
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">import</span> { create, sdpHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kandy&#x27;</span>;
+<span class="hljs-keyword">const</span> codecRemover = sdpHandlers.createCodecRemover([<span class="hljs-string">&#x27;VP8&#x27;</span>, <span class="hljs-string">&#x27;VP9&#x27;</span>])
 <span class="hljs-keyword">const</span> client = create({
   <span class="hljs-attr">call</span>: {
     <span class="hljs-attr">sdpHandlers</span>: [ codecRemover, &lt;Your-SDP-Handler-<span class="hljs-built_in">Function</span>&gt;, ...]
@@ -15430,17 +15438,17 @@ codec selectors that correspond to those names without any extra FMTP parameters
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">import</span> { create, sdpHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">'kandy'</span>;
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">import</span> { create, sdpHandlers } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kandy&#x27;</span>;
 
 <span class="hljs-keyword">const</span> codecRemover = sdpHandlers.createCodecRemover([
   <span class="hljs-comment">// Remove all VP8 and VP9 codecs.</span>
-  <span class="hljs-string">'VP8'</span>,
-  <span class="hljs-string">'VP9'</span>,
+  <span class="hljs-string">&#x27;VP8&#x27;</span>,
+  <span class="hljs-string">&#x27;VP9&#x27;</span>,
 
   <span class="hljs-comment">// Remove all H264 codecs with the specified FMTP parameters.</span>
   {
-    <span class="hljs-attr">name</span>: <span class="hljs-string">'H264'</span>,
-    <span class="hljs-attr">fmtpParams</span>: [<span class="hljs-string">'profile-level-id=4d0032'</span>, <span class="hljs-string">'packetization-mode=1'</span>]
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;H264&#x27;</span>,
+    <span class="hljs-attr">fmtpParams</span>: [<span class="hljs-string">&#x27;profile-level-id=4d0032&#x27;</span>, <span class="hljs-string">&#x27;packetization-mode=1&#x27;</span>]
   }
 ])
 
@@ -15574,8 +15582,8 @@ Changing speaker is supported on browser's that support HTMLMediaElement.setSink
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Set only the default microphone and camera.</span>
 client.media.setDefaultDevices({
-    <span class="hljs-attr">camera</span>: <span class="hljs-string">'abc123...'</span>,
-    <span class="hljs-attr">microphone</span>: <span class="hljs-string">'def456...'</span>
+    <span class="hljs-attr">camera</span>: <span class="hljs-string">&#x27;abc123...&#x27;</span>,
+    <span class="hljs-attr">microphone</span>: <span class="hljs-string">&#x27;def456...&#x27;</span>
 });</pre>
     
   
@@ -15740,18 +15748,18 @@ a SIP event is received.</p>
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Provision the service for the specific SIP event during user subscription.</span>
 <span class="hljs-comment">//   This is required before a SIP subscription for the event can be created.</span>
-<span class="hljs-keyword">const</span> services = [<span class="hljs-string">'call'</span>, <span class="hljs-string">'event:presence'</span>, ...]
+<span class="hljs-keyword">const</span> services = [<span class="hljs-string">&#x27;call&#x27;</span>, <span class="hljs-string">&#x27;event:presence&#x27;</span>, ...]
 client.services.subscribe(services)
 
 <span class="hljs-comment">// Subscribe to receive SIP presence events from two users.</span>
-client.sip.subscribe(<span class="hljs-string">'event:presence'</span>, [<span class="hljs-string">'userOne@example.com'</span>, <span class="hljs-string">'userTwo@example.com'</span>], <span class="hljs-string">'clientId123'</span>)
+client.sip.subscribe(<span class="hljs-string">&#x27;event:presence&#x27;</span>, [<span class="hljs-string">&#x27;userOne@example.com&#x27;</span>, <span class="hljs-string">&#x27;userTwo@example.com&#x27;</span>], <span class="hljs-string">&#x27;clientId123&#x27;</span>)
 
 <span class="hljs-comment">// Subscribe for SIP events with a custom parameter.</span>
 <span class="hljs-keyword">const</span> customParameters = [{
-   <span class="hljs-attr">name</span>: <span class="hljs-string">'X-nt-GUID'</span>,
-   <span class="hljs-attr">value</span>: <span class="hljs-string">'GUID123abc'</span>
+   <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;X-nt-GUID&#x27;</span>,
+   <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;GUID123abc&#x27;</span>
 }]
-client.sip.subscribe(<span class="hljs-string">'event:presence'</span>, subscribeUserList, <span class="hljs-string">'clientId123'</span>, customParameters)</pre>
+client.sip.subscribe(<span class="hljs-string">&#x27;event:presence&#x27;</span>, subscribeUserList, <span class="hljs-string">&#x27;clientId123&#x27;</span>, customParameters)</pre>
     
   
 
@@ -15875,16 +15883,16 @@ to retrieve the current information about a subscription.</p>
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Add a user to an existing subscription.</span>
 <span class="hljs-keyword">const</span> userLists = {
-   <span class="hljs-attr">subscribedUserList</span>: [<span class="hljs-string">'userThree@example.com'</span>]
+   <span class="hljs-attr">subscribedUserList</span>: [<span class="hljs-string">&#x27;userThree@example.com&#x27;</span>]
 }
-client.sip.update(<span class="hljs-string">'event:presence'</span>, userLists)
+client.sip.update(<span class="hljs-string">&#x27;event:presence&#x27;</span>, userLists)
 
 <span class="hljs-comment">// Simultaneously add and remove users from the subscription.</span>
 <span class="hljs-keyword">const</span> userLists = {
-   <span class="hljs-attr">subscribedUserList</span>: [<span class="hljs-string">'userThree@example.com'</span>],
-   <span class="hljs-attr">unsubscribeUserList</span>: [<span class="hljs-string">'userOne@example.com'</span>]
+   <span class="hljs-attr">subscribedUserList</span>: [<span class="hljs-string">&#x27;userThree@example.com&#x27;</span>],
+   <span class="hljs-attr">unsubscribeUserList</span>: [<span class="hljs-string">&#x27;userOne@example.com&#x27;</span>]
 }
-client.sip.update(<span class="hljs-string">'event:presence'</span>, userLists)</pre>
+client.sip.update(<span class="hljs-string">&#x27;event:presence&#x27;</span>, userLists)</pre>
     
   
 
@@ -15955,7 +15963,7 @@ API after it has been unsubscribed from.</p>
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Delete a SIP subscription.</span>
-client.sip.unsubscribe(<span class="hljs-string">'event:presence'</span>)</pre>
+client.sip.unsubscribe(<span class="hljs-string">&#x27;event:presence&#x27;</span>)</pre>
     
   
 
@@ -16038,11 +16046,11 @@ return an object namespaced by event types.
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Retrieve information about a single SIP subscription.</span>
-<span class="hljs-keyword">const</span> { subscribedUsers, notifications } = client.sip.getDetails(<span class="hljs-string">'event:presence'</span>)
+<span class="hljs-keyword">const</span> { subscribedUsers, notifications } = client.sip.getDetails(<span class="hljs-string">&#x27;event:presence&#x27;</span>)
 
 <span class="hljs-comment">// Retrieve information about all current SIP subscriptions.</span>
 <span class="hljs-keyword">const</span> subscriptions = client.sip.getDetails()
-<span class="hljs-keyword">const</span> { subscribedUsers, notifications } = subscriptions[<span class="hljs-string">'event:presence'</span>]</pre>
+<span class="hljs-keyword">const</span> { subscribedUsers, notifications } = subscriptions[<span class="hljs-string">&#x27;event:presence&#x27;</span>]</pre>
     
   
 
@@ -16266,7 +16274,7 @@ subscription as part of the change.
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Listen for the event being emitted.</span>
-client.on(<span class="hljs-string">'sip:error'</span>, (params) =&gt; {
+client.on(<span class="hljs-string">&#x27;sip:error&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">params</span>) =&gt;</span> {
    <span class="hljs-comment">// Handle the error based on the information.</span>
    <span class="hljs-keyword">const</span> { code, message } = params.error
    ...
@@ -16402,12 +16410,12 @@ pre-processing of this data.</p>
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Listen for the event being emitted.</span>
-client.on(<span class="hljs-string">'sip:eventsChange'</span>, (params) =&gt; {
+client.on(<span class="hljs-string">&#x27;sip:eventsChange&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">params</span>) =&gt;</span> {
    <span class="hljs-comment">// Gather the SIP info specific to the event.</span>
    <span class="hljs-keyword">const</span> sipInfo = params.event.genericNotificationParams
 
    <span class="hljs-comment">// Handle the data based on the event type.</span>
-   <span class="hljs-keyword">if</span> (params.eventType === <span class="hljs-string">'event:presence'</span>) {
+   <span class="hljs-keyword">if</span> (params.eventType === <span class="hljs-string">&#x27;event:presence&#x27;</span>) {
        <span class="hljs-keyword">const</span> { data, <span class="hljs-keyword">from</span> } = sipInfo
        ...
    }
@@ -16487,7 +16495,7 @@ client.on(<span class="hljs-string">'sip:eventsChange'</span>, (params) =&gt; {
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-string">``</span><span class="hljs-string">` javascript
- var container = document.getElementById('local-video');
+ var container = document.getElementById(&#x27;local-video&#x27;);
  client.media.startPreviewVideo(container);
 `</span><span class="hljs-string">``</span></pre>
     
