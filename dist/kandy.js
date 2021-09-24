@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.32.0-beta.758
+ * Version: 3.33.0-beta.759
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8130,7 +8130,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.32.0-beta.758';
+  return '3.33.0-beta.759';
 }
 
 /***/ }),
@@ -60844,12 +60844,24 @@ function* websocketLifecycle(wsConnectAction) {
   const wsInfo = wsConnectAction.payload;
   const { platform, isReconnect } = wsConnectAction.meta;
 
-  log.info(`Connecting to websocket on platform: ${platform} ...`);
-  // Try to open the websocket.
-  const websocket = yield (0, _effects.call)(connectWebsocket, wsInfo, platform);
+  // Redux-saga take() pattern.
+  // Take disconnect websocket action for this platform.
+  function disconnectWebsocketPattern(action) {
+    return action.type === actionTypes.WS_DISCONNECT && action.meta.platform === platform;
+  }
 
-  // If the websocket didn't open, dispatch the error and stop here.
-  if (websocket.error) {
+  log.info(`Connecting to websocket on platform: ${platform} ...`);
+  // Try to open the websocket, but cancel if we get a disconnect action.
+  const { websocket, disconnect } = yield (0, _effects.race)({
+    websocket: (0, _effects.call)(connectWebsocket, wsInfo, platform),
+    disconnect: (0, _effects.take)(disconnectWebsocketPattern)
+  });
+
+  // If the websocket didn't open, stop here. Dispatch the error if there was one.
+  if (disconnect) {
+    log.info('Received disconnect during websocket connection; stopping.');
+    return;
+  } else if (websocket.error) {
     if (isReconnect) {
       yield (0, _effects.put)(actions.wsReconnectFailed(undefined, platform));
       return;
@@ -61167,52 +61179,70 @@ function _sendWSMessage(ws, message) {
 function* connectWebsocket(wsInfo, platform) {
   const configs = yield (0, _effects.select)(_selectors.getConnectivityConfig);
   let connectionAttempt = 0;
-  let delayTime = 0;
+  // The delay between attempts should not be shorter than 2 seconds.
+  let delayTime = configs.reconnectDelay > 2000 ? configs.reconnectDelay : 2000;
   let websocket;
-
-  // Redux-saga take() pattern.
-  // Take disconnect websocket action for this platform.
-  function disconnectWebsocketPattern(action) {
-    return action.type === actionTypes.WS_DISCONNECT && action.meta.platform === platform;
-  }
 
   // If no limit is set, we will continually attempt to reconnect.
   if (!configs.reconnectLimit) {
     log.debug('No connectivity reconnect limit set.');
   }
 
-  while (connectionAttempt < configs.reconnectLimit || !configs.reconnectLimit) {
+  function* safeOpenWs(wsInfo) {
+    let websocket;
     try {
-      // Try to open the websocket. Blocking call.
       websocket = yield (0, _effects.call)(_websocket.openWebsocket, wsInfo);
-      log.info(`Successfully connected to websocket on: ${platform}`);
-      break;
     } catch (err) {
-      connectionAttempt++;
       websocket = err;
-      log.debug(`Failed to connect to websocket on ${platform}. (Attempt #${connectionAttempt}). Message: ${websocket.message}.`);
+    }
+    return websocket;
+  }
+  while (connectionAttempt < configs.reconnectLimit || !configs.reconnectLimit) {
+    const wsConnectStart = Date.now();
+    const { openWs, timeout } = yield (0, _effects.race)({
+      openWs: (0, _effects.call)(safeOpenWs, wsInfo),
+      timeout: (0, _effects.delay)(delayTime)
+    });
+    const attemptDuration = Date.now() - wsConnectStart;
 
-      // If we want to try to reconnect, delay a certain about of time before trying.
+    // Checking for both timeout and open websocket errors here since we need to calculate the next delay paramaters in
+    //  both scenarios
+    if (timeout || openWs && openWs.error) {
+      connectionAttempt++;
+      websocket = openWs;
+      log.debug(`Failed to connect to websocket on ${platform}. (Attempt #${connectionAttempt}). Message: ${timeout ? 'Timed out' : websocket.message}.`);
+
+      // If we are still under the reconnect attempt limit, calculate the next delay time and delay before retrying.
       if (connectionAttempt < configs.reconnectLimit || !configs.reconnectLimit) {
-        // Increase the delay time if we're not at the limit.
+        // Calculate the remaining delay time by checking how long the previous connection attempt was.
+        // Do this before potentially lengthening the `delayTime` value.
+        const remainingDelay = timeout ? 0 : delayTime - attemptDuration;
+
+        // Increase the delay time for the next loop if we're not at the limit.
         if (delayTime !== configs.reconnectTimeLimit) {
-          delayTime = configs.reconnectDelay * Math.pow(configs.reconnectTimeMultiplier, connectionAttempt - 1);
+          delayTime = configs.reconnectDelay * Math.pow(configs.reconnectTimeMultiplier, connectionAttempt);
           delayTime = delayTime < configs.reconnectTimeLimit ? delayTime : configs.reconnectTimeLimit;
         }
-        log.debug(`Websocket reconnect attempt after ${delayTime} ms on ${platform}`);
 
-        // Wait for either the delay period or a trigger to stop connection attempts.
-        const { disconnect } = yield (0, _effects.race)({
-          delay: (0, _effects.delay)(delayTime),
-          disconnect: (0, _effects.take)(disconnectWebsocketPattern)
-        });
-
-        if (disconnect) {
-          break;
+        log.debug(`Websocket will attempt to reconnect after ${remainingDelay} ms on ${platform}`);
+        if (remainingDelay > 0) {
+          yield (0, _effects.delay)(remainingDelay);
         }
       } else {
         log.debug(`Stopping websocket connection attempts on ${platform}.`);
+        // We are at reconnect attempt limit; if it was due to a timeout we need to return an error. In case of
+        //  websocket error, that will be returned by the websocket.
+        if (timeout) {
+          return {
+            error: true,
+            message: 'Timed out.'
+          };
+        }
+        break;
       }
+    } else if (openWs) {
+      websocket = openWs;
+      break;
     }
   }
 
