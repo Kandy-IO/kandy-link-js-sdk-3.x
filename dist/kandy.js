@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.33.0-beta.764
+ * Version: 3.33.0-beta.765
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8119,7 +8119,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.33.0-beta.764';
+  return '3.33.0-beta.765';
 }
 
 /***/ }),
@@ -18391,6 +18391,7 @@ function factory(plugins, options = {}) {
   var sagas = [];
   var store;
   var middlewares = [];
+  const apis = [];
   var reducers = {};
   var initSagas = [];
   var taskDescriptor;
@@ -18459,7 +18460,7 @@ function factory(plugins, options = {}) {
       }
     }
     if (plugin.api) {
-      context.api = (0, _fp.merge)(context.api, plugin.api(context));
+      apis.push(plugin.api);
     }
     if (plugin.init) {
       initSagas.push(plugin.init);
@@ -18550,6 +18551,12 @@ function factory(plugins, options = {}) {
     // Create the store with the plugins (excl. sagas) and with the configuration as the initial state.
     store = (0, _redux.createStore)((0, _redux.combineReducers)(reducers), composeMiddleware((0, _redux.applyMiddleware)(destroyedSDKMiddleware, ...middlewares)));
   }
+
+  // Use the plugins' API factories to build the public API.
+  //    Do this after the store has been created.
+  apis.forEach(apiFactory => {
+    context.api = (0, _fp.merge)(context.api, apiFactory(context));
+  });
 
   // setup the API
   const publicAPI = (0, _extends3.default)({}, context.api, {
