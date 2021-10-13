@@ -7,6 +7,10 @@ Kandy.js change log.
 
 ## 3.33.0 - beta
 
+### Fixed
+
+- Fixed a CallHistory issue where removing a single record would remove other records as well.
+
 ## 3.32.0 - 2021-09-24
 
 ### Fixed
