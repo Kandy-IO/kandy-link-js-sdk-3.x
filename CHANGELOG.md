@@ -5,6 +5,12 @@ Kandy.js change log.
 - This project adheres to [Semantic Versioning](http://semver.org/).
 - This change log follows [keepachangelog.com](http://keepachangelog.com/) recommendations.
 
+## 3.33.0 - 2021-10-29
+
+### Fixed
+
+- Fixed a CallHistory issue where removing a single record would remove other records as well.
+
 ## 3.32.0 - 2021-09-24
 
 ### Fixed
