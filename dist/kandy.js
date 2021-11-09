@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.34.0-beta.784
+ * Version: 3.34.0-beta.785
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -1665,7 +1665,7 @@ function getRequestInfo(state, platform) {
   let { server } = getAuthConfig(state);
   const { userInfo } = (0, _fp.cloneDeep)(state.authentication);
 
-  // For backwards compatability, we need to fall back to
+  // For backwards compatibility, we need to fall back to
   // subscription for the server connection details
   if (!server) {
     server = {
@@ -3413,7 +3413,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  * @param {Object} [options.queryParams] The parameters to be added to the query string
  * @param {string} [options.responseType] The data type assumed to be received in the response body
  * @param {Blob|BufferSource|FormData|UrlSearchParams|string} [options.body] Any body that you want to add to your request.
- * @return A blocking redux-saga effect that will instruct the middleware to wait for the request to be fullfilled or until it fails.
+ * @return A blocking redux-saga effect that will instruct the middleware to wait for the request to be fulfilled or until it fails.
  */
 // Requests plugin.
 function request(options, commonOptions) {
@@ -7525,7 +7525,7 @@ const CALL_STATES = exports.CALL_STATES = {
   JOIN_FAILURE: 'Join Failed'
 
   /**
-   * Status codes that match success messsages.
+   * Status codes that match success messages.
    * @name STATUS_CODES
    * @type {Object}
    * @property {number} DIRECT_TRANSFER_SUCCESS Status code for successful direct transfer.
@@ -8007,7 +8007,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.34.0-beta.784';
+  return '3.34.0-beta.785';
 }
 
 /***/ }),
@@ -8289,7 +8289,7 @@ function getCpaasAgentHeaderValue(platform, url) {
   // Assume request is for CPaaS platform, by default.
   let headerValue = `cpaas-js-sdk/${(0, _version.getVersion)()}`;
 
-  // Check if request is for callMe service, otherwise determine the apropriate platform.
+  // Check if request is for callMe service, otherwise determine the appropriate platform.
   // (callMe service uses Link platform for call requests)
   if (url && url.includes('/anonymous/')) {
     headerValue = `callme-js-sdk/${(0, _version.getVersion)()}`;
@@ -8306,7 +8306,7 @@ function getCpaasAgentHeaderValue(platform, url) {
 
 /**
  * Prepares a REST request options object for logging by removing passwords
- * and parses the body string into an object that can be intereacted with in console.
+ * and parses the body string into an object that can be interacted with in console.
  * @method sanitizeRequest
  * @param {Object} options An object containing any custom settings that you want to
  *                         apply to the request. See [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch)
@@ -14147,7 +14147,7 @@ function setCredentialsFinished({ userInfo, connection, error }, platform) {
  * Creates an updateToken action with connection and platform information.
  *
  * @method updateToken
- * @param {string} token A session id retrieved after a sucsessful subscription on the platform.
+ * @param {string} token A session id retrieved after a successful subscription on the platform.
  * @param {string} platform The backend platform we are currently on.
  * @return {Object} A flux standard action.
  */
@@ -15619,7 +15619,7 @@ function sendCustomParameters(callId) {
 /**
  * Represents the finish of an action to send custom parameters.
  * Error action only.
- * @method sendCustomPrametersFinish
+ * @method sendCustomParametersFinish
  * @param  {string} callId The ID of the call being acted on.
  * @param  {Object} error The error object, in the case of an error.
  * @returns {Object} A flux standard action.
@@ -15665,7 +15665,7 @@ function forwardCallFinish(callId, error) {
  * Represents the request to transfer a call (direct transfer).
  * @method directTransfer
  * @param  {string} callId The ID of the call being acted on.
- * @param  {string} destination The user the call is to be transfered to.
+ * @param  {string} destination The user the call is to be transferred to.
  * @returns {Object} A flux standard action.
  */
 function directTransfer(callId, destination) {
@@ -15691,7 +15691,7 @@ function directTransferFinish(callId, error) {
  * Represents the request to transfer a call (consultative transfer).
  * @method consultativeTransfer
  * @param  {string} callId The ID of the call being acted on.
- * @param  {string} destination The callId to be transfered to.
+ * @param  {string} destination The callId to be transferred to.
  * @returns {Object} A flux standard action.
  */
 function consultativeTransfer(callId, destination) {
@@ -16142,7 +16142,7 @@ var _utils = __webpack_require__(21);
  */
 
 
-// Auth selectors for backwards compatability.
+// Auth selectors for backwards compatibility.
 function getSubscriptionConfig(state) {
   return (0, _fp.cloneDeep)(state.config.subscription);
 }
@@ -16180,7 +16180,7 @@ function getNotificationChannels(state) {
  */
 function getSubscribedServices(state, type) {
   const info = getSubscriptionInfo(state);
-  // For backwards compability, make sure that this is an array. It isn't when
+  // For backwards compatibility, make sure that this is an array. It isn't when
   //    the old Auth plugin is being used (eg. Link v3.X).
   let subscriptions = Array.isArray(info) ? info : [info];
 
@@ -16209,7 +16209,7 @@ function getSubscriptionInfo(state) {
   if (state.subscription) {
     return (0, _fp.cloneDeep)(state.subscription.subscriptions);
   } else {
-    // For backwards compatability, also check if the authentication substate
+    // For backwards compatibility, also check if the authentication substate
     //    has subscription info. It will have the info when the oldAuth plugin
     //    is being used (eg. Link v3.X).
     // Warning: This returns an object, unlike the above which returns an array.
@@ -16239,7 +16239,7 @@ function getSubscriptionExpiry(state) {
   const subConfig = state.config.subscription;
   const authConfig = state.config.authentication;
 
-  // In order to maintain backwards compability with the auth plugin config
+  // In order to maintain backwards compatibility with the auth plugin config
   // we need to first check if this setting is provided in the authentication plugin
   // config, and if not use the one from subscription plugin.  We need to check
   // authentication config first because if no value is provided in the subscription
@@ -16252,8 +16252,8 @@ function getSubscriptionExpiry(state) {
 
 /**
  * Retrieve the websocket info from config. We merge the websocket config
- * from auth plugin with the one from subscription plugin giving precidence to
- * the websocket config in auth plugin since we need to maintain backwards compability
+ * from auth plugin with the one from subscription plugin giving precedence to
+ * the websocket config in auth plugin since we need to maintain backwards compatibility
  * with the old format config.
  * @method getSubscriptionExpiry
  * @return {number}
@@ -16267,7 +16267,7 @@ function getWebsocketConfig(state) {
   // that any client provided values from the authentication config.  All keys existing
   // in authentication config will overwrite those from subscription config.  However,
   // since defaults are not set for websocket in the authentication plugin, only client
-  // provided values for websocket will be used from authentication config and defualts
+  // provided values for websocket will be used from authentication config and defaults
   // will come from the subscription plugin.
   return (0, _utils.mergeValues)(subConfig.websocket, authConfig.websocket);
 }
@@ -16622,7 +16622,7 @@ function* fetchSDP(connection, partialUrl) {
   const { server } = connection;
   const method = 'GET';
   const url = `${server.protocol}://${server.server}:${server.port}${partialUrl}`;
-  log.debug(`Sending request to fecth SDP: ${method} ${url}`);
+  log.debug(`Sending request to fetch SDP: ${method} ${url}`);
 
   const response = yield (0, _effects2.default)({
     url,
@@ -17127,7 +17127,7 @@ function fetchUserFinish(user, error) {
  * @param {Object} [options] Sorting options
  * @param {string} [options.sortBy] The attribute upon which to sort results. This can be any of the above listed filters which describe a user attribute.
  * @param {string} [options.order] Order by which to return results. Can be one of "asc" or "desc".
- * @param {number} [options.max] The maximmum number of results to return.
+ * @param {number} [options.max] The maximum number of results to return.
  * @param {string} [options.next] The pointer for a chunk of results, which may be returned from other a previous query.
  * @returns {Object} A flux standard action representing the SEARCH_DIRECTORY action.
  */
@@ -17657,7 +17657,7 @@ var _fp = __webpack_require__(2);
 // eslint-disable-next-line no-warning-comments
 /**
  * The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.
- * The SDK instance will be refered as 'api' throughout the rest of the documentation content.
+ * The SDK instance will be referred as 'api' throughout the rest of the documentation content.
  * @public
  * @method create
  * @param {config} config The configuration object.
@@ -20228,7 +20228,7 @@ function createManager(options = {}) {
 
       logger = (0, _logger2.default)(target, options);
 
-      // Save the new logger to be returned by future getter cals.
+      // Save the new logger to be returned by future getter calls.
       loggers[loggerName] = logger;
     }
 
@@ -21026,7 +21026,7 @@ var _validation = __webpack_require__(95);
  */
 function createTimer(log, warn) {
   // Validate that params are a function.
-  //    Uses funtions as `log(message, data)`.
+  //    Uses functions as `log(message, data)`.
   (0, _validation.checkHandler)(log);
   (0, _validation.checkHandler)(warn);
 
@@ -22337,7 +22337,7 @@ var _fp = __webpack_require__(2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Retrieves the log level for a specifie logger type, or the default level.
+ * Retrieves the log level for a specified logger type, or the default level.
  * @method getLevel
  * @param  {Object} state            SDK redux state.
  * @param  {String} [type='DEFAULT'] A type of Logger.
@@ -24062,7 +24062,7 @@ function generateEndParams(currentCallState, isLocal, params) {
  * @property {Object} target The subject that the log is about.
  * @property {string} target.type The type of the target. This is also
  *    used as part of the name of the Logger.
- * @property {string} [target.id] A unique identifer for the target.
+ * @property {string} [target.id] A unique identifier for the target.
  * @property {string} target.name A combination of the target type and ID. If no
  *    id was provided, this will be the same as the type.
  * @property {Array} messages The logged information, given to the Logger
@@ -25770,7 +25770,7 @@ reducers[actionTypes.SET_CREDENTIALS_FINISH] = {
 };
 
 /*
- * Remove the x-token from the request header after subscription is successfull.
+ * Remove the x-token from the request header after subscription is successful.
  */
 reducers[actionTypes.UPDATE_HMAC_TOKEN] = {
   next(state, action) {
@@ -26289,7 +26289,7 @@ function api({ dispatch, getState }) {
     setCredentials({ username, password, authname, hmacToken, bearerAccessToken, idToken }) {
       log.debug(_logs.API_LOG_TAG + 'setCredentials: ', username);
       // TODO: Refactor into multiple actions for each credential mode
-      // TODO: Validation of two authentication possibility scenerio
+      // TODO: Validation of two authentication possibility scenario
       dispatch(actions.setCredentials({
         username,
         password,
@@ -27387,7 +27387,7 @@ function* disconnectWebsocket(payload, platform) {
 /**
  * Effect for waiting for the websocket / subscription to reconnect.
  * Assumption is that the websocket is in the middle of reconnect attempts. This
- *    is why the timeout is so long; one of the two scenarios should be guarenteed
+ *    is why the timeout is so long; one of the two scenarios should be guaranteed
  *    to happen before then.
  * @param {number} timeout The time, in milliseconds, to wait before timing out.
  * @return {boolean} Whether the websocket has reconnected or not.
@@ -27909,7 +27909,7 @@ const fcsLog = _logs.logManager.getLogger('FCS');
  * @param {Object} [call.callDefaults] Default options to be used when making/answering a call.
  * @param {boolean} [call.callDefaults.isAudioEnabled=true] Specifies whether audio is enabled or not.
  * @param {boolean} [call.callDefaults.isVideoEnabled=true] Specifies whether video is enabled or not.
- * @param {boolean} [call.callDefaults.sendInitialVideo=false] Specifies whether to send an inital video stream or not.
+ * @param {boolean} [call.callDefaults.sendInitialVideo=false] Specifies whether to send an initial video stream or not.
  * @param {Object} [call.callDefaults.remoteVideoContainer] Specifies the container where video (coming from remote party) is rendered.
  * @param {Object} [call.callDefaults.localVideoContainer] Specifies the container where video (coming from local party) is rendered.
  * @param {string} [call.chromeExtensionId] ID of the screenshare extension being used for screenshare of Google Chrome.
@@ -28217,7 +28217,7 @@ function middleware({ dispatch, getState }) {
           if (action.meta.isSSO) {
             // If we are in an SSO scenario we first have to call fcs' setTokenAuth endpoint.
             // For normal CONNECT scenario's the equivalent is setUserAuth in the CONNECT middleware above.
-            // For SSO we do it here since we don't get the username untill after the connect server response.
+            // For SSO we do it here since we don't get the username until after the connect server response.
             callShim.setTokenAuth(action.payload.userInfo.username, action.payload.userInfo.token);
 
             // This call tells FCS to use UAT's instead of basic auth for all future rest calls.
@@ -28518,7 +28518,7 @@ function middleware({ dispatch, getState }) {
 
       case actionTypes.DIRECT_TRANSFER:
         {
-          log.debug(`Transfering call (direct) to user ${action.payload.params.destination}`, action.payload.callId);
+          log.debug(`Transferring call (direct) to user ${action.payload.params.destination}`, action.payload.callId);
           callShim.directTransfer(action.payload.callId, action.payload.params.destination).then(function ({ callId }) {
             dispatch(_actions3.callsActions.directTransferFinish(callId));
           }).catch(function ({ callId, error }) {
@@ -28529,7 +28529,7 @@ function middleware({ dispatch, getState }) {
 
       case actionTypes.CONSULTATIVE_TRANSFER:
         {
-          log.debug(`Transfering call (consultative) to destination ${action.payload.params.destination}`, action.payload.callId);
+          log.debug(`Transferring call (consultative) to destination ${action.payload.params.destination}`, action.payload.callId);
           callShim.consultativeTransfer(action.payload.callId, action.payload.params.destination).then(function ({ callId }) {
             dispatch(_actions3.callsActions.consultativeTransferFinish(callId));
           }).catch(function ({ callId, error }) {
@@ -29187,7 +29187,7 @@ function shim(context) {
     setup(fcsConfig) {
       // true = delayInitMedia, because FCS doesn't provide an initMedia
       // response when done on setup, but all subsequent initMedias will
-      // be returned as a succcess.
+      // be returned as a success.
       fcs.setup(fcsConfig, true);
     },
 
@@ -29760,7 +29760,7 @@ function shim(context) {
     },
 
     /**
-     * Ecplicitely sends custom parameters of a call.
+     * Explicitly sends custom parameters of a call.
      * @method sendCustomParameters
      * @param  {string} callId The ID of the call being acted on.
      * @return {Promise}
@@ -29832,7 +29832,7 @@ function shim(context) {
     directTransfer(callId, destination) {
       return new _promise2.default(function (resolve, reject) {
         function transferSuccess() {
-          log.info('Successfully transfered call.');
+          log.info('Successfully transferred call.');
           // Go back to the redux level.
           resolve({ callId });
         }
@@ -29865,7 +29865,7 @@ function shim(context) {
     consultativeTransfer(callId, destination) {
       return new _promise2.default(function (resolve, reject) {
         function transferSuccess() {
-          log.info('Successfully transfered call.');
+          log.info('Successfully transferred call.');
           // Go back to the redux level.
           resolve({ callId });
         }
@@ -30005,7 +30005,7 @@ function shim(context) {
     },
 
     /**
-     * Prompts for permsiion to use media.
+     * Prompts for permission to use media.
      * @method promptUserMedia
      * @param  {Object} params
      * @param  {boolean} params.video
@@ -55485,7 +55485,7 @@ function stopLocalVideo() {
 }
 
 /**
- * Represnts that an action to stop local video has finished.
+ * Represents that an action to stop local video has finished.
  * @method stopLocalVideoFinish
  * @param  {BasicError} error A Basic error object, if an error occurred.
  * @returns {Object} A flux standard action.
@@ -55537,8 +55537,8 @@ function initMedia(options = {}) {
  * Represents that media has been / tried to be initialized.
  * @method initMediaFinish
  * @param  {Object} result Information about media support.
- * @param  {boolean} result.error Whether the initiazation was successful or not.
- * @param  {number} result.code A unqiue code describing the result scenario.
+ * @param  {boolean} result.error Whether the initialization was successful or not.
+ * @param  {number} result.code A unique code describing the result scenario.
  * @param  {string} result.message Human readable message of the result.
  * @returns {Object} A flux standard action.
  */
@@ -55773,7 +55773,7 @@ var actionTypes = _interopRequireWildcard(_actionTypes);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 /**
- * Reprents an API request to create an audio bridge.
+ * Represents an API request to create an audio bridge.
  * @method createAudioBridge
  * @param  {string} bridgeId UUID to identify the audio bridge.
  * @returns {Object} A flux standard action.
@@ -56273,7 +56273,7 @@ function api({ dispatch, getState }) {
      * @property {string} NEW A new media connection process has started.
      * @property {string} CHECKING Media is searching for a connection.
      * @property {string} CONNECTED Media has found a connection, but may still be searching for a better connection to use.
-     * @property {string} COMLETED Media has finished searching and been established. Audio/video should now be flowing on the call.
+     * @property {string} COMPLETED Media has finished searching and been established. Audio/video should now be flowing on the call.
      * @property {string} FAILED Media was not able to find a connection. Audio/video will not flow.
      * @property {string} DISCONNECTED The media connection has lost its connection and is trying to recover.
      * @property {string} CLOSED The media connection has shut down.
@@ -56527,9 +56527,9 @@ function api({ dispatch, getState }) {
      * @method startVideo
      * @param {string} callId Id of the call being acted on.
      * @param {Object} [options] Options for the video stream.
-     * @param {Object} [options.videoResolution] The video resolution configuation object.
-     * @param {number} [options.videoResolution.height] The height of the outoing video in pixels.
-     * @param {number} [options.videoResolution.width] The width of the outoing video in pixels.
+     * @param {Object} [options.videoResolution] The video resolution configuration object.
+     * @param {number} [options.videoResolution.height] The height of the outgoing video in pixels.
+     * @param {number} [options.videoResolution.width] The width of the outgoing video in pixels.
      */
     startVideo(callId, options = {}) {
       log.debug(_logs.API_LOG_TAG + 'call.startVideo: ', callId, options);
@@ -58164,7 +58164,7 @@ const DEVICE_DEFAULT_CHANGE = exports.DEVICE_DEFAULT_CHANGE = 'devices:defaultsC
  * @requires callMe
  * @event devices:change
  * @param {Object} params
- * @param {Object} params.devices The devices, seperated by device type.
+ * @param {Object} params.devices The devices, separated by device type.
  */
 const DEVICE_CHANGE = exports.DEVICE_CHANGE = 'devices:change';
 
@@ -58176,7 +58176,7 @@ const DEVICE_CHANGE = exports.DEVICE_CHANGE = 'devices:change';
  * @param {Object} params
  * @param {Object} params.devices The devices to request permission for.
  * @param {api.BasicError} params.error The Basic error object.
- * @param {boolean} params.granted Whether premission was granted?
+ * @param {boolean} params.granted Whether permission was granted?
  */
 const MEDIA_PERMISSIONS = exports.MEDIA_PERMISSIONS = 'media:permissions';
 
@@ -58200,8 +58200,8 @@ const DEVICE_ERROR = exports.DEVICE_ERROR = 'devices:error';
  * @event media:initialize
  * @param {Object} params
  * @param {Object} params.result Results of initializing media.
- * @param {boolean} params.result.error Whether the initiazation was successful or not.
- * @param {number} params.result.code A unqiue code describing the result scenario.
+ * @param {boolean} params.result.error Whether the initialization was successful or not.
+ * @param {number} params.result.code A unique code describing the result scenario.
  * @param {string} params.result.message Human readable message of the result.
  */
 const MEDIA_INITIALIZED = exports.MEDIA_INITIALIZED = 'media:initialize';
@@ -58446,7 +58446,7 @@ function api({ dispatch, getState }) {
     /**
      * Sets the cached call history data, expects stringified data as it will be parsed.
      *
-     * The data can be retreived from the {@link callHistory.getCache
+     * The data can be retrieved from the {@link callHistory.getCache
      *    call.history.getCache} API. This allows an
      *    application to persist the information across SDK instances when the
      *    backend environment does not support the CallHistory feature.
@@ -58912,7 +58912,7 @@ function* removeCallLogs(action) {
         message: `Failed to remove call log. Status Code: ${statusCode}.`
       });
     } else {
-      // Handle errrs from the request helper.
+      // Handle errors from the request helper.
       const { message } = response.payload.result;
       log.info('Failed call log removal.', message);
 
@@ -59571,7 +59571,7 @@ function* clickToCallSaga() {
 
     // ensure both caller and callee are provided in payload.
     if (!action.payload.caller || !action.payload.callee) {
-      log.info('Missing call particiant information');
+      log.info('Missing call participant information');
       yield (0, _effects.put)(actions.clickToCallFinish({
         payload: {
           error: new _errors2.default({
@@ -60313,7 +60313,7 @@ const log = _logs.logManager.getLogger('CONNECTIVITY');
 function* wsConnectFlow() {
   log.info('Creating channel for handling websocket actions ...');
   const chan = yield (0, _effects.actionChannel)(actionTypes.WS_ATTEMPT_CONNECT);
-  log.info('Channel successfuly created.');
+  log.info('Channel successfully created.');
   yield (0, _effects.takeEvery)(chan, websocketLifecycle);
 }
 
@@ -60687,7 +60687,7 @@ function* connectWebsocket(wsInfo, platform) {
     });
     const attemptDuration = Date.now() - wsConnectStart;
 
-    // Checking for both timeout and open websocket errors here since we need to calculate the next delay paramaters in
+    // Checking for both timeout and open websocket errors here since we need to calculate the next delay parameters in
     //  both scenarios
     if (timeout || openWs && openWs.error) {
       connectionAttempt++;
@@ -61444,7 +61444,7 @@ function messageReceived(destination, parts, messageId, sender, timestamp, meta 
  *
  * @method incomingMessageRead
  * @param {string} messageId The unique id of the message being marked as read.
- * @param {string} participant The other pariticipant of the conversation.
+ * @param {string} participant The other participant of the conversation.
  * @returns {Object} A flux standard action representing the incoming message read action.
  */
 const incomingMessageRead = exports.incomingMessageRead = (messageId, participant) => messageReadHelper(actionTypes.INCOMING_MESSAGE_READ, messageId, participant);
@@ -61454,7 +61454,7 @@ const incomingMessageRead = exports.incomingMessageRead = (messageId, participan
  *
  * @method sendMessageRead
  * @param {string} messageId The unique id of the message being marked as read.
- * @param {string} participant The other pariticipant of the conversation.
+ * @param {string} participant The other participant of the conversation.
  * @returns {Object} A flux standard action representing the send message read action.
  */
 const sendMessageRead = exports.sendMessageRead = (messageId, participant) => messageReadHelper(actionTypes.SEND_MESSAGE_READ, messageId, participant);
@@ -71231,7 +71231,7 @@ const log = _logs.logManager.getLogger('PRESENCE'); /**
  * @property {string} status The current status the user has set for themselves. For supported values see {@link presence.statuses}.
  * @property {string} activity The current activity of the user.
  *      For supported values see {@link presence.activities}.
- * @property {string} note Additional message acompanying the status & activity.
+ * @property {string} note Additional message accompanying the status & activity.
  * @property {boolean} loading Whether the presence information has been loaded or is in the process of loading.
  */
 
@@ -71567,7 +71567,7 @@ function* updatePresence({ payload }) {
   }
 }
 /**
- * Link saga for gettting the presence updates one time only for the user(s).
+ * Link saga for getting the presence updates one time only for the user(s).
  * @method getPresence
  */
 function* getPresence({ payload }) {
@@ -71598,7 +71598,7 @@ function* subscribePresence({ payload }) {
 
 /**
  * Link saga for Handling unsubscribing the user(s) presence.
- * User will not be able to recieve presence updates of the unsubscribed user.
+ * User will not be able to receive presence updates of the unsubscribed user.
  * @method unsubscribePresence
  */
 function* unsubscribePresence({ payload }) {
@@ -71615,7 +71615,7 @@ function* unsubscribePresence({ payload }) {
 
 /**
  * Link receivePresence saga.
- * Handles the presence info recieved from the notification message.
+ * Handles the presence info received from the notification message.
  * @method receivePresence
  * @param {Object} wsAction
  */
@@ -71840,7 +71840,7 @@ eventsMap[actionTypes.UNSUBSCRIBE_FINISH] = action => {
   }
 };
 
-// TODO: Should have events to notifiy of successful operations for these actions.
+// TODO: Should have events to notify of successful operations for these actions.
 eventsMap[actionTypes.CREATE_PRESENCE_LIST_FINISH] = presenceError;
 
 exports.default = eventsMap;
@@ -73160,7 +73160,7 @@ function usersLink() {
 
   /**
    * On-Premises fetchUser saga
-   * Performs to uworkflow of caching a user.
+   * Performs the workflow of caching a user.
    * @return {Generator} [description]
    */
   function* fetchUser() {
@@ -73211,7 +73211,7 @@ function usersLink() {
       if (!userProfile.error) {
         userData.data = userProfile;
       } else {
-        log.debug('Error retrieving user profile informaion', userProfile.text);
+        log.debug('Error retrieving user profile information', userProfile.text);
       }
 
       if (!currentLocale.error) {
@@ -73411,7 +73411,7 @@ function* fetchSelfInfo(connection) {
 }
 
 /**
- * Fetch user localeinformation from SPiDR with the provided connection info.
+ * Fetch user locale information from SPiDR with the provided connection info.
  * @param  {Object}     connection Connection information for the platform in use.
  * @return {Object}            Fetch request's response.
  */
@@ -74721,14 +74721,14 @@ exports.default = async function makeRequest(options, requestId) {
 
     /*
      * Try to parse the response as JSON, and if successful, include
-     * it in the returned error. otherwise, provide an empty object instaed.
+     * it in the returned error. otherwise, provide an empty object instead.
      */
     let responseBody;
     try {
       responseBody = await response.json();
     } catch (err) {
       responseBody = {};
-      log.debug('Failed to parse reponse:', err.message);
+      log.debug('Failed to parse response:', err.message);
     }
     return makeResponse({ error: 'REQUEST' }, (0, _extends3.default)({ body: responseBody }, result));
   }
@@ -75219,7 +75219,7 @@ function api({ dispatch, getState }) {
  */
 
 /**
- * The Phone Numer ie: +18885559876
+ * The Phone Number ie: +18885559876
  *
  * @public
  * @static

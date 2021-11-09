@@ -15,7 +15,7 @@ To install a particular build branch or beta branch with the Github URL, run:
 ### In the browser :
 ```html
 <script src="https://unpkg.com/@kandy-io/link-sdk-3.x@3.34.0/dist/kandy.js"
-  integrity="sha384-k3vZwtaJMFX7eXm45sjQQiwNbHFhO+B9cuqWAnHCTOx/nWh+JGApD2LoTMNPI0de"
+  integrity="sha384-yOqUfA4ofDWNZ0cWsStNgf7yNexGNAntnNqVvVlNqoNkKARZMJhWXMzDT6xMrxtL"
   crossorigin="anonymous">
 </script>
 ```
@@ -27,7 +27,7 @@ The information about tutorials and documents can be found in the links below
 
 * `Tutorials`: Choose your configuration ( [Kandy-US](https://kandy-io.github.io/kandy-link-js-sdk-3.x/tutorials/?config=us#/Configurations) | [Kandy-EMEA](https://kandy-io.github.io/kandy-link-js-sdk-3.x/tutorials/?config=emea#/Configurations) | [Kandy-UAE](https://kandy-io.github.io/kandy-link-js-sdk-3.x/tutorials/?config=uae#/Configurations) )
 
-## Compatiblity
+## Compatibility
 
 | Browsers | Versions              | Operating Systems              |
 |----------|-----------------------|--------------------------------|
