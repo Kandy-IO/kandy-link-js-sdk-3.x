@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.34.0-beta.791
+ * Version: 3.34.0-beta.792
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -3124,6 +3124,12 @@ Object.defineProperty(exports, 'usersCodes', {
   enumerable: true,
   get: function () {
     return _codes.usersCodes;
+  }
+});
+Object.defineProperty(exports, 'webrtcCodes', {
+  enumerable: true,
+  get: function () {
+    return _codes.webrtcCodes;
   }
 });
 class BasicError {
@@ -8007,7 +8013,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.34.0-beta.791';
+  return '3.34.0-beta.792';
 }
 
 /***/ }),
@@ -26909,6 +26915,13 @@ const authCodes = exports.authCodes = {
   REFRESH_CONTACTS_FAIL: 'users:2',
   DIRECTORY_REQUEST_FAIL: 'users:3',
   INVALID_PARAM: 'users:4'
+
+  /**
+   * Error codes for the Webrtc plugin
+   * @name webrtcCodes
+   */
+};const webrtcCodes = exports.webrtcCodes = {
+  INVALID_PARAM: 'webrtc:1'
 };
 
 /***/ }),
