@@ -7,6 +7,11 @@ Kandy.js change log.
 
 ## 3.34.0 - beta
 
+### Fixed
+
+- Fixed an issue where if the client updated the notifications config and set idCacheLength to 0 (disable duplicate checking) it wouldn't be
+  used by the SDK and it would continue to check for duplicate notifications. `KJS-419`
+
 ## 3.33.0 - 2021-10-29
 
 ### Fixed
