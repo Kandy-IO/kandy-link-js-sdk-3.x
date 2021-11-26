@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>kandy-link-js-sdk-3.x 3.33.0 | Documentation</title>
+  <title>kandy-link-js-sdk-3.x 3.34.0 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>kandy-link-js-sdk-3.x</h3>
-          <div class='mb1'><code>3.33.0</code></div>
+          <div class='mb1'><code>3.34.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -200,12 +200,6 @@
                               href='#apisetcredentials'
                               class='regular pre-open'>
                               <span style="color:green">ⓕ</span> .setCredentials
-                            </a></li>
-                          
-                            <li><a
-                              href='#apifetch'
-                              class='regular pre-open'>
-                              <span style="color:green">ⓕ</span> .fetch
                             </a></li>
                           
                           </ul>
@@ -1018,6 +1012,21 @@
                   </li>
                 <li><span style="color:green">ⓕ</span><a href='#promptusermedia' class=""> promptUserMedia</a>
                   </li>
+                <li><span style="color:magenta">ⓝ</span><a href='#request' class=" toggle-sibling"> api.request <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
+                          <ul class='list-reset py1-ul pl1'>
+                          <li class='h5'><span>Functions</span></li>
+                          
+                            <li><a
+                              href='#requestfetch'
+                              class='regular pre-open'>
+                              <span style="color:green">ⓕ</span> .fetch
+                            </a></li>
+                          
+                          </ul>
+                        
+                    </div>
+                    
+                  </li>
                 <li><span style="color:green">ⓕ</span><a href='#setdefaultdevices' class=""> setDefaultDevices</a>
                   </li>
                 <li><span style="color:magenta">ⓝ</span><a href='#sip' class=" toggle-sibling"> api.sip <span class='icon'>▸</span> </a><div class='toggle-target display-none'>
@@ -1246,7 +1255,7 @@
   
 
   <p>The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.
-The SDK instance will be refered as 'api' throughout the rest of the documentation content.</p>
+The SDK instance will be referred as 'api' throughout the rest of the documentation content.</p>
 
 
   <div class='pre p1 fill-light mt0'>create(config: <a href="#config">config</a>): <a href="#api">api</a></div>
@@ -1841,7 +1850,7 @@ to be exposed in the logs, potentially displaying sensitive information.
   
     (default <code>false</code>)
   </td>
-  <td class='break-word'><span>Specifies whether to send an inital video stream or not.
+  <td class='break-word'><span>Specifies whether to send an initial video stream or not.
 </span></td>
 </tr>
 
@@ -2557,7 +2566,7 @@ The SDK can only use keepalive as the connectivity check.</p>
                 <tr>
   <td class='break-word'><span class='code bold'>params.devices</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>
   </td>
-  <td class='break-word'><span>The devices, seperated by device type.
+  <td class='break-word'><span>The devices, separated by device type.
 </span></td>
 </tr>
 
@@ -2735,7 +2744,7 @@ The SDK can only use keepalive as the connectivity check.</p>
     <tr>
   <td class='break-word'><span class='code bold'>params.result.error</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>
   </td>
-  <td class='break-word'><span>Whether the initiazation was successful or not.
+  <td class='break-word'><span>Whether the initialization was successful or not.
 </span></td>
 </tr>
 
@@ -2744,7 +2753,7 @@ The SDK can only use keepalive as the connectivity check.</p>
     <tr>
   <td class='break-word'><span class='code bold'>params.result.code</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
   </td>
-  <td class='break-word'><span>A unqiue code describing the result scenario.
+  <td class='break-word'><span>A unique code describing the result scenario.
 </span></td>
 </tr>
 
@@ -4724,111 +4733,6 @@ client.setCredentials({
       </div>
     </div>
   
-    <div class='border-bottom' id='apifetch'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>fetch(resource, init)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-
-  <p>Send a request to the underlying REST service with the appropriate configuration and authentication.
-This is a wrapper on top of the browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/fetch">fetch API</a>
-and behaves very similarly but using SDK configuration for the base URL and authentication as well
-as SDK logging.</p>
-
-
-  <div class='pre p1 fill-light mt0'>fetch(resource: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, init: RequestInit): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>resource</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    The full path of the resource to fetch from the underlying service. This should include any REST version
-or user information. This path will be appended to the base URL according to SDK configuration.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>init</span> <code class='quiet'>(RequestInit)</code>
-	    An object containing any custom settings that you want to apply to the request. See 
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/fetch">fetch API</a>
-
-for a full description and defaults.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Returns</div>
-    
-      <div>
-        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>></code>:
-          A promise for a 
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Response</a>
- object.
-
-        
-      </div>
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Send a REST request to the server</span>
-<span class="hljs-comment">// Create a request options object following [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch)</span>
-<span class="hljs-keyword">const</span> requestOptions = {
-  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
-  <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify({
-    <span class="hljs-attr">test</span>: <span class="hljs-number">123</span>
-  })
-}
-
-<span class="hljs-comment">// Note that you will need to subscribe for the `custom` service in order to</span>
-<span class="hljs-comment">// receive notifications from the `externalnotification` service.</span>
-<span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> client.fetch(<span class="hljs-string">&#x27;/rest/version/1/user/xyz@test.com/externalnotification&#x27;</span>, requestOptions)</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
 </div>
 
     
@@ -5127,8 +5031,7 @@ session expires.</p>
 
   
 
-  <p>The information needed for connecting has been set.
-This event would only occur when the credentials for 3.x SDk as been set.</p>
+  <p>The information (credentials) needed for connecting have been set.</p>
 
 
   <div class='pre p1 fill-light mt0'>auth:credentialsSet</div>
@@ -6370,7 +6273,7 @@ backend environment does not support the CallHistory feature.</p>
   
 
   <p>Sets the cached call history data, expects stringified data as it will be parsed.</p>
-<p>The data can be retreived from the <a href="callHistory.getCache">call.history.getCache</a> API. This allows an
+<p>The data can be retrieved from the <a href="callHistory.getCache">call.history.getCache</a> API. This allows an
 application to persist the information across SDK instances when the
 backend environment does not support the CallHistory feature.</p>
 
@@ -7132,7 +7035,7 @@ Supported on browser's that support HTMLMediaElement.setSinkId().</p>
         </div>
       
         <div class='space-bottom0'>
-          <span class='code bold'>COMLETED</span> 
+          <span class='code bold'>COMPLETED</span> 
           <code class='quiet'>
             (<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)
           </code>
@@ -8248,7 +8151,7 @@ client.call.setCustomParameters(
                 <tr>
   <td class='break-word'><span class='code bold'>options.videoResolution</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>?</code>
   </td>
-  <td class='break-word'><span>The video resolution configuation object.
+  <td class='break-word'><span>The video resolution configuration object.
 </span></td>
 </tr>
 
@@ -8256,7 +8159,7 @@ client.call.setCustomParameters(
     <tr>
   <td class='break-word'><span class='code bold'>options.videoResolution.height</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?</code>
   </td>
-  <td class='break-word'><span>The height of the outoing video in pixels.
+  <td class='break-word'><span>The height of the outgoing video in pixels.
 </span></td>
 </tr>
 
@@ -8265,7 +8168,7 @@ client.call.setCustomParameters(
     <tr>
   <td class='break-word'><span class='code bold'>options.videoResolution.width</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>?</code>
   </td>
-  <td class='break-word'><span>The width of the outoing video in pixels.
+  <td class='break-word'><span>The width of the outgoing video in pixels.
 </span></td>
 </tr>
 
@@ -12756,7 +12659,7 @@ used as part of the name of the Logger.</p>
               
                 <li><code>target.id</code> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?
                   
-                  <p>A unique identifer for the target.</p>
+                  <p>A unique identifier for the target.</p>
 </li>
               
                 <li><code>target.name</code> <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
@@ -14106,7 +14009,7 @@ For supported values see
           
 
           
-             : Additional message acompanying the status &#x26; activity.
+             : Additional message accompanying the status &#x26; activity.
 
           
           
@@ -15371,6 +15274,167 @@ API.</p>
 
   
 
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='request'>
+      request
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The 'request' namespace (within the 'api' type) is used to make network requests to the server.</p>
+
+
+  <div class='pre p1 fill-light mt0'>request</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+      <div class='py1 quiet mt1 prose-big'>Functions</div>
+      <div class="clearfix">
+  
+    <div class='border-bottom' id='requestfetch'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>fetch(resource, init)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Send a request to the underlying REST service with the appropriate configuration and authentication.
+This is a wrapper on top of the browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/fetch">fetch API</a>
+and behaves very similarly but using SDK configuration for the base URL and authentication as well
+as SDK logging.</p>
+
+
+  <div class='pre p1 fill-light mt0'>fetch(resource: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, init: RequestInit): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>resource</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    The full path of the resource to fetch from the underlying service. This should include any REST version
+or user information. This path will be appended to the base URL according to SDK configuration.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>init</span> <code class='quiet'>(RequestInit)</code>
+	    An object containing any custom settings that you want to apply to the request. See 
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/fetch">fetch API</a>
+
+for a full description and defaults.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Returns</div>
+    
+      <div>
+        <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5">Response</a>></code>:
+          A promise for a 
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Response</a>
+ object.
+
+        
+      </div>
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">// Send a REST request to the server</span>
+<span class="hljs-comment">// Create a request options object following [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch)</span>
+<span class="hljs-keyword">const</span> requestOptions = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+  <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify({
+    <span class="hljs-attr">test</span>: <span class="hljs-number">123</span>
+  })
+}
+
+<span class="hljs-comment">// Note that you will need to subscribe for the `custom` service in order to</span>
+<span class="hljs-comment">// receive notifications from the `externalnotification` service.</span>
+<span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> client.request.fetch(<span class="hljs-string">&#x27;/rest/version/1/user/xyz@test.com/externalnotification&#x27;</span>, requestOptions)</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+    
   
 
   

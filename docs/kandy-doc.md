@@ -3,7 +3,7 @@
 ## create
 
 The SDK creation factory. Create an instance of the SDK by calling this factory with the desired configurations.
-The SDK instance will be refered as 'api' throughout the rest of the documentation content.
+The SDK instance will be referred as 'api' throughout the rest of the documentation content.
 
 ### Parameters
 
@@ -105,7 +105,7 @@ Configuration options for the call feature.
 
         *   `call.callDefaults.isAudioEnabled` **[boolean][11]** Specifies whether audio is enabled or not. (optional, default `true`)
         *   `call.callDefaults.isVideoEnabled` **[boolean][11]** Specifies whether video is enabled or not. (optional, default `true`)
-        *   `call.callDefaults.sendInitialVideo` **[boolean][11]** Specifies whether to send an inital video stream or not. (optional, default `false`)
+        *   `call.callDefaults.sendInitialVideo` **[boolean][11]** Specifies whether to send an initial video stream or not. (optional, default `false`)
         *   `call.callDefaults.remoteVideoContainer` **[Object][7]?** Specifies the container where video (coming from remote party) is rendered.
         *   `call.callDefaults.localVideoContainer` **[Object][7]?** Specifies the container where video (coming from local party) is rendered.
     *   `call.chromeExtensionId` **[string][8]?** ID of the screenshare extension being used for screenshare of Google Chrome.
@@ -186,7 +186,7 @@ Available media devices have been changed.
 
 *   `params` **[Object][7]** 
 
-    *   `params.devices` **[Object][7]** The devices, seperated by device type.
+    *   `params.devices` **[Object][7]** The devices, separated by device type.
 
 ## devices:defaultsChange
 
@@ -208,8 +208,8 @@ Media support has been checked.
 
     *   `params.result` **[Object][7]** Results of initializing media.
 
-        *   `params.result.error` **[boolean][11]** Whether the initiazation was successful or not.
-        *   `params.result.code` **[number][12]** A unqiue code describing the result scenario.
+        *   `params.result.error` **[boolean][11]** Whether the initialization was successful or not.
+        *   `params.result.code` **[number][12]** A unique code describing the result scenario.
         *   `params.result.message` **[string][8]** Human readable message of the result.
 
 ## videoPreview:change
@@ -560,39 +560,6 @@ Type: [Object][7]
 *   `code` **[string][8]** The code of the error. If no code is known, this will be 'NO_CODE'.
 *   `message` **[string][8]** A human-readable message to describe the error. If no message is known, this will be 'An error occurred'.
 
-### fetch
-
-Send a request to the underlying REST service with the appropriate configuration and authentication.
-This is a wrapper on top of the browser's [fetch API][21]
-and behaves very similarly but using SDK configuration for the base URL and authentication as well
-as SDK logging.
-
-#### Parameters
-
-*   `resource` **[string][8]** The full path of the resource to fetch from the underlying service. This should include any REST version
-    or user information. This path will be appended to the base URL according to SDK configuration.
-*   `init` **RequestInit** An object containing any custom settings that you want to apply to the request. See [fetch API][21]
-    for a full description and defaults.
-
-#### Examples
-
-```javascript
-// Send a REST request to the server
-// Create a request options object following [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch)
-const requestOptions = {
-  method: 'POST',
-  body: JSON.stringify({
-    test: 123
-  })
-}
-
-// Note that you will need to subscribe for the `custom` service in order to
-// receive notifications from the `externalnotification` service.
-const response = await client.fetch('/rest/version/1/user/xyz@test.com/externalnotification', requestOptions)
-```
-
-Returns **[Promise][22]<[Response][23]>** A promise for a [Response][24] object.
-
 ### auth:change
 
 Authentication state has changed. You can get the new state by calling `getConnection()`.
@@ -631,8 +598,7 @@ session expires.
 
 ### auth:credentialsSet
 
-The information needed for connecting has been set.
-This event would only occur when the credentials for 3.x SDk as been set.
+The information (credentials) needed for connecting have been set.
 
 ## AudioBridge
 
@@ -750,7 +716,7 @@ Functions below are all part of this namespace.
 ### fetch
 
 Fetches the list of call logs and stores them locally. The API
-[CallHistory.get][25] can then be used to get
+[CallHistory.get][21] can then be used to get
 the logs from local state after it has been updated.
 
 #### Parameters
@@ -792,7 +758,7 @@ Returns **[Array][13]** A list of call log records, ordered by latest first.
 Gets the cached call history data and returns stringified data.
 
 The data is provided in a format that can be used directly with the
-[call.history.setCache][26] API. This allows an
+[call.history.setCache][22] API. This allows an
 application to persist the information across SDK instances when the
 backend environment does not support the CallHistory feature.
 
@@ -802,7 +768,7 @@ Returns **[string][8]** A stringified list of call log records from the cache, o
 
 Sets the cached call history data, expects stringified data as it will be parsed.
 
-The data can be retreived from the [call.history.getCache][27] API. This allows an
+The data can be retrieved from the [call.history.getCache][23] API. This allows an
 application to persist the information across SDK instances when the
 backend environment does not support the CallHistory feature.
 
@@ -812,7 +778,7 @@ backend environment does not support the CallHistory feature.
 
 ### callHistory:change
 
-Call history state has been updated. See [CallHistory.get][25] to retrieve new state.
+Call history state has been updated. See [CallHistory.get][21] to retrieve new state.
 
 ### callHistory:error
 
@@ -911,7 +877,7 @@ State of the media connection within a call.
 *   `NEW` **[string][8]** A new media connection process has started.
 *   `CHECKING` **[string][8]** Media is searching for a connection.
 *   `CONNECTED` **[string][8]** Media has found a connection, but may still be searching for a better connection to use.
-*   `COMLETED` **[string][8]** Media has finished searching and been established. Audio/video should now be flowing on the call.
+*   `COMPLETED` **[string][8]** Media has finished searching and been established. Audio/video should now be flowing on the call.
 *   `FAILED` **[string][8]** Media was not able to find a connection. Audio/video will not flow.
 *   `DISCONNECTED` **[string][8]** The media connection has lost its connection and is trying to recover.
 *   `CLOSED` **[string][8]** The media connection has shut down.
@@ -936,8 +902,8 @@ Start an outgoing call.
         *   `options.videoResolution.height` **[number][12]?** The height in pixels of the local video.
         *   `options.videoResolution.width` **[number][12]?** The width in pixels of the local video.
     *   `options.customParameters` **[Array][13]<{name: [string][8], value: [string][8]}>?** Custom SIP header parameters for the SIP backend.
-    *   `options.remoteVideoContainer` **[HTMLElement][28]?** The HTML element to use as a container for the remote video.
-    *   `options.localVideoContainer` **[HTMLElement][28]?** The HTML element to use as a container for the local video.
+    *   `options.remoteVideoContainer` **[HTMLElement][24]?** The HTML element to use as a container for the remote video.
+    *   `options.localVideoContainer` **[HTMLElement][24]?** The HTML element to use as a container for the local video.
     *   `options.normalizeAddress` **[boolean][11]** Whether to enable normalization of callee address. (optional, default `false`)
 
 #### Examples
@@ -976,8 +942,8 @@ Answer an incoming call.
 
         *   `options.videoResolution.height` **[number][12]?** The height in pixels of the local video.
         *   `options.videoResolution.width` **[number][12]?** The width in pixels of the local video.
-    *   `options.localVideoContainer` **[HTMLElement][28]?** The HTML element to use as a container for the local video.
-    *   `options.remoteVideoContainer` **[HTMLElement][28]?** The HTML element to use as a container for the remote video.
+    *   `options.localVideoContainer` **[HTMLElement][24]?** The HTML element to use as a container for the local video.
+    *   `options.remoteVideoContainer` **[HTMLElement][24]?** The HTML element to use as a container for the remote video.
 
 ### ignore
 
@@ -1077,10 +1043,10 @@ Start local video stream for an ongoing call.
 *   `callId` **[string][8]** Id of the call being acted on.
 *   `options` **[Object][7]?** Options for the video stream.
 
-    *   `options.videoResolution` **[Object][7]?** The video resolution configuation object.
+    *   `options.videoResolution` **[Object][7]?** The video resolution configuration object.
 
-        *   `options.videoResolution.height` **[number][12]?** The height of the outoing video in pixels.
-        *   `options.videoResolution.width` **[number][12]?** The width of the outoing video in pixels.
+        *   `options.videoResolution.height` **[number][12]?** The height of the outgoing video in pixels.
+        *   `options.videoResolution.width` **[number][12]?** The width of the outgoing video in pixels.
 
 ### stopVideo
 
@@ -1232,7 +1198,7 @@ the SDK and one or more backend servers.
 
 Information about a websocket connection.
 
-Can be retrieved using the [connection.getSocketState][29] API.
+Can be retrieved using the [connection.getSocketState][25] API.
 
 Type: [Object][7]
 
@@ -1270,7 +1236,7 @@ Get the state of the websocket.
 
 *   `platform` **[string][8]** Backend platform for which to request the websocket's state. (optional, default `'link'`)
 
-Returns **[connection.WSConnectionObject][30]** Details about the current websocket connection, including state and configuration.
+Returns **[connection.WSConnectionObject][26]** Details about the current websocket connection, including state and configuration.
 
 ### enableConnectivityChecking
 
@@ -1450,19 +1416,19 @@ This API will retrieve a conversation already existing in the store.
 
     *   `options.type` **[string][8]?** The type of conversation to retrieve. Can be one of "im", "sms" or "other".
 
-Returns **[conversation.Conversation][31]** A Conversation object matching the passed destination, otherwise undefined is returned.
+Returns **[conversation.Conversation][27]** A Conversation object matching the passed destination, otherwise undefined is returned.
 
 ### getAll
 
 Returns all conversations currently tracked by the SDK
 
-Returns **[Array][13]<[conversation.Conversation][31]>** An array of conversation objects.
+Returns **[Array][13]<[conversation.Conversation][27]>** An array of conversation objects.
 
 ### Conversation
 
 A Conversation object represents a conversation between either two users, or a
 user and a group. A Conversation can create messages via the conversation's
-[createMessage()][32] function.
+[createMessage()][28] function.
 
 Type: [Object][7]
 
@@ -1487,7 +1453,7 @@ Create and return a message object. You must provide a `text` part as demonstrat
 conversation.createMessage({type: 'text', text: 'This is the message'});
 ```
 
-Returns **[conversation.Message][33]** The newly created Message object.
+Returns **[conversation.Message][29]** The newly created Message object.
 
 #### clearMessages
 
@@ -1554,11 +1520,11 @@ A Message object is a means by which a sender can deliver information to a recip
 
 Creating and sending a message:
 
-A message object can be obtained through the [Conversation.createMessage][32] API on an existing conversation.
+A message object can be obtained through the [Conversation.createMessage][28] API on an existing conversation.
 
 Messages have Parts which represent pieces of a message, such as a text part, a json object part or a file part.
-Once all the desired parts have been added to the message using the [Message.addPart][34] function,
-the message can then be sent using the [Message.send][35] function.
+Once all the desired parts have been added to the message using the [Message.addPart][30] function,
+the message can then be sent using the [Message.send][31] function.
 
 Once the sender sends a message, this message is saved in sender's state as an object.
 Similarly, once the recipient gets a message, this message is saved in recipient's state.
@@ -1566,7 +1532,7 @@ Similarly, once the recipient gets a message, this message is saved in recipient
 Retrieving a delivered message:
 
 Once a message is delivered successfully, it can be
-obtained through the [Conversation.getMessages][36] or [Conversation.getMessage][37] API on an existing conversation.
+obtained through the [Conversation.getMessages][32] or [Conversation.getMessage][33] API on an existing conversation.
 
 Below are the properties pertaining to the message object, returned by Conversation.getMessage(s) APIs, for either sender or recipient.
 
@@ -1580,7 +1546,7 @@ Type: [Object][7]
 *   `destination` **[Array][13]<[string][8]>** An array of primary contact addresses associated with various destinations to which the message is meant to be delivered.
 *   `messageId` **[string][8]** The unique id of the message. The message object (stored in sender's state) has a different id
     than the one associated with the message object stored in recipient's state.
-*   `type` **[string][8]** The type of message that was sent. See [conversation.chatTypes][38] for valid types.
+*   `type` **[string][8]** The type of message that was sent. See [conversation.chatTypes][34] for valid types.
     This property applies only to message objects stored in sender's state.
 
 #### send
@@ -1650,7 +1616,7 @@ behaviour. The SDK will generate logs, at different levels for different
 types of information, which are routed to a
 "[Log Handler][4]" for consumption. An application
 can provide their own Log Handler (see
-[config.logs][39]) to customize how the logs are
+[config.logs][35]) to customize how the logs are
 handled, or allow the default Log Handler to print the logs to the
 console.
 
@@ -1710,7 +1676,7 @@ logged. It contains both the logged information and meta-info about when
 and who logged it.
 
 A [LogHandler][4] provided to the SDK (see
-[config.logs][39]) will need to handle LogEntry
+[config.logs][35]) will need to handle LogEntry
 objects.
 
 Type: [Object][7]
@@ -1724,7 +1690,7 @@ Type: [Object][7]
 
     *   `target.type` **[string][8]** The type of the target. This is also
         used as part of the name of the Logger.
-    *   `target.id` **[string][8]?** A unique identifer for the target.
+    *   `target.id` **[string][8]?** A unique identifier for the target.
     *   `target.name` **[string][8]** A combination of the target type and ID. If no
         id was provided, this will be the same as the type.
 *   `messages` **[Array][13]** The logged information, given to the Logger
@@ -1760,7 +1726,7 @@ default, the SDK will log information to the console, but a LogHandler can
 be configured to change this behaviour.
 
 A LogHandler can be provided to the SDK as part of its configuration (see
-[config.logs][39]). The SDK will then provide this
+[config.logs][35]). The SDK will then provide this
 function with the logged information.
 
 Type: [Function][16]
@@ -1820,7 +1786,7 @@ Provides an external notification to the system for processing.
 ### registerApplePush
 
 Registers with Apple push notification service. Once registration is successful, the application will be able to receive
-standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][40]
+standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][36]
 in order for the SDK to process them.
 
 #### Parameters
@@ -1839,13 +1805,13 @@ in order for the SDK to process them.
     *   `params.isProduction` **[boolean][11]** If true, push notification will be sent to production.
         If false, push notification will be sent to sandbox.
 
-Returns **[Promise][22]** When successful,  the information of the registration.
+Returns **[Promise][37]** When successful,  the information of the registration.
 Promise will reject with error object otherwise.
 
 ### registerAndroidPush
 
 Registers with Google push notification service. Once registration is successful, the application will be able to receive
-standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][40]
+standard and/or voip push notifications. It can then send these notifications to the SDK with [api.notifications.process][36]
 in order for the SDK to process them.
 
 #### Parameters
@@ -1860,7 +1826,7 @@ in order for the SDK to process them.
     *   `params.realm` **[string][8]** The realm used by the push registration service to identify
         and establish a connection with the service gateway.
 
-Returns **[Promise][22]** When successful,  the information of the registration.
+Returns **[Promise][37]** When successful,  the information of the registration.
 Promise will reject with error object otherwise.
 
 ### unregisterApplePush
@@ -1871,7 +1837,7 @@ Unregister Apple push notifications.
 
 *   `registrationInfo` **[string][8]** The data returned from the push registration
 
-Returns **[Promise][22]** When successful, the promise will resolve with undefined.
+Returns **[Promise][37]** When successful, the promise will resolve with undefined.
 Promise will reject with error object otherwise.
 
 ### unregisterAndroidPush
@@ -1882,7 +1848,7 @@ Unregister Android push notifications.
 
 *   `registrationInfo` **[string][8]** The data returned from the push registration
 
-Returns **[Promise][22]** When successful, the promise will resolve with undefined.
+Returns **[Promise][37]** When successful, the promise will resolve with undefined.
 Promise will reject with error object otherwise.
 
 ### enableWebsocket
@@ -1922,11 +1888,11 @@ information.
 
 Presence information is persisted by the server. When the SDK is initialized,
 there will be no information available. Presence information will become
-available either by using [presence.fetch][41] or by subscribing for
-updates about other Users, using [presence.subscribe][42].
+available either by using [presence.fetch][38] or by subscribing for
+updates about other Users, using [presence.subscribe][39].
 
-Available presence information can be retrieved using [presence.get][43] or
-[presence.getAll][44].
+Available presence information can be retrieved using [presence.get][40] or
+[presence.getAll][41].
 
 ### statuses
 
@@ -1968,39 +1934,39 @@ Type: [Object][7]
 
 The PresenceStatus type defines the user's current status in terms of the user's availability to
 communicate/respond to other users in the network.
-An instance of this type can be obtained by invoking the [presence.get][43] function.
+An instance of this type can be obtained by invoking the [presence.get][40] function.
 
 Reporting when a user is on the phone is enabled (by default), which means that presence update notifications
 will be sent whenever a user is in a call, as well as when the call has ended.
 This is a user preference enabled or disabled on server side, and it can only be changed on the server side.
 
-The status is set to [open][45] as soon as a user subscribes for the presence service.
+The status is set to [open][42] as soon as a user subscribes for the presence service.
 
 Type: [Object][7]
 
 #### Properties
 
 *   `userId` **[string][8]** The unique identifier for the user associated with this presence status.
-*   `status` **[string][8]** The current status the user has set for themselves. For supported values see [presence.statuses][45].
+*   `status` **[string][8]** The current status the user has set for themselves. For supported values see [presence.statuses][42].
 *   `activity` **[string][8]** The current activity of the user.
-    For supported values see [presence.activities][46].
-*   `note` **[string][8]** Additional message acompanying the status & activity.
+    For supported values see [presence.activities][43].
+*   `note` **[string][8]** Additional message accompanying the status & activity.
 *   `loading` **[boolean][11]** Whether the presence information has been loaded or is in the process of loading.
 
 ### update
 
 Updates the presence information for the current user.
 
-See [presence.statuses][45] and [presence.activities][46] for valid
+See [presence.statuses][42] and [presence.activities][43] for valid
 values.
 
 The SDK will emit a
-[presence:selfChange][47] event
+[presence:selfChange][44] event
 when the operation completes. The updated presence information is
-available and can be retrieved with [presence.getSelf][48].
+available and can be retrieved with [presence.getSelf][45].
 
 Other users subscribed for this user's presence will receive a
-[presence:change][49] event.
+[presence:change][46] event.
 
 #### Parameters
 
@@ -2028,7 +1994,7 @@ Returns **[Array][13]<[Object][7]>** List of user presence information.
 
 Retrieves the presence information for the current user.
 
-This information is set using the [presence.update][50] API.
+This information is set using the [presence.update][47] API.
 
 Returns **[Object][7]** Presence information for the current user.
 
@@ -2038,7 +2004,7 @@ Fetches presence information for the given users. This will refresh the
 available information with any new information from the server.
 
 Available presence information an be retrieved using the
-[presence.get][43] or [presence.getAll][44] APIs.
+[presence.get][40] or [presence.getAll][41] APIs.
 
 #### Parameters
 
@@ -2049,7 +2015,7 @@ Available presence information an be retrieved using the
 Subscribe to another User's presence updates.
 
 When the User updates their presence information, the SDK will emit a
-[presence:change][49] event.
+[presence:change][46] event.
 
 #### Parameters
 
@@ -2067,11 +2033,11 @@ Unsubscribe from another User's presence updates.
 
 A presence update about a subscribed user has been received.
 
-This event is generated as a result of [presence.fetch][41] or [presence.update][50] operations.
+This event is generated as a result of [presence.fetch][38] or [presence.update][47] operations.
 
 For the latter operation, the current user receives a presence update of another user that the current user is subscribed to.
 
-The changed information can be retrieved using the [presence.get][43]
+The changed information can be retrieved using the [presence.get][40]
 API.
 
 #### Parameters
@@ -2087,7 +2053,7 @@ API.
 
 The current user's presence information has changed.
 
-The changed information can be retrieved using the [presence.getSelf][48]
+The changed information can be retrieved using the [presence.getSelf][45]
 API.
 
 ### presence:subscribe
@@ -2130,6 +2096,43 @@ Prompt the user for permission to use their audio and/or video devices.
 
     *   `options.video` **[boolean][11]?** Whether to get permission for video.
     *   `options.audio` **[boolean][11]?** Whether to get permission for audio.
+
+## request
+
+The 'request' namespace (within the 'api' type) is used to make network requests to the server.
+
+### fetch
+
+Send a request to the underlying REST service with the appropriate configuration and authentication.
+This is a wrapper on top of the browser's [fetch API][48]
+and behaves very similarly but using SDK configuration for the base URL and authentication as well
+as SDK logging.
+
+#### Parameters
+
+*   `resource` **[string][8]** The full path of the resource to fetch from the underlying service. This should include any REST version
+    or user information. This path will be appended to the base URL according to SDK configuration.
+*   `init` **RequestInit** An object containing any custom settings that you want to apply to the request. See [fetch API][48]
+    for a full description and defaults.
+
+#### Examples
+
+```javascript
+// Send a REST request to the server
+// Create a request options object following [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch)
+const requestOptions = {
+  method: 'POST',
+  body: JSON.stringify({
+    test: 123
+  })
+}
+
+// Note that you will need to subscribe for the `custom` service in order to
+// receive notifications from the `externalnotification` service.
+const response = await client.request.fetch('/rest/version/1/user/xyz@test.com/externalnotification', requestOptions)
+```
+
+Returns **[Promise][37]<[Response][49]>** A promise for a [Response][50] object.
 
 ## sdpHandlers
 
@@ -2479,7 +2482,7 @@ Starts the local video stream and displays it to the user.
 
 ### Parameters
 
-*   `videoContainer` **[HTMLElement][28]?** The container to use for local video.
+*   `videoContainer` **[HTMLElement][24]?** The container to use for local video.
 
 ### Examples
 
@@ -2711,65 +2714,65 @@ An error has occurred while attempting to retrieve voicemail data.
 
 [20]: services.unsubscribe
 
-[21]: https://developer.mozilla.org/en-US/docs/Web/API/fetch
+[21]: #callhistoryget
 
-[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[22]: callHistory.setCache
 
-[23]: https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5
+[23]: callHistory.getCache
 
-[24]: https://developer.mozilla.org/en-US/docs/Web/API/Response
+[24]: https://developer.mozilla.org/docs/Web/HTML/Element
 
-[25]: #callhistoryget
+[25]: #connectiongetsocketstate
 
-[26]: callHistory.setCache
+[26]: #connectionwsconnectionobject
 
-[27]: callHistory.getCache
+[27]: #conversationconversation
 
-[28]: https://developer.mozilla.org/docs/Web/HTML/Element
+[28]: #conversationconversationcreatemessage
 
-[29]: #connectiongetsocketstate
+[29]: #conversationmessage
 
-[30]: #connectionwsconnectionobject
+[30]: conversation.Message.addPart
 
-[31]: #conversationconversation
+[31]: #conversationmessagesend
 
-[32]: #conversationconversationcreatemessage
+[32]: #conversationconversationgetmessages
 
-[33]: #conversationmessage
+[33]: #conversationconversationgetmessage
 
-[34]: conversation.Message.addPart
+[34]: conversation.chatTypes
 
-[35]: #conversationmessagesend
+[35]: #configconfiglogs
 
-[36]: #conversationconversationgetmessages
+[36]: api.notifications.process
 
-[37]: #conversationconversationgetmessage
+[37]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[38]: conversation.chatTypes
+[38]: #presencefetch
 
-[39]: #configconfiglogs
+[39]: #presencesubscribe
 
-[40]: api.notifications.process
+[40]: #presenceget
 
-[41]: #presencefetch
+[41]: #presencegetall
 
-[42]: #presencesubscribe
+[42]: #presencestatuses
 
-[43]: #presenceget
+[43]: #presenceactivities
 
-[44]: #presencegetall
+[44]: #presenceeventpresenceselfchange
 
-[45]: #presencestatuses
+[45]: #presencegetself
 
-[46]: #presenceactivities
+[46]: #presenceeventpresencechange
 
-[47]: #presenceeventpresenceselfchange
+[47]: #presenceupdate
 
-[48]: #presencegetself
+[48]: https://developer.mozilla.org/en-US/docs/Web/API/fetch
 
-[49]: #presenceeventpresencechange
+[49]: https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5
 
-[50]: #presenceupdate
+[50]: https://developer.mozilla.org/en-US/docs/Web/API/Response
 
 [51]: call.SdpHandlerFunction
 
