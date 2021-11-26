@@ -598,8 +598,7 @@ session expires.
 
 ### auth:credentialsSet
 
-The information needed for connecting has been set.
-This event would only occur when the credentials for 3.x SDk as been set.
+The information (credentials) needed for connecting have been set.
 
 ## AudioBridge
 

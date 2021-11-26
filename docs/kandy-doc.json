@@ -5160,7 +5160,7 @@
                 "children": [
                   {
                     "type": "text",
-                    "value": "The information needed for connecting has been set.\nThis event would only occur when the credentials for 3.x SDk as been set."
+                    "value": "The information (credentials) needed for connecting have been set."
                   }
                 ]
               }
@@ -5170,24 +5170,24 @@
             {
               "title": "public",
               "description": null,
-              "lineNumber": 4,
+              "lineNumber": 3,
               "type": null
             },
             {
               "title": "memberof",
               "description": "api",
-              "lineNumber": 5
+              "lineNumber": 4
             },
             {
               "title": "requires",
               "description": null,
-              "lineNumber": 6,
+              "lineNumber": 5,
               "name": "connect"
             },
             {
               "title": "event",
               "description": "auth:credentialsSet",
-              "lineNumber": 7
+              "lineNumber": 6
             }
           ],
           "loc": {
@@ -5196,18 +5196,18 @@
               "column": 0
             },
             "end": {
-              "line": 51,
+              "line": 50,
               "column": 3
             }
           },
           "context": {
             "loc": {
               "start": {
-                "line": 52,
+                "line": 51,
                 "column": 0
               },
               "end": {
-                "line": 52,
+                "line": 51,
                 "column": 57
               }
             },
