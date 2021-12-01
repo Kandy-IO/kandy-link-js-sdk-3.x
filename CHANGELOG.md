@@ -13,6 +13,8 @@ Kandy.js change log.
 
 - Fixed an issue where if the client updated the notifications config and set idCacheLength to 0 (disable duplicate checking) it wouldn't be
   used by the SDK and it would continue to check for duplicate notifications. `KJS-427`
+- Fixed presence state to indicate when the client has a pending operation in progress for subscribing/unsubscribing to user presence.
+  `KJS-295`
 
 ## 3.33.0 - 2021-10-29
 
