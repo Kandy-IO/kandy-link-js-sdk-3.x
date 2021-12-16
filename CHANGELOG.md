@@ -38,7 +38,7 @@ Kandy.js change log.
 
 ### Changed
 
-- Changed the domain names used in configuration for all turn/stun servers to the newly public ones (for Kandy tutorials).
+- Changed the domain names used in configuration for all turn/stun servers to the newly public ones (for Kandy tutorials). `KJS-89`
 
 ## 3.29.0 - 2021-06-25
 
