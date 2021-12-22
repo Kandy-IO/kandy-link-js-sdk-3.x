@@ -493,6 +493,7 @@ Possible reasons for disconnecting.
 
 *   `GONE` **[string][8]** Connection was terminated by the server
 *   `LOST_CONNECTION` **[string][8]** Internet connection was lost
+*   `WS_OVERRIDDEN` **[string][8]** WebSocket was overridden by the server
 
 ### setCredentials
 
