@@ -1,3 +1,5 @@
+The v3 stream of the Kandy Link JavaScript SDK has been deprecated and is not receiving regular updates. The latest version of the SDK can be found at https://github.com/Kandy-IO/kandy-link-js-sdk.
+
 # Kandy Link JavaScript SDK 3.x
 
 ## Install
@@ -14,8 +16,8 @@ To install a particular build branch or beta branch with the Github URL, run:
 
 ### In the browser :
 ```html
-<script src="https://unpkg.com/@kandy-io/link-sdk-3.x@3.37.1/dist/kandy.js"
-  integrity="sha384-p6aIpOddVljTXTQLjYbGy/3sFuMz2XChTE5k9+wgEvb3lcbeAmlqpZjuI/X1KPFn"
+<script src="https://unpkg.com/@kandy-io/link-sdk-3.x@3.38.0/dist/kandy.js"
+  integrity="sha384-iSyZyJ9q9PijLbtvciOsHxff9DNPkhI8YQ8yUGWhYxriRJIbIXbgMRyARZRgh9Ok"
   crossorigin="anonymous">
 </script>
 ```

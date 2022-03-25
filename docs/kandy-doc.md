@@ -2033,7 +2033,7 @@ Returns **[Object][7]** Presence information for the current user.
 Fetches presence information for the given users. This will refresh the
 available information with any new information from the server.
 
-Available presence information an be retrieved using the
+Available presence information can be retrieved using the
 [presence.get][41] or [presence.getAll][42] APIs.
 
 #### Parameters
