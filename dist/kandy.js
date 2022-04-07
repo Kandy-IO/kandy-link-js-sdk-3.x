@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.39.0-beta.860
+ * Version: 3.39.0-beta.861
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8125,7 +8125,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.39.0-beta.860';
+  return '3.39.0-beta.861';
 }
 
 /***/ }),
@@ -25634,9 +25634,9 @@ function parseConfigs(options = {}) {
  */
 function mergeDefaults(options = {}) {
   options = (0, _utils.mergeValues)(defaultOptions, options);
-  // If no ice collection check function was provided, get the default one and use any set/default values for the timeouts
+  // If no ice collection check function was provided, get the default one.
   if (!options.iceCollectionCheckFunction) {
-    options.iceCollectionCheckFunction = (0, _defaults.getDefaultCollectionFunction)(options.iceCollectionIdealTimeout, options.iceCollectionMaxTimeout);
+    options.iceCollectionCheckFunction = _defaults.iceCollectionCheckFunction;
   }
   parseOptions(options);
 
@@ -25653,7 +25653,7 @@ function mergeDefaults(options = {}) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getDefaultCollectionFunction = getDefaultCollectionFunction;
+exports.iceCollectionCheckFunction = iceCollectionCheckFunction;
 
 var _constants = __webpack_require__(40);
 
@@ -25664,124 +25664,118 @@ var _sdpTransform2 = _interopRequireDefault(_sdpTransform);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Returns the default ice collection check function.
+ * Default function used for the SDK's ICE collection process. Will determine when enough
+ *     candidates have been collected, or enough time has passed, until negotiation can
+ *     continue or if the call should be considered failed.
  *
- * @method getDefaultCollectionFunction
- * @param {number} idealCollectionTimeout The desired ideal ice collection check timeout.
- * @param {number} maxCollectionTimeout The desired max ice collection check timeout.
- * @returns {Function} The default ice collection check function.
+ * If ICE collection completes normally (at any point),
+ *   - start the call if we have some ICE candidates.
+ *   - error the call if there are no ICE candidates.
+ *
+ * If a candidate is collected, follow logic based on below timings.
+ *
+ * If before the ideal timeout,
+ *   - start the call if every media section has a relay candidate for every TURN server.
+ *   - otherwise wait until max timeout.
+ *
+ * If before the max timeout (but after ideal),
+ *   - start the call if every media section has at least one relay candidate.
+ *   - otherwise wait until max timeout.
+ *
+ * If we reach max timeout,
+ *   - start the call if we have some ICE candidates.
+ *   - error the call if there are no ICE candidates.
+ * @param {Object} iceCollectionInfo
+ * @param {string} iceCollectionInfo.callId The ID of the call.
+ * @param {string} iceCollectionInfo.callOperation The current operation of the call.
+ * @param {string} iceCollectionInfo.reason The reason the check function was called.
+ * @param {Array<Object>} iceCollectionInfo.iceCandidates The array of ICE candidates collected so far.
+ * @param {number} iceCollectionInfo.iceCollectionDuration The time elapsed since the start of the ICE collection process.
+ * @param {string} iceCollectionInfo.iceGatheringState The current ICE gathering state.
+ * @param {Object} iceCollectionInfo.rtcPeerConnectionConfig The config of the RTC peer connection.
+ * @param {string} iceCollectionInfo.rtcLocalSessionDescription The local description set on the peer.
+ * @param {Object} timeoutConfigs Timeout configuration values provided by the application.
+ * @param {number} timeoutConfigs.iceCollectionIdealTimeout The desired ideal ice collection check timeout.
+ * @param {number} timeoutConfigs.iceCollectionMaxTimeout The desired max ice collection check timeout.
+ * @return {call.iceCollectionCheckResult} Information on how to proceed with the ice collection check.
  */
-function getDefaultCollectionFunction(idealCollectionTimeout, maxCollectionTimeout) {
-  /**
-   * Default function used for the SDK's ICE collection process. Will determine when enough
-   *     candidates have been collected, or enough time has passed, until negotiation can
-   *     continue or if the call should be considered failed.
-   *
-   * If ICE collection completes normally (at any point),
-   *   - start the call if we have some ICE candidates.
-   *   - error the call if there are no ICE candidates.
-   *
-   * If a candidate is collected, follow logic based on below timings.
-   *
-   * If before the ideal timeout,
-   *   - start the call if every media section has a relay candidate for every TURN server.
-   *   - otherwise wait until max timeout.
-   *
-   * If before the max timeout (but after ideal),
-   *   - start the call if every media section has at least one relay candidate.
-   *   - otherwise wait until max timeout.
-   *
-   * If we reach max timeout,
-   *   - start the call if we have some ICE candidates.
-   *   - error the call if there are no ICE candidates.
-   * @param {Object} iceCollectionInfo
-   * @param {string} iceCollectionInfo.callId The ID of the call.
-   * @param {string} iceCollectionInfo.callOperation The current operation of the call.
-   * @param {string} iceCollectionInfo.reason The reason the check function was called.
-   * @param {Array<Object>} iceCollectionInfo.iceCandidates The array of ICE candidates collected so far.
-   * @param {number} iceCollectionInfo.iceCollectionDuration The time elapsed since the start of the ICE collection process.
-   * @param {string} iceCollectionInfo.iceGatheringState The current ICE gathering state.
-   * @param {Object} iceCollectionInfo.rtcPeerConnectionConfig The config of the RTC peer connection.
-   * @param {string} iceCollectionInfo.rtcLocalSessionDescription The local description set on the peer.
-   * @return {call.iceCollectionCheckResult} Information on how to proceed with the ice collection check.
-   */
-  const iceCollectionCheckFunction = (iceCollectionInfo = {}) => {
-    const {
-      iceCollectionDuration,
-      iceCandidates,
-      iceGatheringState,
-      rtcPeerConnectionConfig,
-      rtcLocalSessionDescription
-    } = iceCollectionInfo;
+function iceCollectionCheckFunction(iceCollectionInfo = {}, timeoutConfigs) {
+  const {
+    iceCollectionDuration,
+    iceCandidates,
+    iceGatheringState,
+    rtcPeerConnectionConfig,
+    rtcLocalSessionDescription
+  } = iceCollectionInfo;
 
-    if (iceGatheringState === 'complete') {
-      // If the ice gathering state is 'complete', but no candidates are available, end the call
-      if (iceCandidates.length === 0) {
-        return { type: _constants.ICE_COLLECTION_RESULT_TYPES.ERROR, error: 'No ICE candidates available for call to proceed.' };
-      }
-      return { type: _constants.ICE_COLLECTION_RESULT_TYPES.START_CALL };
+  const { iceCollectionIdealTimeout, iceCollectionMaxTimeout } = timeoutConfigs;
+
+  if (iceGatheringState === 'complete') {
+    // If the ice gathering state is 'complete', but no candidates are available, end the call
+    if (iceCandidates.length === 0) {
+      return { type: _constants.ICE_COLLECTION_RESULT_TYPES.ERROR, error: 'No ICE candidates available for call to proceed.' };
     }
+    return { type: _constants.ICE_COLLECTION_RESULT_TYPES.START_CALL };
+  }
 
-    // If we are under the ideal timeout time and iceGathering state is not complete, we will check that the amount
-    //  relay candidates for each transport is equal to the number of configured TURN servers.
-    if (iceCollectionDuration < idealCollectionTimeout) {
-      // Number of TURN servers
-      let totalTurnServers = 0;
-      const configuredIceServers = rtcPeerConnectionConfig.rtcConfig.iceServers || [];
-      configuredIceServers.forEach(iceServer => {
-        if (Array.isArray(iceServer.urls)) {
-          totalTurnServers += iceServer.urls.filter(url => url.startsWith('turn')).length;
-        } else if (typeof iceServer.urls === 'string' && iceServer.urls.startsWith('turn')) {
-          totalTurnServers += 1;
-        }
-      });
-
-      // RTP Relay candidates collected so far
-      const relayCandidates = iceCandidates.filter(candidate => candidate.component === 'rtp' && candidate.type === 'relay');
-
-      // Check whether there is atleast candidates for each media transport equal to the number of configured
-      //  turn servers before starting the call.
-      const parsedSdp = _sdpTransform2.default.parse(rtcLocalSessionDescription.sdp);
-      const readyToStart = parsedSdp.media.every(media => {
-        const sectionRelays = relayCandidates.filter(candidate => parseInt(candidate.sdpMid) === media.mid || candidate.sdpMid === media.mid);
-        return sectionRelays.length >= totalTurnServers;
-      });
-
-      // If no TURN servers we're provided we will wait till the ideal collection timeout.
-      if (!readyToStart || !totalTurnServers) {
-        return { type: _constants.ICE_COLLECTION_RESULT_TYPES.WAIT, wait: idealCollectionTimeout - iceCollectionDuration };
-      } else {
-        return { type: _constants.ICE_COLLECTION_RESULT_TYPES.START_CALL };
+  // If we are under the ideal timeout time and iceGathering state is not complete, we will check that the amount
+  //  relay candidates for each transport is equal to the number of configured TURN servers.
+  if (iceCollectionDuration < iceCollectionIdealTimeout) {
+    // Number of TURN servers
+    let totalTurnServers = 0;
+    const configuredIceServers = rtcPeerConnectionConfig.rtcConfig.iceServers || [];
+    configuredIceServers.forEach(iceServer => {
+      if (Array.isArray(iceServer.urls)) {
+        totalTurnServers += iceServer.urls.filter(url => url.startsWith('turn')).length;
+      } else if (typeof iceServer.urls === 'string' && iceServer.urls.startsWith('turn')) {
+        totalTurnServers += 1;
       }
-    } else if (iceCollectionDuration < maxCollectionTimeout) {
-      // If we are passed the ideal timeout time, we will check that the amount relay candidates for each transport is
-      //  1 or more.
+    });
 
-      // RTP Relay candidates collected so far
-      const relayCandidates = iceCandidates.filter(candidate => candidate.component === 'rtp' && candidate.type === 'relay');
+    // RTP Relay candidates collected so far
+    const relayCandidates = iceCandidates.filter(candidate => candidate.component === 'rtp' && candidate.type === 'relay');
 
-      // Check whether there is atleast 1 candidate for each media transport before starting the call.
-      const parsedSdp = _sdpTransform2.default.parse(rtcLocalSessionDescription.sdp);
-      const readyToStart = parsedSdp.media.every(media => {
-        const sectionRelays = relayCandidates.filter(candidate => parseInt(candidate.sdpMid) === media.mid || candidate.sdpMid === media.mid);
-        return sectionRelays.length >= 1;
-      });
+    // Check whether there is atleast candidates for each media transport equal to the number of configured
+    //  turn servers before starting the call.
+    const parsedSdp = _sdpTransform2.default.parse(rtcLocalSessionDescription.sdp);
+    const readyToStart = parsedSdp.media.every(media => {
+      const sectionRelays = relayCandidates.filter(candidate => parseInt(candidate.sdpMid) === media.mid || candidate.sdpMid === media.mid);
+      return sectionRelays.length >= totalTurnServers;
+    });
 
-      if (readyToStart) {
-        return { type: _constants.ICE_COLLECTION_RESULT_TYPES.START_CALL };
-      } else {
-        return { type: _constants.ICE_COLLECTION_RESULT_TYPES.WAIT, wait: maxCollectionTimeout - iceCollectionDuration };
-      }
+    // If no TURN servers we're provided we will wait till the ideal collection timeout.
+    if (!readyToStart || !totalTurnServers) {
+      return { type: _constants.ICE_COLLECTION_RESULT_TYPES.WAIT, wait: iceCollectionIdealTimeout - iceCollectionDuration };
     } else {
-      // If we are passed the max timeout and no candidates are available, end the call
-      if (iceCandidates.length === 0) {
-        return { type: _constants.ICE_COLLECTION_RESULT_TYPES.ERROR, error: 'No ICE candidates available for call to proceed.' };
-      }
-      // Otherwise, if there are some candidates, we can attempt to start the call.
       return { type: _constants.ICE_COLLECTION_RESULT_TYPES.START_CALL };
     }
-  };
-  return iceCollectionCheckFunction;
+  } else if (iceCollectionDuration < iceCollectionMaxTimeout) {
+    // If we are passed the ideal timeout time, we will check that the amount relay candidates for each transport is
+    //  1 or more.
+
+    // RTP Relay candidates collected so far
+    const relayCandidates = iceCandidates.filter(candidate => candidate.component === 'rtp' && candidate.type === 'relay');
+
+    // Check whether there is atleast 1 candidate for each media transport before starting the call.
+    const parsedSdp = _sdpTransform2.default.parse(rtcLocalSessionDescription.sdp);
+    const readyToStart = parsedSdp.media.every(media => {
+      const sectionRelays = relayCandidates.filter(candidate => parseInt(candidate.sdpMid) === media.mid || candidate.sdpMid === media.mid);
+      return sectionRelays.length >= 1;
+    });
+
+    if (readyToStart) {
+      return { type: _constants.ICE_COLLECTION_RESULT_TYPES.START_CALL };
+    } else {
+      return { type: _constants.ICE_COLLECTION_RESULT_TYPES.WAIT, wait: iceCollectionMaxTimeout - iceCollectionDuration };
+    }
+  } else {
+    // If we are passed the max timeout and no candidates are available, end the call
+    if (iceCandidates.length === 0) {
+      return { type: _constants.ICE_COLLECTION_RESULT_TYPES.ERROR, error: 'No ICE candidates available for call to proceed.' };
+    }
+    // Otherwise, if there are some candidates, we can attempt to start the call.
+    return { type: _constants.ICE_COLLECTION_RESULT_TYPES.START_CALL };
+  }
 }
 
 /***/ }),
