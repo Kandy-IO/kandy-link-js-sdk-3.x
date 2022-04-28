@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>kandy-link-js-sdk-3.x 3.38.0 | Documentation</title>
+  <title>kandy-link-js-sdk-3.x 3.39.0 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>kandy-link-js-sdk-3.x</h3>
-          <div class='mb1'><code>3.38.0</code></div>
+          <div class='mb1'><code>3.39.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -3292,7 +3292,18 @@ client.on( ... )</pre>
 <p>This API will only modify the configurations provided, leaving other configurations
 as they were originally set, by performing a merge of the new values into the
 previous values.</p>
-<p>Please note that that the object provided to the <code>updateConfig</code> API may be different
+<p>Please note that updating the <a href="#configconfigcall">call.removeH264Codecs</a> configuration will not immediately change the SDP handlers used for a call. If you want to add or remove the
+h264 codec remover sdp handler you should follow this procedure:</p>
+<ol>
+<li>
+<p>Update the config for removeH264Codecs using the <a href="#apiupdateconfig">updateConfig</a> API.</p>
+</li>
+<li>
+<p>Update the sdp handler list using the <a href="call.setSdpHandlers">setSdpHandlers</a> API and provide any client defined SDP handler functions.</p>
+<p>NOTE: You can get the currently defined SDP handler functions with the <a href="#apigetconfig">getConfig</a> API.</p>
+</li>
+</ol>
+<p>Please note that the object provided to the <code>updateConfig</code> API may be different
 than the object retrieved from the <a href="#apigetconfig">getConfig</a> API. This may happen when a format
 change has happened and the SDK modifies the provided format to alleviate
 backwards-compatibility issues. We recommend ensuring the configurations you
