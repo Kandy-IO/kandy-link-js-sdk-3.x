@@ -1,7 +1,7 @@
 /**
  * Kandy.js
  * kandy.link.js
- * Version: 3.41.1-v4-support.8
+ * Version: 3.41.1-v4-support.9
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8125,7 +8125,7 @@ exports.getVersion = getVersion;
  * for the @@ tag below with actual version value.
  */
 function getVersion() {
-  return '3.41.1-v4-support.8';
+  return '3.41.1-v4-support.9';
 }
 
 /***/ }),
